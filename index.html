@@ -5,160 +5,254 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ADJ Business Consulting</title>
   <meta name="description" content="ADJ Business Consulting — Website Design, Tax Compliance, dan Data Analytics untuk bisnis Anda." />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy: #0A1628; --navy-mid: #112240; --navy-light: #1A3461;
-      --gold: #C9A84C; --gold-light: #E8C97A;
-      --white: #FFFFFF; --muted: #8B9AB5; --border: rgba(201,168,76,0.15);
-      --mono: 'JetBrains Mono', monospace;
+      --navy: #0D1B2E; --navy-mid: #162440; --navy-light: #1E3A5F;
+      --white: #FFFFFF; --gray-50: #F8FAFC; --gray-200: #E2E8F0;
+      --gray-400: #94A3B8; --gray-600: #475569;
+      --blue: #2563EB; --blue-light: #EFF6FF;
+      --h: 'Oxanium', sans-serif; --mono: 'JetBrains Mono', monospace;
     }
-    body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); margin: 0; overflow-x: hidden; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--h); background: var(--white); color: var(--navy); margin: 0; overflow-x: hidden; }
 
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(10,22,40,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 68px; }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--white); text-decoration: none; }
-    .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-    .nav-cta { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--gold); border: 1px solid var(--gold); padding: 8px 20px; background: transparent; cursor: pointer; transition: all 0.25s; text-decoration: none; display: inline-flex; align-items: center; }
-    .nav-cta:hover { background: var(--gold); color: var(--navy); }
+    /* NAV */
+    nav { background: var(--navy); display: flex; align-items: center; justify-content: space-between; padding: 0 6%; height: 72px; position: sticky; top: 0; z-index: 100; transition: box-shadow 0.3s; }
+    nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+    .nav-logo { font-family: var(--h); font-size: 20px; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.05em; }
+    .nav-logo span { color: #93C5FD; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-family: var(--mono); font-size: 11px; color: #64748B; text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--navy); background: var(--white); padding: 9px 20px; border: none; cursor: pointer; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.2s; letter-spacing: 0.04em; }
+    .nav-cta:hover { background: #E2E8F0; }
 
-    .hero { min-height: 92vh; display: flex; align-items: center; padding: 0 5%; position: relative; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%); pointer-events: none; }
-    .hero-lines { position: absolute; right: 0; top: 0; width: 55%; height: 100%; opacity: 0.055; background: repeating-linear-gradient(-45deg, transparent, transparent 30px, rgba(201,168,76,1) 30px, rgba(201,168,76,1) 31px); pointer-events: none; }
-    .hero-content { position: relative; z-index: 2; max-width: 680px; }
-    .hero-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; animation: fadeUp 0.7s ease 0.1s both; }
-    .hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
-    .hero-eyebrow span { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.18em; color: var(--gold); }
-    h1 { font-family: 'Playfair Display', serif; font-size: clamp(40px,5.5vw,72px); font-weight: 900; line-height: 1.08; letter-spacing: -0.01em; margin-bottom: 1.5rem; animation: fadeUp 0.7s ease 0.25s both; }
-    h1 em { font-style: italic; color: var(--gold); }
-    .hero-sub { font-size: 16px; font-weight: 300; line-height: 1.75; color: var(--muted); max-width: 480px; margin-bottom: 2.5rem; animation: fadeUp 0.7s ease 0.4s both; }
-    .hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.55s both; }
-    .btn-primary { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; background: var(--gold); color: var(--navy); padding: 15px 32px; border: none; cursor: pointer; transition: all 0.25s; text-decoration: none; display: inline-block; }
-    .btn-primary:hover { background: var(--gold-light); }
-    .btn-ghost { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; color: var(--white); display: inline-flex; align-items: center; gap: 8px; text-decoration: none; transition: color 0.2s; }
-    .btn-ghost:hover { color: var(--gold); }
-    .btn-arrow { width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    /* HERO */
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 7rem 6% 6rem; overflow: hidden; }
+    .hero-bg { position: absolute; inset: -20%; background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=80'); background-size: cover; background-position: center; will-change: transform; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(13,27,46,0.97) 0%, rgba(13,27,46,0.9) 55%, rgba(13,27,46,0.7) 100%); }
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 2; width: 100%; }
+    .hero-tag { font-family: var(--mono); font-size: 11px; color: #93C5FD; letter-spacing: 0.15em; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; opacity: 0; transform: translateX(-30px); animation: slideRight 0.8s ease 0.2s forwards; }
+    .hero-tag::before { content: ''; width: 24px; height: 1px; background: #93C5FD; }
+    .hero-title { font-family: var(--h); font-size: clamp(36px,4vw,58px); font-weight: 800; line-height: 1.1; letter-spacing: 0.02em; margin-bottom: 1.5rem; color: var(--white); opacity: 0; transform: translateX(-40px); animation: slideRight 0.8s ease 0.35s forwards; }
+    .hero-title span { color: #93C5FD; }
+    .hero-sub { font-family: var(--h); font-size: 15px; font-weight: 300; line-height: 1.8; color: #94A3B8; margin-bottom: 2.5rem; max-width: 440px; opacity: 0; transform: translateX(-30px); animation: slideRight 0.8s ease 0.5s forwards; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease 0.65s forwards; }
+    .btn-white { font-family: var(--mono); font-size: 12px; font-weight: 600; background: var(--white); color: var(--navy); padding: 13px 26px; border: none; cursor: pointer; letter-spacing: 0.04em; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s; }
+    .btn-white:hover { background: #E2E8F0; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .btn-ghost { font-family: var(--mono); font-size: 12px; color: var(--white); border: 1px solid rgba(255,255,255,0.22); padding: 13px 26px; background: transparent; cursor: pointer; letter-spacing: 0.04em; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s; }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.6); transform: translateY(-2px); }
 
-    .stats-bar { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2rem 5%; display: grid; grid-template-columns: repeat(3,1fr); }
-    .stat-item { text-align: center; padding: 1rem 2rem; position: relative; }
-    .stat-item:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 20%; height: 60%; width: 1px; background: rgba(201,168,76,0.2); }
-    .stat-number { font-family: var(--mono); font-size: 36px; font-weight: 600; color: var(--gold); display: block; }
-    .stat-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--muted); margin-top: 6px; display: block; }
+    /* HERO CARD */
+    .hero-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.75rem; backdrop-filter: blur(12px); opacity: 0; transform: translateX(40px); animation: slideLeft 0.8s ease 0.4s forwards; }
+    .hero-card-label { font-family: var(--mono); font-size: 10px; color: #93C5FD; letter-spacing: 0.12em; margin-bottom: 1.5rem; }
+    .metric-row { display: flex; justify-content: space-between; margin-bottom: 1.5rem; }
+    .metric { text-align: center; }
+    .metric-num { font-family: var(--h); font-size: 32px; font-weight: 700; color: var(--white); display: block; }
+    .metric-label { font-family: var(--mono); font-size: 10px; color: #475569; margin-top: 4px; }
+    .card-divider { height: 1px; background: rgba(255,255,255,0.07); margin-bottom: 1.5rem; }
+    .service-pills { display: flex; flex-direction: column; gap: 8px; }
+    .pill { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; transition: all 0.3s; }
+    .pill:hover { background: rgba(255,255,255,0.1); transform: translateX(4px); }
+    .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: #93C5FD; flex-shrink: 0; }
+    .pill-text { font-family: var(--h); font-size: 13px; font-weight: 500; color: #CBD5E1; }
+    .pill-tag { font-family: var(--mono); font-size: 9px; color: #93C5FD; margin-left: auto; }
 
-    .services { padding: 6rem 5%; }
-    .section-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--gold); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
-    .section-tag::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
-    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(28px,3.5vw,44px); font-weight: 700; line-height: 1.15; max-width: 500px; margin-bottom: 3.5rem; }
-    .section-title em { color: var(--gold); font-style: italic; }
-    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: rgba(201,168,76,0.12); }
-    .service-card { background: var(--navy); padding: 2.5rem 2rem; position: relative; overflow: hidden; text-decoration: none; color: var(--white); display: block; transition: background 0.3s; }
-    .service-card:hover { background: var(--navy-mid); }
-    .service-card::before { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s; }
-    .service-card:hover::before { width: 100%; }
-    .service-num { font-family: var(--mono); font-size: 11px; color: rgba(201,168,76,0.5); letter-spacing: 0.1em; margin-bottom: 1.25rem; display: block; }
-    .service-icon { width: 44px; height: 44px; border: 1px solid rgba(201,168,76,0.3); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 20px; color: var(--gold); }
-    .service-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 0.75rem; }
-    .service-desc { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--muted); }
-    .service-tag { display: inline-block; margin-top: 1.25rem; font-family: var(--mono); font-size: 10px; color: var(--gold); border: 1px solid rgba(201,168,76,0.25); padding: 4px 10px; }
+    /* SCROLL HINT */
+    .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 2; opacity: 0; animation: fadeUp 1s ease 1.2s forwards; }
+    .scroll-hint span { font-family: var(--mono); font-size: 10px; color: #64748B; letter-spacing: 0.1em; }
+    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, #64748B, transparent); animation: scrollAnim 1.5s ease infinite; }
+    @keyframes scrollAnim { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform:scaleY(1);transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
 
-    .cta-section { padding: 5rem 5%; background: var(--navy-mid); border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-    .cta-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(24px,3vw,38px); font-weight: 700; margin-bottom: 0.5rem; }
-    .cta-text h2 em { color: var(--gold); font-style: italic; }
-    .cta-text p { font-size: 15px; color: var(--muted); font-weight: 300; }
+    /* STATS */
+    .stats-section { background: var(--gray-50); border-bottom: 1px solid var(--gray-200); padding: 4rem 6%; }
+    .stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); }
+    .stat-item { text-align: center; padding: 0.5rem 2rem; position: relative; }
+    .stat-item:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 10%; height: 80%; width: 1px; background: var(--gray-200); }
+    .stat-num { font-family: var(--h); font-size: 48px; font-weight: 800; color: var(--navy); display: block; }
+    .stat-label { font-family: var(--mono); font-size: 11px; color: var(--gray-400); margin-top: 6px; letter-spacing: 0.1em; display: block; }
 
-    footer { background: #060E1C; padding: 2rem 5%; border-top: 1px solid rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .footer-logo { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--white); text-decoration: none; }
-    .footer-logo span { color: var(--gold); }
-    footer p { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    /* SERVICES */
+    .services { background: var(--white); padding: 7rem 6%; }
+    .section-wrap { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--blue); letter-spacing: 0.15em; margin-bottom: 0.75rem; display: block; }
+    .section-title { font-family: var(--h); font-size: clamp(26px,3vw,40px); font-weight: 700; line-height: 1.15; color: var(--navy); max-width: 480px; margin-bottom: 3rem; }
+    .section-title span { color: var(--blue); }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .service-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 10px; padding: 2.5rem 2rem; transition: all 0.4s ease; cursor: pointer; text-decoration: none; display: block; color: inherit; }
+    .service-card:hover { border-color: var(--navy); transform: translateY(-8px); box-shadow: 0 24px 56px rgba(13,27,46,0.1); }
+    .service-num { font-family: var(--mono); font-size: 11px; color: var(--gray-400); letter-spacing: 0.1em; margin-bottom: 1.5rem; display: block; }
+    .service-icon-wrap { width: 46px; height: 46px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 19px; color: var(--white); transition: all 0.4s; }
+    .service-card:hover .service-icon-wrap { background: #1D4ED8; transform: scale(1.1) rotate(5deg); }
+    .service-name { font-family: var(--h); font-size: 18px; font-weight: 700; margin-bottom: 0.75rem; color: var(--navy); }
+    .service-desc { font-family: var(--h); font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--gray-600); margin-bottom: 1.5rem; }
+    .service-tag { font-family: var(--mono); font-size: 10px; color: #1D4ED8; background: var(--blue-light); padding: 4px 10px; border-radius: 4px; display: inline-block; }
 
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    /* CTA */
+    .cta-section { background: var(--navy); padding: 7rem 6%; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; top: -50%; right: -10%; width: 600px; height: 600px; border-radius: 50%; background: rgba(37,99,235,0.07); pointer-events: none; }
+    .cta-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; position: relative; z-index: 1; }
+    .cta-text h2 { font-family: var(--h); font-size: clamp(26px,3vw,42px); font-weight: 700; color: var(--white); margin-bottom: 0.75rem; }
+    .cta-text h2 span { color: #93C5FD; }
+    .cta-text p { font-family: var(--h); font-size: 15px; color: #64748B; font-weight: 300; }
+    .btn-cta { font-family: var(--mono); font-size: 12px; font-weight: 600; background: var(--white); color: var(--navy); padding: 14px 30px; border: none; cursor: pointer; letter-spacing: 0.04em; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s; white-space: nowrap; }
+    .btn-cta:hover { background: #E2E8F0; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
 
-    @media (max-width: 768px) {
-      .services-grid { grid-template-columns: 1fr; }
-      .stats-bar { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
+    /* FOOTER */
+    footer { background: var(--gray-50); border-top: 1px solid var(--gray-200); padding: 2rem 6%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: var(--h); font-size: 18px; font-weight: 700; color: var(--navy); text-decoration: none; }
+    .footer-logo span { color: var(--blue); }
+    footer p { font-family: var(--mono); font-size: 11px; color: var(--gray-400); }
+
+    /* ANIMATIONS */
+    @keyframes slideRight { from{opacity:0;transform:translateX(-40px)} to{opacity:1;transform:translateX(0)} }
+    @keyframes slideLeft { from{opacity:0;transform:translateX(40px)} to{opacity:1;transform:translateX(0)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    .sr { opacity: 0; transition: opacity 0.7s ease, transform 0.7s ease; }
+    .sr-up { transform: translateY(40px); }
+    .sr-left { transform: translateX(-40px); }
+    .sr-right { transform: translateX(40px); }
+    .sr.visible { opacity: 1; transform: none; }
+    .d1{transition-delay:0.1s} .d2{transition-delay:0.2s} .d3{transition-delay:0.3s} .d4{transition-delay:0.4s}
+
+    @media(max-width:768px){
+      .hero-inner{grid-template-columns:1fr} .hero-card{display:none}
+      .services-grid{grid-template-columns:1fr}
+      .stats-inner{grid-template-columns:1fr}
+      .nav-links{display:none}
+      .cta-inner{flex-direction:column}
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo">ADJ <span>Consulting</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">beranda</a></li>
-      <li><a href="portfolio.html">portofolio</a></li>
-      <li><a href="contact.html">layanan</a></li>
-      <li><a href="contact.html">kontak</a></li>
-    </ul>
-    <a href="contact.html" class="nav-cta">konsultasi_gratis()</a>
-  </nav>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">ADJ <span>CONSULTING</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">beranda</a></li>
+    <li><a href="portfolio.html">portofolio</a></li>
+    <li><a href="index.html">layanan</a></li>
+    <li><a href="index.html">kontak</a></li>
+  </ul>
+  <a href="index.html" class="nav-cta">konsultasi_gratis()</a>
+</nav>
 
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-lines"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <div class="hero-eyebrow-line"></div>
-        <span>// konsultan bisnis terpercaya</span>
-      </div>
-      <h1>Wujudkan Bisnis<br>yang <em>Tumbuh</em> &<br>Berkembang</h1>
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">// konsultan bisnis terpercaya</div>
+      <h1 class="hero-title">Wujudkan Bisnis<br>yang <span>Tumbuh</span> &<br>Berkembang</h1>
       <p class="hero-sub">ADJ Business Consulting hadir untuk mendorong kemajuan bisnis Anda — dari desain website profesional, kepatuhan pajak, hingga analisis data yang tajam.</p>
       <div class="hero-actions">
-        <a href="contact.html" class="btn-primary">mulai_sekarang()</a>
-        <a href="portfolio.html" class="btn-ghost">lihat portofolio kami <div class="btn-arrow">→</div></a>
+        <a href="index.html" class="btn-white">Mulai Sekarang →</a>
+        <a href="portfolio.html" class="btn-ghost">Lihat Portofolio</a>
       </div>
     </div>
-  </section>
-
-  <div class="stats-bar">
-    <div class="stat-item"><span class="stat-number">50+</span><span class="stat-label">// klien aktif</span></div>
-    <div class="stat-item"><span class="stat-number">3</span><span class="stat-label">// bidang keahlian</span></div>
-    <div class="stat-item"><span class="stat-number">100%</span><span class="stat-label">// komitmen klien</span></div>
+    <div class="hero-card">
+      <div class="hero-card-label">// layanan_kami</div>
+      <div class="metric-row">
+        <div class="metric"><span class="metric-num">50+</span><span class="metric-label">klien aktif</span></div>
+        <div class="metric"><span class="metric-num">3</span><span class="metric-label">keahlian</span></div>
+        <div class="metric"><span class="metric-num">100%</span><span class="metric-label">komitmen</span></div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="service-pills">
+        <div class="pill"><div class="pill-dot"></div><span class="pill-text">Website Creation & Design</span><span class="pill-tag">web</span></div>
+        <div class="pill"><div class="pill-dot"></div><span class="pill-text">Kepatuhan Pajak (PPh 21)</span><span class="pill-tag">tax</span></div>
+        <div class="pill"><div class="pill-dot"></div><span class="pill-text">Data Analytics & Science</span><span class="pill-tag">data</span></div>
+      </div>
+    </div>
   </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
+  </div>
+</section>
 
-  <section class="services">
-    <div class="section-tag">layanan kami</div>
-    <h2 class="section-title">Solusi Lengkap untuk<br><em>Pertumbuhan</em> Bisnis Anda</h2>
+<section class="stats-section">
+  <div class="stats-inner">
+    <div class="stat-item sr sr-up"><span class="stat-num" data-target="50" data-suffix="+">0</span><span class="stat-label">klien aktif</span></div>
+    <div class="stat-item sr sr-up d1"><span class="stat-num" data-target="3" data-suffix="">0</span><span class="stat-label">bidang keahlian</span></div>
+    <div class="stat-item sr sr-up d2"><span class="stat-num" data-target="100" data-suffix="%">0</span><span class="stat-label">komitmen klien</span></div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="section-wrap">
+    <span class="section-eyebrow sr sr-left">// layanan kami</span>
+    <h2 class="section-title sr sr-left d1">Solusi Lengkap untuk<br><span>Pertumbuhan</span> Bisnis Anda</h2>
     <div class="services-grid">
-      <a href="portfolio.html" class="service-card">
+      <a href="portfolio.html" class="service-card sr sr-up d1">
         <span class="service-num">_01</span>
-        <div class="service-icon">◈</div>
+        <div class="service-icon-wrap">◈</div>
         <div class="service-name">Website Creation & Design</div>
         <p class="service-desc">Website profesional yang mencerminkan identitas bisnis Anda. Desain modern, cepat, dan siap bersaing.</p>
         <span class="service-tag">web.design</span>
       </a>
-      <a href="portfolio.html" class="service-card">
+      <a href="portfolio.html" class="service-card sr sr-up d2">
         <span class="service-num">_02</span>
-        <div class="service-icon">§</div>
+        <div class="service-icon-wrap">§</div>
         <div class="service-name">Kepatuhan Pajak</div>
         <p class="service-desc">Pengelolaan PPh 21 dan kewajiban perpajakan lainnya secara akurat dan tepat waktu sesuai regulasi Indonesia.</p>
         <span class="service-tag">tax.compliance</span>
       </a>
-      <a href="portfolio.html" class="service-card">
+      <a href="portfolio.html" class="service-card sr sr-up d3">
         <span class="service-num">_03</span>
-        <div class="service-icon">≋</div>
+        <div class="service-icon-wrap">≋</div>
         <div class="service-name">Data Analytics & Science</div>
         <p class="service-desc">Ubah data bisnis menjadi wawasan strategis. Keputusan lebih cerdas berbasis data yang terukur.</p>
         <span class="service-tag">data.analytics</span>
       </a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-section">
+<section class="cta-section">
+  <div class="cta-inner sr sr-up">
     <div class="cta-text">
-      <h2>Siap <em>Elevasi</em> Bisnis Anda?</h2>
+      <h2>Siap <span>Elevasi</span> Bisnis Anda?</h2>
       <p>Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.</p>
     </div>
-    <a href="contact.html" class="btn-primary">jadwalkan_konsultasi() →</a>
-  </section>
+    <a href="index.html" class="btn-cta">Jadwalkan Konsultasi →</a>
+  </div>
+</section>
 
-  <footer>
-    <a href="index.html" class="footer-logo">ADJ <span>Business Consulting</span></a>
-    <p>© 2025 · Palu, Sulawesi Tengah</p>
-  </footer>
+<footer>
+  <a href="index.html" class="footer-logo">ADJ <span>CONSULTING</span></a>
+  <p>© 2025 · Palu, Sulawesi Tengah</p>
+</footer>
 
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('visible');
+      const numEl = e.target.querySelector('[data-target]');
+      if (numEl) {
+        const target = parseInt(numEl.dataset.target);
+        const suffix = numEl.dataset.suffix || '';
+        let current = 0;
+        const step = Math.ceil(target / 50);
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          numEl.textContent = current + suffix;
+          if (current >= target) clearInterval(timer);
+        }, 25);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.sr').forEach(el => obs.observe(el));
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    const bg = document.getElementById('heroBg');
+    if (bg) bg.style.transform = 'translateY(' + (y * 0.35) + 'px)';
+    document.getElementById('navbar').classList.toggle('scrolled', y > 50);
+  }, { passive: true });
+</script>
 </body>
 </html>
