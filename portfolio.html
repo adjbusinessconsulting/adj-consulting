@@ -590,6 +590,18 @@
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
   }, { passive: true });
+
+  // Handle anchor links from homepage
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash;
+    if (hash === '#panel-web' || hash === '#panel-tax') {
+      const catId = hash.replace('#panel-', '');
+      document.querySelectorAll('.cat-tile').forEach(x => x.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelector('[data-cat="' + catId + '"]').classList.add('active');
+      document.getElementById('panel-' + catId).classList.add('active');
+    }
+  });
 </script>
 </body>
 </html>
