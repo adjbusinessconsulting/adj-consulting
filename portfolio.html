@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio — ADJ Business Consulting</title>
+  <meta name="description" content="Portofolio proyek Data Analytics & Data Science ADJ Business Consulting." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0A1628; --navy-mid: #112240; --navy-light: #1A3461;
+      --gold: #C9A84C; --gold-light: #E8C97A;
+      --white: #FFFFFF; --muted: #8B9AB5; --border: rgba(201,168,76,0.15);
+      --mono: 'JetBrains Mono', monospace;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); margin: 0; overflow-x: hidden; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(10,22,40,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 68px; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--white); text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-cta { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--gold); border: 1px solid var(--gold); padding: 8px 20px; background: transparent; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; transition: all 0.25s; }
+    .nav-cta:hover { background: var(--gold); color: var(--navy); }
+    .page-header { padding: 4rem 5% 3rem; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .page-header-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 80% 50%, rgba(201,168,76,0.05) 0%, transparent 70%); pointer-events: none; }
+    .breadcrumb { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-bottom: 1rem; position: relative; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb span { color: var(--gold); }
+    .page-title { font-family: 'Playfair Display', serif; font-size: clamp(36px,5vw,56px); font-weight: 900; line-height: 1.06; margin-bottom: 0.75rem; position: relative; }
+    .page-title em { color: var(--gold); font-style: italic; }
+    .page-sub { font-size: 15px; font-weight: 300; color: var(--muted); max-width: 500px; line-height: 1.7; position: relative; }
+    .cat-selector { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: var(--border); }
+    .cat-tile { background: var(--navy-mid); padding: 2rem; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.25s; position: relative; }
+    .cat-tile.active { border-bottom-color: var(--gold); background: var(--navy-light); }
+    .cat-tile:hover:not(.active) { border-bottom-color: rgba(201,168,76,0.3); }
+    .cat-num { font-family: var(--mono); font-size: 10px; color: rgba(201,168,76,0.4); margin-bottom: 0.75rem; display: block; }
+    .cat-icon { font-size: 20px; margin-bottom: 0.75rem; display: block; color: var(--gold); }
+    .cat-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 0.4rem; }
+    .cat-subs { font-family: var(--mono); font-size: 10px; color: var(--muted); line-height: 1.9; }
+    .cat-subs span { display: block; }
+    .cat-count { position: absolute; top: 1.25rem; right: 1.25rem; font-family: var(--mono); font-size: 10px; color: var(--gold); border: 1px solid rgba(201,168,76,0.25); padding: 3px 8px; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .sub-cat-selector { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5px; background: var(--border); }
+    .sub-cat-tile { background: var(--navy); padding: 1.5rem 2rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
+    .sub-cat-tile.active { border-bottom-color: var(--gold); background: var(--navy-mid); }
+    .sub-cat-tile:hover:not(.active) { background: var(--navy-mid); }
+    .sub-cat-num { font-family: var(--mono); font-size: 10px; color: rgba(201,168,76,0.4); margin-bottom: 0.3rem; display: block; }
+    .sub-cat-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 0.2rem; }
+    .sub-cat-desc { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+    .sub-cat-badge { font-family: var(--mono); font-size: 9px; color: var(--gold); border: 1px solid rgba(201,168,76,0.2); padding: 2px 7px; display: inline-block; margin-top: 0.4rem; }
+    .sub-panel { display: none; }
+    .sub-panel.active { display: block; }
+    .proj-switcher { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5px; background: var(--border); }
+    .proj-tab { background: var(--navy-mid); padding: 1.25rem 1.5rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
+    .proj-tab.active { background: var(--navy-light); border-bottom-color: var(--gold); }
+    .proj-tab:hover:not(.active) { background: var(--navy-light); }
+    .proj-tab-num { font-family: var(--mono); font-size: 9px; color: rgba(201,168,76,0.5); margin-bottom: 3px; }
+    .proj-tab-name { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--gold); }
+    .proj-tab-sub { font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 2px; }
+    .proj-panel { display: none; }
+    .proj-panel.active { display: block; }
+    .proj-hero { padding: 3rem 5%; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .proj-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 80% 40%, rgba(201,168,76,0.04) 0%, transparent 70%); pointer-events: none; }
+    .proj-bc { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-bottom: 1rem; position: relative; }
+    .proj-bc a { color: var(--muted); text-decoration: none; }
+    .proj-bc span { color: var(--gold); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 340px; gap: 3rem; align-items: start; position: relative; }
+    .proj-label { font-family: var(--mono); font-size: 10px; color: var(--gold); letter-spacing: 0.12em; margin-bottom: 0.75rem; }
+    .proj-title { font-family: 'Playfair Display', serif; font-size: clamp(28px,3.5vw,38px); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
+    .proj-title em { color: var(--gold); font-style: italic; }
+    .proj-summary { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.75; margin-bottom: 1.5rem; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-gold { font-family: var(--mono); font-size: 11px; font-weight: 600; background: var(--gold); color: var(--navy); padding: 11px 22px; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; }
+    .btn-gold:hover { background: var(--gold-light); }
+    .btn-outline { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--gold); border: 1px solid var(--gold); padding: 11px 22px; background: transparent; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
+    .btn-outline:hover { background: var(--gold); color: var(--navy); }
+    .meta-card { background: var(--navy-mid); border: 1px solid var(--border); padding: 1.5rem; }
+    .meta-head { font-family: var(--mono); font-size: 10px; color: var(--gold); letter-spacing: 0.15em; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+    .meta-head::before { content: ''; width: 16px; height: 1px; background: var(--gold); }
+    .meta-item { margin-bottom: 0.875rem; padding-bottom: 0.875rem; border-bottom: 1px solid rgba(201,168,76,0.08); }
+    .meta-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .meta-key { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 3px; }
+    .meta-val { font-family: var(--mono); font-size: 11px; color: var(--white); font-weight: 500; line-height: 1.5; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 3px; }
+    .tag { font-family: var(--mono); font-size: 10px; color: var(--gold); border: 1px solid rgba(201,168,76,0.25); padding: 3px 7px; }
+    .badge-powerbi { background: rgba(243,186,47,0.12); color: #F3BA2F; border: 1px solid rgba(243,186,47,0.3); }
+    .badge-tableau { background: rgba(31,119,180,0.15); color: #5BA4CF; border: 1px solid rgba(91,164,207,0.3); }
+    .content { padding: 2.5rem 5%; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--border); margin-bottom: 2.5rem; }
+    .content-block { background: var(--navy-mid); padding: 1.75rem; }
+    .block-label { font-family: var(--mono); font-size: 10px; color: var(--gold); letter-spacing: 0.15em; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px; }
+    .block-label::before { content: ''; width: 16px; height: 1px; background: var(--gold); }
+    .block-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 0.6rem; }
+    .block-text { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.75; }
+    .section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--gold); display: flex; align-items: center; gap: 10px; margin-bottom: 1.25rem; }
+    .section-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+    .results-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: var(--border); margin-bottom: 2.5rem; }
+    .result-card { background: var(--navy-mid); padding: 1.5rem; text-align: center; }
+    .result-num { font-family: var(--mono); font-size: 26px; font-weight: 600; color: var(--gold); display: block; margin-bottom: 5px; }
+    .result-label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.12em; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1.5px; background: var(--border); margin-bottom: 2.5rem; }
+    .kpi-card { background: var(--navy-mid); padding: 1.25rem; text-align: center; }
+    .kpi-num { font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--gold); display: block; margin-bottom: 3px; }
+    .kpi-label { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: 0.1em; }
+    .chart-box { background: var(--navy-mid); border: 1px solid var(--border); padding: 1.5rem; margin-bottom: 2.5rem; }
+    .chart-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .chart-mono { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+    .chart-bdg { font-family: var(--mono); font-size: 9px; color: var(--gold); border: 1px solid rgba(201,168,76,0.25); padding: 3px 8px; }
+    .rfm-table, .model-table { width: 100%; border-collapse: collapse; }
+    .rfm-table th, .model-table th { font-family: var(--mono); font-size: 10px; color: var(--gold); padding: 9px 11px; border-bottom: 1px solid var(--border); text-align: left; }
+    .rfm-table td, .model-table td { font-family: var(--mono); font-size: 11px; color: var(--muted); padding: 9px 11px; border-bottom: 1px solid rgba(201,168,76,0.06); }
+    .rfm-table tr:hover td, .model-table tr.best td { color: var(--white); }
+    .seg-badge { font-family: var(--mono); font-size: 9px; padding: 3px 7px; }
+    .seg-high { background: rgba(201,168,76,0.2); color: var(--gold); }
+    .seg-med { background: rgba(138,180,248,0.12); color: #8ab4f8; }
+    .seg-low { background: rgba(232,75,74,0.1); color: #e24b4a; }
+    .best-badge { font-family: var(--mono); font-size: 9px; background: rgba(201,168,76,0.2); color: var(--gold); border: 1px solid rgba(201,168,76,0.35); padding: 3px 7px; }
+    .feature-bars { display: flex; flex-direction: column; gap: 9px; }
+    .feature-row { display: flex; align-items: center; gap: 10px; }
+    .feature-name { font-family: var(--mono); font-size: 10px; color: var(--muted); min-width: 180px; }
+    .feature-bar-wrap { flex: 1; height: 7px; background: rgba(201,168,76,0.1); }
+    .feature-bar-fill { height: 100%; background: var(--gold); }
+    .feature-val { font-family: var(--mono); font-size: 10px; color: var(--gold); min-width: 36px; text-align: right; }
+    .sowhat-section { margin-bottom: 2.5rem; }
+    .sowhat-box { background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(10,22,40,0) 100%); border: 1px solid rgba(201,168,76,0.3); padding: 2rem; }
+    .sowhat-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 0.4rem; }
+    .sowhat-title span { color: var(--gold); font-style: italic; }
+    .sowhat-sub { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 1.5rem; }
+    .insight-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .insight-item { display: flex; gap: 14px; align-items: flex-start; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(201,168,76,0.08); }
+    .insight-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .insight-num { font-family: var(--mono); font-size: 10px; color: var(--gold); min-width: 22px; padding-top: 2px; }
+    .insight-content { flex: 1; }
+    .insight-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 0.4rem; }
+    .insight-title strong { color: var(--gold); }
+    .insight-body { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+    .insight-why { font-family: var(--mono); font-size: 10px; color: rgba(201,168,76,0.6); margin-top: 0.4rem; }
+    .cluster-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: var(--border); margin-bottom: 1.5rem; }
+    .cluster-card { background: var(--navy); padding: 1.25rem; }
+    .cluster-label { font-family: var(--mono); font-size: 9px; color: rgba(201,168,76,0.5); margin-bottom: 0.4rem; }
+    .cluster-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; margin-bottom: 0.6rem; }
+    .cluster-action { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.5; padding-left: 12px; position: relative; margin-bottom: 4px; }
+    .cluster-action::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 10px; }
+    .week-plan { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5px; background: var(--border); margin-top: 1.25rem; }
+    .week-card { background: var(--navy-mid); padding: 1.1rem; }
+    .week-num { font-family: var(--mono); font-size: 9px; color: var(--gold); margin-bottom: 3px; }
+    .week-focus { font-size: 12px; font-weight: 500; color: var(--white); margin-bottom: 3px; }
+    .week-action { font-size: 11px; font-weight: 300; color: var(--muted); line-height: 1.5; }
+    .coming-section { padding: 3rem 5%; }
+    .coming-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5px; background: var(--border); }
+    .coming-card { background: var(--navy-mid); padding: 2rem; opacity: 0.5; }
+    .coming-label { font-family: var(--mono); font-size: 9px; color: var(--muted); border: 1px solid var(--border); padding: 3px 8px; display: inline-block; margin-bottom: 0.75rem; }
+    .coming-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 0.5rem; }
+    .coming-desc { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.6; }
+    .cta-section { padding: 3.5rem 5%; background: var(--navy-mid); border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(22px,2.5vw,32px); font-weight: 700; margin-bottom: 0.4rem; }
+    .cta-text h2 em { color: var(--gold); font-style: italic; }
+    .cta-text p { font-size: 14px; color: var(--muted); font-weight: 300; }
+    footer { background: #060E1C; padding: 2rem 5%; border-top: 1px solid rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--white); text-decoration: none; }
+    .footer-logo span { color: var(--gold); }
+    footer p { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .cat-selector { grid-template-columns: 1fr; }
+      .sub-cat-selector, .proj-switcher { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .cluster-grid { grid-template-columns: 1fr; }
+      .week-plan { grid-template-columns: repeat(2,1fr); }
+      .kpi-grid { grid-template-columns: repeat(3,1fr); }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">ADJ <span>Consulting</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">beranda</a></li>
+    <li><a href="portfolio.html" class="active">portofolio</a></li>
+    <li><a href="index.html">layanan</a></li>
+    <li><a href="index.html">kontak</a></li>
+  </ul>
+  <a href="index.html" class="nav-cta">konsultasi_gratis()</a>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="breadcrumb"><a href="index.html">home</a> / <span>portofolio</span></div>
+  <h1 class="page-title">Karya &<br><em>Hasil Nyata</em></h1>
+  <p class="page-sub">Pilih kategori untuk melihat proyek-proyek yang telah dikerjakan.</p>
+</div>
+
+<div class="cat-selector">
+  <div class="cat-tile active" data-cat="data">
+    <span class="cat-num">_01</span>
+    <span class="cat-icon">≋</span>
+    <div class="cat-name">Data</div>
+    <div class="cat-subs"><span>→ Data Analysis</span><span>→ Data Science</span></div>
+    <span class="cat-count">4 projects</span>
+  </div>
+  <div class="cat-tile" data-cat="web">
+    <span class="cat-num">_02</span>
+    <span class="cat-icon">◈</span>
+    <div class="cat-name">Website Design</div>
+    <div class="cat-subs"><span>→ F&amp;B</span><span>→ Housing</span></div>
+    <span class="cat-count">coming soon</span>
+  </div>
+  <div class="cat-tile" data-cat="tax">
+    <span class="cat-num">_03</span>
+    <span class="cat-icon">§</span>
+    <div class="cat-name">Perpajakan</div>
+    <div class="cat-subs"><span>→ PPh 21</span></div>
+    <span class="cat-count">coming soon</span>
+  </div>
+</div>
+
+<div class="panel active" id="panel-data">
+  <div class="sub-cat-selector">
+    <div class="sub-cat-tile active" data-sub="analysis">
+      <span class="sub-cat-num">_01</span>
+      <div class="sub-cat-name">Data Analysis</div>
+      <div class="sub-cat-desc">EDA · Business Insights · Dashboards</div>
+      <span class="sub-cat-badge">DA Project 1 · DA Project 2</span>
+    </div>
+    <div class="sub-cat-tile" data-sub="science">
+      <span class="sub-cat-num">_02</span>
+      <div class="sub-cat-name">Data Science</div>
+      <div class="sub-cat-desc">ML · Clustering · Regression</div>
+      <span class="sub-cat-badge">DS Project 1 · DS Project 2</span>
+    </div>
+  </div>
+
+  <div class="sub-panel active" id="sub-analysis">
+    <div class="proj-switcher">
+      <div class="proj-tab active" data-proj="da1">
+        <div class="proj-tab-num">DA Project 1</div>
+        <div class="proj-tab-name">RFM Segmentation</div>
+        <div class="proj-tab-sub">Unlocking Customer Value</div>
+      </div>
+      <div class="proj-tab" data-proj="da2">
+        <div class="proj-tab-num">DA Project 2</div>
+        <div class="proj-tab-name">Inventory Analysis</div>
+        <div class="proj-tab-sub">Retail Profitability</div>
+      </div>
+    </div>
+
+    <div class="proj-panel active" id="proj-da1">
+      <div class="proj-hero">
+        <div class="proj-hero-bg"></div>
+        <div class="proj-bc"><a href="index.html">home</a> / <a href="portfolio.html">portofolio</a> / data analysis / <span>DA Project 1</span></div>
+        <div class="hero-grid">
+          <div>
+            <div class="proj-label">// DA Project 1 · Data Analysis · DS39+ Dibimbing.id</div>
+            <h1 class="proj-title">Unlocking Customer Value<br><em>Through RFM Segmentation</em></h1>
+            <p class="proj-summary">Bisnis ritel online sering gagal membedakan pelanggan loyal dari yang hampir tidak aktif. Proyek ini menggunakan RFM Analysis pada 123MB data transaksi nyata untuk mengidentifikasi segmen pelanggan bernilai tinggi — membantu bisnis mengalokasikan anggaran marketing lebih efisien.</p>
+            <div class="hero-btns"><a href="#" class="btn-gold">lihat_notebook() →</a><a href="index.html" class="btn-outline">diskusikan_proyek_ini()</a></div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-head">// project_info</div>
+            <div class="meta-item"><div class="meta-key">dataset</div><div class="meta-val">UCI Online Retail · 123 MB</div></div>
+            <div class="meta-item"><div class="meta-key">tools</div><div class="meta-val">Python · Pandas · Matplotlib · Seaborn</div></div>
+            <div class="meta-item"><div class="meta-key">dashboard</div><div class="badge-row"><span class="tag badge-powerbi">Power BI</span></div></div>
+            <div class="meta-item"><div class="meta-key">tags</div><div class="badge-row"><span class="tag">RFM</span><span class="tag">EDA</span><span class="tag">segmentation</span><span class="tag">python</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="two-col">
+          <div class="content-block"><div class="block-label">// problem_statement</div><div class="block-title">Masalah yang Dipecahkan</div><p class="block-text">Perusahaan ritel online menghabiskan anggaran promosi secara merata ke semua pelanggan tanpa memahami siapa yang benar-benar berharga. Pelanggan setia tidak mendapat perhatian khusus, sementara pelanggan tidak aktif terus dibiayai kampanye yang sia-sia.</p></div>
+          <div class="content-block"><div class="block-label">// what_we_did</div><div class="block-title">Yang Kami Lakukan</div><p class="block-text">EDA mendalam pada data UCI Online Retail, lalu menghitung skor RFM per pelanggan. Setiap pelanggan diberi skor 1-5 untuk Recency, Frequency, dan Monetary — kemudian dikelompokkan menjadi 4 segmen strategis dan divisualisasikan dalam Power BI dashboard interaktif.</p></div>
+        </div>
+        <div class="section-label">// key_results</div>
+        <div class="results-grid">
+          <div class="result-card"><span class="result-num">4</span><span class="result-label">// customer segments</span></div>
+          <div class="result-card"><span class="result-num">123MB</span><span class="result-label">// dataset analyzed</span></div>
+          <div class="result-card"><span class="result-num">Power BI</span><span class="result-label">// live dashboard</span></div>
+        </div>
+        <div class="section-label">// visual_proof</div>
+        <div class="chart-box">
+          <div class="chart-head"><span class="chart-mono">// rfm_segmentation · UCI Online Retail</span><span class="chart-bdg">real data</span></div>
+          <table class="rfm-table">
+            <thead><tr><th>Segment</th><th>Recency</th><th>Frequency</th><th>Monetary</th><th>Recommended Action</th></tr></thead>
+            <tbody>
+              <tr><td><span class="seg-badge seg-high">Champions</span></td><td>Very Recent</td><td>Very High</td><td>Very High</td><td>Reward &amp; retain</td></tr>
+              <tr><td><span class="seg-badge seg-high">Loyal</span></td><td>Recent</td><td>High</td><td>High</td><td>Upsell offers</td></tr>
+              <tr><td><span class="seg-badge seg-med">At Risk</span></td><td>Not Recent</td><td>Medium</td><td>Medium</td><td>Re-engagement</td></tr>
+              <tr><td><span class="seg-badge seg-low">Lost</span></td><td>Long Ago</td><td>Low</td><td>Low</td><td>Win-back or drop</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sowhat-section">
+          <div class="section-label">// the_so_what_moment</div>
+          <div class="sowhat-box">
+            <div class="sowhat-title">So, <span>What Should the Business Do?</span></div>
+            <div class="sowhat-sub">// recommendation · step_by_step_action_plan · slides 34-36</div>
+            <div class="insight-list">
+              <div class="insight-item"><span class="insight-num">01</span><div class="insight-content"><div class="insight-title"><strong>Reactivate Lapsing / Inactive Customers</strong></div><div class="insight-body">Send a time-limited reactivation message (email or push notification) offering a simple incentive such as free shipping or a small discount (10%).</div><div class="insight-why">// why it works → Urgency lowers the barrier to return and encourages customers to re-engage with minimal marketing cost.</div></div></div>
+              <div class="insight-item"><span class="insight-num">02</span><div class="insight-content"><div class="insight-title"><strong>Build Loyalty</strong> (Primary Focus)</div><div class="insight-body">Introduce a basic loyalty mechanism — member card or points system — where customers earn points after each purchase. Points can be collected and exchanged for gifts.</div><div class="insight-why">// why it works → Creates a reason to return, shifting behavior from one-time purchases to repeat buying. Small rewards encourage habit formation.</div></div></div>
+              <div class="insight-item"><span class="insight-num">03</span><div class="insight-content"><div class="insight-title"><strong>Increase Spending</strong> (Primary Focus)</div><div class="insight-body">Offer bundle deals (e.g., phone case + charger at a discounted price) or add-on discounts at checkout. Send email whenever promotions or discounts are created.</div><div class="insight-why">// why it works → Bundling increases basket size without requiring additional customer acquisition, directly improving monetary value while keeping pricing attractive.</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-panel" id="proj-da2">
+      <div class="proj-hero">
+        <div class="proj-hero-bg"></div>
+        <div class="proj-bc"><a href="index.html">home</a> / <a href="portfolio.html">portofolio</a> / data analysis / <span>DA Project 2</span></div>
+        <div class="hero-grid">
+          <div>
+            <div class="proj-label">// DA Project 2 · Data Analysis · DS39+ Dibimbing.id</div>
+            <h1 class="proj-title">Retail Inventory<br><em>Performance &amp; Profitability</em></h1>
+            <p class="proj-summary">Dari 485,875 item inventaris, hanya 36.47% yang terjual. Proyek ini menganalisis Looker E-commerce dataset untuk mengungkap kategori terlaris, brand paling menguntungkan, produk slow-moving, dan performa antar distribution center.</p>
+            <div class="hero-btns"><a href="#" class="btn-gold">lihat_notebook() →</a><a href="index.html" class="btn-outline">diskusikan_proyek_ini()</a></div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-head">// project_info</div>
+            <div class="meta-item"><div class="meta-key">dataset</div><div class="meta-val">Looker E-commerce · 485,875 rows</div></div>
+            <div class="meta-item"><div class="meta-key">tools</div><div class="meta-val">Python · Pandas · Matplotlib · Seaborn</div></div>
+            <div class="meta-item"><div class="meta-key">dashboard</div><div class="badge-row"><span class="tag badge-tableau">Tableau</span></div></div>
+            <div class="meta-item"><div class="meta-key">tags</div><div class="badge-row"><span class="tag">EDA</span><span class="tag">inventory</span><span class="tag">ABC analysis</span><span class="tag">Tableau</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="two-col">
+          <div class="content-block"><div class="block-label">// problem_statement</div><div class="block-title">Masalah yang Dipecahkan</div><p class="block-text">Lebih dari 63% modal terikat di stok yang tidak bergerak. Bisnis perlu memahami produk mana yang menghasilkan profit, mana yang terlalu lama di gudang, dan distribution center mana yang paling efisien.</p></div>
+          <div class="content-block"><div class="block-label">// what_we_did</div><div class="block-title">Yang Kami Lakukan</div><p class="block-text">EDA end-to-end: feature engineering (profit margin, inventory days), analisis per kategori/brand/DC, ABC Classification berbasis revenue, Inventory Aging Bucket, dan monthly sales trend. Diekspor ke Tableau untuk dashboard interaktif.</p></div>
+        </div>
+        <div class="section-label">// key_results</div>
+        <div class="kpi-grid">
+          <div class="kpi-card"><span class="kpi-num">485K</span><span class="kpi-label">// total items</span></div>
+          <div class="kpi-card"><span class="kpi-num">36.47%</span><span class="kpi-label">// sold rate</span></div>
+          <div class="kpi-card"><span class="kpi-num">$10.5M</span><span class="kpi-label">// realized revenue</span></div>
+          <div class="kpi-card"><span class="kpi-num">$5.5M</span><span class="kpi-label">// realized profit</span></div>
+          <div class="kpi-card"><span class="kpi-num">29.4 days</span><span class="kpi-label">// avg sell time</span></div>
+        </div>
+        <div class="sowhat-section">
+          <div class="section-label">// the_so_what_moment</div>
+          <div class="sowhat-box">
+            <div class="sowhat-title">So, <span>What Should the Business Do?</span></div>
+            <div class="sowhat-sub">// recommendations · notebook section 7 &amp; 8</div>
+            <div class="insight-list">
+              <div class="insight-item"><span class="insight-num">01</span><div class="insight-content"><div class="insight-title"><strong>Increase stock allocation for high-revenue and high-profit categories</strong></div><div class="insight-body">Certain categories contribute the highest revenue. Focus inventory investment here — ensuring top-performing products are never out of stock.</div></div></div>
+              <div class="insight-item"><span class="insight-num">02</span><div class="insight-content"><div class="insight-title"><strong>Review slow-moving products — discount, bundle, or reduce reorder volume</strong></div><div class="insight-body">Some products take significantly longer to sell. Consider discounting, bundling, or stopping reorders — capital tied up in slow stock could be redeployed to products that actually sell.</div></div></div>
+              <div class="insight-item"><span class="insight-num">03</span><div class="insight-content"><div class="insight-title"><strong>Prioritize brands with consistently high revenue and healthy profit margins</strong></div><div class="insight-body">Brand-level performance differs substantially. Focus marketing and shelf space on brands that consistently deliver strong margins.</div></div></div>
+              <div class="insight-item"><span class="insight-num">04</span><div class="insight-content"><div class="insight-title"><strong>Investigate distribution centers with slower average inventory turnover</strong></div><div class="insight-body">DCs may have different turnover speeds, signaling operational inefficiencies or regional demand variation. Slower DCs need operational review.</div></div></div>
+              <div class="insight-item"><span class="insight-num">05</span><div class="insight-content"><div class="insight-title"><strong>Use monthly trend patterns to improve procurement and inventory planning</strong></div><div class="insight-body">Monthly sales trends reveal fluctuations that support stock planning and seasonal forecasting. Don't over-stock during slow months or under-stock during peaks.</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-panel" id="sub-science">
+    <div class="proj-switcher">
+      <div class="proj-tab active" data-proj="ds1">
+        <div class="proj-tab-num">DS Project 1</div>
+        <div class="proj-tab-name">Customer Clustering</div>
+        <div class="proj-tab-sub">K-Means ML Approach</div>
+      </div>
+      <div class="proj-tab" data-proj="ds2">
+        <div class="proj-tab-num">DS Project 2</div>
+        <div class="proj-tab-name">Delivery Prediction</div>
+        <div class="proj-tab-sub">Food ETA with ML</div>
+      </div>
+    </div>
+
+    <div class="proj-panel active" id="proj-ds1">
+      <div class="proj-hero">
+        <div class="proj-hero-bg"></div>
+        <div class="proj-bc"><a href="index.html">home</a> / <a href="portfolio.html">portofolio</a> / data science / <span>DS Project 1</span></div>
+        <div class="hero-grid">
+          <div>
+            <div class="proj-label">// DS Project 1 · Data Science · DS39+ Dibimbing.id</div>
+            <h1 class="proj-title">Customer Clustering<br><em>with K-Means Machine Learning</em></h1>
+            <p class="proj-summary">Menggunakan machine learning untuk menemukan segmen pelanggan tersembunyi dalam data transaksi online retail. K-Means berbasis RFM membagi pelanggan menjadi kelompok yang actionable — membantu tim marketing menarget kampanye dengan presisi tinggi.</p>
+            <div class="hero-btns"><a href="#" class="btn-gold">lihat_notebook() →</a><a href="index.html" class="btn-outline">diskusikan_proyek_ini()</a></div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-head">// project_info</div>
+            <div class="meta-item"><div class="meta-key">dataset</div><div class="meta-val">UCI Online Retail · 123 MB</div></div>
+            <div class="meta-item"><div class="meta-key">tools</div><div class="meta-val">Python · Scikit-Learn · Pandas · Matplotlib</div></div>
+            <div class="meta-item"><div class="meta-key">method</div><div class="meta-val">K-Means · Elbow Method · RFM Analysis</div></div>
+            <div class="meta-item"><div class="meta-key">tags</div><div class="badge-row"><span class="tag">K-Means</span><span class="tag">clustering</span><span class="tag">RFM</span><span class="tag">scikit-learn</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="two-col">
+          <div class="content-block"><div class="block-label">// problem_statement</div><div class="block-title">Masalah yang Dipecahkan</div><p class="block-text">Segmentasi manual bersifat subjektif. Proyek ini menggunakan K-Means Clustering untuk menemukan pengelompokan pelanggan yang lebih natural dan sepenuhnya berbasis data.</p></div>
+          <div class="content-block"><div class="block-label">// what_we_did</div><div class="block-title">Yang Kami Lakukan</div><p class="block-text">Menghitung fitur RFM, normalisasi dengan StandardScaler, menentukan k optimal dengan Elbow Method dan Silhouette Score, lalu menjalankan K-Means dengan k=3. Setiap cluster diinterpretasikan secara bisnis untuk strategi retensi yang actionable.</p></div>
+        </div>
+        <div class="section-label">// key_results</div>
+        <div class="results-grid">
+          <div class="result-card"><span class="result-num">3</span><span class="result-label">// optimal clusters</span></div>
+          <div class="result-card"><span class="result-num">K-Means</span><span class="result-label">// algorithm used</span></div>
+          <div class="result-card"><span class="result-num">40 pgs</span><span class="result-label">// full report</span></div>
+        </div>
+        <div class="sowhat-section">
+          <div class="section-label">// the_so_what_moment</div>
+          <div class="sowhat-box">
+            <div class="sowhat-title">So, <span>What Should the Business Do?</span></div>
+            <div class="sowhat-sub">// cluster_recommendations · slide 28 · 4-week action plan</div>
+            <div class="cluster-grid">
+              <div class="cluster-card"><div class="cluster-label">// Cluster 1 · 19.40% · $5,599 monetary</div><div class="cluster-name">MVP Customers</div><div class="cluster-action">Introduce reward programs or membership tiers to retain these valuable customers</div><div class="cluster-action">Provide exclusive perks — early access to new products or special discounts (VIP Benefits)</div><div class="cluster-action">Use personalized recommendations and targeted promotions based on purchase history</div><div class="cluster-action">Promote higher-value or premium products</div><div class="cluster-action">Maintain engagement through exclusive events, newsletters, or loyalty incentives</div></div>
+              <div class="cluster-card"><div class="cluster-label">// Cluster 2 · 26.40% · $1,131 monetary</div><div class="cluster-name">Mid Value Customers</div><div class="cluster-action">Promote higher-value products or premium versions of products they already purchase</div><div class="cluster-action">Recommend complementary products based on previous purchases (Cross-Selling)</div><div class="cluster-action">Offer bundles or packages to encourage larger purchases</div><div class="cluster-action">Introduce loyalty rewards or points to encourage more frequent purchases</div><div class="cluster-action">Use targeted marketing and product suggestions to increase engagement</div></div>
+              <div class="cluster-card"><div class="cluster-label">// Cluster 3 · 24.20% · $189 monetary</div><div class="cluster-name">Low Value Customers</div><div class="cluster-action">Encourage second purchase through welcome-back promotions</div><div class="cluster-action">Offer discounts specifically for their second purchase</div><div class="cluster-action">Send reminders or product recommendations after initial purchase</div><div class="cluster-action">Provide simple promotions to encourage brand engagement</div><div class="cluster-action">Use digital retargeting ads to bring customers back</div></div>
+            </div>
+            <div class="insight-why" style="margin-bottom:0.75rem;font-family:var(--mono);font-size:10px;color:rgba(201,168,76,0.6);">// 4_week_plan · expected outcome: protect high-value customers (75% of revenue) · increase mid-value spending · reactivate dormant buyers</div>
+            <div class="week-plan">
+              <div class="week-card"><div class="week-num">// Week 1</div><div class="week-focus">Preparation</div><div class="week-action">Segment customers by clusters, prepare campaigns, design targeted promotions.</div></div>
+              <div class="week-card"><div class="week-num">// Week 2</div><div class="week-focus">Retain MVP (Cluster 1)</div><div class="week-action">Launch VIP loyalty programs, personalized recommendations, and exclusive promotions.</div></div>
+              <div class="week-card"><div class="week-num">// Week 3</div><div class="week-focus">Grow Mid-Value (Cluster 2)</div><div class="week-action">Implement upselling, product bundles, and loyalty incentives to increase spending.</div></div>
+              <div class="week-card"><div class="week-num">// Week 4</div><div class="week-focus">Reactivate Inactive (Cluster 0 &amp; 3)</div><div class="week-action">Run reactivation campaigns, offer comeback discounts, encourage second purchases.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-panel" id="proj-ds2">
+      <div class="proj-hero">
+        <div class="proj-hero-bg"></div>
+        <div class="proj-bc"><a href="index.html">home</a> / <a href="portfolio.html">portofolio</a> / data science / <span>DS Project 2</span></div>
+        <div class="hero-grid">
+          <div>
+            <div class="proj-label">// DS Project 2 · Data Science · DS39+ Dibimbing.id</div>
+            <h1 class="proj-title">Predicting Food<br><em>Delivery Time with ML</em></h1>
+            <p class="proj-summary">Platform delivery sering memberikan estimasi waktu yang tidak akurat, menyebabkan pelanggan kecewa. Proyek ini membangun model ML untuk memprediksi waktu pengiriman secara akurat — mempertimbangkan jarak, cuaca, traffic, dan pengalaman kurir.</p>
+            <div class="hero-btns"><a href="#" class="btn-gold">lihat_notebook() →</a><a href="index.html" class="btn-outline">diskusikan_proyek_ini()</a></div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-head">// project_info</div>
+            <div class="meta-item"><div class="meta-key">dataset</div><div class="meta-val">Food Delivery Times · 1,000 orders · 9 features</div></div>
+            <div class="meta-item"><div class="meta-key">tools</div><div class="meta-val">Python · Scikit-Learn · Pandas · Matplotlib</div></div>
+            <div class="meta-item"><div class="meta-key">best model</div><div class="meta-val">Linear Regression · R² = 0.82</div></div>
+            <div class="meta-item"><div class="meta-key">tags</div><div class="badge-row"><span class="tag">regression</span><span class="tag">ML pipeline</span><span class="tag">scikit-learn</span><span class="tag">python</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="two-col">
+          <div class="content-block"><div class="block-label">// problem_statement</div><div class="block-title">Masalah yang Dipecahkan</div><p class="block-text">Jika ETA tidak akurat, pelanggan kecewa, restoran dapat keluhan, dan tim operasional kesulitan mengalokasikan kurir. Model prediksi ML memungkinkan platform memberikan ETA yang lebih realistis.</p></div>
+          <div class="content-block"><div class="block-label">// what_we_did</div><div class="block-title">Yang Kami Lakukan</div><p class="block-text">Pipeline ML end-to-end: EDA, feature engineering (Is_Rush_Hour, Distance × Prep_Time), preprocessing dengan StandardScaler + OneHotEncoder, membandingkan 3 model regresi. Best model dipilih berdasarkan MAE, RMSE, dan R².</p></div>
+        </div>
+        <div class="section-label">// key_results</div>
+        <div class="results-grid">
+          <div class="result-card"><span class="result-num">82%</span><span class="result-label">// R² accuracy</span></div>
+          <div class="result-card"><span class="result-num">±6 min</span><span class="result-label">// avg prediction error</span></div>
+          <div class="result-card"><span class="result-num">3</span><span class="result-label">// models compared</span></div>
+        </div>
+        <div class="section-label">// visual_proof</div>
+        <div class="chart-box">
+          <div class="chart-head"><span class="chart-mono">// model_comparison · test set (200 samples)</span><span class="chart-bdg">real output</span></div>
+          <table class="model-table">
+            <thead><tr><th>Model</th><th>MAE</th><th>RMSE</th><th>R²</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr class="best"><td>Linear Regression</td><td>6.08</td><td>8.96</td><td>0.8208</td><td><span class="best-badge">best model</span></td></tr>
+              <tr><td>Random Forest</td><td>~6.5</td><td>~9.2</td><td>~0.81</td><td>—</td></tr>
+              <tr><td>Gradient Boosting</td><td>~6.8</td><td>~9.5</td><td>~0.80</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sowhat-section">
+          <div class="section-label">// the_so_what_moment</div>
+          <div class="sowhat-box">
+            <div class="sowhat-title">So, <span>What Should the Business Do?</span></div>
+            <div class="sowhat-sub">// business_recommendations · notebook section 7.2</div>
+            <div class="insight-list">
+              <div class="insight-item"><span class="insight-num">01</span><div class="insight-content"><div class="insight-title"><strong>Use predictive ETA models in the app</strong></div><div class="insight-body">Show customers more realistic delivery estimates. The model predicts with R²=0.82 and MAE of only ±6 minutes — far more accurate than generic "30-60 minute" estimates.</div><div class="insight-why">// why it works → Realistic ETAs reduce customer disappointment and build platform trust.</div></div></div>
+              <div class="insight-item"><span class="insight-num">02</span><div class="insight-content"><div class="insight-title"><strong>Allocate couriers more strategically</strong></div><div class="insight-body">Assign experienced couriers to difficult routes or busy periods. Distance and courier experience are both significant factors — smarter assignment reduces delays.</div><div class="insight-why">// why it works → Matching the right courier to the right route improves performance.</div></div></div>
+              <div class="insight-item"><span class="insight-num">03</span><div class="insight-content"><div class="insight-title"><strong>Adjust ETA during peak hours</strong></div><div class="insight-body">Incorporate rush hour and traffic conditions into operational planning. Traffic level and time of day both impact delivery time — ETAs should automatically adjust.</div><div class="insight-why">// why it works → Proactive adjustments reduce customer complaints before they happen.</div></div></div>
+              <div class="insight-item"><span class="insight-num">04</span><div class="insight-content"><div class="insight-title"><strong>Monitor preparation time together with distance</strong></div><div class="insight-body">Delivery delay is not only caused by courier travel but also by kitchen readiness. Distance × Prep_Time was one of the strongest predictors.</div><div class="insight-why">// why it works → Fixing kitchen bottlenecks can reduce total delivery time just as much as optimizing courier routes.</div></div></div>
+              <div class="insight-item"><span class="insight-num">05</span><div class="insight-content"><div class="insight-title"><strong>Use the model as a decision-support tool</strong></div><div class="insight-body">The model can help operations teams anticipate delays and improve service quality — informing when to proactively communicate with customers about potential delays.</div><div class="insight-why">// why it works → Data-driven operations teams respond faster and more accurately than those relying on intuition alone.</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="panel-web">
+  <div class="coming-section">
+    <div class="coming-grid">
+      <div class="coming-card"><span class="coming-label">// coming_soon</span><div class="coming-title">F&amp;B Website Design</div><p class="coming-desc">Desain website profesional untuk bisnis Food &amp; Beverage — restoran, kafe, catering, dan brand makanan lokal.</p></div>
+      <div class="coming-card"><span class="coming-label">// coming_soon</span><div class="coming-title">Housing Website Design</div><p class="coming-desc">Desain website untuk properti dan perumahan — listing, landing page developer, dan portal agen properti.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="panel-tax">
+  <div class="coming-section">
+    <div class="coming-grid">
+      <div class="coming-card"><span class="coming-label">// coming_soon</span><div class="coming-title">PPh 21 — Kepatuhan Pajak Karyawan</div><p class="coming-desc">Pengelolaan dan pelaporan PPh 21 — perhitungan, pemotongan, dan pelaporan pajak sesuai regulasi Indonesia.</p></div>
+    </div>
+  </div>
+</div>
+
+<section class="cta-section">
+  <div class="cta-text"><h2>Tertarik <em>Bekerja Sama</em>?</h2><p>Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.</p></div>
+  <a href="index.html" class="btn-gold">mulai_diskusi() →</a>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-logo">ADJ <span>Business Consulting</span></a>
+  <p>© 2025 · Palu, Sulawesi Tengah</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.cat-tile').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.cat-tile').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-'+t.dataset.cat).classList.add('active');
+  }));
+  document.querySelectorAll('.sub-cat-tile').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.sub-cat-tile').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    document.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('sub-'+t.dataset.sub).classList.add('active');
+  }));
+  document.querySelectorAll('.proj-tab').forEach(t => t.addEventListener('click', () => {
+    const parent = t.closest('.sub-panel');
+    parent.querySelectorAll('.proj-tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    parent.querySelectorAll('.proj-panel').forEach(p => p.classList.remove('active'));
+    const target = parent.querySelector('#proj-'+t.dataset.proj);
+    if(target) target.classList.add('active');
+  }));
+</script>
+</body>
+</html>
