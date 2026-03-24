@@ -193,6 +193,15 @@
     .footer-logo span { color: var(--blue); }
     footer p { font-family: var(--mono); font-size: 15px; color: var(--gray-400); }
 
+    
+    .cleaning-box { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 1.75rem; margin-bottom: 2.5rem; }
+    .dc-table { width: 100%; border-collapse: collapse; }
+    .dc-table th { font-family: var(--mono); font-size: 13px; color: var(--navy); padding: 10px 14px; border-bottom: 2px solid var(--gray-200); text-align: left; font-weight: 600; }
+    .dc-table td { font-family: var(--h); font-size: 13px; padding: 10px 14px; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+    .dc-step { color: var(--navy); font-weight: 500; width: 35%; }
+    .dc-result { color: var(--gray-600); }
+    .dc-table tr:last-child td { border-bottom: none; }
+    .dc-table tr:hover td { background: var(--white); }
     @keyframes slideRight { from{opacity:0;transform:translateX(-40px)} to{opacity:1;transform:translateX(0)} }
     @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
     .sr { opacity: 0; transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -292,11 +301,12 @@
               
               <h1 class="proj-title">Unlocking Customer Value Through <span>RFM Segmentation</span></h1>
               <p class="proj-summary">Bisnis ritel online sering gagal membedakan pelanggan loyal dari yang hampir tidak aktif. Proyek ini menggunakan RFM Analysis pada 541,909 data transaksi nyata untuk mengidentifikasi segmen pelanggan bernilai tinggi.</p>
-              <div class="hero-btns"><a href="PLACEHOLDER" class="btn-navy" target="_blank">Github Repo</a></div>
+              <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-da-project-1" class="btn-navy" target="_blank">Github Repo</a></div>
             </div>
             <div class="meta-card">
-              
-              <div class="meta-item"><div class="meta-key">dataset</div><div class="meta-val">UCI Online Retail · 541,909 rows</div>
+              <div class="meta-item"><div class="meta-key">dataset</div><div class="meta-val">UCI Online Retail · 541,909 rows</div></div>
+              <div class="meta-item"><div class="meta-key">tools</div><div class="meta-val">Python · Pandas · Matplotlib · Seaborn</div></div>
+              <div class="meta-item"><div class="meta-key">dashboard</div><div class="meta-val">Power BI</div></div>
               <div class="meta-item"><div class="meta-key">tags</div><div class="badge-row"><span class="tag">RFM</span><span class="tag">EDA</span><span class="tag">segmentation</span></div></div>
             </div>
           </div>
@@ -304,10 +314,18 @@
       </div>
       <div class="content">
         <div class="content-inner">
-          <div class="two-col sr sr-up">
-            <div class="content-block"><div class="block-title">Problem Statement</div><p class="block-text">Perusahaan ritel online menghabiskan anggaran promosi secara merata ke semua pelanggan tanpa memahami siapa yang benar-benar berharga.</p></div>
-            <div class="content-block"><div class="block-title">What We Did</div><p class="block-text">EDA mendalam lalu menghitung skor RFM per pelanggan, diberi skor 1-5 untuk Recency, Frequency, dan Monetary, dikelompokkan menjadi 4 segmen strategis dalam Power BI dashboard.</p></div>
-          </div>
+          
+      
+          <div class="content-block sr sr-up" style="margin-bottom:1.5rem;"><div class="block-title">Problem Statement</div><p class="block-text">Perusahaan ritel online menghabiskan anggaran promosi secara merata ke semua pelanggan tanpa memahami siapa yang benar-benar berharga.</p></div>
+          <div class="cleaning-box sr sr-up">
+        <div class="block-title" style="margin-bottom:1rem;">Data Cleaning Process</div>
+        <table class="dc-table">
+          <thead><tr><th>Step</th><th>Result</th></tr></thead>
+          <tbody><tr><td class="dc-step">Check missing values</td><td class="dc-result">Missing values found in CustomerID — rows with null CustomerID were dropped</td></tr><tr><td class="dc-step">Check duplicate rows</td><td class="dc-result">No exact duplicate rows found</td></tr><tr><td class="dc-step">Convert data types</td><td class="dc-result">InvoiceDate converted to datetime format</td></tr><tr><td class="dc-step">Remove invalid values</td><td class="dc-result">Rows with negative or zero Quantity and UnitPrice removed</td></tr><tr><td class="dc-step">Remove cancelled transactions</td><td class="dc-result">Cancelled invoices (starting with 'C') identified and excluded from RFM calculation</td></tr><tr><td class="dc-step">Final dataset shape</td><td class="dc-result">Cleaned dataset ready for RFM feature engineering</td></tr></tbody>
+        </table>
+      </div>
+          
+          <div class="content-block sr sr-up" style="margin-bottom:2.5rem;"><div class="block-title">What We Did</div><p class="block-text">EDA mendalam lalu menghitung skor RFM per pelanggan, diberi skor 1-5 untuk Recency, Frequency, dan Monetary, dikelompokkan menjadi 4 segmen strategis dalam Power BI dashboard.</p></div>
           
           <div class="results-grid sr sr-up">
             <div class="result-card"><span class="result-num">4</span><span class="result-label">// customer segments</span></div>
@@ -352,7 +370,7 @@
               
               <h1 class="proj-title">Retail Inventory<br><span>Store Performance, Inventory Management and Profitability</span></h1>
               <p class="proj-summary">Dari 485,875 item inventaris, hanya 36.47% yang terjual. Proyek ini menganalisis Looker E-commerce dataset — mengungkap kategori terlaris, brand paling menguntungkan, dan produk slow-moving.</p>
-              <div class="hero-btns"><a href="PLACEHOLDER" class="btn-navy" target="_blank">Github Repo</a></div>
+              <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-da-project-2" class="btn-navy" target="_blank">Github Repo</a></div>
             </div>
             <div class="meta-card">
               
@@ -366,10 +384,18 @@
       </div>
       <div class="content">
         <div class="content-inner">
-          <div class="two-col sr sr-up">
-            <div class="content-block"><div class="block-title">Problem Statement</div><p class="block-text">Lebih dari 63% modal terikat di stok yang tidak bergerak. Bisnis perlu memahami produk mana yang menghasilkan profit dan distribution center mana yang paling efisien.</p></div>
-            <div class="content-block"><div class="block-title">What We Did</div><p class="block-text">EDA end-to-end: feature engineering (profit margin, inventory days), analisis per kategori/brand/DC, ABC Classification, Inventory Aging Bucket, dan monthly sales trend. Diekspor ke Tableau.</p></div>
-          </div>
+          
+      
+          <div class="content-block sr sr-up" style="margin-bottom:1.5rem;"><div class="block-title">Problem Statement</div><p class="block-text">Lebih dari 63% modal terikat di stok yang tidak bergerak. Bisnis perlu memahami produk mana yang menghasilkan profit dan distribution center mana yang paling efisien.</p></div>
+          <div class="cleaning-box sr sr-up">
+        <div class="block-title" style="margin-bottom:1rem;">Data Cleaning Process</div>
+        <table class="dc-table">
+          <thead><tr><th>Step</th><th>Result</th></tr></thead>
+          <tbody><tr><td class="dc-step">Check dataset shape</td><td class="dc-result">490,705 rows × 12 columns before cleaning</td></tr><tr><td class="dc-step">Convert datetime columns</td><td class="dc-result">created_at and sold_at converted to datetime format</td></tr><tr><td class="dc-step">Check duplicate rows</td><td class="dc-result">Total duplicated rows: 0 — no duplicates found</td></tr><tr><td class="dc-step">Check missing values</td><td class="dc-result">Missing values in sold_at represent unsold inventory — intentionally kept as NaN</td></tr><tr><td class="dc-step">Validate numerical columns</td><td class="dc-result">cost: min $0.008, max $557 — no zeros or negatives; product_retail_price: min $0.02, max $999 — valid</td></tr><tr><td class="dc-step">Drop invalid records</td><td class="dc-result">Dropped rows without created_at and rows with missing brand/product name</td></tr><tr><td class="dc-step">Final dataset shape</td><td class="dc-result">485,875 rows × 12 columns after cleaning</td></tr></tbody>
+        </table>
+      </div>
+          
+          <div class="content-block sr sr-up" style="margin-bottom:2.5rem;"><div class="block-title">What We Did</div><p class="block-text">EDA end-to-end: feature engineering (profit margin, inventory days), analisis per kategori/brand/DC, ABC Classification, Inventory Aging Bucket, dan monthly sales trend. Diekspor ke Tableau.</p></div>
           
           <div class="kpi-grid sr sr-up">
             <div class="kpi-card"><span class="kpi-num">485K</span><span class="kpi-label">// total items</span></div>
@@ -421,7 +447,7 @@
               
               <h1 class="proj-title">Customer Clustering with <span>K-Means Machine Learning</span></h1>
               <p class="proj-summary">Menggunakan machine learning untuk menemukan segmen pelanggan tersembunyi dalam data transaksi online retail. K-Means berbasis RFM membagi pelanggan menjadi kelompok yang actionable.</p>
-              <div class="hero-btns"><a href="PLACEHOLDER" class="btn-navy" target="_blank">Github Repo</a></div>
+              <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-1" class="btn-navy" target="_blank">Github Repo</a></div>
             </div>
             <div class="meta-card">
               
@@ -435,10 +461,17 @@
       </div>
       <div class="content">
         <div class="content-inner">
-          <div class="two-col sr sr-up">
-            <div class="content-block"><div class="block-title">Problem Statement</div><p class="block-text">Segmentasi manual bersifat subjektif. Proyek ini menggunakan K-Means Clustering untuk menemukan pengelompokan pelanggan yang natural dan sepenuhnya berbasis data.</p></div>
-            <div class="content-block"><div class="block-title">What We Did</div><p class="block-text">Menghitung fitur RFM, normalisasi dengan StandardScaler, menentukan k optimal dengan Elbow Method dan Silhouette Score, lalu menjalankan K-Means dengan k=3.</p></div>
-          </div>
+          
+      
+          <div class="content-block sr sr-up" style="margin-bottom:1.5rem;"><div class="block-title">Problem Statement</div><p class="block-text">Segmentasi manual bersifat subjektif. Proyek ini menggunakan K-Means Clustering untuk menemukan pengelompokan pelanggan yang natural dan sepenuhnya berbasis data.</p></div>
+          <div class="cleaning-box sr sr-up">
+        <div class="block-title" style="margin-bottom:1rem;">Data Cleaning Process</div>
+        <table class="dc-table">
+          <thead><tr><th>Step</th><th>Result</th></tr></thead>
+          <tbody><tr><td class="dc-step">Check dataset shape</td><td class="dc-result">1,062,989 rows × 10 columns before cleaning</td></tr><tr><td class="dc-step">Drop missing customer_id</td><td class="dc-result">238,625 rows with null customer_id dropped — cannot track segmentation without it</td></tr><tr><td class="dc-step">Convert data types</td><td class="dc-result">customer_id converted to string; invoicedate converted to datetime format</td></tr><tr><td class="dc-step">Check empty strings</td><td class="dc-result">All categorical columns (invoice, stockcode, description, customer_id, country) — no empty strings found</td></tr><tr><td class="dc-step">Remove negative & zero values</td><td class="dc-result">18,744 negative quantity rows and 71 zero-price rows removed — likely data entry errors</td></tr><tr><td class="dc-step">Check duplicate rows</td><td class="dc-result">26,124 duplicate rows found — kept intentionally as they represent different items in the same invoice</td></tr><tr><td class="dc-step">Outlier detection (IQR method)</td><td class="dc-result">Outliers found in quantity, price, and total_price — kept as they represent high-value customers</td></tr><tr><td class="dc-step">Final dataset shape</td><td class="dc-result">805,549 rows × 10 columns after cleaning</td></tr></tbody>
+        </table>
+        </div>
+          <div class="content-block sr sr-up" style="margin-bottom:2.5rem;"><div class="block-title">What We Did</div><p class="block-text">Menghitung fitur RFM, normalisasi dengan StandardScaler, menentukan k optimal dengan Elbow Method dan Silhouette Score, lalu menjalankan K-Means dengan k=3. Setiap cluster diinterpretasikan secara bisnis untuk strategi retensi yang actionable.</p></div>
           
           <div class="results-grid sr sr-up">
             <div class="result-card"><span class="result-num">3</span><span class="result-label">// optimal clusters</span></div>
@@ -477,7 +510,7 @@
               
               <h1 class="proj-title">Predicting Food Delivery Time with <span>ML</span></h1>
               <p class="proj-summary">Platform delivery sering memberikan estimasi waktu yang tidak akurat. Proyek ini membangun model ML untuk memprediksi waktu pengiriman — mempertimbangkan jarak, cuaca, traffic, dan pengalaman kurir.</p>
-              <div class="hero-btns"><a href="PLACEHOLDER" class="btn-navy" target="_blank">Github Repo</a></div>
+              <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-2" class="btn-navy" target="_blank">Github Repo</a></div>
             </div>
             <div class="meta-card">
               
@@ -491,10 +524,18 @@
       </div>
       <div class="content">
         <div class="content-inner">
-          <div class="two-col sr sr-up">
-            <div class="content-block"><div class="block-title">Problem Statement</div><p class="block-text">Jika ETA tidak akurat, pelanggan kecewa, restoran dapat keluhan, dan tim operasional kesulitan mengalokasikan kurir. Model prediksi ML memungkinkan ETA yang lebih realistis.</p></div>
-            <div class="content-block"><div class="block-title">What We Did</div><p class="block-text">Pipeline ML end-to-end: EDA, feature engineering (Is_Rush_Hour, Distance × Prep_Time), preprocessing dengan StandardScaler + OneHotEncoder, membandingkan 3 model regresi.</p></div>
-          </div>
+          
+      
+          <div class="content-block sr sr-up" style="margin-bottom:1.5rem;"><div class="block-title">Problem Statement</div><p class="block-text">Jika ETA tidak akurat, pelanggan kecewa, restoran dapat keluhan, dan tim operasional kesulitan mengalokasikan kurir. Model prediksi ML memungkinkan ETA yang lebih realistis.</p></div>
+          <div class="cleaning-box sr sr-up">
+        <div class="block-title" style="margin-bottom:1rem;">Data Cleaning Process</div>
+        <table class="dc-table">
+          <thead><tr><th>Step</th><th>Result</th></tr></thead>
+          <tbody><tr><td class="dc-step">Check dataset shape</td><td class="dc-result">1,062,989 rows × 10 columns before cleaning</td></tr><tr><td class="dc-step">Drop missing customer_id</td><td class="dc-result">238,625 rows with null customer_id dropped — cannot track segmentation without it</td></tr><tr><td class="dc-step">Convert data types</td><td class="dc-result">customer_id converted to string; invoicedate converted to datetime format</td></tr><tr><td class="dc-step">Check empty strings</td><td class="dc-result">All categorical columns (invoice, stockcode, description, customer_id, country) — no empty strings found</td></tr><tr><td class="dc-step">Remove negative & zero values</td><td class="dc-result">18,744 negative quantity rows and 71 zero-price rows removed — likely data entry errors</td></tr><tr><td class="dc-step">Check duplicate rows</td><td class="dc-result">26,124 duplicate rows found — kept intentionally as they represent different items in the same invoice</td></tr><tr><td class="dc-step">Outlier detection (IQR method)</td><td class="dc-result">Outliers found in quantity, price, and total_price — kept as they represent high-value customers</td></tr><tr><td class="dc-step">Final dataset shape</td><td class="dc-result">805,549 rows × 10 columns after cleaning</td></tr></tbody>
+        </table>
+      </div>
+          
+          <div class="content-block sr sr-up" style="margin-bottom:2.5rem;"><div class="block-title">What We Did</div><p class="block-text">Pipeline ML end-to-end: EDA, feature engineering (Is_Rush_Hour, Distance × Prep_Time), preprocessing dengan StandardScaler + OneHotEncoder, membandingkan 3 model regresi.</p></div>
           
           <div class="results-grid sr sr-up">
             <div class="result-card"><span class="result-num">82%</span><span class="result-label">// R² accuracy</span></div>
@@ -561,32 +602,44 @@
 </footer>
 
 <script>
+  // Category tiles
   document.querySelectorAll('.cat-tile').forEach(t => t.addEventListener('click', () => {
     document.querySelectorAll('.cat-tile').forEach(x => x.classList.remove('active'));
     t.classList.add('active');
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('panel-'+t.dataset.cat).classList.add('active');
+    document.getElementById('panel-' + t.dataset.cat).classList.add('active');
   }));
+
+  // Sub category tiles
   document.querySelectorAll('.sub-cat-tile').forEach(t => t.addEventListener('click', () => {
     document.querySelectorAll('.sub-cat-tile').forEach(x => x.classList.remove('active'));
     t.classList.add('active');
     document.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('sub-'+t.dataset.sub).classList.add('active');
-  }));
-  document.querySelectorAll('.proj-tab').forEach(t => t.addEventListener('click', () => {
-    const parent = t.closest('.sub-panel');
-    parent.querySelectorAll('.proj-tab').forEach(x => x.classList.remove('active'));
-    t.classList.add('active');
-    parent.querySelectorAll('.proj-panel').forEach(p => p.classList.remove('active'));
-    const el = parent.querySelector('#proj-'+t.dataset.proj);
-    if(el) el.classList.add('active');
+    document.getElementById('sub-' + t.dataset.sub).classList.add('active');
   }));
 
+  // Project tabs - simple direct ID lookup
+  document.querySelectorAll('.proj-tab').forEach(t => t.addEventListener('click', () => {
+    const projId = t.dataset.proj;
+    // Find which sub-panel this tab belongs to
+    const subPanel = t.closest('.sub-panel');
+    // Deactivate all tabs in this switcher
+    t.closest('.proj-switcher').querySelectorAll('.proj-tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    // Hide all proj-panels in this sub-panel
+    subPanel.querySelectorAll('.proj-panel').forEach(p => p.classList.remove('active'));
+    // Show the target panel
+    const target = document.getElementById('proj-' + projId);
+    if (target) target.classList.add('active');
+  }));
+
+  // Scroll reveal
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.sr').forEach(el => obs.observe(el));
 
+  // Nav shadow
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
   }, { passive: true });
