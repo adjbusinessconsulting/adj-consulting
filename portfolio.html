@@ -315,14 +315,14 @@
       <div class="da-picker-label">Data Analysis — Pilih Project</div>
       <div class="da-cards-row">
         <div class="da-proj-card active" data-proj="da1">
-          <div class="da-card-num">Project 01</div>
+          <div class="da-card-num">DA Project 1</div>
           <div class="da-card-title">RFM Segmentation</div>
           <div class="da-card-desc">Unlocking Customer Value — RFM Analysis on 541,909 real transactions</div>
           <div class="da-card-tags"><span class="da-tag">RFM</span><span class="da-tag">EDA</span><span class="da-tag">Power BI</span></div>
           <div class="da-card-arrow">View Project →</div>
         </div>
         <div class="da-proj-card" data-proj="da2">
-          <div class="da-card-num">Project 02</div>
+          <div class="da-card-num">DA Project 2</div>
           <div class="da-card-title">Inventory Analysis</div>
           <div class="da-card-desc">Store Performance, Inventory Management and Profitability across 485,875 items</div>
           <div class="da-card-tags"><span class="da-tag">EDA</span><span class="da-tag">ABC Analysis</span><span class="da-tag">Tableau</span></div>
@@ -469,16 +469,23 @@
 
   <!-- DATA SCIENCE -->
   <div class="sub-panel" id="sub-science">
-    <div class="proj-switcher">
-      <div class="proj-tab active" data-proj="ds1">
-        
-        <div class="proj-tab-name">Customer Clustering</div>
-        <div class="proj-tab-sub">K-Means ML Approach</div>
-      </div>
-      <div class="proj-tab" data-proj="ds2">
-        
-        <div class="proj-tab-name">Delivery Prediction</div>
-        <div class="proj-tab-sub">Food ETA with ML</div>
+    <div class="da-proj-picker" id="ds-picker">
+      <div class="da-picker-label">Data Science — Pilih Project</div>
+      <div class="da-cards-row">
+        <div class="da-proj-card active" data-proj="ds1">
+          <div class="da-card-num">DS Project 1</div>
+          <div class="da-card-title">Customer Clustering</div>
+          <div class="da-card-desc">K-Means ML — Segmenting 541,909 customers into 4 actionable clusters</div>
+          <div class="da-card-tags"><span class="da-tag">K-Means</span><span class="da-tag">Clustering</span><span class="da-tag">Scikit-Learn</span></div>
+          <div class="da-card-arrow">View Project →</div>
+        </div>
+        <div class="da-proj-card" data-proj="ds2">
+          <div class="da-card-num">DS Project 2</div>
+          <div class="da-card-title">Delivery Prediction</div>
+          <div class="da-card-desc">Predicting Food Delivery ETA with ML — R²=0.82, MAE ±6 minutes</div>
+          <div class="da-card-tags"><span class="da-tag">Regression</span><span class="da-tag">ML Pipeline</span><span class="da-tag">Scikit-Learn</span></div>
+          <div class="da-card-arrow">View Project →</div>
+        </div>
       </div>
     </div>
 
@@ -695,23 +702,13 @@
     document.getElementById('sub-' + t.dataset.sub).classList.add('active');
   }));
 
-  // DA Project Cards
+  // Project Cards (DA + DS)
   document.querySelectorAll('.da-proj-card').forEach(card => card.addEventListener('click', () => {
     const projId = card.dataset.proj;
-    document.querySelectorAll('.da-proj-card').forEach(c => c.classList.remove('active'));
+    const picker = card.closest('.da-proj-picker');
+    picker.querySelectorAll('.da-proj-card').forEach(c => c.classList.remove('active'));
     card.classList.add('active');
     const subPanel = card.closest('.sub-panel');
-    subPanel.querySelectorAll('.proj-panel').forEach(p => p.classList.remove('active'));
-    const target = document.getElementById('proj-' + projId);
-    if (target) target.classList.add('active');
-  }));
-
-  // DS Project tabs (unchanged)
-  document.querySelectorAll('.proj-tab').forEach(t => t.addEventListener('click', () => {
-    const projId = t.dataset.proj;
-    const subPanel = t.closest('.sub-panel');
-    t.closest('.proj-switcher').querySelectorAll('.proj-tab').forEach(x => x.classList.remove('active'));
-    t.classList.add('active');
     subPanel.querySelectorAll('.proj-panel').forEach(p => p.classList.remove('active'));
     const target = document.getElementById('proj-' + projId);
     if (target) target.classList.add('active');
