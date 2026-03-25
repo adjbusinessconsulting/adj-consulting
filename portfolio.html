@@ -248,6 +248,9 @@
     .da-proj-card.active .da-card-arrow { color: #93C5FD; }
     .da-proj-card:hover .da-card-arrow { color: #94A3B8; }
     @media(max-width:768px){ .da-cards-row { grid-template-columns: 1fr; } }
+
+    .lang-toggle { font-family: var(--mono); font-size: 14px; font-weight: 600; color: #93C5FD; background: transparent; border: 1.5px solid rgba(147,197,253,0.35); padding: 5px 12px; border-radius: 4px; cursor: pointer; letter-spacing: 0.08em; transition: all 0.2s; margin-left: 0.75rem; }
+    .lang-toggle:hover { background: rgba(147,197,253,0.1); border-color: #93C5FD; }
     @keyframes slideRight { from{opacity:0;transform:translateX(-40px)} to{opacity:1;transform:translateX(0)} }
     @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
     .sr { opacity: 0; transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -269,19 +272,20 @@
 <nav id="navbar">
   <a href="index.html" class="nav-logo">ADJ <span>Business Consulting</span></a>
   <ul class="nav-links">
-    <li><a href="index.html">beranda</a></li>
-    <li><a href="portfolio.html" class="active">portofolio</a></li>
-    <li><a href="index.html">layanan</a></li>
-    <li><a href="index.html">kontak</a></li>
+    <li><a href="index.html" data-en="home" data-id="beranda">beranda</a></li>
+    <li><a href="portfolio.html" class="active" data-en="portfolio" data-id="portofolio">portofolio</a></li>
+    <li><a href="index.html" data-en="services" data-id="layanan">layanan</a></li>
+    <li><a href="index.html" data-en="contact" data-id="kontak">kontak</a></li>
   </ul>
-  <a href="index.html" class="nav-cta">Konsultasi</a>
+  <a href="index.html" class="nav-cta" data-en="Consult Us" data-id="Konsultasi">Konsultasi</a>
+  <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
 </nav>
 
 <div class="page-header">
   <div class="page-header-inner">
-    <div class="breadcrumb"><a href="index.html">home</a> / <span>portofolio</span></div>
-    <h1 class="page-title">Portfolio</h1>
-    <p class="page-sub">Pilih kategori untuk melihat proyek-proyek yang telah dikerjakan.</p>
+    <div class="breadcrumb"><a href="index.html" data-en="home" data-id="home">home</a> / <span data-en="portfolio" data-id="portofolio">portofolio</span></div>
+    <h1 class="page-title" data-en="Portfolio" data-id="Portfolio">Portfolio</h1>
+    <p class="page-sub" data-en="Select a category to explore completed projects." data-id="Pilih kategori untuk melihat proyek-proyek yang telah dikerjakan.">Pilih kategori untuk melihat proyek-proyek yang telah dikerjakan.</p>
   </div>
 </div>
 
@@ -289,23 +293,23 @@
   <div class="cat-tile active" data-cat="data">
     <span class="cat-num">01</span>
     <div class="cat-name">Data Analysis</div>
-    <div class="cat-subs"><span>→ Data Analysis</span><span>→ Data Science</span></div>
-    <span class="cat-count">4 projects</span>
-    <span class="cat-arrow">Explore →</span>
+    <div class="cat-subs"><span data-en="→ Data Analysis" data-id="→ Data Analysis">→ Data Analysis</span><span data-en="→ Data Science" data-id="→ Data Science">→ Data Science</span></div>
+    <span class="cat-count" data-en="4 projects" data-id="4 proyek">4 projects</span>
+    <span class="cat-arrow" data-en="Explore →" data-id="Jelajahi →">Explore →</span>
   </div>
   <div class="cat-tile" data-cat="web">
     <span class="cat-num">02</span>
     <div class="cat-name">Website Design</div>
     <div class="cat-subs"><span>→ F&B</span><span>→ Housing</span></div>
-    <span class="cat-count">coming soon</span>
-    <span class="cat-arrow">Explore →</span>
+    <span class="cat-count" data-en="coming soon" data-id="segera hadir">coming soon</span>
+    <span class="cat-arrow" data-en="Explore →" data-id="Jelajahi →">Explore →</span>
   </div>
   <div class="cat-tile" data-cat="tax">
     <span class="cat-num">03</span>
     <div class="cat-name">Perpajakan</div>
-    <div class="cat-subs"><span>→ PPh 21</span></div>
-    <span class="cat-count">coming soon</span>
-    <span class="cat-arrow">Explore →</span>
+    <div class="cat-subs"><span data-en="→ PPh 21" data-id="→ PPh 21">→ PPh 21</span></div>
+    <span class="cat-count" data-en="coming soon" data-id="segera hadir">coming soon</span>
+    <span class="cat-arrow" data-en="Explore →" data-id="Jelajahi →">Explore →</span>
   </div>
 </div>
 
@@ -315,37 +319,37 @@
     <div class="sub-cat-tile active" data-sub="analysis">
       <span class="sub-cat-num">01</span>
       <div class="sub-cat-name">Data Analysis</div>
-      <div class="sub-cat-desc">EDA · Business Insights · Dashboards</div>
+      <div class="sub-cat-desc" data-en="EDA · Business Insights · Dashboards" data-id="EDA · Wawasan Bisnis · Dashboard">EDA · Business Insights · Dashboards</div>
       <span class="sub-cat-badge">DA Project 1 · DA Project 2</span>
-      <span class="sub-cat-arrow">View Projects →</span>
+      <span class="sub-cat-arrow" data-en="View Projects →" data-id="Lihat Proyek →">View Projects →</span>
     </div>
     <div class="sub-cat-tile" data-sub="science">
       <span class="sub-cat-num">02</span>
       <div class="sub-cat-name">Data Science</div>
-      <div class="sub-cat-desc">ML · Clustering · Regression</div>
+      <div class="sub-cat-desc" data-en="ML · Clustering · Regression" data-id="ML · Clustering · Regresi">ML · Clustering · Regression</div>
       <span class="sub-cat-badge">DS Project 1 · DS Project 2</span>
-      <span class="sub-cat-arrow">View Projects →</span>
+      <span class="sub-cat-arrow" data-en="View Projects →" data-id="Lihat Proyek →">View Projects →</span>
     </div>
   </div>
 
   <!-- DATA ANALYSIS -->
   <div class="sub-panel active" id="sub-analysis">
     <div class="da-proj-picker" id="da-picker">
-      <div class="da-picker-label">Data Analysis — Pilih Project</div>
+      <div class="da-picker-label" data-en="Data Analysis — Select a Project" data-id="Data Analysis — Pilih Project">Data Analysis — Pilih Project</div>
       <div class="da-cards-row">
         <div class="da-proj-card active" data-proj="da1">
           <div class="da-card-num">DA Project 1</div>
           <div class="da-card-title">RFM Segmentation</div>
-          <div class="da-card-desc">Unlocking Customer Value — RFM Analysis on 541,909 real transactions</div>
+          <div class="da-card-desc" data-en="Unlocking Customer Value — RFM Analysis on 541,909 real transactions" data-id="Mengungkap Nilai Pelanggan — Analisis RFM pada 541.909 transaksi nyata">Unlocking Customer Value — RFM Analysis on 541,909 real transactions</div>
           <div class="da-card-tags"><span class="da-tag">RFM</span><span class="da-tag">EDA</span><span class="da-tag">Power BI</span></div>
-          <div class="da-card-arrow">View Project →</div>
+          <div class="da-card-arrow" data-en="View Project →" data-id="Lihat Proyek →">View Project →</div>
         </div>
         <div class="da-proj-card" data-proj="da2">
           <div class="da-card-num">DA Project 2</div>
           <div class="da-card-title">Inventory Analysis</div>
-          <div class="da-card-desc">Store Performance, Inventory Management and Profitability across 485,875 items</div>
+          <div class="da-card-desc" data-en="Store Performance, Inventory Management and Profitability across 485,875 items" data-id="Performa Toko, Manajemen Inventaris dan Profitabilitas dari 485.875 item">Store Performance, Inventory Management and Profitability across 485,875 items</div>
           <div class="da-card-tags"><span class="da-tag">EDA</span><span class="da-tag">ABC Analysis</span><span class="da-tag">Tableau</span></div>
-          <div class="da-card-arrow">View Project →</div>
+          <div class="da-card-arrow" data-en="View Project →" data-id="Lihat Proyek →">View Project →</div>
         </div>
       </div>
     </div>
@@ -358,7 +362,7 @@
             <div>
               
               <h1 class="proj-title">Unlocking Customer Value Through <span>RFM Segmentation</span></h1>
-              <p class="proj-summary">Bisnis ritel online sering gagal membedakan pelanggan loyal dari yang hampir tidak aktif. Proyek ini menggunakan RFM Analysis pada 541,909 data transaksi nyata untuk mengidentifikasi segmen pelanggan bernilai tinggi.</p>
+              <p class="proj-summary" data-en="Online retail businesses often fail to distinguish loyal customers from nearly inactive ones. This project uses RFM Analysis on 541,909 real transactions to identify high-value customer segments." data-id="Bisnis ritel online sering gagal membedakan pelanggan loyal dari yang hampir tidak aktif. Proyek ini menggunakan RFM Analysis pada 541,909 data transaksi nyata untuk mengidentifikasi segmen pelanggan bernilai tinggi.">Bisnis ritel online sering gagal membedakan pelanggan loyal dari yang hampir tidak aktif. Proyek ini menggunakan RFM Analysis pada 541,909 data transaksi nyata untuk mengidentifikasi segmen pelanggan bernilai tinggi.</p>
               <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-da-project-1" class="btn-navy" target="_blank">Github Repo</a><a href="https://adjbusinessconsulting-da-project-1.streamlit.app/" class="btn-streamlit" target="_blank">Streamlit</a></div>
             </div>
             <div class="meta-card">
@@ -432,7 +436,7 @@
             <div>
               
               <h1 class="proj-title">Retail Inventory<br><span>Store Performance, Inventory Management and Profitability</span></h1>
-              <p class="proj-summary">Dari 485,875 item inventaris, hanya 36.47% yang terjual. Proyek ini menganalisis Looker E-commerce dataset — mengungkap kategori terlaris, brand paling menguntungkan, dan produk slow-moving.</p>
+              <p class="proj-summary" data-en="Out of 485,875 inventory items, only 36.47% were sold. This project analyses the Looker E-commerce dataset — uncovering top categories, most profitable brands, and slow-moving products." data-id="Dari 485,875 item inventaris, hanya 36.47% yang terjual. Proyek ini menganalisis Looker E-commerce dataset — mengungkap kategori terlaris, brand paling menguntungkan, dan produk slow-moving.">Dari 485,875 item inventaris, hanya 36.47% yang terjual. Proyek ini menganalisis Looker E-commerce dataset — mengungkap kategori terlaris, brand paling menguntungkan, dan produk slow-moving.</p>
               <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-da-project-2" class="btn-navy" target="_blank">Github Repo</a><a href="https://adjbusinessconsulting-da-project-2.streamlit.app/" class="btn-streamlit" target="_blank">Streamlit</a></div>
             </div>
             <div class="meta-card">
@@ -489,21 +493,21 @@
   <!-- DATA SCIENCE -->
   <div class="sub-panel" id="sub-science">
     <div class="da-proj-picker" id="ds-picker">
-      <div class="da-picker-label">Data Science — Pilih Project</div>
+      <div class="da-picker-label" data-en="Data Science — Select a Project" data-id="Data Science — Pilih Project">Data Science — Pilih Project</div>
       <div class="da-cards-row">
         <div class="da-proj-card active" data-proj="ds1">
           <div class="da-card-num">DS Project 1</div>
           <div class="da-card-title">Customer Clustering</div>
-          <div class="da-card-desc">K-Means ML — Segmenting 541,909 customers into 4 actionable clusters</div>
+          <div class="da-card-desc" data-en="K-Means ML — Segmenting 541,909 customers into 4 actionable clusters" data-id="ML K-Means — Mengelompokkan 541.909 pelanggan ke dalam 4 kluster">K-Means ML — Segmenting 541,909 customers into 4 actionable clusters</div>
           <div class="da-card-tags"><span class="da-tag">K-Means</span><span class="da-tag">Clustering</span><span class="da-tag">Scikit-Learn</span></div>
-          <div class="da-card-arrow">View Project →</div>
+          <div class="da-card-arrow" data-en="View Project →" data-id="Lihat Proyek →">View Project →</div>
         </div>
         <div class="da-proj-card" data-proj="ds2">
           <div class="da-card-num">DS Project 2</div>
           <div class="da-card-title">Delivery Prediction</div>
-          <div class="da-card-desc">Predicting Food Delivery ETA with ML — R²=0.82, MAE ±6 minutes</div>
+          <div class="da-card-desc" data-en="Predicting Food Delivery ETA with ML — R²=0.82, MAE ±6 minutes" data-id="Prediksi ETA Pengiriman Makanan dengan ML — R²=0.82, MAE ±6 menit">Predicting Food Delivery ETA with ML — R²=0.82, MAE ±6 minutes</div>
           <div class="da-card-tags"><span class="da-tag">Regression</span><span class="da-tag">ML Pipeline</span><span class="da-tag">Scikit-Learn</span></div>
-          <div class="da-card-arrow">View Project →</div>
+          <div class="da-card-arrow" data-en="View Project →" data-id="Lihat Proyek →">View Project →</div>
         </div>
       </div>
     </div>
@@ -516,7 +520,7 @@
             <div>
               
               <h1 class="proj-title">Customer Clustering with <span>K-Means Machine Learning</span></h1>
-              <p class="proj-summary">Menggunakan machine learning untuk menemukan segmen pelanggan tersembunyi dalam data transaksi online retail. K-Means berbasis RFM membagi pelanggan menjadi kelompok yang actionable.</p>
+              <p class="proj-summary" data-en="Using machine learning to find hidden customer segments in online retail transaction data. RFM-based K-Means divides customers into actionable groups." data-id="Menggunakan machine learning untuk menemukan segmen pelanggan tersembunyi dalam data transaksi online retail. K-Means berbasis RFM membagi pelanggan menjadi kelompok yang actionable.">Menggunakan machine learning untuk menemukan segmen pelanggan tersembunyi dalam data transaksi online retail. K-Means berbasis RFM membagi pelanggan menjadi kelompok yang actionable.</p>
               <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-1" class="btn-navy" target="_blank">Github Repo</a><a href="https://adjbusinessconsulting-ds-project-1.streamlit.app/" class="btn-streamlit" target="_blank">Streamlit</a></div>
             </div>
             <div class="meta-card">
@@ -612,7 +616,7 @@
             <div>
               
               <h1 class="proj-title">Predicting Food Delivery Time with <span>ML</span></h1>
-              <p class="proj-summary">Platform delivery sering memberikan estimasi waktu yang tidak akurat. Proyek ini membangun model ML untuk memprediksi waktu pengiriman — mempertimbangkan jarak, cuaca, traffic, dan pengalaman kurir.</p>
+              <p class="proj-summary" data-en="Delivery platforms often give inaccurate time estimates. This project builds an ML model to predict delivery time — considering distance, weather, traffic, and courier experience." data-id="Platform delivery sering memberikan estimasi waktu yang tidak akurat. Proyek ini membangun model ML untuk memprediksi waktu pengiriman — mempertimbangkan jarak, cuaca, traffic, dan pengalaman kurir.">Platform delivery sering memberikan estimasi waktu yang tidak akurat. Proyek ini membangun model ML untuk memprediksi waktu pengiriman — mempertimbangkan jarak, cuaca, traffic, dan pengalaman kurir.</p>
               <div class="hero-btns"><a href="https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-2" class="btn-navy" target="_blank">Github Repo</a><a href="https://adjbusinessconsulting-ds-project-2.streamlit.app/" class="btn-streamlit" target="_blank">Streamlit</a></div>
             </div>
             <div class="meta-card">
@@ -680,28 +684,28 @@
 <!-- WEB PANEL -->
 <div class="panel" id="panel-web">
   <div class="coming-section"><div class="coming-inner"><div class="coming-grid">
-    <div class="coming-card sr sr-up"><span class="coming-label">coming soon</span><div class="coming-title">F&amp;B Website Design</div><p class="coming-desc">Desain website profesional untuk bisnis Food &amp; Beverage — restoran, kafe, catering, dan brand makanan lokal.</p></div>
-    <div class="coming-card sr sr-up d1"><span class="coming-label">coming soon</span><div class="coming-title">Housing Website Design</div><p class="coming-desc">Desain website untuk properti dan perumahan — listing, landing page developer, dan portal agen properti.</p></div>
+    <div class="coming-card sr sr-up"><span class="coming-label" data-en="coming soon" data-id="segera hadir">coming soon</span><div class="coming-title" data-en="F&amp;B Website Design" data-id="Desain Website F&amp;B">F&amp;B Website Design</div><p class="coming-desc" data-en="Professional website design for Food &amp; Beverage businesses — restaurants, cafés, catering, and local food brands." data-id="Desain website profesional untuk bisnis Food &amp; Beverage — restoran, kafe, catering, dan brand makanan lokal.">Desain website profesional untuk bisnis Food &amp; Beverage — restoran, kafe, catering, dan brand makanan lokal.</p></div>
+    <div class="coming-card sr sr-up d1"><span class="coming-label" data-en="coming soon" data-id="segera hadir">coming soon</span><div class="coming-title" data-en="Housing Website Design" data-id="Desain Website Properti">Housing Website Design</div><p class="coming-desc" data-en="Website design for property and housing — listings, developer landing pages, and real estate agent portals." data-id="Desain website untuk properti dan perumahan — listing, landing page developer, dan portal agen properti.">Desain website untuk properti dan perumahan — listing, landing page developer, dan portal agen properti.</p></div>
   </div></div></div>
 </div>
 
 <!-- TAX PANEL -->
 <div class="panel" id="panel-tax">
   <div class="coming-section"><div class="coming-inner"><div class="coming-grid">
-    <div class="coming-card sr sr-up"><span class="coming-label">coming soon</span><div class="coming-title">PPh 21 — Kepatuhan Pajak</div><p class="coming-desc">Pengelolaan dan pelaporan PPh 21 — perhitungan, pemotongan, dan pelaporan pajak sesuai regulasi Indonesia.</p></div>
+    <div class="coming-card sr sr-up"><span class="coming-label" data-en="coming soon" data-id="segera hadir">coming soon</span><div class="coming-title" data-en="PPh 21 — Tax Compliance" data-id="PPh 21 — Kepatuhan Pajak">PPh 21 — Kepatuhan Pajak</div><p class="coming-desc" data-en="PPh 21 management and reporting — tax calculation, withholding, and filing in compliance with Indonesian regulations." data-id="Pengelolaan dan pelaporan PPh 21 — perhitungan, pemotongan, dan pelaporan pajak sesuai regulasi Indonesia.">Pengelolaan dan pelaporan PPh 21 — perhitungan, pemotongan, dan pelaporan pajak sesuai regulasi Indonesia.</p></div>
   </div></div></div>
 </div>
 
 <section class="cta-section">
   <div class="cta-inner sr sr-up">
-    <div class="cta-text"><h2>Tertarik <span>Bekerja Sama?</span></h2><p>Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.</p></div>
-    <a href="index.html" class="btn-navy" style="white-space:nowrap">Mulai Diskusi →</a>
+    <div class="cta-text"><h2 data-en="Interested in <span>Working Together?</span>" data-id="Tertarik <span>Bekerja Sama?</span>">Tertarik <span>Bekerja Sama?</span></h2><p data-en="First consultation is free. We're ready to help from Palu across all of Indonesia." data-id="Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.">Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.</p></div>
+    <a href="index.html" class="btn-navy" style="white-space:nowrap" data-en="Start a Discussion →" data-id="Mulai Diskusi →">Mulai Diskusi →</a>
   </div>
 </section>
 
 <footer>
   <a href="index.html" class="footer-logo">ADJ <span>Business Consulting</span></a>
-  <p>© 2025 · Palu, Sulawesi Tengah</p>
+  <p data-en="© 2025 · Palu, Central Sulawesi" data-id="© 2025 · Palu, Sulawesi Tengah">© 2025 · Palu, Sulawesi Tengah</p>
 </footer>
 
 <script>
@@ -755,6 +759,24 @@
       document.getElementById('panel-' + catId).classList.add('active');
     }
   });
+
+  // Language switcher
+  function applyLang(lang) {
+    document.querySelectorAll('[data-en][data-id]').forEach(el => {
+      el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.id;
+    });
+    document.getElementById('langBtn').textContent = lang === 'en' ? 'ID' : 'EN';
+    document.documentElement.lang = lang === 'en' ? 'en' : 'id';
+    localStorage.setItem('adj_lang', lang);
+  }
+  function toggleLang() {
+    const cur = localStorage.getItem('adj_lang') || 'id';
+    applyLang(cur === 'id' ? 'en' : 'id');
+  }
+  (function() {
+    const saved = localStorage.getItem('adj_lang') || 'id';
+    if (saved === 'en') applyLang('en');
+  })();
 </script>
 </body>
 </html>
