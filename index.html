@@ -178,6 +178,8 @@
     .cert-card > * { position: relative; z-index: 1; }
     .cert-card-icon { width: 36px; height: 36px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 14px; font-weight: 700; color: #22D3EE; margin-bottom: 12px; transition: all 0.3s; }
     .cert-card:hover .cert-card-icon { background: #0E4552; box-shadow: 0 0 16px rgba(34,211,238,0.15); }
+    .cert-card-logo { position: absolute; bottom: 10px; right: 10px; width: 48px; height: 48px; opacity: 0.06; object-fit: contain; pointer-events: none; transition: opacity 0.3s; }
+    .cert-card:hover .cert-card-logo { opacity: 0.12; }
     .cert-card-name { font-family: var(--h); font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 4px; line-height: 1.3; }
     .cert-card-org { font-family: var(--mono); font-size: 11px; color: var(--gray-400); margin-bottom: 8px; }
     .cert-card-year { font-family: var(--mono); font-size: 11px; color: #22D3EE; }
@@ -328,14 +330,14 @@
       </div>
       <div>
         <h2 class="about-name sr sr-up">Anthony Djiady Djie</h2>
-        <div class="about-role sr sr-up d1" data-en="Founder & Lead Consultant" data-id="Founder & Lead Consultant">Founder & Lead Consultant</div>
+        <div class="about-role sr sr-up d1" data-en="Founder of ADJ Consulting" data-id="Founder of ADJ Consulting">Founder of ADJ Consulting</div>
         <p class="about-bio sr sr-up d2" data-en="Data Analyst and Tax Practitioner with over 6 years of experience in data analysis, financial reporting, payroll, and tax compliance across multiple businesses in Indonesia. I bridge data analytics with finance and taxation — transforming raw numbers into dashboards, insights, and compliant reports that drive real business decisions. From managing branch operations at national F&B brands to building ML models and interactive Streamlit apps, I bring a unique combination of hands-on business experience and technical skill." data-id="Data Analyst dan Tax Practitioner dengan pengalaman lebih dari 6 tahun di bidang analisis data, pelaporan keuangan, penggajian, dan kepatuhan pajak di berbagai bisnis di Indonesia. Saya menghubungkan analisis data dengan keuangan dan perpajakan — mengubah angka mentah menjadi dashboard, insight, dan laporan yang mendorong keputusan bisnis nyata. Dari mengelola operasional cabang brand F&B nasional hingga membangun model ML dan aplikasi Streamlit interaktif, saya membawa kombinasi unik antara pengalaman bisnis langsung dan kemampuan teknis.">Data Analyst dan Tax Practitioner dengan pengalaman lebih dari 6 tahun di bidang analisis data, pelaporan keuangan, penggajian, dan kepatuhan pajak di berbagai bisnis di Indonesia. Saya menghubungkan analisis data dengan keuangan dan perpajakan — mengubah angka mentah menjadi dashboard, insight, dan laporan yang mendorong keputusan bisnis nyata. Dari mengelola operasional cabang brand F&B nasional hingga membangun model ML dan aplikasi Streamlit interaktif, saya membawa kombinasi unik antara pengalaman bisnis langsung dan kemampuan teknis.</p>
 
         <div class="about-sub sr sr-up d2" data-en="Education" data-id="Pendidikan">Pendidikan</div>
         <div class="edu-list sr sr-up d2">
           <div class="cert-item">
             <div class="cert-dot"></div>
-            <div><span class="cert-text">Data Analyst / Data Scientist Bootcamp</span><span class="cert-issuer">Dibimbing.id · 2025 — Present</span></div>
+            <div><span class="cert-text">Data Analyst / Data Scientist Bootcamp</span><span class="cert-issuer">Dibimbing.id · Sep 2025 — Apr 2026</span></div>
           </div>
           <div class="cert-item">
             <div class="cert-dot"></div>
@@ -412,42 +414,49 @@
         <div class="cert-card-name">Google Data Analytics</div>
         <div class="cert-card-org">Google · Coursera</div>
         <div class="cert-card-year">2025</div>
+        <svg class="cert-card-logo" viewBox="0 0 48 48"><path fill="currentColor" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg>
       </a>
       <a href="https://coursera.org/verify/professional-cert/KEKKD62YV2EN" target="_blank" class="cert-card sr sr-up d2">
         <div class="cert-card-icon">S</div>
         <div class="cert-card-name">Microsoft SQL Server</div>
         <div class="cert-card-org">Microsoft · Coursera</div>
         <div class="cert-card-year">2025</div>
+        <svg class="cert-card-logo" viewBox="0 0 48 48"><rect fill="currentColor" x="2" y="2" width="20" height="20"/><rect fill="currentColor" x="26" y="2" width="20" height="20"/><rect fill="currentColor" x="2" y="26" width="20" height="20"/><rect fill="currentColor" x="26" y="26" width="20" height="20"/></svg>
       </a>
       <a href="https://coursera.org/verify/professional-cert/DVISLWDAXUY0" target="_blank" class="cert-card sr sr-up d3">
         <div class="cert-card-icon">X</div>
         <div class="cert-card-name">Microsoft Excel Professional</div>
         <div class="cert-card-org">Microsoft · Coursera</div>
         <div class="cert-card-year">2025</div>
+        <svg class="cert-card-logo" viewBox="0 0 48 48"><rect fill="currentColor" x="2" y="2" width="20" height="20"/><rect fill="currentColor" x="26" y="2" width="20" height="20"/><rect fill="currentColor" x="2" y="26" width="20" height="20"/><rect fill="currentColor" x="26" y="26" width="20" height="20"/></svg>
       </a>
       <a href="https://coursera.org/verify/professional-cert/GOVL4H7ONB52" target="_blank" class="cert-card sr sr-up d1">
         <div class="cert-card-icon">T</div>
         <div class="cert-card-name">Tableau BI Analyst</div>
         <div class="cert-card-org">Tableau · Coursera</div>
         <div class="cert-card-year">2025</div>
+        <svg class="cert-card-logo" viewBox="0 0 48 48"><path fill="currentColor" d="M24 2v20h-2V2h2zm0 24v20h-2V26h2zM2 24h20v-2H2v2zm24 0h20v-2H26v2zM10 10l14 14-1.4 1.4L8.6 11.4 10 10zm16.6 16.6L40 40l-1.4 1.4-13.4-13.4 1.4-1.4zM38 10L24 24l-1.4-1.4L36.6 8.6 38 10zM11.4 36.6L24 24l1.4 1.4-12.6 12.6-1.4-1.4z"/></svg>
       </a>
       <a href="https://coursera.org/verify/USZXR9ZAOQUE" target="_blank" class="cert-card sr sr-up d2">
         <div class="cert-card-icon">P</div>
         <div class="cert-card-name">Python for Data Science, AI</div>
         <div class="cert-card-org">IBM · Coursera</div>
         <div class="cert-card-year">2025</div>
+        <svg class="cert-card-logo" viewBox="0 0 48 48"><path fill="currentColor" d="M8 4h10c6 0 10 3 10 8.5S24 21 18 21h-4v11H8V4zm6 12h3c3 0 5-1.5 5-4s-2-4-5-4h-3v8z"/><path fill="currentColor" d="M22 16h10c6 0 10 3 10 8.5S38 33 32 33h-4v11h-6V16zm6 12h3c3 0 5-1.5 5-4s-2-4-5-4h-3v8z" opacity="0.6"/></svg>
       </a>
       <a href="Xero_Advisor.png" target="_blank" class="cert-card sr sr-up d3">
         <div class="cert-card-icon">X</div>
         <div class="cert-card-name">Xero Advisor Certified</div>
         <div class="cert-card-org">Xero</div>
         <div class="cert-card-year">2025</div>
+        <svg class="cert-card-logo" viewBox="0 0 48 48"><path fill="currentColor" d="M14 14l10 10-10 10m20-20L24 24l10 10"/></svg>
       </a>
       <a href="AB_66DM_RS-1_AD.pdf" target="_blank" class="cert-card sr sr-up d1">
         <div class="cert-card-icon">B</div>
         <div class="cert-card-name" data-en="Tax Brevet A & B" data-id="Brevet Pajak A & B">Brevet Pajak A & B</div>
         <div class="cert-card-org">IAI</div>
         <div class="cert-card-year">2018</div>
+        <svg class="cert-card-logo" viewBox="0 0 48 48"><path fill="currentColor" d="M24 4L4 14v20l20 10 20-10V14L24 4zm0 4l16 8-16 8-16-8 16-8z"/></svg>
       </a>
     </div>
   </div>
@@ -487,7 +496,7 @@
 <section class="cta-section">
   <div class="cta-inner sr sr-up">
     <div class="cta-text">
-      <h2 data-en="Ready to <span>Elevate</span> Your Business?" data-id="Siap <span>Elevasi</span> Bisnis Anda?">Siap <span>Elevasi</span> Bisnis Anda?</h2>
+      <h2 data-en="Ready to <span>Transform</span> Your Business?" data-id="Siap <span>Transform</span> Bisnis Anda?">Siap <span>Transform</span> Bisnis Anda?</h2>
       <p data-en="First consultation is free. We're ready to help from Palu across all of Indonesia." data-id="Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.">Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.</p>
     </div>
     <a href="#contact" class="btn-cta" data-en="Contact Me →" data-id="Hubungi Saya →">Hubungi Saya →</a>
@@ -499,7 +508,7 @@
     <div class="contact-grid">
       <div>
         <div class="section-eyebrow" data-en="// get in touch" data-id="// hubungi kami">// hubungi kami</div>
-        <h2 class="section-title sr sr-left" style="margin-bottom:1.5rem" data-en="Let's Talk About Your <span>Business</span>" data-id="Mari Bicara Tentang <span>Bisnis</span> Anda">Mari Bicara Tentang <span>Bisnis</span> Anda</h2>
+        <h2 class="section-title sr sr-left" style="margin-bottom:1.5rem" data-en="Got a Project in Mind? <span>Let's Make It Happen.</span>" data-id="Punya Proyek? <span>Ayo Wujudkan Bersama.</span>">Punya Proyek? <span>Ayo Wujudkan Bersama.</span></h2>
         <p class="contact-desc sr sr-left d1" data-en="First consultation is free. Fill out the form and we'll get back to you within 24 hours." data-id="Konsultasi pertama gratis. Isi formulir dan kami akan menghubungi Anda dalam 24 jam.">Konsultasi pertama gratis. Isi formulir dan kami akan menghubungi Anda dalam 24 jam.</p>
         <div class="contact-info-row sr sr-left d2">
           <div class="contact-info-item">
@@ -628,7 +637,7 @@
   // SETUP: 1) Create free account at https://www.emailjs.com
   //        2) Add an email service (Gmail) → copy Service ID
   //        3) Create email template with variables: {{name}}, {{company}}, {{email}}, {{phone}}, {{service}}, {{message}}
-  //        4) Replace _UYS6jlzal211WHAX, service_zqbgibp, template_n3k4125 below
+  //        4) Replace _UYS6jlzal211WHAX, service_yp742sw, template_n3k4125 below
 
   function submitContactForm() {
     var name = document.getElementById('cf-name').value.trim();
@@ -672,7 +681,7 @@
 
     // Check if EmailJS is loaded
     if (typeof emailjs !== 'undefined') {
-      emailjs.send('service_zqbgibp', 'template_n3k4125', templateParams)
+      emailjs.send('service_yp742sw', 'template_n3k4125', templateParams)
         .then(function() {
           status.className = 'form-status success';
           status.textContent = lang === 'en' ? 'Message sent! We\'ll get back to you within 24 hours.' : 'Pesan terkirim! Kami akan menghubungi Anda dalam 24 jam.';
