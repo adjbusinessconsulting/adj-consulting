@@ -57,7 +57,7 @@
       linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px);
       background-size: 60px 60px; pointer-events: none; z-index: 1; animation: gridShift 20s linear infinite; }
     @keyframes gridShift { 0%{transform:translate(0,0)} 100%{transform:translate(60px,60px)} }
-    .hero-bg { position: absolute; inset: -20%; background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=80'); background-size: cover; background-position: center; will-change: transform; }
+    .hero-bg { position: absolute; inset: -20%; background-image: url('https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1400&q=80'); background-size: cover; background-position: center; will-change: transform; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(13,27,46,0.97) 0%, rgba(13,27,46,0.92) 55%, rgba(13,27,46,0.75) 100%); }
     .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 2; width: 100%; }
     .hero-tag { font-family: var(--mono); font-size: 12px; color: #22D3EE; letter-spacing: 0.18em; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; opacity: 0; transform: translateX(-30px); animation: slideRight 0.8s ease 0.2s forwards; text-transform: uppercase; }
@@ -141,6 +141,33 @@
     .btn-cta:hover { background: #67E8F9; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(34,211,238,0.2); }
     .btn-cta:active { transform: scale(0.97); }
 
+    /* CONTACT */
+    .contact-section { background: var(--gray-50); padding: 6rem 6%; border-top: 1px solid var(--gray-200); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
+    .contact-desc { font-family: var(--h); font-size: 14px; font-weight: 400; color: var(--gray-600); line-height: 1.9; max-width: 420px; margin-bottom: 2rem; }
+    .contact-info-row { display: flex; flex-direction: column; gap: 10px; }
+    .contact-info-item { display: flex; align-items: center; gap: 10px; }
+    .contact-info-icon { width: 28px; height: 28px; background: var(--navy); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #22D3EE; font-family: var(--mono); flex-shrink: 0; }
+    .contact-info-text { font-family: var(--mono); font-size: 13px; color: var(--gray-600); }
+    .contact-form-wrap { background: var(--white); border: 1px solid var(--gray-200); border-radius: 8px; padding: 2rem; transition: border-color 0.3s; }
+    .contact-form-wrap:focus-within { border-color: rgba(34,211,238,0.3); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .form-group { margin-bottom: 12px; }
+    .form-row .form-group { margin-bottom: 0; }
+    .form-label { font-family: var(--mono); font-size: 11px; color: var(--gray-400); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; display: block; }
+    .form-input { width: 100%; font-family: var(--mono); font-size: 14px; color: var(--navy); background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 6px; padding: 10px 14px; outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
+    .form-input::placeholder { color: var(--gray-400); font-size: 13px; }
+    .form-input:focus { border-color: #22D3EE; box-shadow: 0 0 0 3px rgba(34,211,238,0.08); }
+    .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394A3B8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+    .form-textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+    .btn-submit { width: 100%; font-family: var(--mono); font-size: 14px; font-weight: 600; background: #22D3EE; color: var(--navy); padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); letter-spacing: 0.04em; margin-top: 4px; }
+    .btn-submit:hover { background: #67E8F9; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(34,211,238,0.2); }
+    .btn-submit:active { transform: scale(0.98); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .form-status { font-family: var(--mono); font-size: 13px; margin-top: 10px; text-align: center; min-height: 20px; }
+    .form-status.success { color: #059669; }
+    .form-status.error { color: #DC2626; }
+
     /* FOOTER */
     footer { background: var(--gray-50); border-top: 1px solid var(--gray-200); padding: 2.5rem 6%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
     .footer-logo { font-family: var(--h); font-size: 20px; font-weight: 700; color: var(--navy); text-decoration: none; transition: color 0.3s; }
@@ -173,6 +200,9 @@
       .cta-inner{flex-direction:column}
       .hero{padding:5rem 4% 4rem}
       .hero-title{font-size:24px}
+      .contact-grid{grid-template-columns:1fr; gap:2rem}
+      .form-row{grid-template-columns:1fr}
+      .contact-form-wrap{padding:1.5rem}
     }
     @media(prefers-reduced-motion:reduce){
       *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
@@ -187,10 +217,10 @@
     <li><a href="index.html" class="active">beranda</a></li>
     <li><a href="portfolio.html" data-en="portfolio" data-id="portofolio">portofolio</a></li>
     <li><a href="index.html" data-en="services" data-id="layanan">layanan</a></li>
-    <li><a href="index.html" data-en="contact" data-id="kontak">kontak</a></li>
+    <li><a href="#contact" data-en="contact" data-id="kontak">kontak</a></li>
   </ul>
   <div class="nav-right">
-    <a href="index.html" class="nav-cta" data-en="Consult" data-id="Konsultasi">Konsultasi</a>
+    <a href="#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
     <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
     <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
   </div>
@@ -199,8 +229,8 @@
   <a href="index.html" class="active" data-en="home" data-id="beranda">beranda</a>
   <a href="portfolio.html" data-en="portfolio" data-id="portofolio">portofolio</a>
   <a href="index.html" data-en="services" data-id="layanan">layanan</a>
-  <a href="index.html" data-en="contact" data-id="kontak">kontak</a>
-  <a href="index.html" class="nav-cta" data-en="Consult" data-id="Konsultasi">Konsultasi</a>
+  <a href="#contact" data-en="contact" data-id="kontak">kontak</a>
+  <a href="#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
 </div>
 
 <section class="hero">
@@ -208,15 +238,15 @@
   <div class="hero-overlay"></div>
   <div class="hero-inner">
     <div>
-      <h1 class="hero-title">Transform Your Business with Data, Strategy & Expert Guidance</h1>
-      <p class="hero-sub">ADJ Business Consulting hadir untuk mendorong kemajuan bisnis Anda — dari desain website profesional, kepatuhan pajak, hingga analisis data yang tajam.</p>
+      <h1 class="hero-title" data-en="Transform Your Business with <span>Data, Strategy &amp; Expert Guidance</span>" data-id="Transformasi Bisnis Anda dengan <span>Data, Strategi &amp; Panduan Ahli</span>">Transform Your Business with <span>Data, Strategy &amp; Expert Guidance</span></h1>
+      <p class="hero-sub" data-en="ADJ Business Consulting empowers your business growth — from professional website design, tax compliance, to sharp data analytics." data-id="ADJ Business Consulting hadir untuk mendorong kemajuan bisnis Anda — dari desain website profesional, kepatuhan pajak, hingga analisis data yang tajam.">ADJ Business Consulting hadir untuk mendorong kemajuan bisnis Anda — dari desain website profesional, kepatuhan pajak, hingga analisis data yang tajam.</p>
       <div class="hero-actions">
         <a href="index.html" class="btn-white" data-en="Get Started →" data-id="Mulai Sekarang →">Mulai Sekarang →</a>
         <a href="portfolio.html" class="btn-ghost" data-en="View Portfolio" data-id="Lihat Portofolio">Lihat Portofolio</a>
       </div>
     </div>
     <div class="hero-card">
-      <div class="hero-card-label">our services</div>
+      <div class="hero-card-label" data-en="our services" data-id="layanan kami">layanan kami</div>
       <div class="metric-row">
         <div class="metric"><span class="metric-num">50+</span><span class="metric-label" data-en="active clients" data-id="klien aktif">klien aktif</span></div>
         <div class="metric"><span class="metric-num">3</span><span class="metric-label" data-en="expertise" data-id="keahlian">keahlian</span></div>
@@ -281,7 +311,71 @@
       <h2 data-en="Ready to <span>Elevate</span> Your Business?" data-id="Siap <span>Elevasi</span> Bisnis Anda?">Siap <span>Elevasi</span> Bisnis Anda?</h2>
       <p data-en="First consultation is free. We're ready to help from Palu across all of Indonesia." data-id="Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.">Konsultasi pertama gratis. Kami siap membantu dari Palu untuk seluruh Indonesia.</p>
     </div>
-    <a href="index.html" class="btn-cta" data-en="Schedule a Consultation →" data-id="Jadwalkan Konsultasi →">Jadwalkan Konsultasi →</a>
+    <a href="#contact" class="btn-cta" data-en="Contact Me →" data-id="Hubungi Saya →">Hubungi Saya →</a>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="section-wrap">
+    <div class="contact-grid">
+      <div>
+        <div class="section-eyebrow" data-en="// get in touch" data-id="// hubungi kami">// hubungi kami</div>
+        <h2 class="section-title sr sr-left" style="margin-bottom:1.5rem" data-en="Let's Talk About Your <span>Business</span>" data-id="Mari Bicara Tentang <span>Bisnis</span> Anda">Mari Bicara Tentang <span>Bisnis</span> Anda</h2>
+        <p class="contact-desc sr sr-left d1" data-en="First consultation is free. Fill out the form and we'll get back to you within 24 hours." data-id="Konsultasi pertama gratis. Isi formulir dan kami akan menghubungi Anda dalam 24 jam.">Konsultasi pertama gratis. Isi formulir dan kami akan menghubungi Anda dalam 24 jam.</p>
+        <div class="contact-info-row sr sr-left d2">
+          <div class="contact-info-item">
+            <span class="contact-info-icon">◎</span>
+            <span class="contact-info-text">Palu, Sulawesi Tengah</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-icon">@</span>
+            <span class="contact-info-text">adjbusinessconsulting@gmail.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-wrap sr sr-up d1">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" data-en="Name" data-id="Nama">Nama</label>
+            <input type="text" class="form-input" id="cf-name" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-en="Company" data-id="Perusahaan">Perusahaan</label>
+            <input type="text" class="form-input" id="cf-company" placeholder="PT Contoh Indonesia">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" id="cf-email" placeholder="john@company.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-en="Phone (optional)" data-id="Telepon (opsional)">Telepon (opsional)</label>
+            <input type="tel" class="form-input" id="cf-phone" placeholder="+62 812 3456 7890">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-en="Service Needed" data-id="Layanan yang Dibutuhkan">Layanan yang Dibutuhkan</label>
+          <select class="form-input form-select" id="cf-service">
+            <option value="" disabled selected data-en="Select a service..." data-id="Pilih layanan...">Pilih layanan...</option>
+            <option value="Website Design">Website Design</option>
+            <option value="Tax Compliance" data-en="Tax Compliance (PPh 21)" data-id="Kepatuhan Pajak (PPh 21)">Kepatuhan Pajak (PPh 21)</option>
+            <option value="Data Analytics">Data Analytics & Science</option>
+            <option value="Accounting" data-en="Accounting & Audit" data-id="Akuntansi & Audit">Akuntansi & Audit</option>
+            <option value="Other" data-en="Other" data-id="Lainnya">Lainnya</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-en="Message" data-id="Pesan">Pesan</label>
+          <textarea class="form-input form-textarea" id="cf-message" rows="4" placeholder="" data-en-ph="Tell us about your project or what you need help with..." data-id-ph="Ceritakan tentang proyek atau kebutuhan Anda..."></textarea>
+        </div>
+        <button class="btn-submit" id="cf-submit" onclick="submitContactForm()">
+          <span id="cf-btn-text" data-en="Send Message →" data-id="Kirim Pesan →">Kirim Pesan →</span>
+          <span id="cf-btn-loading" style="display:none" data-en="Sending..." data-id="Mengirim...">Mengirim...</span>
+        </button>
+        <div class="form-status" id="cf-status"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -346,6 +440,96 @@
     if (bg) bg.style.transform = 'translateY(' + (y * 0.35) + 'px)';
     document.getElementById('navbar').classList.toggle('scrolled', y > 50);
   }, { passive: true });
+
+  // ── Contact Form (EmailJS) ──
+  // SETUP: 1) Create free account at https://www.emailjs.com
+  //        2) Add an email service (Gmail) → copy Service ID
+  //        3) Create email template with variables: {{name}}, {{company}}, {{email}}, {{phone}}, {{service}}, {{message}}
+  //        4) Replace _UYS6jlzal211WHAX, service_zqbgibp, template_n3k4125 below
+
+  function submitContactForm() {
+    var name = document.getElementById('cf-name').value.trim();
+    var company = document.getElementById('cf-company').value.trim();
+    var email = document.getElementById('cf-email').value.trim();
+    var phone = document.getElementById('cf-phone').value.trim();
+    var service = document.getElementById('cf-service').value;
+    var message = document.getElementById('cf-message').value.trim();
+    var status = document.getElementById('cf-status');
+    var btn = document.getElementById('cf-submit');
+    var btnText = document.getElementById('cf-btn-text');
+    var btnLoad = document.getElementById('cf-btn-loading');
+    var lang = localStorage.getItem('adj_lang') || 'id';
+
+    // Validation
+    if (!name || !email || !message) {
+      status.className = 'form-status error';
+      status.textContent = lang === 'en' ? 'Please fill in name, email, and message.' : 'Mohon isi nama, email, dan pesan.';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      status.className = 'form-status error';
+      status.textContent = lang === 'en' ? 'Please enter a valid email address.' : 'Mohon masukkan alamat email yang valid.';
+      return;
+    }
+
+    // Show loading state
+    btn.disabled = true;
+    btnText.style.display = 'none';
+    btnLoad.style.display = 'inline';
+    status.className = 'form-status';
+    status.textContent = '';
+
+    var templateParams = {
+      name: name,
+      company: company || '(not provided)',
+      email: email,
+      phone: phone || '(not provided)',
+      service: service || '(not selected)',
+      message: message
+    };
+
+    // Check if EmailJS is loaded
+    if (typeof emailjs !== 'undefined') {
+      emailjs.send('service_zqbgibp', 'template_n3k4125', templateParams)
+        .then(function() {
+          status.className = 'form-status success';
+          status.textContent = lang === 'en' ? 'Message sent! We\'ll get back to you within 24 hours.' : 'Pesan terkirim! Kami akan menghubungi Anda dalam 24 jam.';
+          document.getElementById('cf-name').value = '';
+          document.getElementById('cf-company').value = '';
+          document.getElementById('cf-email').value = '';
+          document.getElementById('cf-phone').value = '';
+          document.getElementById('cf-service').selectedIndex = 0;
+          document.getElementById('cf-message').value = '';
+          btn.disabled = false;
+          btnText.style.display = 'inline';
+          btnLoad.style.display = 'none';
+        }, function(err) {
+          status.className = 'form-status error';
+          status.textContent = lang === 'en' ? 'Failed to send. Please try again or email us directly.' : 'Gagal mengirim. Silakan coba lagi atau email kami langsung.';
+          btn.disabled = false;
+          btnText.style.display = 'inline';
+          btnLoad.style.display = 'none';
+          console.error('EmailJS error:', err);
+        });
+    } else {
+      // Fallback: open mailto
+      var subject = encodeURIComponent('Contact from ' + name + ' — ' + (service || 'General'));
+      var body = encodeURIComponent('Name: ' + name + '\nCompany: ' + (company || '-') + '\nEmail: ' + email + '\nPhone: ' + (phone || '-') + '\nService: ' + (service || '-') + '\n\nMessage:\n' + message);
+      window.open('mailto:adjbusinessconsulting@gmail.com?subject=' + subject + '&body=' + body);
+      status.className = 'form-status success';
+      status.textContent = lang === 'en' ? 'Opening your email client...' : 'Membuka email Anda...';
+      btn.disabled = false;
+      btnText.style.display = 'inline';
+      btnLoad.style.display = 'none';
+    }
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // Initialize EmailJS — replace _UYS6jlzal211WHAX with your actual key
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init('_UYS6jlzal211WHAX');
+  }
 </script>
 </body>
 </html>
