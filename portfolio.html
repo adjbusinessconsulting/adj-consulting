@@ -1540,7 +1540,7 @@ if(vizSection && 'IntersectionObserver' in window){
       <div class="section-label" style="color:#22D3EE;">PCA Cluster Visualization</div>
       <div class="chart-title">2D PCA Projection — Hover over clusters to explore <span class="chart-badge">84.8% variance explained</span></div>
       <div class="pca-wrap">
-        <canvas id="ds1-pca-canvas"></canvas>
+        <canvas id="ds1-pca-canvas" style="width:100%;height:100%;display:block;border-radius:6px;min-height:280px;"></canvas>
       </div>
       <div style="display:flex;gap:1.5rem;margin-top:1rem;flex-wrap:wrap;" id="ds1-pca-legend"></div>
     </div>
@@ -1579,7 +1579,6 @@ if(vizSection && 'IntersectionObserver' in window){
 </div><!-- end dash-body -->
 
 <script>
-(function(){
 
 /* ── DATA ────────────────────────────────────────────────── */
 var CLUSTERS = [
@@ -1638,6 +1637,130 @@ var SIL_SCORES = [
   {k:5,score:0.2426},{k:6,score:0.2386},{k:7,score:0.2350},
   {k:8,score:0.2327},{k:9,score:0.2368},{k:10,score:0.2374}
 ];
+
+/* ── CLUSTER TABS + PANES ────────────────────────────────── */
+(function(){
+  var tabsEl = document.getElementById('ds1-tabs');
+  var panesEl = document.getElementById('ds1-panes');
+  if(!tabsEl || !panesEl) return;
+
+  var activeId = CLUSTERS[0].id;
+
+  function renderTabs(){
+    tabsEl.innerHTML = '';
+    CLUSTERS.forEach(function(c){
+      var t = document.createElement('div');
+      t.className = 'cluster-tab' + (c.id===activeId?' active':'');
+      t.style.cssText = 'font-family:\'JetBrains Mono\',monospace;font-size:11px;padding:.6rem 1.1rem;cursor:pointer;border-bottom:2px solid '+(c.id===activeId?c.color:'transparent')+';color:'+(c.id===activeId?c.color:'#64748B')+';transition:color .2s,border-color .2s;white-space:nowrap;';
+      t.textContent = c.label;
+      t.onclick = function(){ activeId=c.id; renderTabs(); renderPane(); };
+      tabsEl.appendChild(t);
+    });
+  }
+
+  function renderPane(){
+    panesEl.innerHTML = '';
+    var c = CLUSTERS.filter(function(x){ return x.id===activeId; })[0];
+    if(!c) return;
+    var pane = document.createElement('div');
+    pane.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding-top:.5rem;';
+    // Left: stats grid
+    var stats = [
+      {label:'Recency',    val:c.recency+' days', sub:'Median days since last order'},
+      {label:'Frequency',  val:c.frequency+' orders', sub:'Median unique invoices'},
+      {label:'Monetary',   val:'£'+c.monetary.toLocaleString(), sub:'Median lifetime spend'},
+      {label:'AOV',        val:'£'+c.aov.toFixed(2), sub:'Avg order value'},
+      {label:'Avg Qty/Inv',val:c.avgQty.toFixed(2)+' units', sub:'Avg quantity per invoice'},
+      {label:'Customers',  val:c.customers.toLocaleString()+' ('+c.customerPct+'%)', sub:'Share of customer base'},
+    ];
+    var statGrid = document.createElement('div');
+    statGrid.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:.75rem;';
+    stats.forEach(function(s){
+      var cell = document.createElement('div');
+      cell.style.cssText = 'background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:.85rem;';
+      cell.innerHTML = '<div style="font-family:\'JetBrains Mono\',monospace;font-size:9.5px;color:#475569;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem;">'+s.label+'</div>'
+        +'<div style="font-family:\'JetBrains Mono\',monospace;font-size:15px;font-weight:700;color:'+c.color+';">'+s.val+'</div>'
+        +'<div style="font-family:\'JetBrains Mono\',monospace;font-size:10px;color:#475569;margin-top:.2rem;">'+s.sub+'</div>';
+      statGrid.appendChild(cell);
+    });
+    // Right: actions
+    var actWrap = document.createElement('div');
+    actWrap.style.cssText = 'background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:6px;padding:1rem 1.25rem;';
+    actWrap.innerHTML = '<div style="font-family:\'JetBrains Mono\',monospace;font-size:9.5px;color:'+c.color+';letter-spacing:.14em;text-transform:uppercase;margin-bottom:.85rem;">Strategy &amp; Actions</div>';
+    c.actions.forEach(function(a){
+      var item = document.createElement('div');
+      item.style.cssText = 'display:flex;gap:.6rem;font-family:\'JetBrains Mono\',monospace;font-size:12px;color:#64748B;line-height:1.55;margin-bottom:.55rem;';
+      item.innerHTML = '<span style="color:'+c.color+';font-weight:700;flex-shrink:0;">→</span><span>'+a+'</span>';
+      actWrap.appendChild(item);
+    });
+    // Badge
+    var badge = document.createElement('div');
+    badge.style.cssText = 'margin-top:1rem;padding:.5rem .85rem;background:rgba(255,255,255,0.04);border-radius:5px;font-family:\'JetBrains Mono\',monospace;font-size:11px;color:#94A3B8;text-align:center;';
+    badge.textContent = c.badge;
+    actWrap.appendChild(badge);
+
+    pane.appendChild(statGrid);
+    pane.appendChild(actWrap);
+    panesEl.appendChild(pane);
+  }
+
+  renderTabs();
+  renderPane();
+})();
+
+/* ── REVENUE + CUSTOMER BARS ─────────────────────────────── */
+(function(){
+  var revEl  = document.getElementById('ds1-rev-bars');
+  var custEl = document.getElementById('ds1-cust-bars');
+  var maxRev  = Math.max.apply(null, CLUSTERS.map(function(c){ return c.revenuePct; }));
+  var maxCust = Math.max.apply(null, CLUSTERS.map(function(c){ return c.customerPct; }));
+
+  function buildBars(container, getter, maxVal, suffix){
+    if(!container) return;
+    // Sort descending by value
+    var sorted = CLUSTERS.slice().sort(function(a,b){ return getter(b)-getter(a); });
+    sorted.forEach(function(c){
+      var row = document.createElement('div');
+      row.style.cssText = 'display:flex;align-items:center;gap:.75rem;margin-bottom:.65rem;';
+      var pct = (getter(c)/maxVal*100).toFixed(1);
+      row.innerHTML = '<div style="font-family:\'JetBrains Mono\',monospace;font-size:11px;min-width:130px;color:#94A3B8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+c.label+'</div>'
+        +'<div style="flex:1;height:8px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden;">'
+        +'<div style="width:0%;height:100%;border-radius:4px;background:'+c.color+';transition:width 1.2s cubic-bezier(.25,.46,.45,.94);" data-w="'+pct+'"></div>'
+        +'</div>'
+        +'<div style="font-family:\'JetBrains Mono\',monospace;font-size:11px;color:#fff;font-weight:600;min-width:44px;text-align:right;">'+getter(c).toFixed(1)+suffix+'</div>';
+      container.appendChild(row);
+    });
+    setTimeout(function(){
+      container.querySelectorAll('[data-w]').forEach(function(b){ b.style.width=b.getAttribute('data-w')+'%'; });
+    }, 300);
+  }
+
+  buildBars(revEl,  function(c){ return c.revenuePct;  }, maxRev,  '%');
+  buildBars(custEl, function(c){ return c.customerPct; }, maxCust, '%');
+})();
+
+/* ── BUSINESS INSIGHTS ───────────────────────────────────── */
+(function(){
+  var wrap = document.getElementById('ds1-insights');
+  if(!wrap) return;
+  var insightMap = {
+    1: { title:'Retain Bulk Buyers — Protect Your Core Revenue', body:'With only 19.4% of customers but 25% of revenue, Bulk Buyers are your highest-value segment. Focus on VIP loyalty programs, early product access, and exclusive newsletters to keep their engagement high and churn minimal.' },
+    2: { title:'Grow Regular Customers Into Higher-Value Buyers', body:'Regular Customers (26.4%) contribute 27% of revenue with solid frequency. Upselling, cross-selling complementary items, and product bundling can push them toward the Bulk Buyer tier over time.' },
+    0: { title:'Reactivate At Risk Customers Before They Churn', body:'At Risk Customers haven\'t purchased in ~299 days and visit infrequently. Time-limited "we miss you" reactivation campaigns, discounts, and digital retargeting are the priority for this segment.' },
+    3: { title:'Nurture Dormant Customers With Low-Friction Entry', body:'Dormant Customers (24.2%) are nearly inactive with median 1 purchase. Welcome-back promos, first repeat purchase incentives, and product highlight emails are the right tools to re-engage without over-spending budget.' },
+  };
+  CLUSTERS.forEach(function(c, idx){
+    var ins = insightMap[c.id];
+    if(!ins) return;
+    var el = document.createElement('div');
+    el.style.cssText = 'display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,0.04);';
+    if(idx===CLUSTERS.length-1) el.style.borderBottom='none';
+    el.innerHTML = '<div style="font-family:\'JetBrains Mono\',monospace;font-size:13px;color:'+c.color+';font-weight:700;min-width:28px;">'+(idx+1)+'</div>'
+      +'<div><div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:.3rem;">'+ins.title+'</div>'
+      +'<div style="font-size:12px;color:#64748B;line-height:1.6;">'+ins.body+'</div></div>';
+    wrap.appendChild(el);
+  });
+})();
 
 /* ── FEATURE LIST ────────────────────────────────────────── */
 var FEATURES = [
@@ -1790,7 +1913,9 @@ if(kb){
     ctx.fillText('auto', xPos(AUTO_K), yPos(INERTIA[3])-12);
   }
 
-  drawElbow();
+  function safeDraw(){ requestAnimationFrame(function(){ if(canvas.offsetWidth>0){ drawElbow(); } else { setTimeout(drawElbow, 200); } }); }
+  safeDraw();
+  setTimeout(drawElbow, 400);
   window.addEventListener('resize', drawElbow);
 })();
 
@@ -1884,7 +2009,9 @@ if(kb){
     ctx.fillText('k=4 ✓', xPos(CHOSEN_K), yPos(SIL[2])-12);
   }
 
-  drawSil();
+  function safeDraw(){ requestAnimationFrame(function(){ if(canvas.offsetWidth>0){ drawSil(); } else { setTimeout(drawSil, 200); } }); }
+  safeDraw();
+  setTimeout(drawSil, 400);
   window.addEventListener('resize', drawSil);
 })();
 
@@ -2051,7 +2178,11 @@ if(kb){
     }
   }
 
-  draw();
+  function safeDraw(){ requestAnimationFrame(function(){ var W=canvas.offsetWidth,H=canvas.offsetHeight; if(W>0&&H>0){ draw(); } else { setTimeout(draw,200); } }); }
+  safeDraw();
+  setTimeout(draw, 100);
+  setTimeout(draw, 500);
+  window.addEventListener('load', function(){ setTimeout(draw, 50); });
 
   // Hover
   canvas.addEventListener('mousemove', function(e){
