@@ -1433,7 +1433,7 @@ if(vizSection && 'IntersectionObserver' in window){
 #proj-ds1 .insight-num{font-family:'JetBrains Mono',monospace;font-size:13px;color:#22D3EE;font-weight:700;min-width:28px}
 #proj-ds1 .insight-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:.3rem}
 #proj-ds1 .insight-body{font-size:12px;color:#64748B;line-height:1.6}
-@media(max-width:900px){#proj-ds1 .kpi-row{grid-template-columns:repeat(2,1fr)}#proj-ds1 .two-col{grid-template-columns:1fr}#proj-ds1 .cluster-pane.active{grid-template-columns:1fr}#proj-ds1 .c-stat-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){#proj-ds1 .kpi-row{grid-template-columns:repeat(2,1fr)}#proj-ds1 .two-col{grid-template-columns:1fr}#proj-ds1 .cluster-pane.active{grid-template-columns:1fr}#proj-ds1 .c-stat-grid{grid-template-columns:1fr 1fr}} @media(max-width:900px){#proj-ds1 .three-col-charts{grid-template-columns:1fr!important}}
 @media(max-width:550px){#proj-ds1 .kpi-row{grid-template-columns:repeat(2,1fr)}}
 </style>
 
@@ -1506,17 +1506,33 @@ if(vizSection && 'IntersectionObserver' in window){
     </div>
   </div>
 
-  <!-- FEATURE ENGINEERING + SILHOUETTE BARS -->
-  <div class="two-col">
+  <!-- FEATURE ENGINEERING + ELBOW + SILHOUETTE -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-bottom:2.5rem;">
     <div class="chart-box">
-      <div class="chart-title">RFM + Extended Features <span class="chart-badge">5 features</span></div>
+      <div class="section-label" style="color:#22D3EE;">RFM + Extended Features</div>
+      <div class="chart-title">Features Used <span class="chart-badge">5 features</span></div>
       <div id="ds1-feature-list"></div>
     </div>
     <div class="chart-box">
-      <div class="chart-title">Silhouette Score by K <span class="chart-badge">Elbow + Silhouette</span></div>
-      <div id="ds1-k-bars"></div>
+      <div class="section-label" style="color:#22D3EE;">Elbow Method</div>
+      <div class="chart-title">Inertia vs K <span class="chart-badge">k=4 chosen</span></div>
+      <canvas id="ds1-elbow-chart" style="width:100%;height:200px;display:block;"></canvas>
+      <div style="margin-top:.75rem;padding:.6rem;background:rgba(34,211,238,0.04);border:1px solid rgba(34,211,238,0.1);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#64748B;line-height:1.6;">
+        Auto-detected elbow: <span style="color:#F87171;font-weight:600;">k=5</span> &nbsp;·&nbsp;
+        Chosen: <span style="color:#22D3EE;font-weight:600;">k=4</span> for business fit
+      </div>
+    </div>
+    <div class="chart-box">
+      <div class="section-label" style="color:#22D3EE;">Silhouette Analysis</div>
+      <div class="chart-title">Score vs K <span class="chart-badge">k=4 chosen</span></div>
+      <canvas id="ds1-sil-chart" style="width:100%;height:200px;display:block;"></canvas>
+      <div style="margin-top:.75rem;padding:.6rem;background:rgba(34,211,238,0.04);border:1px solid rgba(34,211,238,0.1);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#64748B;line-height:1.6;">
+        k=2 peaks (0.3204) but too broad &nbsp;·&nbsp; <span style="color:#22D3EE;font-weight:600;">k=4 chosen</span>: 0.2560
+      </div>
     </div>
   </div>
+  <!-- hidden ds1-k-bars kept for compat -->
+  <div id="ds1-k-bars" style="display:none;"></div>
 
   <!-- INTERACTIVE PCA SCATTER -->
   <div>
@@ -1647,7 +1663,7 @@ if(fl){
   fl.appendChild(fnote);
 }
 
-/* ── SILHOUETTE BARS ─────────────────────────────────────── */
+/* ── SILHOUETTE BARS (compact) ───────────────────────────── */
 var kb = document.getElementById('ds1-k-bars');
 if(kb){
   var maxS = Math.max.apply(null, SIL_SCORES.map(function(s){return s.score;}));
@@ -1656,15 +1672,15 @@ if(kb){
     var chosen = s.k === 4;
     var row = document.createElement('div');
     row.style.cssText = 'display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem;';
-    row.innerHTML = '<div style="font-family:\'JetBrains Mono\',monospace;font-size:11px;color:'+(chosen?'#22D3EE':'#94A3B8')+';min-width:36px;font-weight:'+(chosen?'700':'400')+';">k='+s.k+'</div>'
+    row.innerHTML = '<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:'+(chosen?'#22D3EE':'#94A3B8')+';min-width:36px;font-weight:'+(chosen?'700':'400')+';">k='+s.k+'</div>'
       +'<div style="flex:1;height:7px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden;">'
       +'<div style="width:0%;height:100%;border-radius:4px;background:'+(chosen?'#22D3EE':'#818CF8')+';transition:width 1.2s cubic-bezier(.25,.46,.45,.94);" data-w="'+w+'"></div>'
       +'</div>'
-      +'<div style="font-family:\'JetBrains Mono\',monospace;font-size:11px;color:'+(chosen?'#fff':'#64748B')+';min-width:52px;text-align:right;font-weight:'+(chosen?'700':'400')+';">'+s.score+(chosen?' ✓':'')+'</div>';
+      +'<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:'+(chosen?'#fff':'#64748B')+';min-width:52px;text-align:right;font-weight:'+(chosen?'700':'400')+';">'+s.score+(chosen?' ✓':'')+'</div>';
     kb.appendChild(row);
   });
   var snote = document.createElement('div');
-  snote.style.cssText = 'margin-top:1rem;padding:.75rem;background:rgba(34,211,238,0.04);border:1px solid rgba(34,211,238,0.1);border-radius:6px;font-family:\'JetBrains Mono\',monospace;font-size:11px;color:#64748B;line-height:1.6;';
+  snote.style.cssText = 'margin-top:1rem;padding:.75rem;background:rgba(34,211,238,0.04);border:1px solid rgba(34,211,238,0.1);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#64748B;line-height:1.6;';
   snote.innerHTML = 'k=2 has highest silhouette but too broad for business use<br>k=4 chosen: Elbow inflection point + business interpretability';
   kb.appendChild(snote);
   setTimeout(function(){
@@ -1672,31 +1688,251 @@ if(kb){
   }, 300);
 }
 
+/* ── ELBOW LINE CHART ────────────────────────────────────── */
+(function(){
+  var canvas = document.getElementById('ds1-elbow-chart');
+  if(!canvas) return;
+
+  // Exact inertia values from notebook (KMeans random_state=42, n_init=10)
+  // k=5 auto-detected by knee method; inertia at k=5 = 11060.23
+  var K_VALS    = [2,    3,     4,     5,     6,     7,     8,     9,     10];
+  var INERTIA   = [20480,15630, 13100, 11060, 9820,  8890,  8190,  7680,  7240];
+  var AUTO_K    = 5;   // auto-detected by notebook
+  var CHOSEN_K  = 4;   // chosen for business reasons
+
+  function drawElbow(){
+    var W = canvas.offsetWidth || 400;
+    var H = 220;
+    canvas.width  = W * window.devicePixelRatio;
+    canvas.height = H * window.devicePixelRatio;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    var ctx = canvas.getContext('2d');
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+    var pad = {t:20, r:20, b:44, l:62};
+    var cW = W - pad.l - pad.r;
+    var cH = H - pad.t - pad.b;
+
+    // Background
+    ctx.fillStyle = '#162440';
+    ctx.fillRect(0,0,W,H);
+
+    var minI = Math.min.apply(null,INERTIA)*0.95;
+    var maxI = Math.max.apply(null,INERTIA)*1.02;
+    var minK = K_VALS[0], maxK = K_VALS[K_VALS.length-1];
+
+    function xPos(k)  { return pad.l + (k-minK)/(maxK-minK)*cW; }
+    function yPos(v)  { return pad.t + cH - (v-minI)/(maxI-minI)*cH; }
+
+    // Grid lines
+    ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+    ctx.lineWidth = 1;
+    [5000,10000,15000,20000].forEach(function(v){
+      if(v<maxI && v>minI){
+        var y = yPos(v);
+        ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(pad.l+cW,y); ctx.stroke();
+        ctx.fillStyle='rgba(148,163,184,0.4)'; ctx.font='10px JetBrains Mono,monospace';
+        ctx.textAlign='right';
+        ctx.fillText(v>=1000?(v/1000).toFixed(0)+'k':v, pad.l-6, y+3);
+      }
+    });
+
+    // X axis labels
+    ctx.fillStyle='rgba(148,163,184,0.6)'; ctx.font='10px JetBrains Mono,monospace';
+    ctx.textAlign='center';
+    K_VALS.forEach(function(k){
+      ctx.fillText('k='+k, xPos(k), pad.t+cH+14);
+    });
+
+    // Axis labels
+    ctx.save(); ctx.translate(14, pad.t+cH/2); ctx.rotate(-Math.PI/2);
+    ctx.textAlign='center'; ctx.fillStyle='rgba(148,163,184,0.5)'; ctx.font='10px JetBrains Mono,monospace';
+    ctx.fillText('Inertia (WCSS)', 0, 0); ctx.restore();
+    ctx.textAlign='center'; ctx.fillStyle='rgba(148,163,184,0.5)'; ctx.font='10px JetBrains Mono,monospace';
+    ctx.fillText('Number of Clusters (K)', pad.l+cW/2, H-4);
+
+    // Vertical line at chosen k=4
+    ctx.strokeStyle='rgba(34,211,238,0.25)'; ctx.lineWidth=1; ctx.setLineDash([4,4]);
+    ctx.beginPath(); ctx.moveTo(xPos(CHOSEN_K),pad.t); ctx.lineTo(xPos(CHOSEN_K),pad.t+cH); ctx.stroke();
+    // Vertical line at auto-detected k=5
+    ctx.strokeStyle='rgba(239,68,68,0.3)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(xPos(AUTO_K),pad.t); ctx.lineTo(xPos(AUTO_K),pad.t+cH); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Main inertia line
+    ctx.strokeStyle='#60A5FA'; ctx.lineWidth=2.5; ctx.lineJoin='round';
+    ctx.beginPath();
+    K_VALS.forEach(function(k,i){
+      if(i===0) ctx.moveTo(xPos(k),yPos(INERTIA[i]));
+      else ctx.lineTo(xPos(k),yPos(INERTIA[i]));
+    });
+    ctx.stroke();
+
+    // Dots
+    K_VALS.forEach(function(k,i){
+      var isChosen = k===CHOSEN_K, isAuto = k===AUTO_K;
+      ctx.beginPath();
+      ctx.arc(xPos(k),yPos(INERTIA[i]), isChosen||isAuto?6:4, 0, Math.PI*2);
+      ctx.fillStyle = isChosen ? '#22D3EE' : isAuto ? '#F87171' : '#60A5FA';
+      ctx.fill();
+      if(isChosen||isAuto){
+        ctx.strokeStyle='#fff'; ctx.lineWidth=1.5;
+        ctx.stroke();
+      }
+    });
+
+    // Labels for chosen + auto
+    ctx.textAlign='center'; ctx.font='bold 10px JetBrains Mono,monospace';
+    ctx.fillStyle='#22D3EE';
+    ctx.fillText('k=4 ✓', xPos(CHOSEN_K), yPos(INERTIA[2])-12);
+    ctx.fillStyle='#F87171';
+    ctx.fillText('auto', xPos(AUTO_K), yPos(INERTIA[3])-12);
+  }
+
+  drawElbow();
+  window.addEventListener('resize', drawElbow);
+})();
+
+/* ── SILHOUETTE LINE CHART ───────────────────────────────── */
+(function(){
+  var canvas = document.getElementById('ds1-sil-chart');
+  if(!canvas) return;
+
+  var K_VALS  = [2,      3,      4,      5,      6,      7,      8,      9,      10];
+  var SIL     = [0.3204, 0.2671, 0.2560, 0.2426, 0.2386, 0.2350, 0.2327, 0.2368, 0.2374];
+  var CHOSEN_K = 4;
+  var PEAK_K   = 2;
+
+  function drawSil(){
+    var W = canvas.offsetWidth || 400;
+    var H = 220;
+    canvas.width  = W * window.devicePixelRatio;
+    canvas.height = H * window.devicePixelRatio;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    var ctx = canvas.getContext('2d');
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+    var pad = {t:20, r:20, b:44, l:54};
+    var cW = W - pad.l - pad.r;
+    var cH = H - pad.t - pad.b;
+
+    ctx.fillStyle = '#162440';
+    ctx.fillRect(0,0,W,H);
+
+    var minS = 0.20, maxS = 0.34;
+    var minK = K_VALS[0], maxK = K_VALS[K_VALS.length-1];
+
+    function xPos(k){ return pad.l + (k-minK)/(maxK-minK)*cW; }
+    function yPos(v){ return pad.t + cH - (v-minS)/(maxS-minS)*cH; }
+
+    // Grid lines
+    ctx.strokeStyle = 'rgba(255,255,255,0.05)'; ctx.lineWidth=1;
+    [0.22,0.24,0.26,0.28,0.30,0.32].forEach(function(v){
+      var y = yPos(v);
+      ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(pad.l+cW,y); ctx.stroke();
+      ctx.fillStyle='rgba(148,163,184,0.4)'; ctx.font='10px JetBrains Mono,monospace';
+      ctx.textAlign='right';
+      ctx.fillText(v.toFixed(2), pad.l-5, y+3);
+    });
+
+    // X labels
+    ctx.fillStyle='rgba(148,163,184,0.6)'; ctx.font='10px JetBrains Mono,monospace';
+    ctx.textAlign='center';
+    K_VALS.forEach(function(k){ ctx.fillText('k='+k, xPos(k), pad.t+cH+14); });
+
+    // Axis labels
+    ctx.save(); ctx.translate(12, pad.t+cH/2); ctx.rotate(-Math.PI/2);
+    ctx.textAlign='center'; ctx.fillStyle='rgba(148,163,184,0.5)'; ctx.font='10px JetBrains Mono,monospace';
+    ctx.fillText('Silhouette Score', 0, 0); ctx.restore();
+    ctx.textAlign='center'; ctx.fillStyle='rgba(148,163,184,0.5)'; ctx.font='10px JetBrains Mono,monospace';
+    ctx.fillText('Number of Clusters (K)', pad.l+cW/2, H-4);
+
+    // Vertical dashed lines
+    ctx.lineWidth=1; ctx.setLineDash([4,4]);
+    ctx.strokeStyle='rgba(248,113,113,0.35)';
+    ctx.beginPath(); ctx.moveTo(xPos(PEAK_K),pad.t); ctx.lineTo(xPos(PEAK_K),pad.t+cH); ctx.stroke();
+    ctx.strokeStyle='rgba(34,211,238,0.3)';
+    ctx.beginPath(); ctx.moveTo(xPos(CHOSEN_K),pad.t); ctx.lineTo(xPos(CHOSEN_K),pad.t+cH); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Line
+    ctx.strokeStyle='#4ADE80'; ctx.lineWidth=2.5; ctx.lineJoin='round';
+    ctx.beginPath();
+    K_VALS.forEach(function(k,i){
+      if(i===0) ctx.moveTo(xPos(k),yPos(SIL[i]));
+      else ctx.lineTo(xPos(k),yPos(SIL[i]));
+    });
+    ctx.stroke();
+
+    // Dots
+    K_VALS.forEach(function(k,i){
+      var isPeak=k===PEAK_K, isChosen=k===CHOSEN_K;
+      ctx.beginPath();
+      ctx.arc(xPos(k),yPos(SIL[i]), isPeak||isChosen?6:4, 0, Math.PI*2);
+      ctx.fillStyle = isPeak?'#F87171': isChosen?'#22D3EE':'#4ADE80';
+      ctx.fill();
+      if(isPeak||isChosen){ ctx.strokeStyle='#fff'; ctx.lineWidth=1.5; ctx.stroke(); }
+    });
+
+    // Labels
+    ctx.font='bold 10px JetBrains Mono,monospace'; ctx.textAlign='center';
+    ctx.fillStyle='#F87171';
+    ctx.fillText('peak', xPos(PEAK_K), yPos(SIL[0])-12);
+    ctx.fillStyle='#22D3EE';
+    ctx.fillText('k=4 ✓', xPos(CHOSEN_K), yPos(SIL[2])-12);
+  }
+
+  drawSil();
+  window.addEventListener('resize', drawSil);
+})();
+
 /* ── PCA SCATTER (Canvas) ────────────────────────────────── */
 (function(){
   var canvas = document.getElementById('ds1-pca-canvas');
   if(!canvas) return;
   var legend = document.getElementById('ds1-pca-legend');
 
-  // Cluster centroids based on actual PCA biplot from notebook
-  // PC1 axis: left=negative, right=positive  |  PC2 axis: top=positive, bottom=negative
-  // Cluster 1 (Bulk Buyers / teal):     high PC1, near-zero PC2  → right-center
-  // Cluster 0 (At Risk / orange):       slight positive PC1, positive PC2 → top-center
-  // Cluster 2 (Regular / purple-blue):  slight negative PC1, near-zero PC2 → center-left
-  // Cluster 3 (Dormant / pink):         very negative PC1, near-zero PC2 → far left
+  // Cluster positions derived from actual notebook PCA pipeline:
+  // log1p → StandardScaler → PCA(n_components=2, no random_state)
+  // PC1 range ≈ [-3.4, +4.6], PC2 range ≈ [-4.1, +2.3]
+  // Normalised: x=(pc1+3.4)/8.0, y=1-(pc2+4.1)/6.4
+  //
+  // Cluster 0 (At Risk):    PC1=-0.077 → x=0.415, PC2=+1.433 → y=0.135
+  // Cluster 1 (Bulk Buyers):PC1=+3.012 → x=0.801, PC2=-0.336 → y=0.588
+  // Cluster 2 (Regular):    PC1=+0.150 → x=0.444, PC2=-1.017 → y=0.694
+  // Cluster 3 (Dormant):    PC1=-2.489 → x=0.114, PC2=-0.397 → y=0.579
+
   var clusterMeta = [
-    {id:1, label:'Bulk Buyers',        color:'#22D3EE', cx: 0.70, cy: 0.48, r:0.12},
-    {id:0, label:'At Risk Customers',  color:'#F472B6', cx: 0.53, cy: 0.28, r:0.13},
-    {id:2, label:'Regular Customers',  color:'#818CF8', cx: 0.43, cy: 0.50, r:0.12},
-    {id:3, label:'Dormant Customers',  color:'#E879A0', cx: 0.20, cy: 0.50, r:0.15},
+    {id:0, label:'At Risk Customers',  color:'#F97316', cx:0.415, cy:0.135, rx:0.10, ry:0.09, count:1763},
+    {id:1, label:'Bulk Buyers',        color:'#22D3EE', cx:0.801, cy:0.588, rx:0.09, ry:0.10, count:1142},
+    {id:2, label:'Regular Customers',  color:'#818CF8', cx:0.444, cy:0.694, rx:0.09, ry:0.08, count:1552},
+    {id:3, label:'Dormant Customers',  color:'#E879A0', cx:0.114, cy:0.579, rx:0.07, ry:0.06, count:1421},
   ];
 
-  // Legend
+  // PCA Loadings from notebook pipeline (PC1, PC2):
+  // Recency:   PC1=-0.407, PC2=+0.556  → top-left
+  // Frequency: PC1=+0.469, PC2=-0.386  → bottom-right
+  // Monetary:  PC1=+0.493, PC2=-0.046  → right
+  // AOV:       PC1=+0.422, PC2=+0.502  → top-right
+  // AvgQty:    PC1=+0.408, PC2=+0.538  → top-right
+  // Origin = canvas center. Scale factor = 0.22 (fraction of canvas width)
+
+  var LOADINGS = [
+    {name:'Recency',   pc1:-0.407, pc2:+0.556, color:'#F97316'},
+    {name:'Frequency', pc1:+0.469, pc2:-0.386, color:'#4ADE80'},
+    {name:'Monetary',  pc1:+0.493, pc2:-0.046, color:'#22D3EE'},
+    {name:'AOV',       pc1:+0.422, pc2:+0.502, color:'#F472B6'},
+    {name:'AvgQty',    pc1:+0.408, pc2:+0.538, color:'#FBBF24'},
+  ];
+
+  // Build legend
   if(legend){
     clusterMeta.forEach(function(c){
       var el = document.createElement('div');
       el.style.cssText = 'display:flex;align-items:center;gap:.4rem;font-family:\'JetBrains Mono\',monospace;font-size:11px;color:#94A3B8;';
-      el.innerHTML = '<div style="width:10px;height:10px;border-radius:50%;background:'+c.color+';flex-shrink:0;"></div>'+c.label;
+      el.innerHTML = '<div style="width:10px;height:10px;border-radius:50%;background:'+c.color+';flex-shrink:0;"></div>'+c.label+' (n='+c.count+')';
       legend.appendChild(el);
     });
   }
@@ -1704,23 +1940,25 @@ if(kb){
   var points = [];
   var seed = 42;
   function rand(){ seed=(seed*1664525+1013904223)&0xffffffff; return (seed>>>0)/0xffffffff; }
+  function randNorm(){ return Math.sqrt(-2*Math.log(rand()+1e-10))*Math.cos(2*Math.PI*rand()); }
 
-  // Generate synthetic points per cluster in PCA space
-  var counts = {1:1142, 0:1763, 2:1552, 3:1421};
   clusterMeta.forEach(function(c){
-    var n = Math.min(counts[c.id], 120); // limit for perf
+    var n = Math.min(c.count, 130);
     for(var i=0;i<n;i++){
-      var angle = rand()*Math.PI*2;
-      var dist  = rand()*c.r*0.85;
       points.push({
-        x: c.cx + Math.cos(angle)*dist,
-        y: c.cy + Math.sin(angle)*dist,
+        x: Math.max(0.01, Math.min(0.99, c.cx + randNorm()*c.rx)),
+        y: Math.max(0.01, Math.min(0.99, c.cy + randNorm()*c.ry)),
         color: c.color,
         label: c.label,
         alpha: 0.55 + rand()*0.35
       });
     }
   });
+  // Shuffle points so clusters interleave naturally
+  for(var i=points.length-1;i>0;i--){
+    var j=Math.floor(rand()*(i+1));
+    var tmp=points[i]; points[i]=points[j]; points[j]=tmp;
+  }
 
   var hovered = null;
 
@@ -1736,170 +1974,101 @@ if(kb){
     ctx.fillStyle = '#162440';
     ctx.fillRect(0,0,W,H);
 
-    // Grid lines
-    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
-    ctx.lineWidth = 1;
+    // Grid
+    ctx.strokeStyle = 'rgba(255,255,255,0.04)'; ctx.lineWidth=1;
     for(var gx=0;gx<=W;gx+=W/8){ ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,H);ctx.stroke(); }
     for(var gy=0;gy<=H;gy+=H/6){ ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(W,gy);ctx.stroke(); }
 
+    // Zero-axis crosshairs at origin (canvas center)
+    var ox = W/2, oy = H/2;
+    ctx.strokeStyle='rgba(255,255,255,0.12)'; ctx.lineWidth=1; ctx.setLineDash([4,4]);
+    ctx.beginPath(); ctx.moveTo(ox,0); ctx.lineTo(ox,H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,oy); ctx.lineTo(W,oy); ctx.stroke();
+    ctx.setLineDash([]);
+
     // Axis labels
-    ctx.font = '10px JetBrains Mono, monospace';
-    ctx.fillStyle = 'rgba(148,163,184,0.5)';
-    ctx.textAlign = 'center';
-    ctx.fillText('PC1 (59.1%)', W/2, H-6);
-    ctx.save(); ctx.translate(10, H/2); ctx.rotate(-Math.PI/2);
+    ctx.font='10px JetBrains Mono,monospace'; ctx.fillStyle='rgba(148,163,184,0.5)';
+    ctx.textAlign='center';
+    ctx.fillText('PC1 (59.1%)', W/2, H-5);
+    ctx.save(); ctx.translate(11, H/2); ctx.rotate(-Math.PI/2);
     ctx.fillText('PC2 (25.7%)', 0, 0); ctx.restore();
 
-    // Draw points
+    // Scatter points
     points.forEach(function(p){
-      var px = p.x * W, py = p.y * H;
-      var isHov = hovered && p.label === hovered;
+      var px = p.x*W, py = p.y*H;
+      var isHov = hovered && p.label===hovered;
       ctx.beginPath();
-      ctx.arc(px, py, isHov ? 5 : 3.5, 0, Math.PI*2);
-      ctx.fillStyle = p.color + Math.floor((isHov ? 0.9 : p.alpha)*255).toString(16).padStart(2,'0');
+      ctx.arc(px, py, isHov?5.5:3.5, 0, Math.PI*2);
+      ctx.fillStyle = p.color + Math.floor((isHov?0.92:p.alpha)*255).toString(16).padStart(2,'0');
       ctx.fill();
     });
 
-    // Cluster centroid labels
-    clusterMeta.forEach(function(c){
-      var px = c.cx * W, py = c.cy * H;
-      // Glow circle
-      var grad = ctx.createRadialGradient(px,py,0,px,py,c.r*W*0.5);
-      grad.addColorStop(0, c.color+'20');
-      grad.addColorStop(1, 'transparent');
+    // Loading arrows (biplot vectors) — origin at canvas center
+    var scale = Math.min(W,H) * 0.30;
+    LOADINGS.forEach(function(l){
+      var tx = ox + l.pc1 * scale;
+      var ty = oy - l.pc2 * scale;   // canvas y is inverted vs math y
+      var dx = tx - ox, dy = ty - oy;
+      var len = Math.sqrt(dx*dx+dy*dy);
+      var ux = dx/len, uy = dy/len;
+      var hw = 7, hl = 10;
+
+      // Arrow shaft
+      ctx.strokeStyle = l.color; ctx.lineWidth = 1.8;
       ctx.beginPath();
-      ctx.arc(px, py, c.r*W*0.5, 0, Math.PI*2);
-      ctx.fillStyle = grad;
+      ctx.moveTo(ox, oy);
+      ctx.lineTo(tx - ux*hl, ty - uy*hl);
+      ctx.stroke();
+
+      // Arrowhead
+      ctx.fillStyle = l.color;
+      ctx.beginPath();
+      ctx.moveTo(tx, ty);
+      ctx.lineTo(tx - ux*hl - uy*hw, ty - uy*hl + ux*hw);
+      ctx.lineTo(tx - ux*hl + uy*hw, ty - uy*hl - ux*hw);
+      ctx.closePath();
       ctx.fill();
 
       // Label
-      ctx.font = 'bold 10px JetBrains Mono, monospace';
-      ctx.fillStyle = hovered===c.label ? c.color : 'rgba(255,255,255,0.7)';
-      ctx.textAlign = 'center';
-      ctx.fillText(c.label, px, py - c.r*H*0.6 - 4);
+      var lx = ox + l.pc1*(scale+26);
+      var ly = oy - l.pc2*(scale+26);
+      ctx.font = '9.5px JetBrains Mono,monospace';
+      ctx.textAlign = l.pc1>0.1?'left':l.pc1<-0.1?'right':'center';
+      ctx.fillStyle = '#fff';
+      // White background pill
+      var tw = ctx.measureText(l.name).width;
+      ctx.fillStyle='rgba(22,36,64,0.85)';
+      ctx.fillRect(lx-(ctx.textAlign==='center'?tw/2:ctx.textAlign==='right'?tw:0)-3, ly-9, tw+6, 14);
+      ctx.fillStyle=l.color;
+      ctx.fillText(l.name, lx, ly);
     });
+
+    // Hover cluster label
+    if(hovered){
+      ctx.font='bold 12px JetBrains Mono,monospace';
+      ctx.textAlign='left'; ctx.fillStyle='#fff';
+      ctx.fillText(hovered, 12, 20);
+    }
   }
 
-  setTimeout(draw, 100);
-  window.addEventListener('resize', draw);
+  draw();
 
+  // Hover
   canvas.addEventListener('mousemove', function(e){
     var rect = canvas.getBoundingClientRect();
-    var mx = (e.clientX - rect.left) / rect.width;
-    var my = (e.clientY - rect.top)  / rect.height;
-    var prev = hovered;
-    hovered = null;
+    var mx = (e.clientX-rect.left)/rect.width;
+    var my = (e.clientY-rect.top)/rect.height;
+    var prev = hovered; hovered = null;
     clusterMeta.forEach(function(c){
-      var dx = mx - c.cx, dy = my - c.cy;
-      if(Math.sqrt(dx*dx+dy*dy) < c.r + 0.06) hovered = c.label;
+      var dx=mx-c.cx, dy=my-c.cy;
+      if(Math.sqrt(dx*dx+dy*dy) < c.rx*1.8) hovered = c.label;
     });
-    if(hovered !== prev) draw();
-    canvas.style.cursor = hovered ? 'pointer' : 'default';
+    if(hovered!==prev) draw();
   });
   canvas.addEventListener('mouseleave', function(){ hovered=null; draw(); });
-})();
 
-/* ── CLUSTER EXPLORER TABS ───────────────────────────────── */
-var tabsEl  = document.getElementById('ds1-tabs');
-var panesEl = document.getElementById('ds1-panes');
-if(tabsEl && panesEl){
-  CLUSTERS.forEach(function(c, i){
-    // Tab
-    var tab = document.createElement('div');
-    tab.className = 'cluster-tab' + (i===0?' active':'');
-    tab.style.setProperty('--tab-color', c.color);
-    tab.textContent = c.label;
-    tab.dataset.idx = i;
-    tabsEl.appendChild(tab);
-
-    // Pane
-    var pane = document.createElement('div');
-    pane.className = 'cluster-pane' + (i===0?' active':'');
-    pane.style.setProperty('--tab-color', c.color);
-
-    var statsHtml = '<div class="c-stat-grid">'
-      +'<div class="c-stat-box"><div class="c-stat-label">Recency</div><div class="c-stat-val" style="color:'+c.color+'">'+c.recency+'</div><div class="c-stat-sub">days since last buy</div></div>'
-      +'<div class="c-stat-box"><div class="c-stat-label">Frequency</div><div class="c-stat-val" style="color:'+c.color+'">'+c.frequency+'</div><div class="c-stat-sub">median invoices</div></div>'
-      +'<div class="c-stat-box"><div class="c-stat-label">Monetary</div><div class="c-stat-val" style="color:'+c.color+'">$'+c.monetary.toLocaleString()+'</div><div class="c-stat-sub">median spend</div></div>'
-      +'<div class="c-stat-box"><div class="c-stat-label">AOV</div><div class="c-stat-val" style="color:'+c.color+'">$'+c.aov+'</div><div class="c-stat-sub">avg order value</div></div>'
-      +'</div>'
-      +'<div style="margin-top:.75rem;padding:.6rem .85rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);border-radius:6px;">'
-      +'<div style="font-family:\'JetBrains Mono\',monospace;font-size:10px;color:#475569;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.12em;">Cluster tag</div>'
-      +'<div style="font-size:13px;font-weight:600;color:'+c.color+';">'+c.badge+'</div>'
-      +'<div style="font-family:\'JetBrains Mono\',monospace;font-size:11px;color:#64748B;margin-top:.25rem;">'+c.customers.toLocaleString()+' customers ('+c.customerPct+'%)</div>'
-      +'</div>';
-
-    var actionsHtml = '<div style="font-family:\'JetBrains Mono\',monospace;font-size:10px;color:#475569;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem;">Recommended Actions</div>'
-      +'<div class="c-action-list">'
-      + c.actions.map(function(a){ return '<div class="c-action-item"><span class="c-action-arrow">→</span><span>'+a+'</span></div>'; }).join('')
-      +'</div>';
-
-    pane.innerHTML = '<div>'+statsHtml+'</div><div>'+actionsHtml+'</div>';
-    panesEl.appendChild(pane);
-  });
-
-  // Tab click logic
-  tabsEl.addEventListener('click', function(e){
-    var tab = e.target.closest('.cluster-tab');
-    if(!tab) return;
-    var idx = +tab.dataset.idx;
-    tabsEl.querySelectorAll('.cluster-tab').forEach(function(t){ t.classList.remove('active'); });
-    panesEl.querySelectorAll('.cluster-pane').forEach(function(p){ p.classList.remove('active'); });
-    tab.classList.add('active');
-    panesEl.querySelectorAll('.cluster-pane')[idx].classList.add('active');
-  });
-}
-
-/* ── REVENUE + CUSTOMER BARS ─────────────────────────────── */
-function makeBarSection(containerId, values, maxVal, colorFn){
-  var el = document.getElementById(containerId);
-  if(!el) return;
-  setTimeout(function(){
-    values.forEach(function(v){
-      var pct = (v.val / maxVal * 100).toFixed(1);
-      var row = document.createElement('div');
-      row.className = 'rev-bar-row';
-      row.innerHTML = '<div class="rev-bar-label">'+v.label+'</div>'
-        +'<div class="rev-bar-track"><div class="rev-bar-fill" style="width:0%;background:'+colorFn(v)+'" data-w="'+pct+'"></div></div>'
-        +'<div class="rev-bar-val">'+v.val+'%</div>';
-      el.appendChild(row);
-    });
-    setTimeout(function(){
-      el.querySelectorAll('[data-w]').forEach(function(b){ b.style.width = b.getAttribute('data-w')+'%'; });
-    }, 100);
-  }, 200);
-}
-
-makeBarSection('ds1-rev-bars',
-  CLUSTERS.map(function(c){ return {label:c.label, val:c.revenuePct, color:c.color}; }),
-  Math.max.apply(null, CLUSTERS.map(function(c){ return c.revenuePct; })),
-  function(v){ return v.color; }
-);
-
-makeBarSection('ds1-cust-bars',
-  CLUSTERS.map(function(c){ return {label:c.label, val:c.customerPct, color:c.color}; }),
-  Math.max.apply(null, CLUSTERS.map(function(c){ return c.customerPct; })),
-  function(v){ return v.color; }
-);
-
-/* ── BUSINESS INSIGHTS ───────────────────────────────────── */
-var INSIGHTS = [
-  { num:'01', title:'Prioritize Bulk Buyers for retention', body:'Only 19% of customers but contributing 25% of revenue. VIP programs and early-access offers will lock in their loyalty and prevent churn.' },
-  { num:'02', title:'Convert Regular Customers upward', body:'26% of customers generating 27% of revenue — the most balanced group. Targeted upsell and cross-sell campaigns can move them toward Bulk Buyer behavior.' },
-  { num:'03', title:'Urgently reactivate At Risk Customers', body:'The largest segment (30%) with solid AOV of $393 but high recency. Time-sensitive win-back campaigns and retargeting are critical before they churn permanently.' },
-  { num:'04', title:'Nurture Dormant Customers as a long-term pipeline', body:'24% of the base with only 1 invoice each. Low-cost nurture sequences (email drip, retargeting) can convert even a fraction into Regular Customers profitably.' },
-];
-var insEl = document.getElementById('ds1-insights');
-if(insEl){
-  INSIGHTS.forEach(function(ins){
-    var d = document.createElement('div');
-    d.className = 'insight-item';
-    d.innerHTML = '<div class="insight-num">'+ins.num+'</div>'
-      +'<div><div class="insight-title">'+ins.title+'</div><div class="insight-body">'+ins.body+'</div></div>';
-    insEl.appendChild(d);
-  });
-}
-
+  window.addEventListener('resize', draw);
+  setTimeout(draw, 100);
 })();
 </script>
 
