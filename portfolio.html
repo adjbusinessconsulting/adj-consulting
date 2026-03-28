@@ -175,8 +175,8 @@
     .proj-tab { background: var(--gray-50); padding: 1.25rem 1.5rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
     .proj-tab.active { background: var(--white); border-bottom-color: #22D3EE; }
     .proj-tab:hover:not(.active) { background: var(--white); }
-    .proj-tab-num { font-family: var(--mono); font-size: 11px; color: var(--gray-400); margin-bottom: 3px; }
-    .proj-tab-name { font-family: var(--h); font-size: 14px; font-weight: 600; color: var(--navy); }
+    .proj-tab-num { font-family: var(--mono); font-size: 11px; color: var(--white); margin-bottom: 3px; }
+    .proj-tab-name { font-family: var(--h); font-size: 14px; font-weight: 600; color: #22D3EE; }
     .proj-tab-sub { font-family: var(--mono); font-size: 11px; color: var(--gray-400); margin-top: 2px; }
 
     .proj-panel { display: none; }
@@ -190,7 +190,7 @@
     .proj-bc span { color: var(--navy); }
     .hero-grid { display: grid; grid-template-columns: 1fr 340px; gap: 3rem; align-items: start; }
     .proj-label { font-family: var(--mono); font-size: 12px; color: var(--blue); letter-spacing: 0.15em; margin-bottom: 0.75rem; text-transform: uppercase; }
-    .proj-title { font-family: var(--h); font-size: clamp(22px,3vw,32px); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; color: var(--navy); }
+    .proj-title { font-family: var(--h); font-size: clamp(22px,3vw,32px); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; color: #22D3EE; }
     .proj-title span { color: var(--blue); }
     .proj-summary { font-family: var(--h); font-size: 14px; font-weight: 400; color: #475569; line-height: 1.8; margin-bottom: 1.5rem; }
     .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -337,14 +337,14 @@
 
     /* DA Project Picker Cards */
     .da-proj-picker { background: var(--navy); padding: 3rem 6%; border-bottom: 1px solid rgba(255,255,255,0.04); }
-    .da-picker-label { font-family: var(--mono); font-size: 11px; color: #475569; letter-spacing: 0.15em; margin-bottom: 1.5rem; text-transform: uppercase; }
+    .da-picker-label { font-family: var(--mono); font-size: 11px; color: var(--white); letter-spacing: 0.15em; margin-bottom: 1.5rem; text-transform: uppercase; }
     .da-cards-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; max-width: 1100px; margin: 0 auto; }
     .da-proj-card { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 1.5rem 1.75rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
     .da-proj-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: transparent; transition: background 0.3s; border-radius: 0; }
     .da-proj-card.active::before { background: #22D3EE; }
     .da-proj-card.active { border-color: rgba(34,211,238,0.3); background: var(--navy-light); }
     .da-proj-card:hover:not(.active) { border-color: rgba(34,211,238,0.15); background: rgba(255,255,255,0.02); transform: scale(1.02); }
-    .da-card-num { font-family: var(--mono); font-size: 11px; color: #475569; letter-spacing: 0.15em; margin-bottom: 0.6rem; }
+    .da-card-num { font-family: var(--mono); font-size: 11px; color: var(--white); letter-spacing: 0.15em; margin-bottom: 0.6rem; }
     .da-card-title { font-family: var(--h); font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
     .da-proj-card.active .da-card-title { color: #22D3EE; }
     .da-card-desc { font-family: var(--h); font-size: 13px; font-weight: 400; color: #94A3B8; line-height: 1.6; margin-bottom: 1rem; }
@@ -1928,8 +1928,7 @@ function ds1tab(idx, btn) {
       </div>
     </div>
 
-    STATIC_HTML
-echo "Static HTML written, length: $(wc -c < /home/claude/ds1_replacement.html)"<div class="proj-panel" style="display:none" id="proj-ds2" data-group="ds">
+<div class="proj-panel" style="display:none" id="proj-ds2" data-group="ds">
       <div class="content">
         <div class="content-inner">
 
