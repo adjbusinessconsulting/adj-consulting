@@ -437,30 +437,29 @@
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
     .page-sub {
-      font-family: var(--mono);
+      font-family: var(--h);
       font-size: 14px;
       font-weight: 400;
-      color: var(--gray-2);
+      color: var(--gray-400);
       max-width: 600px;
-      line-height: 1.7;
+      line-height: 1.9;
     }
 
     /* ══════════ HERO POSITIONING + STATS ══════════ */
     .hero-positioning {
-      font-family: var(--sans);
-      font-size: clamp(18px, 1.9vw, 23px);
+      font-family: var(--h);
+      font-size: 14px;
       font-weight: 400;
-      color: var(--gray-1);
+      color: var(--gray-400);
       max-width: 540px;
-      line-height: 1.55;
-      letter-spacing: -0.01em;
+      line-height: 1.9;
       margin-bottom: 2.5rem;
       margin-top: 0.5rem;
     }
     .hero-positioning em {
       font-style: normal;
-      color: var(--white);
-      font-weight: 600;
+      color: var(--gray-400);
+      font-weight: 400;
     }
     .hero-stats {
       display: flex;
@@ -2740,120 +2739,38 @@
     }
 
     /* ══════════ ABOUT + SERVICES + CERTS BLOCK ══════════ */
-    .about-block {
-      padding: 5rem 5vw 4rem;
-      border-top: 1px solid var(--navy-line);
-      position: relative;
-    }
-    .about-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 3.5rem;
-      align-items: start;
-    }
-    .about-photo-col {
-      position: sticky;
-      top: 90px;
-    }
-    .about-photo-wrap {
-      position: relative;
-    }
-    .about-photo {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid rgba(201, 165, 103, 0.20);
-      display: block;
-      background: var(--navy-mid);
-      position: relative;
-      z-index: 1;
-    }
-    .about-photo-border {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      right: -12px;
-      bottom: -12px;
-      border: 1px solid rgba(201, 165, 103, 0.30);
-      border-radius: 8px;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .about-photo-caption {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--gray-3);
-      margin-top: 0.75rem;
-      letter-spacing: 0.05em;
-    }
+    .about-block { background: var(--navy-mid); padding: 6rem 6%; border-top: 1px solid var(--navy-line); }
+    .about-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: 4rem; align-items: start; }
+    .about-photo-col { position: sticky; top: 90px; }
+    .about-photo-wrap { position: relative; }
+    .about-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 8px; border: 1px solid var(--navy-line); display: block; background: var(--gray-50); }
+    .about-photo-border { position: absolute; top: 12px; left: 12px; right: -12px; bottom: -12px; border: 1px solid rgba(201, 165, 103,0.2); border-radius: 8px; pointer-events: none; z-index: -1; }
+    .about-photo-caption { font-family: var(--mono); font-size: 11px; color: var(--gray-2); margin-top: 0.75rem; letter-spacing: 0.05em; }
     .about-photo-caption span { color: var(--cyan); }
-
-    .about-eyebrow {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--cyan);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .about-eyebrow::before {
-      content: '';
-      width: 24px;
-      height: 1px;
-      background: var(--cyan);
-    }
-    .about-name {
-      font-family: var(--h);
-      font-size: clamp(22px, 2.4vw, 28px);
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: -0.01em;
-      margin-bottom: 0.25rem;
-    }
-    .about-role {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--gray-2);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-    .about-bio {
-      font-family: var(--sans);
-      font-size: 15.5px;
-      color: var(--gray-1);
-      line-height: 1.7;
-      letter-spacing: -0.005em;
-      margin-bottom: 2rem;
-      max-width: 640px;
-    }
-    .about-bio em {
-      font-style: normal;
-      color: var(--white);
-      font-weight: 600;
-    }
-    .about-sub { font-family: var(--mono); font-size: 11px; color: var(--gray-2); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; margin-top: 1.75rem; }
+    .about-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+    .about-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--cyan); }
+    .about-name { font-family: var(--h); font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
+    .about-role { font-family: var(--mono); font-size: 12px; color: var(--cyan); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .about-bio { font-family: var(--h); font-size: 14px; font-weight: 400; color: var(--gray-400); line-height: 1.9; margin-bottom: 2rem; }
+    .about-bio em { font-style: normal; color: var(--white); font-weight: 600; }
+    .about-sub { font-family: var(--mono); font-size: 11px; color: var(--gray-400); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; margin-top: 1.75rem; }
     .edu-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 0.5rem; }
     .cert-item-edu { display: flex; align-items: flex-start; gap: 10px; }
-    .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); flex-shrink: 0; margin-top: 5px; }
+    .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 8px rgba(201, 165, 103,0.3); }
     .cert-text { font-family: var(--h); font-size: 13px; color: var(--white); font-weight: 500; line-height: 1.4; display: block; }
-    .cert-issuer-edu { font-family: var(--mono); font-size: 11px; color: var(--gray-3); margin-top: 2px; display: block; }
+    .cert-issuer-edu { font-family: var(--mono); font-size: 11px; color: var(--gray-400); margin-top: 2px; display: block; }
     .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 0.5rem; }
     .skill-tag { font-family: var(--mono); font-size: 12px; color: var(--gray-1); background: rgba(201,165,103,0.05); border: 1px solid rgba(201,165,103,0.15); padding: 5px 12px; border-radius: 4px; transition: all 0.2s; }
     .skill-tag:hover { border-color: rgba(201,165,103,0.35); color: var(--cyan); }
-    .about-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 1.75rem; }
-    .btn-about { font-family: var(--mono); font-size: 12px; font-weight: 600; background: var(--cyan); color: var(--navy); padding: 10px 20px; border-radius: 4px; text-decoration: none; transition: all 0.2s; }
-    .btn-about:hover { background: #D9B97C; }
-    .btn-about-outline { font-family: var(--mono); font-size: 12px; color: var(--gray-1); border: 1px solid rgba(201,165,103,0.25); padding: 9px 20px; border-radius: 4px; text-decoration: none; transition: all 0.2s; }
-    .btn-about-outline:hover { border-color: var(--cyan); color: var(--cyan); }
-    .btn-linkedin { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--white); background: #0A66C2; padding: 9px 16px; border-radius: 4px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
-    .btn-linkedin:hover { background: #0858a8; }
+    .about-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 2rem; }
+    .btn-about { font-family: var(--mono); font-size: 13px; font-weight: 600; background: var(--cyan); color: var(--white); padding: 10px 22px; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); letter-spacing: 0.04em; }
+    .btn-about:hover { background: #D9B97C; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201, 165, 103,0.2); }
+    .btn-about:active { transform: scale(0.97); }
+    .btn-about-outline { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--white); border: 1px solid var(--navy-line); padding: 10px 22px; border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); background: transparent; }
+    .btn-about-outline:hover { border-color: rgba(201,165,103,0.3); color: var(--cyan); transform: translateY(-1px); }
+    .btn-linkedin { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--white); border: 1px solid var(--navy-line); padding: 10px 22px; border-radius: 4px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); background: transparent; }
+    .btn-linkedin:hover { border-color: #0A66C2; background: rgba(10,102,194,0.08); color: #0A66C2; transform: translateY(-1px); }
+    .btn-linkedin svg { flex-shrink: 0; }
 
     .services-block {
       margin-bottom: 2.25rem;
@@ -3053,19 +2970,15 @@
 <section class="about-block">
   <div class="about-inner">
     <div class="about-photo-col">
-      <div class="about-photo-wrap">
-        <img src="photo.JPG"
-             alt="Anthony Djiady Djie — Data Analyst &amp; Founder ADJ Business Consulting"
-             class="about-photo"
-             onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '&lt;div class=&quot;about-photo&quot; style=&quot;display:grid;place-items:center;color:var(--gray-3);font-family:var(--mono);font-size:11px;letter-spacing:0.1em;&quot;&gt;[ photo placeholder ]&lt;/div&gt;');">
+      <div class="about-photo-wrap sr sr-left">
+        <img class="about-photo" src="photo.JPG" alt="Anthony Djiady Djie — Founder ADJ Business Consulting">
         <div class="about-photo-border"></div>
       </div>
-      <div class="about-photo-caption" data-en="Anthony Djiady Djie · <span>Founder, ADJ</span>" data-id="Anthony Djiady Djie · <span>Founder, ADJ</span>">Anthony Djiady Djie · <span>Founder, ADJ</span></div>
     </div>
     <div class="about-content">
       <div class="about-eyebrow" data-en="// About" data-id="// Tentang">// Tentang</div>
       <div class="about-name">Anthony Djiady Djie</div>
-      <div class="about-role" data-en="Data Analyst &amp; Tax Practitioner" data-id="Data Analyst &amp; Tax Practitioner">Data Analyst &amp; Tax Practitioner</div>
+      <div class="about-role" data-en="Founder of ADJ Business Consulting" data-id="Founder of ADJ Business Consulting">Founder of ADJ Business Consulting</div>
       <p class="about-bio"
          data-en="<em>I combine data analysis with real-world accounting and tax domain knowledge</em> — so dashboards don't just look impressive, they answer the questions business owners actually ask. Over 6 years across financial reporting, payroll, and tax compliance for Indonesian SMEs gives me an unusual edge: I know which numbers actually drive decisions. From managing branch operations at national F&amp;B brands to building ML models and interactive Streamlit apps, I bring hands-on business experience to every analysis."
          data-id="<em>Saya menggabungkan analisis data dengan pengalaman nyata di akuntansi dan perpajakan</em> — sehingga dashboard tidak hanya terlihat mengesankan, tapi menjawab pertanyaan yang benar-benar ditanyakan pemilik bisnis. Pengalaman lebih dari 6 tahun di pelaporan keuangan, penggajian, dan kepatuhan pajak untuk UMKM Indonesia memberi saya keunggulan: saya tahu angka mana yang benar-benar menggerakkan keputusan. Dari mengelola operasional cabang brand F&amp;B nasional hingga membangun model ML dan aplikasi Streamlit, saya membawa pengalaman bisnis langsung ke setiap analisis.">
