@@ -61,15 +61,18 @@
     .page-header-inner { max-width:1200px; margin:0 auto; position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; }
     .breadcrumb { font-family:var(--mono); font-size:12px; color:var(--gray-3); margin-bottom:1.5rem; letter-spacing:0.02em; }
     .breadcrumb a { color:var(--gray-3); text-decoration:none; transition:color 0.2s; } .breadcrumb a:hover { color:var(--white); } .breadcrumb span { color:var(--white); }
-    .page-title { font-family:var(--h); font-size:clamp(34px,5vw,56px); font-weight:700; color:var(--white); line-height:1.1; margin-bottom:0.75rem; letter-spacing:-0.02em; position:relative; isolation:isolate; }
+    @keyframes slideRight { from{opacity:0;transform:translateX(-40px)} to{opacity:1;transform:translateX(0)} }
+    @keyframes slideLeft  { from{opacity:0;transform:translateX(40px)}  to{opacity:1;transform:translateX(0)} }
+    @keyframes fadeUp     { from{opacity:0;transform:translateY(24px)}  to{opacity:1;transform:translateY(0)} }
+    .page-title { font-family:var(--h); font-size:clamp(34px,5vw,56px); font-weight:700; color:var(--white); line-height:1.1; margin-bottom:0.75rem; letter-spacing:-0.02em; position:relative; isolation:isolate; opacity:0; animation:slideRight 0.8s ease 0.15s forwards; }
     .page-title::before { content:''; position:absolute; left:-8%; top:50%; width:70%; height:280%; transform:translateY(-50%); background:radial-gradient(ellipse at center, rgba(201,165,103,0.22) 0%, rgba(201,165,103,0.10) 35%, rgba(201,165,103,0) 70%); filter:blur(40px); z-index:-1; pointer-events:none; animation:haloBreath 6s ease-in-out infinite; }
     @keyframes haloBreath { 0%,100%{opacity:0.85;transform:translateY(-50%) scale(1)} 50%{opacity:1;transform:translateY(-50%) scale(1.05)} }
     .page-title .cursor { display:inline-block; color:var(--cyan); animation:blink 1s step-end infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
     .cyan-glow { text-shadow:0 0 40px rgba(201,165,103,0.15); }
-    .hero-positioning { font-family:var(--h); font-size:14px; font-weight:400; color:#A09890; max-width:540px; line-height:1.9; margin-bottom:2.5rem; margin-top:0.5rem; }
+    .hero-positioning { font-family:var(--h); font-size:14px; font-weight:400; color:#A09890; max-width:540px; line-height:1.9; margin-bottom:2.5rem; margin-top:0.5rem; opacity:0; animation:slideRight 0.8s ease 0.3s forwards; }
     .hero-positioning em { font-style:normal; color:#A09890; font-weight:400; }
-    .hero-stats { display:flex; align-items:center; gap:0; padding:1.25rem 0; border-top:1px solid var(--navy-line); border-bottom:1px solid var(--navy-line); max-width:540px; }
+    .hero-stats { display:flex; align-items:center; gap:0; padding:1.25rem 0; border-top:1px solid var(--navy-line); border-bottom:1px solid var(--navy-line); max-width:540px; opacity:0; animation:fadeUp 0.7s ease 0.45s forwards; }
     .hero-stat { flex:1; display:flex; flex-direction:column; gap:3px; }
     .hero-stat-num { font-family:var(--mono); font-size:clamp(28px,3.2vw,36px); font-weight:600; color:var(--white); line-height:1; letter-spacing:-0.02em; }
     .hero-stat-unit { font-size:0.55em; color:var(--cyan); font-weight:500; margin-left:1px; }
@@ -77,7 +80,19 @@
     .hero-stat-divider { width:1px; height:40px; background:var(--navy-line); margin:0 1.25rem; }
 
     /* ── RIGHT COLUMN SERVICES ── */
-    .page-header-right { padding-top:3.5rem; }
+    .page-header-right { padding-top:3.5rem; opacity:0; animation:slideLeft 0.8s ease 0.3s forwards; }
+    .layanan-card { background:rgba(255,255,255,0.03); border:1px solid rgba(201,165,103,0.18); border-radius:10px; padding:2rem; display:flex; flex-direction:column; gap:1.5rem; }
+    .layanan-card-label { font-family:var(--mono); font-size:11px; color:var(--cyan); letter-spacing:0.18em; text-transform:uppercase; }
+    .layanan-stats-row { display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:1.25rem; border-bottom:1px solid rgba(201,165,103,0.10); }
+    .layanan-stat { display:flex; flex-direction:column; gap:4px; }
+    .layanan-stat-num { font-family:var(--mono); font-size:clamp(28px,3vw,38px); font-weight:600; color:var(--cyan); line-height:1; }
+    .layanan-stat-label { font-family:var(--mono); font-size:11px; color:var(--gray-3); letter-spacing:0.04em; }
+    .layanan-pills { display:flex; flex-direction:column; gap:8px; }
+    .layanan-pill { display:flex; align-items:center; gap:12px; padding:13px 16px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:6px; transition:all 0.2s; }
+    .layanan-pill:hover { border-color:rgba(201,165,103,0.25); background:rgba(201,165,103,0.04); }
+    .layanan-pill-dot { width:8px; height:8px; border-radius:50%; background:var(--cyan); flex-shrink:0; box-shadow:0 0 8px rgba(201,165,103,0.5); }
+    .layanan-pill-name { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--white); flex:1; }
+    .layanan-pill-tag { font-family:var(--mono); font-size:11px; color:var(--cyan); opacity:0.75; letter-spacing:0.04em; white-space:nowrap; }
     .services-label-header { font-family:var(--mono); font-size:10px; color:var(--gray-3); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:1rem; }
     .services-list-header { display:flex; flex-direction:column; gap:8px; }
     .service-row { display:flex; align-items:flex-start; gap:12px; padding:12px 14px; background:rgba(255,255,255,0.02); border:1px solid rgba(201,165,103,0.08); border-radius:5px; transition:all 0.2s; }
@@ -187,7 +202,6 @@
 <div class="page-header">
   <div class="page-header-inner">
     <div class="page-header-left">
-      <div class="breadcrumb"><a href="index.html" data-en="home" data-id="home">home</a> / <span data-en="website" data-id="website">website</span></div>
       <h1 class="page-title cyan-glow" data-en="Website Design" data-id="Website Design">Website Design<span class="cursor">_</span></h1>
       <p class="hero-positioning"
          data-en="<em>Professional websites built for your business</em> — fast, modern, and designed to convert visitors into clients."
@@ -212,34 +226,42 @@
       </div>
     </div>
     <div class="page-header-right">
-      <div class="services-label-header" data-en="// services" data-id="// layanan">// layanan</div>
-      <div class="services-list-header">
-        <div class="service-row">
-          <div class="service-row-dot"></div>
-          <div class="service-row-body">
-            <span class="service-row-name" data-en="Business Profile Website" data-id="Website Profil Bisnis">Website Profil Bisnis</span>
-            <span class="service-row-desc" data-en="A clean, professional site that tells clients who you are and what you do." data-id="Website bersih dan profesional yang menjelaskan siapa Anda dan apa yang Anda tawarkan.">Website bersih dan profesional yang menjelaskan siapa Anda dan apa yang Anda tawarkan.</span>
+      <div class="layanan-card">
+        <div class="layanan-card-label" data-en="our services" data-id="layanan kami">layanan kami</div>
+        <div class="layanan-stats-row">
+          <div class="layanan-stat">
+            <span class="layanan-stat-num">3<span style="font-size:0.6em">+</span></span>
+            <span class="layanan-stat-label" data-en="templates ready" data-id="template siap">template siap</span>
+          </div>
+          <div class="layanan-stat">
+            <span class="layanan-stat-num">100<span style="font-size:0.6em">%</span></span>
+            <span class="layanan-stat-label" data-en="custom design" data-id="desain custom">desain custom</span>
+          </div>
+          <div class="layanan-stat">
+            <span class="layanan-stat-num">6<span style="font-size:0.6em">y</span></span>
+            <span class="layanan-stat-label" data-en="experience" data-id="pengalaman">pengalaman</span>
           </div>
         </div>
-        <div class="service-row">
-          <div class="service-row-dot"></div>
-          <div class="service-row-body">
-            <span class="service-row-name" data-en="E-Commerce Store" data-id="Toko Online (E-Commerce)">Toko Online (E-Commerce)</span>
-            <span class="service-row-desc" data-en="Sell your products online with a storefront built to drive purchases." data-id="Jual produk Anda secara online dengan tampilan yang mendorong transaksi.">Jual produk Anda secara online dengan tampilan yang mendorong transaksi.</span>
+        <div class="layanan-pills">
+          <div class="layanan-pill">
+            <div class="layanan-pill-dot"></div>
+            <span class="layanan-pill-name" data-en="Business Profile Website" data-id="Website Profil Bisnis">Website Profil Bisnis</span>
+            <span class="layanan-pill-tag">profil</span>
           </div>
-        </div>
-        <div class="service-row">
-          <div class="service-row-dot"></div>
-          <div class="service-row-body">
-            <span class="service-row-name" data-en="Landing Page" data-id="Landing Page">Landing Page</span>
-            <span class="service-row-desc" data-en="One focused page designed to capture leads or promote a single offer." data-id="Satu halaman terfokus untuk menangkap prospek atau mempromosikan satu penawaran.">Satu halaman terfokus untuk menangkap prospek atau mempromosikan satu penawaran.</span>
+          <div class="layanan-pill">
+            <div class="layanan-pill-dot"></div>
+            <span class="layanan-pill-name" data-en="E-Commerce Store" data-id="Toko Online (E-Commerce)">Toko Online (E-Commerce)</span>
+            <span class="layanan-pill-tag">store</span>
           </div>
-        </div>
-        <div class="service-row">
-          <div class="service-row-dot"></div>
-          <div class="service-row-body">
-            <span class="service-row-name" data-en="Redesign & Revamp" data-id="Redesain & Pembaruan Website">Redesain &amp; Pembaruan Website</span>
-            <span class="service-row-desc" data-en="Already have a site but it looks outdated? I'll modernize it." data-id="Sudah punya website tapi tampilannya sudah usang? Saya akan modernisasikannya.">Sudah punya website tapi tampilannya sudah usang? Saya akan modernisasikannya.</span>
+          <div class="layanan-pill">
+            <div class="layanan-pill-dot"></div>
+            <span class="layanan-pill-name" data-en="Landing Page" data-id="Landing Page">Landing Page</span>
+            <span class="layanan-pill-tag">lead</span>
+          </div>
+          <div class="layanan-pill">
+            <div class="layanan-pill-dot"></div>
+            <span class="layanan-pill-name" data-en="Redesign & Revamp" data-id="Redesain & Pembaruan Website">Redesain &amp; Pembaruan Website</span>
+            <span class="layanan-pill-tag">revamp</span>
           </div>
         </div>
       </div>
@@ -252,7 +274,7 @@
 <!-- TEMPLATE SHOWCASE -->
 <section class="showcase-section">
   <div class="showcase-inner">
-    <span class="section-eyebrow" data-en="// template showcase" data-id="// template showcase">// template showcase</span>
+    <span class="section-eyebrow" data-en="template showcase" data-id="template showcase">template showcase</span>
     <h2 class="section-title" data-en="Live Website Templates" data-id="Template Website Langsung">Template Website Langsung</h2>
 
     <div class="template-grid">

@@ -81,6 +81,18 @@
 
     /* ── RIGHT COLUMN SERVICES ── */
     .page-header-right { padding-top:3.5rem; opacity:0; animation:slideLeft 0.8s ease 0.3s forwards; }
+    .layanan-card { background:rgba(255,255,255,0.03); border:1px solid rgba(201,165,103,0.18); border-radius:10px; padding:2rem; display:flex; flex-direction:column; gap:1.5rem; }
+    .layanan-card-label { font-family:var(--mono); font-size:11px; color:var(--cyan); letter-spacing:0.18em; text-transform:uppercase; }
+    .layanan-stats-row { display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:1.25rem; border-bottom:1px solid rgba(201,165,103,0.10); }
+    .layanan-stat { display:flex; flex-direction:column; gap:4px; }
+    .layanan-stat-num { font-family:var(--mono); font-size:clamp(28px,3vw,38px); font-weight:600; color:var(--cyan); line-height:1; }
+    .layanan-stat-label { font-family:var(--mono); font-size:11px; color:var(--gray-3); letter-spacing:0.04em; }
+    .layanan-pills { display:flex; flex-direction:column; gap:8px; }
+    .layanan-pill { display:flex; align-items:center; gap:12px; padding:13px 16px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:6px; transition:all 0.2s; }
+    .layanan-pill:hover { border-color:rgba(201,165,103,0.25); background:rgba(201,165,103,0.04); }
+    .layanan-pill-dot { width:8px; height:8px; border-radius:50%; background:var(--cyan); flex-shrink:0; box-shadow:0 0 8px rgba(201,165,103,0.5); }
+    .layanan-pill-name { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--white); flex:1; }
+    .layanan-pill-tag { font-family:var(--mono); font-size:11px; color:var(--cyan); opacity:0.75; letter-spacing:0.04em; white-space:nowrap; }
     .services-label-header { font-family:var(--mono); font-size:10px; color:var(--gray-3); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:1rem; }
     .services-list-header { display:flex; flex-direction:column; gap:8px; }
     .service-row { display:flex; align-items:flex-start; gap:12px; padding:12px 14px; background:rgba(255,255,255,0.02); border:1px solid rgba(201,165,103,0.08); border-radius:5px; transition:all 0.2s; }
@@ -231,34 +243,42 @@
       </div>
     </div>
     <div class="page-header-right">
-      <div class="services-label-header" data-en="// services" data-id="// layanan">// layanan</div>
-      <div class="services-list-header">
-        <div class="service-row">
-          <div class="service-row-dot"></div>
-          <div class="service-row-body">
-            <span class="service-row-name" data-en="PPh 21 Calculation" data-id="Perhitungan PPh 21">Perhitungan PPh 21</span>
-            <span class="service-row-desc" data-en="Accurate monthly employee income tax calculation based on current regulations." data-id="Perhitungan pajak penghasilan karyawan bulanan yang akurat sesuai regulasi terkini.">Perhitungan pajak penghasilan karyawan bulanan yang akurat sesuai regulasi terkini.</span>
+      <div class="layanan-card">
+        <div class="layanan-card-label" data-en="our services" data-id="layanan kami">layanan kami</div>
+        <div class="layanan-stats-row">
+          <div class="layanan-stat">
+            <span class="layanan-stat-num">6<span style="font-size:0.6em">y</span></span>
+            <span class="layanan-stat-label" data-en="experience" data-id="pengalaman">pengalaman</span>
+          </div>
+          <div class="layanan-stat">
+            <span class="layanan-stat-num">100<span style="font-size:0.6em">%</span></span>
+            <span class="layanan-stat-label" data-en="compliant" data-id="patuh regulasi">patuh regulasi</span>
+          </div>
+          <div class="layanan-stat">
+            <span class="layanan-stat-num">A<span style="font-size:0.6em">&amp;B</span></span>
+            <span class="layanan-stat-label" data-en="tax brevet" data-id="brevet pajak">brevet pajak</span>
           </div>
         </div>
-        <div class="service-row">
-          <div class="service-row-dot"></div>
-          <div class="service-row-body">
-            <span class="service-row-name" data-en="SPT Tahunan Reporting" data-id="Pelaporan SPT Tahunan">Pelaporan SPT Tahunan</span>
-            <span class="service-row-desc" data-en="Annual tax return preparation and submission for individuals and businesses." data-id="Penyusunan dan pelaporan SPT Tahunan untuk orang pribadi dan badan usaha.">Penyusunan dan pelaporan SPT Tahunan untuk orang pribadi dan badan usaha.</span>
+        <div class="layanan-pills">
+          <div class="layanan-pill">
+            <div class="layanan-pill-dot"></div>
+            <span class="layanan-pill-name" data-en="PPh 21 Calculation" data-id="Perhitungan PPh 21">Perhitungan PPh 21</span>
+            <span class="layanan-pill-tag">pph</span>
           </div>
-        </div>
-        <div class="service-row">
-          <div class="service-row-dot"></div>
-          <div class="service-row-body">
-            <span class="service-row-name" data-en="Coretax Data Input" data-id="Penginputan Data Coretax">Penginputan Data Coretax</span>
-            <span class="service-row-desc" data-en="Accurate and timely data input on DJP's Coretax system." data-id="Penginputan data yang akurat dan tepat waktu di sistem Coretax DJP.">Penginputan data yang akurat dan tepat waktu di sistem Coretax DJP.</span>
+          <div class="layanan-pill">
+            <div class="layanan-pill-dot"></div>
+            <span class="layanan-pill-name" data-en="SPT Tahunan Reporting" data-id="Pelaporan SPT Tahunan">Pelaporan SPT Tahunan</span>
+            <span class="layanan-pill-tag">spt</span>
           </div>
-        </div>
-        <div class="service-row">
-          <div class="service-row-dot"></div>
-          <div class="service-row-body">
-            <span class="service-row-name" data-en="Tax Compliance Review" data-id="Review Kepatuhan Pajak">Review Kepatuhan Pajak</span>
-            <span class="service-row-desc" data-en="Review your current tax obligations to ensure everything is up to date and compliant." data-id="Review kewajiban pajak bisnis Anda untuk memastikan semuanya terkini dan patuh.">Review kewajiban pajak bisnis Anda untuk memastikan semuanya terkini dan patuh.</span>
+          <div class="layanan-pill">
+            <div class="layanan-pill-dot"></div>
+            <span class="layanan-pill-name" data-en="Coretax Data Input" data-id="Penginputan Data Coretax">Penginputan Data Coretax</span>
+            <span class="layanan-pill-tag">djp</span>
+          </div>
+          <div class="layanan-pill">
+            <div class="layanan-pill-dot"></div>
+            <span class="layanan-pill-name" data-en="Tax Compliance Review" data-id="Review Kepatuhan Pajak">Review Kepatuhan Pajak</span>
+            <span class="layanan-pill-tag">review</span>
           </div>
         </div>
       </div>
@@ -278,7 +298,7 @@
       </div>
     </div>
     <div class="about-content">
-      <div class="about-eyebrow" data-en="// About" data-id="// Tentang">// Tentang</div>
+      <div class="about-eyebrow" data-en="About" data-id="Tentang">Tentang</div>
       <div class="about-name">Anthony Djiady Djie</div>
       <div class="about-role" data-en="Founder of ADJ Business Consulting" data-id="Founder of ADJ Business Consulting">Founder of ADJ Business Consulting</div>
       <p class="about-bio"
@@ -328,7 +348,7 @@
 <!-- CERTIFICATIONS -->
 <section class="certs-gallery" id="certs-section">
   <div class="section-wrap">
-    <div class="section-eyebrow" data-en="// certifications" data-id="// sertifikasi">// sertifikasi</div>
+    <div class="section-eyebrow" data-en="certifications" data-id="sertifikasi">sertifikasi</div>
     <h2 class="section-title" data-en="Professional <span>Certifications</span>" data-id="Sertifikasi <span>Profesional</span>">Sertifikasi <span>Profesional</span></h2>
     <div class="certs-grid">
       <a href="https://coursera.org/verify/professional-cert/HR6VC9WMGF9J" target="_blank" class="cert-card">
@@ -368,7 +388,7 @@
 <!-- COMING SOON -->
 <section class="coming-soon-section">
   <div class="coming-soon-inner">
-    <div class="section-eyebrow" data-en="// portfolio" data-id="// portfolio">// portfolio</div>
+    <div class="section-eyebrow" data-en="portfolio" data-id="portfolio">portfolio</div>
     <h2 class="section-title" data-en="Tax <span>Portfolio</span>" data-id="Portfolio <span>Pajak</span>">Portfolio <span>Pajak</span></h2>
     <div class="coming-soon-box">
       <div class="coming-soon-icon">§</div>
