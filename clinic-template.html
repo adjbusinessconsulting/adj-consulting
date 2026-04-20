@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LUMIÈRE — Aesthetic Clinic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:    #FAF7F4;
+      --cream-2:  #F3EDE6;
+      --cream-3:  #E8DDD4;
+      --blush:    #E8C4B8;
+      --blush-2:  #D4957E;
+      --rose:     #B87066;
+      --gold:     #C9A96E;
+      --gold-lt:  #E8D5B0;
+      --ink:      #2A1F1A;
+      --ink-2:    #5C4A42;
+      --ink-3:    #8C7B73;
+      --white:    #FFFFFF;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--ink); overflow-x: hidden; font-weight: 300; }
+
+    /* grain */
+    body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:999; opacity:0.025; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 60px; background: rgba(250,247,244,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--cream-3); transition: all 0.3s; }
+    .nav-logo { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: 0.12em; text-transform: uppercase; }
+    .nav-logo span { color: var(--rose); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--ink-2); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--rose); }
+    .nav-cta { font-family: var(--sans); font-size: 13px; font-weight: 500; background: var(--ink); color: var(--cream); padding: 11px 26px; border: none; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+    .nav-cta:hover { background: var(--rose); }
+
+    /* ── HERO ── */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+    .hero-left { background: var(--cream-2); display: flex; flex-direction: column; justify-content: center; padding: 140px 80px 80px; position: relative; overflow: hidden; }
+    .hero-left::before { content: ''; position: absolute; top: -100px; left: -100px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(232,196,184,0.4), transparent 70%); pointer-events: none; }
+    .hero-eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 500; color: var(--rose); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+    .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--rose); }
+    .hero-title { font-family: var(--serif); font-size: clamp(40px, 5vw, 64px); font-weight: 500; line-height: 1.15; color: var(--ink); margin-bottom: 28px; }
+    .hero-title em { font-style: italic; color: var(--rose); }
+    .hero-desc { font-family: var(--sans); font-size: 15px; font-weight: 300; color: var(--ink-2); line-height: 1.8; max-width: 380px; margin-bottom: 48px; }
+    .hero-actions { display: flex; gap: 16px; align-items: center; }
+    .btn-primary { font-family: var(--sans); font-size: 13px; font-weight: 500; background: var(--ink); color: var(--cream); padding: 14px 32px; border: none; cursor: pointer; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+    .btn-primary:hover { background: var(--rose); }
+    .btn-ghost { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--ink-2); text-decoration: none; letter-spacing: 0.06em; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .btn-ghost:hover { color: var(--rose); }
+    .btn-ghost::after { content: '→'; transition: transform 0.2s; }
+    .btn-ghost:hover::after { transform: translateX(4px); }
+    .hero-stats { display: flex; gap: 40px; margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--cream-3); }
+    .hero-stat-num { font-family: var(--serif); font-size: 36px; font-weight: 500; color: var(--ink); }
+    .hero-stat-label { font-family: var(--sans); font-size: 11px; color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+
+    .hero-right { position: relative; overflow: hidden; }
+    .hero-right img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-right-badge { position: absolute; bottom: 48px; left: -20px; background: var(--white); padding: 20px 28px; box-shadow: 0 8px 40px rgba(42,31,26,0.12); display: flex; align-items: center; gap: 16px; }
+    .badge-icon { width: 40px; height: 40px; background: var(--cream-2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .badge-text-top { font-family: var(--serif); font-size: 15px; font-weight: 500; color: var(--ink); }
+    .badge-text-bot { font-family: var(--sans); font-size: 11px; color: var(--ink-3); letter-spacing: 0.06em; margin-top: 2px; }
+
+    /* ── MARQUEE ── */
+    .marquee { background: var(--ink); padding: 16px 0; overflow: hidden; }
+    .marquee-track { display: inline-flex; animation: marquee 24s linear infinite; white-space: nowrap; }
+    .marquee-track span { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cream-3); padding: 0 32px; }
+    .marquee-track span.sep { color: var(--rose); font-size: 14px; padding: 0 8px; }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── SERVICES ── */
+    .services { padding: 120px 60px; background: var(--cream); }
+    .services-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 72px; }
+    .section-eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 500; color: var(--rose); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+    .section-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--rose); }
+    .section-title { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px); font-weight: 500; color: var(--ink); line-height: 1.2; }
+    .section-title em { font-style: italic; color: var(--rose); }
+    .view-all { font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--ink-2); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 1px solid var(--ink-2); padding-bottom: 2px; transition: all 0.2s; }
+    .view-all:hover { color: var(--rose); border-color: var(--rose); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .service-card { background: var(--cream-2); padding: 48px 40px; transition: all 0.4s; cursor: pointer; position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--rose); transform: scaleX(0); transition: transform 0.4s; }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover { background: var(--white); }
+    .service-num { font-family: var(--serif); font-size: 13px; color: var(--ink-3); margin-bottom: 32px; }
+    .service-icon { font-size: 32px; margin-bottom: 20px; }
+    .service-name { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 12px; }
+    .service-desc { font-family: var(--sans); font-size: 14px; font-weight: 300; color: var(--ink-2); line-height: 1.7; margin-bottom: 28px; }
+    .service-price { font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--rose); letter-spacing: 0.08em; }
+
+    /* ── ABOUT / DOCTOR ── */
+    .about { display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; }
+    .about-img { position: relative; overflow: hidden; }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; }
+    .about-content { background: var(--ink); color: var(--cream); padding: 100px 80px; display: flex; flex-direction: column; justify-content: center; }
+    .about-eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 500; color: var(--blush); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+    .about-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--blush); }
+    .about-title { font-family: var(--serif); font-size: clamp(28px, 3vw, 42px); font-weight: 500; line-height: 1.2; margin-bottom: 24px; }
+    .about-title em { font-style: italic; color: var(--blush); }
+    .about-body { font-family: var(--sans); font-size: 15px; font-weight: 300; color: rgba(232,221,212,0.75); line-height: 1.8; margin-bottom: 40px; }
+    .doctor-name { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--cream); margin-bottom: 4px; }
+    .doctor-title { font-family: var(--sans); font-size: 12px; color: var(--blush); letter-spacing: 0.1em; text-transform: uppercase; }
+    .doctor-divider { width: 40px; height: 1px; background: var(--blush); margin: 20px 0; }
+
+    /* ── TREATMENTS ── */
+    .treatments { padding: 120px 60px; background: var(--cream-2); }
+    .treatments-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 64px; }
+    .treatment-card { background: var(--white); overflow: hidden; transition: all 0.3s; }
+    .treatment-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(42,31,26,0.10); }
+    .treatment-img { height: 220px; overflow: hidden; }
+    .treatment-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .treatment-card:hover .treatment-img img { transform: scale(1.06); }
+    .treatment-body { padding: 24px; }
+    .treatment-tag { font-family: var(--sans); font-size: 10px; font-weight: 500; color: var(--rose); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 8px; }
+    .treatment-name { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+    .treatment-desc { font-family: var(--sans); font-size: 13px; font-weight: 300; color: var(--ink-2); line-height: 1.6; margin-bottom: 16px; }
+    .treatment-price { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--ink); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { padding: 120px 60px; background: var(--cream); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 64px; }
+    .testi-card { background: var(--cream-2); padding: 40px 36px; position: relative; }
+    .testi-quote { font-family: var(--serif); font-size: 64px; color: var(--blush); line-height: 0.5; margin-bottom: 24px; }
+    .testi-text { font-family: var(--sans); font-size: 14px; font-weight: 300; color: var(--ink-2); line-height: 1.8; margin-bottom: 28px; font-style: italic; }
+    .testi-name { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--ink); }
+    .testi-role { font-family: var(--sans); font-size: 11px; color: var(--ink-3); letter-spacing: 0.08em; margin-top: 4px; }
+    .testi-stars { color: var(--gold); font-size: 13px; margin-bottom: 20px; letter-spacing: 2px; }
+
+    /* ── BOOKING CTA ── */
+    .booking { background: var(--cream-2); padding: 100px 60px; display: flex; align-items: center; justify-content: space-between; gap: 60px; }
+    .booking-text h2 { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 48px); font-weight: 500; color: var(--ink); line-height: 1.2; margin-bottom: 16px; }
+    .booking-text h2 em { font-style: italic; color: var(--rose); }
+    .booking-text p { font-family: var(--sans); font-size: 15px; font-weight: 300; color: var(--ink-2); line-height: 1.7; max-width: 440px; }
+    .booking-form { display: flex; flex-direction: column; gap: 14px; min-width: 360px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-input { font-family: var(--sans); font-size: 13px; color: var(--ink); background: var(--white); border: 1px solid var(--cream-3); padding: 13px 16px; outline: none; transition: border-color 0.2s; width: 100%; }
+    .form-input:focus { border-color: var(--rose); }
+    .form-input::placeholder { color: var(--ink-3); }
+    .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%238C7B73'%3E%3Cpath d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; cursor: pointer; }
+    .btn-book { font-family: var(--sans); font-size: 13px; font-weight: 500; background: var(--ink); color: var(--cream); padding: 15px; border: none; cursor: pointer; letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.3s; }
+    .btn-book:hover { background: var(--rose); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); padding: 60px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; }
+    .footer-brand { font-family: var(--serif); font-size: 20px; color: var(--cream); margin-bottom: 16px; }
+    .footer-brand span { color: var(--blush); }
+    .footer-tagline { font-family: var(--sans); font-size: 13px; color: rgba(232,221,212,0.5); line-height: 1.7; max-width: 260px; font-weight: 300; }
+    .footer-heading { font-family: var(--sans); font-size: 11px; font-weight: 500; color: var(--blush); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-family: var(--sans); font-size: 13px; color: rgba(232,221,212,0.6); text-decoration: none; transition: color 0.2s; font-weight: 300; }
+    .footer-links a:hover { color: var(--blush); }
+    .footer-bottom { background: var(--ink); padding: 20px 60px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; }
+    .footer-copy { font-family: var(--sans); font-size: 12px; color: rgba(232,221,212,0.35); }
+
+    @media(max-width:900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 50vw; }
+      .services-grid, .treatments-grid, .testi-grid { grid-template-columns: 1fr 1fr; }
+      .about { grid-template-columns: 1fr; }
+      .booking { flex-direction: column; }
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      footer { grid-template-columns: 1fr; gap: 40px; padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Lumière <span>·</span> Clinic</div>
+    <ul class="nav-links">
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Treatments</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Gallery</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Book Now</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Premium Aesthetic Clinic</div>
+      <h1 class="hero-title">Your skin deserves<br/><em>expert care</em> &<br/>radiant results.</h1>
+      <p class="hero-desc">Science-backed skincare treatments delivered by certified dermatologists. From facial rejuvenation to body contouring — tailored for you.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">Book Consultation</a>
+        <a href="#" class="btn-ghost">View Treatments</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">8,000+</div>
+          <div class="hero-stat-label">Clients Treated</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">12y</div>
+          <div class="hero-stat-label">Experience</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">98%</div>
+          <div class="hero-stat-label">Satisfaction</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&q=80" alt="Aesthetic Clinic" />
+      <div class="hero-right-badge">
+        <div class="badge-icon">✦</div>
+        <div>
+          <div class="badge-text-top">Certified Dermatologist</div>
+          <div class="badge-text-bot">BPOM Registered Treatments</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Facial Treatment</span><span class="sep">◆</span>
+      <span>Laser Therapy</span><span class="sep">◆</span>
+      <span>Skin Rejuvenation</span><span class="sep">◆</span>
+      <span>Botox & Filler</span><span class="sep">◆</span>
+      <span>Acne Treatment</span><span class="sep">◆</span>
+      <span>Body Sculpting</span><span class="sep">◆</span>
+      <span>Brightening Treatment</span><span class="sep">◆</span>
+      <span>PRP Therapy</span><span class="sep">◆</span>
+      <span>Facial Treatment</span><span class="sep">◆</span>
+      <span>Laser Therapy</span><span class="sep">◆</span>
+      <span>Skin Rejuvenation</span><span class="sep">◆</span>
+      <span>Botox & Filler</span><span class="sep">◆</span>
+      <span>Acne Treatment</span><span class="sep">◆</span>
+      <span>Body Sculpting</span><span class="sep">◆</span>
+      <span>Brightening Treatment</span><span class="sep">◆</span>
+      <span>PRP Therapy</span><span class="sep">◆</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="services-header">
+      <div>
+        <div class="section-eyebrow">What We Offer</div>
+        <h2 class="section-title">Our <em>Signature</em><br/>Services</h2>
+      </div>
+      <a href="#" class="view-all">All Services</a>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-icon">✦</div>
+        <div class="service-name">Facial Rejuvenation</div>
+        <p class="service-desc">Deep hydration, brightening, and anti-aging facial protocols using medical-grade ingredients.</p>
+        <div class="service-price">Starting from Rp 350,000</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-icon">◈</div>
+        <div class="service-name">Laser Treatment</div>
+        <p class="service-desc">Advanced laser technology for pigmentation, acne scars, hair removal, and skin resurfacing.</p>
+        <div class="service-price">Starting from Rp 700,000</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-icon">◇</div>
+        <div class="service-name">Botox & Filler</div>
+        <p class="service-desc">Precision injectable treatments for wrinkle reduction, lip enhancement, and facial contouring.</p>
+        <div class="service-price">Starting from Rp 1,200,000</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-icon">❋</div>
+        <div class="service-name">Acne Therapy</div>
+        <p class="service-desc">Comprehensive acne treatment combining chemical peels, extraction, and medical skincare protocols.</p>
+        <div class="service-price">Starting from Rp 250,000</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-icon">◉</div>
+        <div class="service-name">Body Contouring</div>
+        <p class="service-desc">Non-invasive body sculpting and slimming treatments using the latest technology.</p>
+        <div class="service-price">Starting from Rp 500,000</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-icon">✿</div>
+        <div class="service-name">PRP Therapy</div>
+        <p class="service-desc">Platelet-rich plasma therapy for skin regeneration, hair growth stimulation, and tissue repair.</p>
+        <div class="service-price">Starting from Rp 1,500,000</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / DOCTOR -->
+  <section class="about">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80" alt="Doctor" />
+    </div>
+    <div class="about-content">
+      <div class="about-eyebrow">Meet the Expert</div>
+      <h2 class="about-title">Trusted hands,<br/><em>proven results.</em></h2>
+      <p class="about-body">With over 12 years in aesthetic medicine, our lead dermatologist combines clinical precision with an artistic eye. Every treatment plan is personalised — because no two skins are the same.</p>
+      <div class="doctor-divider"></div>
+      <div class="doctor-name">Dr. Amelia Hartono, SpKK</div>
+      <div class="doctor-title">Lead Dermatologist & Aesthetic Physician</div>
+    </div>
+  </section>
+
+  <!-- TREATMENTS -->
+  <section class="treatments">
+    <div class="section-eyebrow">Popular Treatments</div>
+    <h2 class="section-title">Clients <em>Love</em> These</h2>
+    <div class="treatments-grid">
+      <div class="treatment-card">
+        <div class="treatment-img"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=500&q=80" alt="Hydra Facial" /></div>
+        <div class="treatment-body">
+          <div class="treatment-tag">Facial</div>
+          <div class="treatment-name">Hydra Glow Facial</div>
+          <p class="treatment-desc">Deep cleansing + hydration infusion. Instant glow, zero downtime.</p>
+          <div class="treatment-price">Rp 450,000 / session</div>
+        </div>
+      </div>
+      <div class="treatment-card">
+        <div class="treatment-img"><img src="https://images.unsplash.com/photo-1552693673-1bf958298935?w=500&q=80" alt="Laser" /></div>
+        <div class="treatment-body">
+          <div class="treatment-tag">Laser</div>
+          <div class="treatment-name">Pico Laser Brightening</div>
+          <p class="treatment-desc">Target dark spots and uneven skin tone with precision pico laser.</p>
+          <div class="treatment-price">Rp 850,000 / session</div>
+        </div>
+      </div>
+      <div class="treatment-card">
+        <div class="treatment-img"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500&q=80" alt="Skincare" /></div>
+        <div class="treatment-body">
+          <div class="treatment-tag">Anti-Aging</div>
+          <div class="treatment-name">Collagen Booster</div>
+          <p class="treatment-desc">Stimulate natural collagen production for firmer, younger-looking skin.</p>
+          <div class="treatment-price">Rp 1,100,000 / session</div>
+        </div>
+      </div>
+      <div class="treatment-card">
+        <div class="treatment-img"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="Facial Care" /></div>
+        <div class="treatment-body">
+          <div class="treatment-tag">Acne</div>
+          <div class="treatment-name">Clear Skin Program</div>
+          <p class="treatment-desc">3-month personalised acne treatment combining topical + laser therapy.</p>
+          <div class="treatment-price">Rp 2,800,000 / program</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-eyebrow">Client Stories</div>
+    <h2 class="section-title">What They <em>Say</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"</div>
+        <p class="testi-text">After 3 sessions of the Pico Laser treatment, my dark spots faded significantly. The doctor was very professional and explained everything clearly.</p>
+        <div class="testi-name">Sari Dewi</div>
+        <div class="testi-role">Laser Treatment Client</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"</div>
+        <p class="testi-text">The Hydra Glow facial left my skin absolutely glowing. I've tried many clinics before but Lumière's approach is different — truly personalised.</p>
+        <div class="testi-name">Maya Putri</div>
+        <div class="testi-role">Monthly Facial Client</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Dr. Amelia's filler work is subtle and natural. I was nervous at first but the consultation made me feel completely at ease. Highly recommend.</p>
+        <div class="testi-name">Rina Wijaya</div>
+        <div class="testi-role">Filler Treatment Client</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING CTA -->
+  <section class="booking">
+    <div class="booking-text">
+      <h2>Ready for your <em>transformation?</em></h2>
+      <p>Book a free consultation with our dermatologist. We'll assess your skin, explain the right treatment, and create a plan that fits your goals and budget.</p>
+    </div>
+    <div class="booking-form">
+      <div class="form-row">
+        <input class="form-input" type="text" placeholder="Full Name" />
+        <input class="form-input" type="tel" placeholder="Phone Number" />
+      </div>
+      <select class="form-input form-select">
+        <option value="">Select Treatment</option>
+        <option>Facial Rejuvenation</option>
+        <option>Laser Treatment</option>
+        <option>Botox & Filler</option>
+        <option>Acne Therapy</option>
+        <option>Body Contouring</option>
+        <option>Free Consultation</option>
+      </select>
+      <input class="form-input" type="date" />
+      <button class="btn-book">Book Appointment</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-brand">Lumière <span>·</span> Clinic</div>
+      <p class="footer-tagline">Premium aesthetic clinic combining medical expertise with personalised care for transformative results.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Services</div>
+      <div class="footer-links">
+        <a href="#">Facial Treatments</a>
+        <a href="#">Laser Therapy</a>
+        <a href="#">Botox & Filler</a>
+        <a href="#">Acne Treatment</a>
+        <a href="#">Body Contouring</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Clinic</div>
+      <div class="footer-links">
+        <a href="#">About Us</a>
+        <a href="#">Our Doctor</a>
+        <a href="#">Gallery</a>
+        <a href="#">Contact</a>
+        <a href="#">Book Appointment</a>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Lumière Aesthetic Clinic. All rights reserved.</span>
+    <span class="footer-copy">BPOM Registered · Certified Dermatologists</span>
+  </div>
+
+</body>
+</html>

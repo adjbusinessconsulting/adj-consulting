@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEST KOS — Cozy Rooms, Fair Price</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:   #FFFFFF;
+      --gray-50: #F8F9FA;
+      --gray-100:#F0F2F4;
+      --gray-200:#E2E6EA;
+      --gray-400:#9BA5B0;
+      --gray-600:#5C6670;
+      --ink:     #1A2228;
+      --ink-2:   #3D4852;
+      --teal:    #1E8A7A;
+      --teal-lt: #E8F5F3;
+      --teal-2:  #16705F;
+      --amber:   #F59E0B;
+      --serif: 'Syne', system-ui, sans-serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--white); color: var(--ink); overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 64px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-icon { width: 32px; height: 32px; background: var(--teal); display: flex; align-items: center; justify-content: center; color: var(--white); font-family: var(--serif); font-size: 16px; font-weight: 700; }
+    .nav-logo-text { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--ink); letter-spacing: 0.02em; }
+    .nav-logo-text span { color: var(--teal); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-family: var(--sans); font-size: 14px; color: var(--ink-2); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-right { display: flex; gap: 12px; align-items: center; }
+    .nav-phone { font-family: var(--sans); font-size: 13px; color: var(--ink-2); }
+    .nav-cta { font-family: var(--sans); font-size: 13px; font-weight: 500; background: var(--teal); color: var(--white); padding: 10px 22px; border: none; cursor: pointer; border-radius: 6px; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--teal-2); }
+
+    /* ── HERO ── */
+    .hero { background: var(--gray-50); padding: 80px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; min-height: 560px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--teal-lt); color: var(--teal); font-family: var(--sans); font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; }
+    .hero-badge::before { content: '●'; font-size: 8px; animation: pulse-dot 2s ease infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero-title { font-family: var(--serif); font-size: clamp(36px, 4.5vw, 56px); font-weight: 700; color: var(--ink); line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .hero-title span { color: var(--teal); }
+    .hero-desc { font-family: var(--sans); font-size: 16px; color: var(--gray-600); line-height: 1.7; margin-bottom: 36px; max-width: 420px; }
+    .hero-actions { display: flex; gap: 12px; margin-bottom: 48px; }
+    .btn-teal { font-family: var(--sans); font-size: 14px; font-weight: 500; background: var(--teal); color: var(--white); padding: 13px 28px; border: none; cursor: pointer; border-radius: 6px; text-decoration: none; transition: all 0.2s; }
+    .btn-teal:hover { background: var(--teal-2); transform: translateY(-1px); }
+    .btn-white { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--ink); border: 1px solid var(--gray-200); padding: 13px 28px; border-radius: 6px; text-decoration: none; transition: all 0.2s; background: var(--white); cursor: pointer; }
+    .btn-white:hover { border-color: var(--teal); color: var(--teal); }
+    .hero-trust { display: flex; gap: 32px; }
+    .trust-item { display: flex; align-items: center; gap: 8px; }
+    .trust-icon { font-size: 18px; }
+    .trust-label { font-family: var(--sans); font-size: 13px; color: var(--gray-600); }
+    .hero-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .hero-img-main { grid-column: 1 / -1; height: 280px; border-radius: 8px; overflow: hidden; }
+    .hero-img-sm { height: 160px; border-radius: 8px; overflow: hidden; }
+    .hero-img-main img, .hero-img-sm img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-img-pill { position: relative; }
+    .hero-price-badge { position: absolute; bottom: 12px; left: 12px; background: var(--white); border-radius: 6px; padding: 10px 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); display: flex; align-items: center; gap: 8px; }
+    .price-badge-num { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--teal); }
+    .price-badge-label { font-family: var(--sans); font-size: 11px; color: var(--gray-600); }
+
+    /* ── SEARCH BAR ── */
+    .search-bar { background: var(--white); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); padding: 20px 48px; display: flex; gap: 12px; align-items: center; }
+    .search-label { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--ink); white-space: nowrap; }
+    .search-input { flex: 1; font-family: var(--sans); font-size: 13px; color: var(--ink); border: 1px solid var(--gray-200); padding: 10px 16px; border-radius: 6px; outline: none; transition: border-color 0.2s; }
+    .search-input:focus { border-color: var(--teal); }
+    .search-select { font-family: var(--sans); font-size: 13px; color: var(--ink); border: 1px solid var(--gray-200); padding: 10px 16px; border-radius: 6px; outline: none; appearance: none; cursor: pointer; background: var(--white); padding-right: 32px; }
+    .search-btn { font-family: var(--sans); font-size: 13px; font-weight: 500; background: var(--teal); color: var(--white); padding: 10px 24px; border: none; border-radius: 6px; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+    .search-btn:hover { background: var(--teal-2); }
+
+    /* ── ROOMS ── */
+    .rooms { padding: 80px 48px; }
+    .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; }
+    .section-label { font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--teal); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-family: var(--serif); font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--ink); }
+    .view-all { font-family: var(--sans); font-size: 13px; color: var(--teal); text-decoration: none; font-weight: 500; transition: opacity 0.2s; }
+    .view-all:hover { opacity: 0.7; }
+    .rooms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .room-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 10px; overflow: hidden; transition: all 0.25s; }
+    .room-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,34,40,0.10); border-color: var(--gray-200); }
+    .room-img { height: 200px; overflow: hidden; position: relative; }
+    .room-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .room-card:hover .room-img img { transform: scale(1.05); }
+    .room-tag { position: absolute; top: 12px; left: 12px; background: var(--white); font-family: var(--sans); font-size: 11px; font-weight: 500; color: var(--teal); padding: 4px 10px; border-radius: 100px; }
+    .room-tag--available { background: var(--teal); color: var(--white); }
+    .room-tag--full { background: var(--gray-600); color: var(--white); }
+    .room-body { padding: 20px; }
+    .room-type { font-family: var(--sans); font-size: 11px; font-weight: 500; color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+    .room-name { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+    .room-location { font-family: var(--sans); font-size: 13px; color: var(--gray-600); margin-bottom: 14px; display: flex; align-items: center; gap: 4px; }
+    .room-facilities { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .facility-tag { font-family: var(--sans); font-size: 11px; color: var(--ink-2); background: var(--gray-100); padding: 4px 10px; border-radius: 4px; }
+    .room-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--gray-100); }
+    .room-price { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--teal); }
+    .room-price-period { font-family: var(--sans); font-size: 12px; color: var(--gray-400); font-weight: 300; }
+    .btn-room { font-family: var(--sans); font-size: 12px; font-weight: 500; background: var(--teal-lt); color: var(--teal); padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+    .btn-room:hover { background: var(--teal); color: var(--white); }
+
+    /* ── FACILITIES ── */
+    .facilities { background: var(--gray-50); padding: 80px 48px; }
+    .fac-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+    .fac-card { background: var(--white); border-radius: 10px; padding: 32px 28px; border: 1px solid var(--gray-200); transition: all 0.2s; }
+    .fac-card:hover { border-color: var(--teal); }
+    .fac-icon { font-size: 32px; margin-bottom: 16px; }
+    .fac-name { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+    .fac-desc { font-family: var(--sans); font-size: 13px; color: var(--gray-600); line-height: 1.6; }
+
+    /* ── LOCATION ── */
+    .location { padding: 80px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .location-map { height: 400px; border-radius: 10px; overflow: hidden; background: var(--gray-100); position: relative; }
+    .location-map img { width: 100%; height: 100%; object-fit: cover; }
+    .map-pin { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--teal); color: var(--white); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 0 0 12px rgba(30,138,122,0.15); }
+    .location-eyebrow { font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--teal); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+    .location-title { font-family: var(--serif); font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: var(--ink); margin-bottom: 20px; }
+    .location-desc { font-family: var(--sans); font-size: 15px; color: var(--gray-600); line-height: 1.7; margin-bottom: 32px; }
+    .nearby-list { display: flex; flex-direction: column; gap: 14px; }
+    .nearby-item { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--gray-50); border-radius: 8px; }
+    .nearby-name { font-family: var(--sans); font-size: 14px; color: var(--ink); font-weight: 400; display: flex; align-items: center; gap: 10px; }
+    .nearby-dist { font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--teal); }
+
+    /* ── REVIEWS ── */
+    .reviews { background: var(--gray-50); padding: 80px 48px; }
+    .reviews-summary { display: flex; gap: 60px; align-items: center; margin: 48px 0; padding: 40px; background: var(--white); border-radius: 10px; border: 1px solid var(--gray-200); }
+    .review-big-num { font-family: var(--serif); font-size: 72px; font-weight: 700; color: var(--ink); line-height: 1; }
+    .review-stars { color: var(--amber); font-size: 24px; letter-spacing: 4px; margin: 8px 0; }
+    .review-count { font-family: var(--sans); font-size: 13px; color: var(--gray-600); }
+    .review-bars { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+    .bar-row { display: flex; align-items: center; gap: 12px; }
+    .bar-label { font-family: var(--sans); font-size: 12px; color: var(--gray-600); width: 40px; text-align: right; }
+    .bar-track { flex: 1; height: 6px; background: var(--gray-200); border-radius: 3px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--amber); border-radius: 3px; }
+    .bar-pct { font-family: var(--sans); font-size: 12px; color: var(--gray-600); width: 32px; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .review-card { background: var(--white); border-radius: 10px; padding: 24px; border: 1px solid var(--gray-200); }
+    .review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .reviewer-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--teal-lt); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 16px; font-weight: 700; color: var(--teal); }
+    .reviewer-name { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--ink); }
+    .reviewer-date { font-family: var(--sans); font-size: 11px; color: var(--gray-400); }
+    .review-stars-sm { color: var(--amber); font-size: 11px; letter-spacing: 2px; margin-bottom: 10px; }
+    .review-text { font-family: var(--sans); font-size: 13px; color: var(--gray-600); line-height: 1.65; }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--teal); padding: 80px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .contact-left h2 { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 16px; }
+    .contact-left p { font-family: var(--sans); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 32px; }
+    .contact-details { display: flex; flex-direction: column; gap: 16px; }
+    .contact-item { display: flex; align-items: center; gap: 12px; }
+    .contact-icon { width: 36px; height: 36px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .contact-val { font-family: var(--sans); font-size: 14px; color: var(--white); }
+    .contact-form { background: var(--white); border-radius: 12px; padding: 40px; display: flex; flex-direction: column; gap: 14px; }
+    .contact-form h3 { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+    .form-input { font-family: var(--sans); font-size: 13px; color: var(--ink); background: var(--gray-50); border: 1px solid var(--gray-200); padding: 12px 16px; border-radius: 6px; outline: none; transition: border-color 0.2s; width: 100%; }
+    .form-input:focus { border-color: var(--teal); background: var(--white); }
+    .form-input::placeholder { color: var(--gray-400); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn-submit { font-family: var(--sans); font-size: 13px; font-weight: 500; background: var(--teal); color: var(--white); padding: 13px; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
+    .btn-submit:hover { background: var(--teal-2); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); padding: 48px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .footer-logo-icon { width: 30px; height: 30px; background: var(--teal); display: flex; align-items: center; justify-content: center; color: var(--white); font-family: var(--serif); font-size: 14px; font-weight: 700; border-radius: 4px; }
+    .footer-logo-text { font-family: var(--serif); font-size: 16px; font-weight: 700; color: var(--white); }
+    .footer-tagline { font-family: var(--sans); font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 220px; }
+    .footer-heading { font-family: var(--sans); font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.5); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-family: var(--sans); font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.9); }
+    .footer-bottom { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 20px 48px; display: flex; justify-content: space-between; }
+    .footer-copy { font-family: var(--sans); font-size: 12px; color: rgba(255,255,255,0.25); }
+
+    @media(max-width:900px) {
+      nav { padding: 0 20px; } .nav-links { display: none; }
+      .hero, .location, .contact { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+      .rooms-grid, .fac-grid { grid-template-columns: 1fr 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .search-bar { flex-wrap: wrap; padding: 16px 24px; }
+      .rooms, .facilities, .reviews { padding: 60px 24px; }
+      footer { grid-template-columns: 1fr 1fr; padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">N</div>
+      <div class="nav-logo-text">Nest <span>Kos</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Rooms</a></li>
+      <li><a href="#">Facilities</a></li>
+      <li><a href="#">Location</a></li>
+      <li><a href="#">Reviews</a></li>
+    </ul>
+    <div class="nav-right">
+      <span class="nav-phone">📞 0812-3456-7890</span>
+      <a href="#" class="nav-cta">Book a Room</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-badge">Rooms Available Now</div>
+      <h1 class="hero-title">Your cozy home,<br/><span>away from home.</span></h1>
+      <p class="hero-desc">Clean, comfortable, and affordable rooms in a safe and friendly environment. Monthly & yearly rates available — no hidden fees.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-teal">See Available Rooms</a>
+        <a href="#" class="btn-white">WhatsApp Us</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><span class="trust-icon">✓</span><span class="trust-label">No agent fee</span></div>
+        <div class="trust-item"><span class="trust-icon">✓</span><span class="trust-label">Free WiFi</span></div>
+        <div class="trust-item"><span class="trust-icon">✓</span><span class="trust-label">24h security</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="hero-imgs">
+        <div class="hero-img-main">
+          <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=900&q=80" alt="Kos room" />
+        </div>
+        <div class="hero-img-sm">
+          <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&q=80" alt="Kos bathroom" />
+        </div>
+        <div class="hero-img-sm hero-img-pill" style="position:relative;">
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&q=80" alt="Kos common area" />
+          <div class="hero-price-badge">
+            <div>
+              <div class="price-badge-num">Rp 1,2jt</div>
+              <div class="price-badge-label">per month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH -->
+  <div class="search-bar">
+    <div class="search-label">Find a Room:</div>
+    <input class="search-input" type="text" placeholder="Search by location or room type..." />
+    <select class="search-select">
+      <option>Any Type</option>
+      <option>Standard Room</option>
+      <option>Deluxe Room</option>
+      <option>Premium Room</option>
+    </select>
+    <select class="search-select">
+      <option>Any Price</option>
+      <option>< Rp 1jt</option>
+      <option>Rp 1–2jt</option>
+      <option>Rp 2–3jt</option>
+    </select>
+    <button class="search-btn">Search Rooms</button>
+  </div>
+
+  <!-- ROOMS -->
+  <section class="rooms">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Available Now</div>
+        <div class="section-title">Our Rooms</div>
+      </div>
+      <a href="#" class="view-all">View All Rooms →</a>
+    </div>
+    <div class="rooms-grid">
+      <div class="room-card">
+        <div class="room-img">
+          <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80" alt="Standard Room" />
+          <div class="room-tag room-tag--available">Available</div>
+        </div>
+        <div class="room-body">
+          <div class="room-type">Standard</div>
+          <div class="room-name">Cozy Standard Room</div>
+          <div class="room-location">📍 Lantai 1 · Kamar No. 3</div>
+          <div class="room-facilities">
+            <span class="facility-tag">AC</span>
+            <span class="facility-tag">WiFi</span>
+            <span class="facility-tag">Kasur 120cm</span>
+            <span class="facility-tag">Lemari</span>
+          </div>
+          <div class="room-footer">
+            <div>
+              <div class="room-price">Rp 1,2jt</div>
+              <div class="room-price-period">per bulan</div>
+            </div>
+            <a href="#" class="btn-room">Lihat Detail</a>
+          </div>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img">
+          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80" alt="Deluxe Room" />
+          <div class="room-tag room-tag--available">Available</div>
+        </div>
+        <div class="room-body">
+          <div class="room-type">Deluxe</div>
+          <div class="room-name">Deluxe Room with Balcony</div>
+          <div class="room-location">📍 Lantai 2 · Kamar No. 7</div>
+          <div class="room-facilities">
+            <span class="facility-tag">AC</span>
+            <span class="facility-tag">WiFi</span>
+            <span class="facility-tag">Balkon</span>
+            <span class="facility-tag">Kamar Mandi Dalam</span>
+          </div>
+          <div class="room-footer">
+            <div>
+              <div class="room-price">Rp 1,8jt</div>
+              <div class="room-price-period">per bulan</div>
+            </div>
+            <a href="#" class="btn-room">Lihat Detail</a>
+          </div>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img">
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80" alt="Premium Room" />
+          <div class="room-tag room-tag--available">Available</div>
+        </div>
+        <div class="room-body">
+          <div class="room-type">Premium</div>
+          <div class="room-name">Premium Corner Room</div>
+          <div class="room-location">📍 Lantai 3 · Kamar No. 12</div>
+          <div class="room-facilities">
+            <span class="facility-tag">AC</span>
+            <span class="facility-tag">WiFi</span>
+            <span class="facility-tag">Smart TV</span>
+            <span class="facility-tag">Mini Kitchen</span>
+            <span class="facility-tag">Kamar Mandi Dalam</span>
+          </div>
+          <div class="room-footer">
+            <div>
+              <div class="room-price">Rp 2,5jt</div>
+              <div class="room-price-period">per bulan</div>
+            </div>
+            <a href="#" class="btn-room">Lihat Detail</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACILITIES -->
+  <section class="facilities">
+    <div class="section-header">
+      <div>
+        <div class="section-label">What's Included</div>
+        <div class="section-title">Fasilitas Lengkap</div>
+      </div>
+    </div>
+    <div class="fac-grid">
+      <div class="fac-card">
+        <div class="fac-icon">📶</div>
+        <div class="fac-name">Free WiFi</div>
+        <p class="fac-desc">High-speed internet up to 100 Mbps, available 24/7 in all rooms and common areas.</p>
+      </div>
+      <div class="fac-card">
+        <div class="fac-icon">🔒</div>
+        <div class="fac-name">24H Security</div>
+        <p class="fac-desc">CCTV cameras throughout the building and a 24-hour security guard for your safety.</p>
+      </div>
+      <div class="fac-card">
+        <div class="fac-icon">🧺</div>
+        <div class="fac-name">Laundry</div>
+        <p class="fac-desc">On-site laundry service available. Drop-off and pick-up at your convenience.</p>
+      </div>
+      <div class="fac-card">
+        <div class="fac-icon">🅿️</div>
+        <div class="fac-name">Parking</div>
+        <p class="fac-desc">Free parking for motorbikes. Car parking available with additional fee.</p>
+      </div>
+      <div class="fac-card">
+        <div class="fac-icon">🍳</div>
+        <div class="fac-name">Common Kitchen</div>
+        <p class="fac-desc">Shared kitchen equipped with refrigerator, microwave, and cooking utensils.</p>
+      </div>
+      <div class="fac-card">
+        <div class="fac-icon">🛋️</div>
+        <div class="fac-name">Common Room</div>
+        <p class="fac-desc">Comfortable lounge area with TV, perfect for relaxing and socialising with fellow residents.</p>
+      </div>
+      <div class="fac-card">
+        <div class="fac-icon">🚿</div>
+        <div class="fac-name">Water Heater</div>
+        <p class="fac-desc">Hot water available in all bathrooms. Water and electricity included in the monthly rate.</p>
+      </div>
+      <div class="fac-card">
+        <div class="fac-icon">🧹</div>
+        <div class="fac-name">Weekly Cleaning</div>
+        <p class="fac-desc">Complimentary room cleaning service every week. Common areas cleaned daily.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location">
+    <div class="location-map">
+      <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80" alt="Location area" />
+      <div class="map-pin">📍</div>
+    </div>
+    <div>
+      <div class="location-eyebrow">Our Location</div>
+      <h2 class="location-title">Strategically located in the heart of the city.</h2>
+      <p class="location-desc">Jl. Raya Sudirman No. 45, Palu Selatan. Easy access to main roads, campus, offices, and public transport.</p>
+      <div class="nearby-list">
+        <div class="nearby-item">
+          <div class="nearby-name">🎓 Universitas Tadulako</div>
+          <div class="nearby-dist">5 min 🚗</div>
+        </div>
+        <div class="nearby-item">
+          <div class="nearby-name">🏪 Mall Tatura</div>
+          <div class="nearby-dist">8 min 🚗</div>
+        </div>
+        <div class="nearby-item">
+          <div class="nearby-name">🏥 RS Undata</div>
+          <div class="nearby-dist">10 min 🚗</div>
+        </div>
+        <div class="nearby-item">
+          <div class="nearby-name">✈️ Mutiara SIS Airport</div>
+          <div class="nearby-dist">15 min 🚗</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Resident Reviews</div>
+        <div class="section-title">What Residents Say</div>
+      </div>
+    </div>
+    <div class="reviews-summary">
+      <div>
+        <div class="review-big-num">4.8</div>
+        <div class="review-stars">★★★★★</div>
+        <div class="review-count">Based on 124 reviews</div>
+      </div>
+      <div class="review-bars">
+        <div class="bar-row"><span class="bar-label">5 ★</span><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><span class="bar-pct">82%</span></div>
+        <div class="bar-row"><span class="bar-label">4 ★</span><div class="bar-track"><div class="bar-fill" style="width:12%"></div></div><span class="bar-pct">12%</span></div>
+        <div class="bar-row"><span class="bar-label">3 ★</span><div class="bar-track"><div class="bar-fill" style="width:4%"></div></div><span class="bar-pct">4%</span></div>
+        <div class="bar-row"><span class="bar-label">2 ★</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span class="bar-pct">2%</span></div>
+        <div class="bar-row"><span class="bar-label">1 ★</span><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div><span class="bar-pct">0%</span></div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-header">
+          <div class="reviewer-avatar">A</div>
+          <div>
+            <div class="reviewer-name">Aldi Pratama</div>
+            <div class="reviewer-date">Resident since March 2024</div>
+          </div>
+        </div>
+        <div class="review-stars-sm">★★★★★</div>
+        <p class="review-text">Tempatnya bersih, aman, dan penjaganya ramah. WiFi kenceng banget — perfect buat kerja dari kamar. Sangat worth it untuk harganya!</p>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="reviewer-avatar">S</div>
+          <div>
+            <div class="reviewer-name">Siti Rahma</div>
+            <div class="reviewer-date">Resident since January 2024</div>
+          </div>
+        </div>
+        <div class="review-stars-sm">★★★★★</div>
+        <p class="review-text">Kamarnya nyaman dan bersih. Suka banget ada weekly cleaning service-nya. Lokasi strategis, dekat kampus dan minimarket.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="reviewer-avatar">B</div>
+          <div>
+            <div class="reviewer-name">Budi Santoso</div>
+            <div class="reviewer-date">Resident since June 2023</div>
+          </div>
+        </div>
+        <div class="review-stars-sm">★★★★☆</div>
+        <p class="review-text">Sudah 1 tahun tinggal di sini, betah banget. Pengurusnya responsif kalau ada masalah. Recommended untuk mahasiswa dan karyawan!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <div class="contact-left">
+      <h2>Interested? Let's get you moved in.</h2>
+      <p>Contact us to schedule a room visit, ask about availability, or get a custom quote. We typically reply within 1 hour on WhatsApp.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div class="contact-val">0812-3456-7890 (WhatsApp)</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-val">Jl. Raya Sudirman No. 45, Palu</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-val">Open daily 08:00 – 20:00</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Book a Room Visit</h3>
+      <div class="form-row">
+        <input class="form-input" type="text" placeholder="Your Name" />
+        <input class="form-input" type="tel" placeholder="WhatsApp Number" />
+      </div>
+      <select class="form-input">
+        <option value="">Room Type</option>
+        <option>Standard — Rp 1,2jt/bulan</option>
+        <option>Deluxe — Rp 1,8jt/bulan</option>
+        <option>Premium — Rp 2,5jt/bulan</option>
+      </select>
+      <input class="form-input" type="date" placeholder="Preferred Visit Date" />
+      <textarea class="form-input" rows="3" placeholder="Any questions or special requests?"></textarea>
+      <button class="btn-submit">Send via WhatsApp</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-logo">
+        <div class="footer-logo-icon">N</div>
+        <div class="footer-logo-text">Nest Kos</div>
+      </div>
+      <p class="footer-tagline">Clean, comfortable, and affordable rooms in Palu. Your home away from home.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Rooms</div>
+      <div class="footer-links">
+        <a href="#">Standard Room</a>
+        <a href="#">Deluxe Room</a>
+        <a href="#">Premium Room</a>
+        <a href="#">Availability</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Info</div>
+      <div class="footer-links">
+        <a href="#">Facilities</a>
+        <a href="#">Location</a>
+        <a href="#">Rules & Policy</a>
+        <a href="#">Reviews</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <div class="footer-links">
+        <a href="#">WhatsApp</a>
+        <a href="#">Instagram</a>
+        <a href="#">Book a Visit</a>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Nest Kos · Palu, Sulawesi Tengah</span>
+    <span class="footer-copy">No agent fee · Fair pricing guaranteed</span>
+  </div>
+
+</body>
+</html>

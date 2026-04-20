@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TANAH LEMBAH — Durian Plantation & Education</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --forest:    #1A2E1C;
+      --forest-2:  #243D27;
+      --forest-3:  #2F5233;
+      --moss:      #4A7C59;
+      --moss-lt:   #6B9E78;
+      --sage:      #8FB89A;
+      --sage-lt:   #C8DDD0;
+      --cream:     #F5F0E8;
+      --cream-2:   #EDE5D6;
+      --cream-3:   #DDD0BC;
+      --amber:     #C8821A;
+      --amber-lt:  #E8A83C;
+      --amber-pale:#FDF3E0;
+      --soil:      #6B4C2A;
+      --soil-2:    #8B6540;
+      --ink:       #1C1208;
+      --ink-2:     #3D2E1A;
+      --ink-3:     #7A6548;
+      --white:     #FDFAF5;
+      --serif: 'Lora', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--ink); overflow-x: hidden; font-weight: 300; }
+
+    /* grain overlay */
+    body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:999; opacity:0.03; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; height: 68px; background: rgba(26,46,28,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-mark { width: 34px; height: 34px; background: var(--amber); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .nav-logo-text { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--cream); letter-spacing: 0.04em; }
+    .nav-logo-text span { color: var(--amber-lt); font-style: italic; }
+    .nav-links { display: flex; gap: 0; list-style: none; }
+    .nav-links a { font-family: var(--sans); font-size: 13px; font-weight: 400; color: rgba(245,240,232,0.65); text-decoration: none; padding: 8px 18px; border-radius: 4px; letter-spacing: 0.04em; transition: all 0.2s; }
+    .nav-links a:hover { color: var(--cream); background: rgba(255,255,255,0.06); }
+    .nav-cta { font-family: var(--sans); font-size: 13px; font-weight: 600; background: var(--amber); color: var(--ink); padding: 10px 24px; border: none; cursor: pointer; border-radius: 4px; text-decoration: none; transition: all 0.2s; letter-spacing: 0.02em; }
+    .nav-cta:hover { background: var(--amber-lt); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--cream); border-radius: 1px; }
+
+    /* ── HERO ── */
+    .hero { min-height: 100vh; position: relative; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+    .hero-left { background: var(--forest); display: flex; flex-direction: column; justify-content: center; padding: 140px 72px 80px; position: relative; overflow: hidden; z-index: 1; }
+    .hero-left::before { content:''; position:absolute; bottom:-120px; left:-80px; width:400px; height:400px; border-radius:50%; background:radial-gradient(circle, rgba(74,124,89,0.25), transparent 70%); pointer-events:none; }
+    .hero-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(200,130,26,0.15); border:1px solid rgba(200,130,26,0.3); color:var(--amber-lt); font-family:var(--sans); font-size:11px; font-weight:500; padding:6px 14px; border-radius:100px; margin-bottom:28px; width:fit-content; letter-spacing:0.1em; text-transform:uppercase; }
+    .hero-title { font-family:var(--serif); font-size:clamp(38px,4.5vw,58px); font-weight:600; color:var(--cream); line-height:1.12; margin-bottom:24px; }
+    .hero-title em { font-style:italic; color:var(--amber-lt); }
+    .hero-desc { font-family:var(--sans); font-size:15px; color:rgba(245,240,232,0.65); line-height:1.8; max-width:400px; margin-bottom:44px; }
+    .hero-actions { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:56px; }
+    .btn-amber { font-family:var(--sans); font-size:13px; font-weight:600; background:var(--amber); color:var(--ink); padding:14px 30px; border:none; cursor:pointer; border-radius:4px; text-decoration:none; transition:all 0.2s; letter-spacing:0.02em; }
+    .btn-amber:hover { background:var(--amber-lt); transform:translateY(-1px); }
+    .btn-outline { font-family:var(--sans); font-size:13px; font-weight:400; color:var(--sage-lt); border:1px solid rgba(143,184,154,0.35); padding:13px 30px; border-radius:4px; text-decoration:none; transition:all 0.2s; }
+    .btn-outline:hover { border-color:var(--sage); color:var(--cream); }
+    .hero-stats { display:flex; gap:0; border-top:1px solid rgba(255,255,255,0.08); padding-top:40px; }
+    .hero-stat { flex:1; padding-right:24px; border-right:1px solid rgba(255,255,255,0.08); margin-right:24px; }
+    .hero-stat:last-child { border-right:none; margin-right:0; }
+    .hero-stat-num { font-family:var(--serif); font-size:34px; font-weight:600; color:var(--amber-lt); line-height:1; }
+    .hero-stat-label { font-family:var(--sans); font-size:11px; color:rgba(245,240,232,0.45); letter-spacing:0.1em; text-transform:uppercase; margin-top:6px; }
+
+    .hero-right { position:relative; overflow:hidden; }
+    .hero-right img { width:100%; height:100%; object-fit:cover; }
+    .hero-right::after { content:''; position:absolute; inset:0; background:linear-gradient(to right, var(--forest) 0%, transparent 30%); }
+    .hero-badge { position:absolute; bottom:48px; right:40px; z-index:2; background:var(--cream); border-radius:8px; padding:18px 24px; box-shadow:0 8px 40px rgba(0,0,0,0.25); display:flex; align-items:center; gap:14px; }
+    .badge-dot { width:10px; height:10px; border-radius:50%; background:var(--moss); box-shadow:0 0 0 4px rgba(74,124,89,0.2); animation:pulse-dot 2s ease infinite; }
+    @keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 4px rgba(74,124,89,0.2)} 50%{box-shadow:0 0 0 8px rgba(74,124,89,0.1)} }
+    .badge-text-top { font-family:var(--sans); font-size:13px; font-weight:600; color:var(--ink); }
+    .badge-text-bot { font-family:var(--sans); font-size:11px; color:var(--ink-3); margin-top:2px; }
+
+    /* ── MARQUEE ── */
+    .marquee { background:var(--forest-2); border-top:1px solid rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.06); padding:14px 0; overflow:hidden; }
+    .marquee-track { display:inline-flex; animation:marquee 28s linear infinite; white-space:nowrap; }
+    .marquee-track span { font-family:var(--sans); font-size:11px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:rgba(200,221,208,0.55); padding:0 28px; }
+    .marquee-track span.sep { color:var(--amber); padding:0 4px; }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── TWO PILLARS ── */
+    .pillars { display:grid; grid-template-columns:1fr 1fr; min-height:580px; }
+    .pillar { position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; padding:60px 56px; cursor:pointer; transition:all 0.4s; }
+    .pillar img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform 0.6s ease; }
+    .pillar:hover img { transform:scale(1.04); }
+    .pillar-overlay { position:absolute; inset:0; transition:opacity 0.4s; }
+    .pillar--buy .pillar-overlay { background:linear-gradient(to top, rgba(26,46,28,0.95) 0%, rgba(26,46,28,0.5) 50%, rgba(26,46,28,0.15) 100%); }
+    .pillar--teach .pillar-overlay { background:linear-gradient(to top, rgba(107,76,42,0.95) 0%, rgba(107,76,42,0.5) 50%, rgba(107,76,42,0.15) 100%); }
+    .pillar-content { position:relative; z-index:2; }
+    .pillar-tag { font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; margin-bottom:16px; display:inline-block; padding:5px 12px; border-radius:3px; }
+    .pillar--buy .pillar-tag { background:rgba(74,124,89,0.3); color:var(--sage-lt); border:1px solid rgba(143,184,154,0.3); }
+    .pillar--teach .pillar-tag { background:rgba(200,130,26,0.25); color:var(--amber-lt); border:1px solid rgba(200,130,26,0.3); }
+    .pillar-title { font-family:var(--serif); font-size:clamp(28px,3.2vw,44px); font-weight:600; color:var(--cream); line-height:1.15; margin-bottom:14px; }
+    .pillar-title em { font-style:italic; }
+    .pillar--buy .pillar-title em { color:var(--sage-lt); }
+    .pillar--teach .pillar-title em { color:var(--amber-lt); }
+    .pillar-desc { font-family:var(--sans); font-size:14px; color:rgba(245,240,232,0.7); line-height:1.7; max-width:360px; margin-bottom:28px; }
+    .pillar-link { font-family:var(--sans); font-size:13px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:8px; padding:11px 22px; border-radius:4px; transition:all 0.2s; }
+    .pillar--buy .pillar-link { background:var(--moss); color:var(--cream); }
+    .pillar--buy .pillar-link:hover { background:var(--moss-lt); }
+    .pillar--teach .pillar-link { background:var(--amber); color:var(--ink); }
+    .pillar--teach .pillar-link:hover { background:var(--amber-lt); }
+    .pillar-link::after { content:'→'; transition:transform 0.2s; }
+    .pillar-link:hover::after { transform:translateX(4px); }
+
+    /* ── WHY BUY SECTION ── */
+    .why-buy { background:var(--forest); padding:100px 72px; }
+    .why-buy-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .why-buy-imgs { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .why-img-tall { grid-row:span 2; border-radius:6px; overflow:hidden; height:420px; }
+    .why-img-sm { border-radius:6px; overflow:hidden; height:200px; }
+    .why-img-tall img, .why-img-sm img { width:100%; height:100%; object-fit:cover; }
+    .section-eyebrow { font-family:var(--sans); font-size:11px; font-weight:500; color:var(--amber-lt); letter-spacing:0.22em; text-transform:uppercase; margin-bottom:18px; display:flex; align-items:center; gap:12px; }
+    .section-eyebrow::before { content:''; width:28px; height:1px; background:var(--amber); }
+    .section-title-light { font-family:var(--serif); font-size:clamp(26px,3vw,40px); font-weight:600; color:var(--cream); line-height:1.2; margin-bottom:20px; }
+    .section-title-light em { font-style:italic; color:var(--amber-lt); }
+    .section-body-light { font-family:var(--sans); font-size:15px; color:rgba(245,240,232,0.6); line-height:1.85; margin-bottom:40px; }
+    .benefits-list { display:flex; flex-direction:column; gap:16px; margin-bottom:44px; }
+    .benefit-item { display:flex; align-items:flex-start; gap:14px; }
+    .benefit-icon { width:36px; height:36px; background:rgba(74,124,89,0.2); border:1px solid rgba(74,124,89,0.3); border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+    .benefit-body { }
+    .benefit-title { font-family:var(--sans); font-size:14px; font-weight:600; color:var(--cream); margin-bottom:3px; }
+    .benefit-desc { font-family:var(--sans); font-size:13px; color:rgba(245,240,232,0.5); line-height:1.6; }
+
+    /* ── EDUCATION ── */
+    .education { background:var(--cream); padding:100px 72px; }
+    .education-inner { max-width:1100px; margin:0 auto; }
+    .section-title-dark { font-family:var(--serif); font-size:clamp(26px,3vw,42px); font-weight:600; color:var(--ink); line-height:1.2; margin-bottom:16px; }
+    .section-title-dark em { font-style:italic; color:var(--moss); }
+    .section-body-dark { font-family:var(--sans); font-size:15px; color:var(--ink-3); line-height:1.8; max-width:600px; margin-bottom:64px; }
+    .edu-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:64px; }
+    .edu-card { background:var(--white); border:1px solid var(--cream-3); border-radius:8px; overflow:hidden; transition:all 0.3s; }
+    .edu-card:hover { transform:translateY(-5px); box-shadow:0 16px 48px rgba(26,46,28,0.10); border-color:var(--sage-lt); }
+    .edu-card-img { height:200px; overflow:hidden; }
+    .edu-card-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease; }
+    .edu-card:hover .edu-card-img img { transform:scale(1.06); }
+    .edu-card-body { padding:24px; }
+    .edu-tag { font-family:var(--sans); font-size:10px; font-weight:600; color:var(--moss); background:rgba(74,124,89,0.08); border:1px solid rgba(74,124,89,0.15); padding:4px 10px; border-radius:100px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px; display:inline-block; }
+    .edu-title { font-family:var(--serif); font-size:18px; font-weight:600; color:var(--ink); margin-bottom:8px; line-height:1.3; }
+    .edu-desc { font-family:var(--sans); font-size:13px; color:var(--ink-3); line-height:1.65; margin-bottom:16px; }
+    .edu-meta { display:flex; align-items:center; justify-content:space-between; }
+    .edu-duration { font-family:var(--sans); font-size:11px; color:var(--ink-3); }
+    .edu-link { font-family:var(--sans); font-size:12px; font-weight:600; color:var(--moss); text-decoration:none; transition:color 0.2s; }
+    .edu-link:hover { color:var(--forest); }
+
+    /* full-width cta inside education */
+    .edu-cta-band { background:var(--forest-2); border-radius:8px; padding:48px 56px; display:flex; align-items:center; justify-content:space-between; gap:40px; }
+    .edu-cta-text h3 { font-family:var(--serif); font-size:clamp(22px,2.5vw,32px); font-weight:600; color:var(--cream); margin-bottom:8px; }
+    .edu-cta-text h3 em { font-style:italic; color:var(--amber-lt); }
+    .edu-cta-text p { font-family:var(--sans); font-size:14px; color:rgba(245,240,232,0.55); line-height:1.7; max-width:480px; }
+
+    /* ── PROCESS ── */
+    .process { background:var(--cream-2); padding:100px 72px; }
+    .process-inner { max-width:1100px; margin:0 auto; }
+    .process-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:64px; position:relative; }
+    .process-steps::before { content:''; position:absolute; top:28px; left:10%; right:10%; height:1px; background:linear-gradient(to right, var(--cream-3), var(--moss), var(--cream-3)); z-index:0; }
+    .step { position:relative; z-index:1; text-align:center; padding:0 20px; }
+    .step-num { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-family:var(--serif); font-size:20px; font-weight:700; border:2px solid var(--moss); color:var(--forest); background:var(--cream-2); }
+    .step--active .step-num { background:var(--forest); color:var(--cream); border-color:var(--forest); }
+    .step-title { font-family:var(--serif); font-size:17px; font-weight:600; color:var(--ink); margin-bottom:10px; }
+    .step-desc { font-family:var(--sans); font-size:13px; color:var(--ink-3); line-height:1.65; }
+
+    /* ── GALLERY ── */
+    .gallery { padding:100px 72px; background:var(--cream); }
+    .gallery-inner { max-width:1100px; margin:0 auto; }
+    .gallery-grid { display:grid; grid-template-columns:repeat(12,1fr); grid-template-rows:260px 260px; gap:12px; margin-top:56px; }
+    .g { overflow:hidden; border-radius:6px; }
+    .g img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease; }
+    .g:hover img { transform:scale(1.05); }
+    .g:nth-child(1) { grid-column:span 5; grid-row:span 2; }
+    .g:nth-child(2) { grid-column:span 4; }
+    .g:nth-child(3) { grid-column:span 3; }
+    .g:nth-child(4) { grid-column:span 3; }
+    .g:nth-child(5) { grid-column:span 4; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background:var(--forest); padding:100px 72px; }
+    .testimonials-inner { max-width:1100px; margin:0 auto; }
+    .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:56px; }
+    .testi-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:36px 32px; transition:border-color 0.3s; }
+    .testi-card:hover { border-color:rgba(200,130,26,0.3); }
+    .testi-quote-mark { font-family:var(--serif); font-size:56px; color:var(--amber); line-height:0.5; margin-bottom:24px; opacity:0.6; }
+    .testi-text { font-family:var(--serif); font-size:15px; font-style:italic; color:rgba(245,240,232,0.8); line-height:1.8; margin-bottom:28px; }
+    .testi-divider { width:32px; height:1px; background:var(--amber); margin-bottom:18px; opacity:0.5; }
+    .testi-name { font-family:var(--sans); font-size:13px; font-weight:600; color:var(--cream); }
+    .testi-loc { font-family:var(--sans); font-size:11px; color:rgba(245,240,232,0.4); letter-spacing:0.06em; margin-top:4px; }
+
+    /* ── CONTACT ── */
+    .contact { background:var(--cream-2); padding:100px 72px; }
+    .contact-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+    .contact-eyebrow { font-family:var(--sans); font-size:11px; font-weight:500; color:var(--moss); letter-spacing:0.22em; text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+    .contact-eyebrow::before { content:''; width:24px; height:1px; background:var(--moss); }
+    .contact-title { font-family:var(--serif); font-size:clamp(26px,3vw,40px); font-weight:600; color:var(--ink); line-height:1.2; margin-bottom:20px; }
+    .contact-title em { font-style:italic; color:var(--moss); }
+    .contact-body { font-family:var(--sans); font-size:15px; color:var(--ink-3); line-height:1.8; margin-bottom:40px; }
+    .contact-details { display:flex; flex-direction:column; gap:18px; }
+    .contact-item { display:flex; align-items:center; gap:14px; }
+    .contact-icon-wrap { width:40px; height:40px; background:var(--cream); border:1px solid var(--cream-3); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0; }
+    .contact-label { font-family:var(--sans); font-size:11px; color:var(--ink-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2px; }
+    .contact-val { font-family:var(--sans); font-size:14px; color:var(--ink); font-weight:400; }
+    .contact-form { background:var(--white); border-radius:10px; padding:44px 40px; border:1px solid var(--cream-3); }
+    .form-title { font-family:var(--serif); font-size:22px; font-weight:600; color:var(--ink); margin-bottom:6px; }
+    .form-sub { font-family:var(--sans); font-size:13px; color:var(--ink-3); margin-bottom:28px; }
+    .form-group { display:flex; flex-direction:column; gap:14px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .form-input { font-family:var(--sans); font-size:13px; color:var(--ink); background:var(--cream); border:1px solid var(--cream-3); padding:12px 16px; border-radius:6px; outline:none; transition:border-color 0.2s; width:100%; }
+    .form-input:focus { border-color:var(--moss); background:var(--white); }
+    .form-input::placeholder { color:var(--ink-3); }
+    .form-intent { display:flex; gap:10px; }
+    .intent-btn { flex:1; font-family:var(--sans); font-size:12px; font-weight:500; padding:11px; border-radius:5px; border:1px solid var(--cream-3); background:var(--cream); color:var(--ink-2); cursor:pointer; transition:all 0.2s; text-align:center; }
+    .intent-btn.active, .intent-btn:hover { background:var(--forest); color:var(--cream); border-color:var(--forest); }
+    .btn-submit { width:100%; font-family:var(--sans); font-size:13px; font-weight:600; background:var(--forest); color:var(--cream); padding:14px; border:none; border-radius:6px; cursor:pointer; letter-spacing:0.04em; transition:all 0.2s; }
+    .btn-submit:hover { background:var(--moss); }
+
+    /* ── FOOTER ── */
+    footer { background:var(--ink); padding:64px 72px 0; }
+    .footer-inner { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .footer-brand-name { font-family:var(--serif); font-size:22px; font-weight:600; color:var(--cream); margin-bottom:12px; }
+    .footer-brand-name span { font-style:italic; color:var(--amber-lt); }
+    .footer-tagline { font-family:var(--sans); font-size:13px; color:rgba(245,240,232,0.35); line-height:1.7; max-width:240px; }
+    .footer-heading { font-family:var(--sans); font-size:10px; font-weight:600; color:rgba(245,240,232,0.35); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:18px; }
+    .footer-links { display:flex; flex-direction:column; gap:10px; }
+    .footer-links a { font-family:var(--sans); font-size:13px; color:rgba(245,240,232,0.45); text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--amber-lt); }
+    .footer-bottom { padding:20px 72px; display:flex; justify-content:space-between; align-items:center; }
+    .footer-copy { font-family:var(--sans); font-size:12px; color:rgba(245,240,232,0.2); }
+
+    @media(max-width:1024px) {
+      .edu-grid { grid-template-columns:1fr 1fr; }
+      .process-steps { grid-template-columns:1fr 1fr; }
+      .process-steps::before { display:none; }
+    }
+    @media(max-width:900px) {
+      .hero { grid-template-columns:1fr; }
+      .hero-right { height:60vw; }
+      .pillars { grid-template-columns:1fr; }
+      .pillar { min-height:420px; }
+      .why-buy-inner, .contact-inner { grid-template-columns:1fr; gap:48px; }
+      .testi-grid { grid-template-columns:1fr; }
+      .gallery-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+      .g { grid-column:span 1 !important; grid-row:span 1 !important; height:200px; }
+      nav { padding:0 24px; } .nav-links { display:none; } .hamburger { display:flex; }
+      .why-buy, .education, .process, .gallery, .testimonials, .contact { padding:60px 24px; }
+      footer { padding:48px 24px 0; } .footer-inner { grid-template-columns:1fr 1fr; gap:40px; } .footer-bottom { padding:20px 24px; }
+      .edu-cta-band { flex-direction:column; padding:36px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">🌿</div>
+      <div class="nav-logo-text">Tanah <span>Lembah</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#buy">Sell to Us</a></li>
+      <li><a href="#education">Learn to Grow</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">🌱 Palu, Sulawesi Tengah</div>
+      <h1 class="hero-title">From the valley's<br/><em>soil</em> to your<br/>table.</h1>
+      <p class="hero-desc">We buy durian directly from farmers across Central Sulawesi — fair prices, honest partnership. And we teach farmers how to grow better durian, season after season.</p>
+      <div class="hero-actions">
+        <a href="#buy" class="btn-amber">Sell Your Durian</a>
+        <a href="#education" class="btn-outline">Learn to Grow</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">50+</div>
+          <div class="hero-stat-label">Farmers Partnered</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">8y</div>
+          <div class="hero-stat-label">In the Field</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label">Local Durian</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="https://images.unsplash.com/photo-1606914469633-bd59bb972b41?w=1200&q=80" alt="Tropical plantation" />
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        <div>
+          <div class="badge-text-top">Buying Season Open</div>
+          <div class="badge-text-bot">Fair price, direct payment</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Durian Monthong</span><span class="sep">◆</span>
+      <span>Durian Musang King</span><span class="sep">◆</span>
+      <span>Durian Lokal Palu</span><span class="sep">◆</span>
+      <span>Beli Langsung dari Petani</span><span class="sep">◆</span>
+      <span>Pelatihan Budidaya Durian</span><span class="sep">◆</span>
+      <span>Harga Wajar & Transparan</span><span class="sep">◆</span>
+      <span>Sulawesi Tengah</span><span class="sep">◆</span>
+      <span>Durian Monthong</span><span class="sep">◆</span>
+      <span>Durian Musang King</span><span class="sep">◆</span>
+      <span>Durian Lokal Palu</span><span class="sep">◆</span>
+      <span>Beli Langsung dari Petani</span><span class="sep">◆</span>
+      <span>Pelatihan Budidaya Durian</span><span class="sep">◆</span>
+      <span>Harga Wajar & Transparan</span><span class="sep">◆</span>
+      <span>Sulawesi Tengah</span><span class="sep">◆</span>
+    </div>
+  </div>
+
+  <!-- TWO PILLARS -->
+  <div class="pillars">
+    <div class="pillar pillar--buy" id="buy">
+      <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=900&q=80" alt="Farmer with fruit" />
+      <div class="pillar-overlay"></div>
+      <div class="pillar-content">
+        <div class="pillar-tag">For Farmers</div>
+        <h2 class="pillar-title">We buy your<br/><em>durian directly.</em></h2>
+        <p class="pillar-desc">No middlemen. No complicated process. Bring your harvest and get paid a fair, transparent price on the spot. We're always buying during the season.</p>
+        <a href="#contact" class="pillar-link">Sell to Us</a>
+      </div>
+    </div>
+    <div class="pillar pillar--teach" id="education-anchor">
+      <img src="https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?w=900&q=80" alt="Farming education" />
+      <div class="pillar-overlay"></div>
+      <div class="pillar-content">
+        <div class="pillar-tag">Education</div>
+        <h2 class="pillar-title">We teach you to<br/><em>grow better.</em></h2>
+        <p class="pillar-desc">Free workshops and hands-on training for durian farmers. Learn the right techniques, soil care, and harvesting methods to maximize your yield every season.</p>
+        <a href="#education" class="pillar-link">Join a Workshop</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY SELL TO US -->
+  <section class="why-buy">
+    <div class="why-buy-inner">
+      <div class="why-buy-imgs">
+        <div class="why-img-tall">
+          <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&q=80" alt="Farmer harvesting" />
+        </div>
+        <div class="why-img-sm">
+          <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=500&q=80" alt="Durian fruit" />
+        </div>
+        <div class="why-img-sm">
+          <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=500&q=80" alt="Local market produce" />
+        </div>
+      </div>
+      <div>
+        <div class="section-eyebrow">Why Sell to Us</div>
+        <h2 class="section-title-light">A buyer you can<br/><em>actually trust.</em></h2>
+        <p class="section-body-light">We've been working directly with farmers in Central Sulawesi for over 8 years. We know the land, we know the challenges, and we pay what the fruit is worth — no lowballing.</p>
+        <div class="benefits-list">
+          <div class="benefit-item">
+            <div class="benefit-icon">💰</div>
+            <div class="benefit-body">
+              <div class="benefit-title">Fair, Transparent Pricing</div>
+              <div class="benefit-desc">We tell you our pricing criteria upfront. No surprises, no last-minute cuts.</div>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">⚡</div>
+            <div class="benefit-body">
+              <div class="benefit-title">Same-Day Payment</div>
+              <div class="benefit-desc">Sell your durian today, get paid today. Cash or transfer — your choice.</div>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">🤝</div>
+            <div class="benefit-body">
+              <div class="benefit-title">Long-Term Partnership</div>
+              <div class="benefit-desc">We're not just buying your fruit — we're investing in your farm and your future.</div>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">🚜</div>
+            <div class="benefit-body">
+              <div class="benefit-title">We Come to You</div>
+              <div class="benefit-desc">For large harvests, we can arrange pickup directly from your plantation.</div>
+            </div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-amber">Start Selling →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="education" id="education">
+    <div class="education-inner">
+      <div class="section-eyebrow" style="color:var(--moss);">
+        <span style="width:28px;height:1px;background:var(--moss);display:inline-block;"></span>
+        Farmer Education
+      </div>
+      <h2 class="section-title-dark">Grow <em>smarter,</em><br/>harvest more.</h2>
+      <p class="section-body-dark">Our training programs are free for all registered farmers. We cover everything from seedling selection to post-harvest handling — practical knowledge from people who've actually done it.</p>
+
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="edu-card-img">
+            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=500&q=80" alt="Seedling care" />
+          </div>
+          <div class="edu-card-body">
+            <div class="edu-tag">Beginner</div>
+            <div class="edu-title">Choosing the Right Seedling</div>
+            <p class="edu-desc">Learn how to identify healthy durian seedlings, the right varieties for Palu's climate, and where to source them.</p>
+            <div class="edu-meta">
+              <span class="edu-duration">⏱ 1-day workshop · Free</span>
+              <a href="#contact" class="edu-link">Register →</a>
+            </div>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-card-img">
+            <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=500&q=80" alt="Soil and fertilizer" />
+          </div>
+          <div class="edu-card-body">
+            <div class="edu-tag">Intermediate</div>
+            <div class="edu-title">Soil Health & Fertilizing</div>
+            <p class="edu-desc">Understand your soil composition, the right NPK ratios for durian, and organic fertilizer techniques that save cost and boost yield.</p>
+            <div class="edu-meta">
+              <span class="edu-duration">⏱ 2-day workshop · Free</span>
+              <a href="#contact" class="edu-link">Register →</a>
+            </div>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-card-img">
+            <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=500&q=80" alt="Harvesting" />
+          </div>
+          <div class="edu-card-body">
+            <div class="edu-tag">Advanced</div>
+            <div class="edu-title">Harvesting & Post-Harvest</div>
+            <p class="edu-desc">Know exactly when to harvest for peak quality. Learn how to handle, store, and transport durian to get the best price at sale.</p>
+            <div class="edu-meta">
+              <span class="edu-duration">⏱ 1-day workshop · Free</span>
+              <a href="#contact" class="edu-link">Register →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-cta-band">
+        <div class="edu-cta-text">
+          <h3>Want us to come to your <em>village?</em></h3>
+          <p>We can arrange group training sessions at your location. If you have 10 or more farmers interested, reach out and we'll organise a free on-site workshop.</p>
+        </div>
+        <a href="#contact" class="btn-amber" style="white-space:nowrap;">Request a Workshop →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process">
+    <div class="process-inner">
+      <div class="section-eyebrow" style="color:var(--moss);">
+        <span style="width:28px;height:1px;background:var(--moss);display:inline-block;"></span>
+        How It Works
+      </div>
+      <h2 class="section-title-dark">Selling your durian<br/>is <em>simple.</em></h2>
+      <div class="process-steps">
+        <div class="step step--active">
+          <div class="step-num">1</div>
+          <div class="step-title">Contact Us</div>
+          <p class="step-desc">WhatsApp or call us to let us know your harvest size, variety, and location. We'll respond within a few hours.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">We Assess</div>
+          <p class="step-desc">We assess the quality and grade of your durian fairly and transparently based on our standard criteria.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">Agree on Price</div>
+          <p class="step-desc">We discuss and agree on a fair price together. No pressure, no hidden deductions. You're always in control.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-title">Get Paid</div>
+          <p class="step-desc">Payment is made immediately — cash on the spot or same-day bank transfer. No waiting, no delays.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="gallery-inner">
+      <div class="section-eyebrow" style="color:var(--moss);">
+        <span style="width:28px;height:1px;background:var(--moss);display:inline-block;"></span>
+        From the Field
+      </div>
+      <h2 class="section-title-dark">Life at <em>Tanah Lembah</em></h2>
+      <div class="gallery-grid">
+        <div class="g"><img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80" alt="Farm landscape" /></div>
+        <div class="g"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80" alt="Green fields" /></div>
+        <div class="g"><img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=500&q=80" alt="Tropical trees" /></div>
+        <div class="g"><img src="https://images.unsplash.com/photo-1611735341450-74d61e660ad2?w=500&q=80" alt="Farmer working" /></div>
+        <div class="g"><img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=700&q=80" alt="Harvest time" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="testimonials-inner">
+      <div class="section-eyebrow">What Farmers Say</div>
+      <h2 class="section-title-light">Trusted by farmers<br/><em>across the valley.</em></h2>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-quote-mark">"</div>
+          <p class="testi-text">Saya sudah jual durian ke Tanah Lembah tiga musim terakhir. Harganya selalu adil dan pembayarannya langsung. Tidak perlu kuatir soal tunggu-tunggu.</p>
+          <div class="testi-divider"></div>
+          <div class="testi-name">Pak Ruslan</div>
+          <div class="testi-loc">Petani Durian · Biromaru, Sigi</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-quote-mark">"</div>
+          <p class="testi-text">Ikut pelatihan pemupukan dari mereka, hasil panen saya naik hampir 40% di musim berikutnya. Ilmunya benar-benar praktis dan bisa langsung diterapkan.</p>
+          <div class="testi-divider"></div>
+          <div class="testi-name">Bu Hasna</div>
+          <div class="testi-loc">Petani Durian · Kulawi, Sigi</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-quote-mark">"</div>
+          <p class="testi-text">Yang saya suka, mereka transparan soal standar kualitas. Jadi saya tahu dari awal berapa harga yang akan saya dapat. Tidak ada kejutan yang tidak menyenangkan.</p>
+          <div class="testi-divider"></div>
+          <div class="testi-name">Pak Darmawan</div>
+          <div class="testi-loc">Petani Durian · Dolo, Sigi</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div>
+        <div class="contact-eyebrow">Get in Touch</div>
+        <h2 class="contact-title">Ready to sell, or<br/>want to <em>learn more?</em></h2>
+        <p class="contact-body">Whether you have durian to sell this season or you want to join our next farmer training — we'd love to hear from you. We're based in Palu and we know your area.</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-icon-wrap">📱</div>
+            <div>
+              <div class="contact-label">WhatsApp</div>
+              <div class="contact-val">+62 812-3456-7890</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon-wrap">📍</div>
+            <div>
+              <div class="contact-label">Location</div>
+              <div class="contact-val">Palu, Sulawesi Tengah</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon-wrap">🕐</div>
+            <div>
+              <div class="contact-label">Response Time</div>
+              <div class="contact-val">Usually within 2–3 hours on WhatsApp</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon-wrap">🌱</div>
+            <div>
+              <div class="contact-label">Buying Season</div>
+              <div class="contact-val">Currently open — all varieties welcome</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-title">Send Us a Message</div>
+        <div class="form-sub">Tell us what you need — we'll get back to you quickly.</div>
+        <div class="form-group">
+          <div class="form-intent">
+            <div class="intent-btn active">🌿 I want to sell</div>
+            <div class="intent-btn">📚 I want to learn</div>
+            <div class="intent-btn">💬 Just asking</div>
+          </div>
+          <div class="form-row">
+            <input class="form-input" type="text" placeholder="Your Name" />
+            <input class="form-input" type="tel" placeholder="Phone / WhatsApp" />
+          </div>
+          <input class="form-input" type="text" placeholder="Village / Area (e.g. Biromaru, Sigi)" />
+          <select class="form-input">
+            <option value="">Durian Variety (if selling)</option>
+            <option>Durian Lokal Palu</option>
+            <option>Monthong</option>
+            <option>Musang King</option>
+            <option>Mixed / Not sure</option>
+            <option>Not selling — I want training</option>
+          </select>
+          <textarea class="form-input" rows="4" placeholder="Tell us about your harvest, farm size, or questions..."></textarea>
+          <button class="btn-submit">Send Message via WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">Tanah <span>Lembah</span></div>
+        <p class="footer-tagline">Buying durian directly from farmers and empowering growers across Central Sulawesi since 2016.</p>
+      </div>
+      <div>
+        <div class="footer-heading">For Farmers</div>
+        <div class="footer-links">
+          <a href="#">Sell Your Durian</a>
+          <a href="#">Pricing Info</a>
+          <a href="#">Pickup Request</a>
+          <a href="#">Contact Us</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Education</div>
+        <div class="footer-links">
+          <a href="#">Seedling Workshop</a>
+          <a href="#">Soil & Fertilizer</a>
+          <a href="#">Harvest Training</a>
+          <a href="#">Request On-Site</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">About</div>
+        <div class="footer-links">
+          <a href="#">Our Story</a>
+          <a href="#">Gallery</a>
+          <a href="#">Testimonials</a>
+          <a href="#">WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Tanah Lembah · Palu, Sulawesi Tengah</span>
+      <span class="footer-copy">Untuk petani, oleh petani.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Intent button toggle
+    document.querySelectorAll('.intent-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.intent-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

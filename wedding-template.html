@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AMORE — Wedding Organizer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:    #FDFAF7;
+      --blush:    #F2E4DC;
+      --blush-2:  #E8CEBC;
+      --blush-3:  #D4A898;
+      --rose:     #B8756A;
+      --dusty:    #C9A89E;
+      --gold:     #C4956A;
+      --sage:     #8A9E8C;
+      --ink:      #2C1F1A;
+      --ink-2:    #6B5048;
+      --ink-3:    #A08880;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Jost', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--white); color: var(--ink); overflow-x: hidden; font-weight: 300; }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 72px; background: rgba(253,250,247,0.9); backdrop-filter: blur(16px); }
+    .nav-logo { font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--ink); letter-spacing: 0.18em; text-transform: uppercase; font-style: italic; }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a { font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--ink-2); text-decoration: none; letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--rose); }
+    .nav-cta { font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--white); background: var(--rose); padding: 12px 28px; border: none; cursor: pointer; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+    .nav-cta:hover { background: var(--ink); }
+
+    /* ── HERO ── */
+    .hero { min-height: 100vh; position: relative; display: flex; align-items: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, rgba(253,250,247,0.97) 0%, rgba(253,250,247,0.88) 40%, rgba(253,250,247,0.4) 70%, rgba(253,250,247,0.1) 100%); }
+    .hero-content { position: relative; z-index: 2; padding: 140px 72px 80px; max-width: 680px; }
+    .hero-eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 400; color: var(--rose); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 28px; display: flex; align-items: center; gap: 16px; }
+    .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--rose); }
+    .hero-title { font-family: var(--serif); font-size: clamp(48px, 6vw, 84px); font-weight: 400; line-height: 1.05; color: var(--ink); margin-bottom: 28px; letter-spacing: -0.01em; }
+    .hero-title em { font-style: italic; color: var(--rose); }
+    .hero-desc { font-family: var(--sans); font-size: 16px; font-weight: 300; color: var(--ink-2); line-height: 1.8; max-width: 460px; margin-bottom: 48px; }
+    .hero-actions { display: flex; gap: 20px; align-items: center; }
+    .btn-rose { font-family: var(--sans); font-size: 12px; font-weight: 500; background: var(--rose); color: var(--white); padding: 16px 36px; border: none; cursor: pointer; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+    .btn-rose:hover { background: var(--ink); }
+    .btn-outline { font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--ink); border: 1px solid var(--ink-3); padding: 15px 36px; text-decoration: none; letter-spacing: 0.14em; text-transform: uppercase; transition: all 0.3s; }
+    .btn-outline:hover { border-color: var(--rose); color: var(--rose); }
+    .hero-award { position: absolute; bottom: 60px; right: 72px; z-index: 2; background: var(--white); padding: 20px 28px; border-left: 3px solid var(--rose); box-shadow: 0 8px 40px rgba(44,31,26,0.10); }
+    .award-num { font-family: var(--serif); font-size: 40px; font-weight: 400; color: var(--rose); line-height: 1; }
+    .award-label { font-family: var(--sans); font-size: 10px; color: var(--ink-2); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 6px; }
+
+    /* ── DIVIDER ── */
+    .flourish { text-align: center; padding: 60px 0 0; font-family: var(--serif); font-size: 28px; color: var(--blush-3); letter-spacing: 24px; }
+
+    /* ── ABOUT ── */
+    .about { padding: 100px 72px; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+    .about-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; position: relative; }
+    .about-img-main { grid-column: 1 / -1; height: 360px; overflow: hidden; }
+    .about-img-main img, .about-img-sm img { width: 100%; height: 100%; object-fit: cover; }
+    .about-img-sm { height: 200px; overflow: hidden; }
+    .about-eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 400; color: var(--rose); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 20px; }
+    .about-title { font-family: var(--serif); font-size: clamp(30px, 3.5vw, 48px); font-weight: 400; line-height: 1.2; color: var(--ink); margin-bottom: 24px; }
+    .about-title em { font-style: italic; color: var(--rose); }
+    .about-body { font-family: var(--sans); font-size: 15px; font-weight: 300; color: var(--ink-2); line-height: 1.9; margin-bottom: 40px; }
+    .about-stats { display: flex; gap: 40px; padding-top: 32px; border-top: 1px solid var(--blush-2); }
+    .about-stat-num { font-family: var(--serif); font-size: 40px; font-weight: 400; color: var(--rose); }
+    .about-stat-label { font-family: var(--sans); font-size: 11px; color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+
+    /* ── PACKAGES ── */
+    .packages { background: var(--blush); padding: 100px 72px; }
+    .packages-header { text-align: center; margin-bottom: 72px; }
+    .packages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .pkg-card { background: var(--white); padding: 56px 40px; position: relative; transition: all 0.3s; }
+    .pkg-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(44,31,26,0.10); }
+    .pkg-card--featured { background: var(--ink); color: var(--white); }
+    .pkg-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--rose); color: var(--white); font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; padding: 6px 18px; }
+    .pkg-name { font-family: var(--serif); font-size: 28px; font-weight: 400; color: var(--ink); margin-bottom: 8px; }
+    .pkg-card--featured .pkg-name { color: var(--white); }
+    .pkg-tagline { font-family: var(--sans); font-size: 12px; color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 32px; }
+    .pkg-card--featured .pkg-tagline { color: var(--dusty); }
+    .pkg-price { font-family: var(--serif); font-size: 44px; font-weight: 400; color: var(--rose); line-height: 1; margin-bottom: 8px; }
+    .pkg-price-note { font-family: var(--sans); font-size: 12px; color: var(--ink-3); margin-bottom: 40px; }
+    .pkg-card--featured .pkg-price-note { color: var(--dusty); }
+    .pkg-divider { height: 1px; background: var(--blush-2); margin-bottom: 32px; }
+    .pkg-card--featured .pkg-divider { background: rgba(255,255,255,0.15); }
+    .pkg-features { display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
+    .pkg-feature { font-family: var(--sans); font-size: 13px; font-weight: 300; color: var(--ink-2); display: flex; align-items: center; gap: 12px; }
+    .pkg-card--featured .pkg-feature { color: rgba(253,250,247,0.8); }
+    .pkg-feature::before { content: '◆'; font-size: 8px; color: var(--rose); flex-shrink: 0; }
+    .btn-pkg { width: 100%; font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 15px; border: 1px solid var(--rose); background: transparent; color: var(--rose); cursor: pointer; transition: all 0.3s; }
+    .btn-pkg:hover, .pkg-card--featured .btn-pkg { background: var(--rose); color: var(--white); border-color: var(--rose); }
+
+    /* ── GALLERY ── */
+    .gallery { padding: 100px 72px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(2, 280px); gap: 12px; margin-top: 60px; }
+    .g-item { overflow: hidden; }
+    .g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .g-item:hover img { transform: scale(1.06); }
+    .g-item:nth-child(1) { grid-column: span 5; }
+    .g-item:nth-child(2) { grid-column: span 4; }
+    .g-item:nth-child(3) { grid-column: span 3; }
+    .g-item:nth-child(4) { grid-column: span 3; }
+    .g-item:nth-child(5) { grid-column: span 5; }
+    .g-item:nth-child(6) { grid-column: span 4; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--blush); padding: 100px 72px; }
+    .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 60px; }
+    .testi-card { background: var(--white); padding: 56px 48px; }
+    .testi-stars { color: var(--gold); font-size: 14px; letter-spacing: 4px; margin-bottom: 24px; }
+    .testi-text { font-family: var(--serif); font-size: 20px; font-weight: 400; font-style: italic; color: var(--ink); line-height: 1.7; margin-bottom: 36px; }
+    .testi-divider { width: 40px; height: 1px; background: var(--rose); margin-bottom: 20px; }
+    .testi-name { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--ink); letter-spacing: 0.08em; }
+    .testi-event { font-family: var(--sans); font-size: 11px; color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+
+    /* ── CONTACT ── */
+    .contact { padding: 100px 72px; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
+    .contact-title { font-family: var(--serif); font-size: clamp(32px, 4vw, 56px); font-weight: 400; color: var(--ink); line-height: 1.15; margin-bottom: 24px; }
+    .contact-title em { font-style: italic; color: var(--rose); }
+    .contact-body { font-family: var(--sans); font-size: 15px; font-weight: 300; color: var(--ink-2); line-height: 1.8; margin-bottom: 48px; }
+    .contact-info { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+    .contact-icon { width: 40px; height: 40px; background: var(--blush); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .contact-label { font-family: var(--sans); font-size: 10px; color: var(--ink-3); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 4px; }
+    .contact-val { font-family: var(--sans); font-size: 14px; color: var(--ink); }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-input { font-family: var(--sans); font-size: 13px; font-weight: 300; color: var(--ink); background: transparent; border: none; border-bottom: 1px solid var(--blush-2); padding: 12px 0; outline: none; transition: border-color 0.2s; width: 100%; }
+    .form-input:focus { border-color: var(--rose); }
+    .form-input::placeholder { color: var(--ink-3); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .btn-contact { font-family: var(--sans); font-size: 12px; font-weight: 500; background: var(--ink); color: var(--white); padding: 16px 40px; border: none; cursor: pointer; letter-spacing: 0.14em; text-transform: uppercase; transition: all 0.3s; align-self: flex-start; }
+    .btn-contact:hover { background: var(--rose); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); padding: 60px 72px 40px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 40px; }
+    .footer-logo { font-family: var(--serif); font-size: 28px; font-weight: 400; color: var(--white); font-style: italic; letter-spacing: 0.12em; }
+    .footer-logo span { color: var(--blush-3); }
+    .footer-tagline { font-family: var(--sans); font-size: 13px; color: rgba(253,250,247,0.45); margin-top: 8px; font-weight: 300; }
+    .footer-links-group { display: flex; gap: 80px; }
+    .footer-heading { font-family: var(--sans); font-size: 10px; font-weight: 500; color: var(--blush-3); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-family: var(--sans); font-size: 13px; color: rgba(253,250,247,0.5); text-decoration: none; font-weight: 300; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--blush-3); }
+    .footer-copy { font-family: var(--sans); font-size: 12px; color: rgba(253,250,247,0.25); }
+
+    @media(max-width:900px) {
+      .hero-content { padding: 120px 24px 80px; }
+      .about, .contact { grid-template-columns: 1fr; gap: 48px; }
+      .packages-grid, .testi-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .g-item { grid-column: span 1 !important; height: 200px; }
+      nav { padding: 20px 24px; } .nav-links { display: none; }
+      footer { padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Amore</div>
+    <ul class="nav-links">
+      <li><a href="#">About</a></li>
+      <li><a href="#">Packages</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Plan Your Day</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80" alt="Wedding" />
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Wedding Organizer</div>
+      <h1 class="hero-title">Your perfect<br/><em>love story,</em><br/>beautifully told.</h1>
+      <p class="hero-desc">We craft intimate, meaningful weddings that reflect who you truly are. From first consultation to the last dance — every detail, handled with love.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-rose">Start Planning</a>
+        <a href="#" class="btn-outline">View Gallery</a>
+      </div>
+    </div>
+    <div class="hero-award">
+      <div class="award-num">200+</div>
+      <div class="award-label">Weddings Organized</div>
+    </div>
+  </section>
+
+  <div class="flourish">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="about-imgs">
+      <div class="about-img-main"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=900&q=80" alt="Wedding ceremony" /></div>
+      <div class="about-img-sm"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500&q=80" alt="Wedding detail" /></div>
+      <div class="about-img-sm"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80" alt="Wedding flowers" /></div>
+    </div>
+    <div>
+      <div class="about-eyebrow">Who We Are</div>
+      <h2 class="about-title">Turning your vision into an <em>unforgettable</em> day.</h2>
+      <p class="about-body">Amore was founded on a simple belief: your wedding day should feel completely, effortlessly you. Our team of experienced coordinators has planned over 200 weddings across Indonesia — from intimate garden ceremonies to grand ballroom celebrations.</p>
+      <div class="about-stats">
+        <div>
+          <div class="about-stat-num">200+</div>
+          <div class="about-stat-label">Weddings</div>
+        </div>
+        <div>
+          <div class="about-stat-num">8y</div>
+          <div class="about-stat-label">Experience</div>
+        </div>
+        <div>
+          <div class="about-stat-num">99%</div>
+          <div class="about-stat-label">Happy Couples</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="packages">
+    <div class="packages-header">
+      <div class="about-eyebrow" style="justify-content:center;margin-bottom:16px;">Our Packages</div>
+      <h2 class="about-title" style="text-align:center;">Choose your <em>perfect</em> package</h2>
+    </div>
+    <div class="packages-grid">
+      <div class="pkg-card">
+        <div class="pkg-name">Essentials</div>
+        <div class="pkg-tagline">Simple & Beautiful</div>
+        <div class="pkg-price">Rp 15jt</div>
+        <div class="pkg-price-note">per wedding</div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-features">
+          <div class="pkg-feature">On-the-day coordination</div>
+          <div class="pkg-feature">Venue setup & styling</div>
+          <div class="pkg-feature">Vendor management</div>
+          <div class="pkg-feature">Timeline & rundown</div>
+          <div class="pkg-feature">2 coordinators</div>
+        </div>
+        <button class="btn-pkg">Get Started</button>
+      </div>
+      <div class="pkg-card pkg-card--featured">
+        <div class="pkg-badge">Most Popular</div>
+        <div class="pkg-name">Complete</div>
+        <div class="pkg-tagline">Full Service</div>
+        <div class="pkg-price">Rp 35jt</div>
+        <div class="pkg-price-note">per wedding</div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-features">
+          <div class="pkg-feature">3-month planning support</div>
+          <div class="pkg-feature">Venue & vendor sourcing</div>
+          <div class="pkg-feature">Décor & floral styling</div>
+          <div class="pkg-feature">Catering coordination</div>
+          <div class="pkg-feature">Full-day coordination</div>
+          <div class="pkg-feature">4 coordinators</div>
+        </div>
+        <button class="btn-pkg">Choose Complete</button>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-name">Luxury</div>
+        <div class="pkg-tagline">All-Inclusive</div>
+        <div class="pkg-price">Rp 75jt</div>
+        <div class="pkg-price-note">per wedding</div>
+        <div class="pkg-divider"></div>
+        <div class="pkg-features">
+          <div class="pkg-feature">6-month planning support</div>
+          <div class="pkg-feature">Dedicated wedding planner</div>
+          <div class="pkg-feature">Custom décor & florals</div>
+          <div class="pkg-feature">Photography coordination</div>
+          <div class="pkg-feature">Guest management</div>
+          <div class="pkg-feature">Honeymoon planning</div>
+        </div>
+        <button class="btn-pkg">Go Luxury</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <div class="about-eyebrow">Our Work</div>
+    <h2 class="about-title">Moments we've <em>crafted</em></h2>
+    <div class="gallery-grid">
+      <div class="g-item"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=700&q=80" alt="Wedding 1" /></div>
+      <div class="g-item"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80" alt="Wedding 2" /></div>
+      <div class="g-item"><img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=500&q=80" alt="Wedding 3" /></div>
+      <div class="g-item"><img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500&q=80" alt="Wedding 4" /></div>
+      <div class="g-item"><img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=700&q=80" alt="Wedding 5" /></div>
+      <div class="g-item"><img src="https://images.unsplash.com/photo-1591604021695-0c69b7c05981?w=600&q=80" alt="Wedding 6" /></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="about-eyebrow" style="justify-content:center;margin-bottom:12px;">Love Notes</div>
+    <h2 class="about-title" style="text-align:center;">From our <em>happy couples</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Amore turned our dream wedding into reality. Every detail was perfect — the flowers, the lighting, the flow of the day. We didn't have to worry about a single thing."</p>
+        <div class="testi-divider"></div>
+        <div class="testi-name">Rizky & Nadia</div>
+        <div class="testi-event">Garden Wedding · Bandung, June 2024</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The team was so calm and professional even when we had last-minute changes. Our guests kept telling us it was the most beautiful wedding they'd ever attended."</p>
+        <div class="testi-divider"></div>
+        <div class="testi-name">Andre & Putri</div>
+        <div class="testi-event">Ballroom Wedding · Jakarta, March 2024</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <div>
+      <div class="about-eyebrow">Get In Touch</div>
+      <h2 class="contact-title">Let's plan your <em>perfect day</em> together.</h2>
+      <p class="contact-body">Tell us about your dream wedding. We offer a free initial consultation to understand your vision, timeline, and budget — no commitment required.</p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">✉</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-val">hello@amorewedding.co</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">☎</div>
+          <div>
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-val">+62 812 3456 7890</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">◎</div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-val">Jakarta & Bali, Indonesia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <input class="form-input" type="text" placeholder="Your Name" />
+        <input class="form-input" type="text" placeholder="Partner's Name" />
+      </div>
+      <input class="form-input" type="email" placeholder="Email Address" />
+      <input class="form-input" type="tel" placeholder="WhatsApp Number" />
+      <input class="form-input" type="date" placeholder="Wedding Date" />
+      <select class="form-input">
+        <option value="">Select Package</option>
+        <option>Essentials — Rp 15jt</option>
+        <option>Complete — Rp 35jt</option>
+        <option>Luxury — Rp 75jt</option>
+        <option>Not sure yet</option>
+      </select>
+      <textarea class="form-input" rows="4" placeholder="Tell us about your dream wedding..."></textarea>
+      <button class="btn-contact">Send Message</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Amore <span>Wedding</span></div>
+        <div class="footer-tagline">Crafting love stories since 2016 · Jakarta & Bali</div>
+      </div>
+      <div class="footer-links-group">
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="#">Wedding Planning</a>
+            <a href="#">Day-of Coordination</a>
+            <a href="#">Décor & Florals</a>
+            <a href="#">Vendor Sourcing</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Gallery</a>
+            <a href="#">Testimonials</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">© 2025 Amore Wedding Organizer · All rights reserved.</div>
+  </footer>
+
+</body>
+</html>
