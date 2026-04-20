@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>REMPAH — Modern Indonesian Kitchen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --char:     #0F0A06;
+      --char-2:   #1A1008;
+      --char-3:   #261810;
+      --ember:    #C4491A;
+      --ember-lt: #E8713A;
+      --gold:     #C8921A;
+      --gold-lt:  #E8B84A;
+      --cream:    #F5EDD8;
+      --cream-2:  #EDE0C0;
+      --cream-3:  #D4C090;
+      --sage:     #4A6E52;
+      --ink:      #0F0A06;
+      --white:    #FDFAF2;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--char); color: var(--cream); overflow-x: hidden; font-weight: 300; }
+    body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:999; opacity:0.04; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+    /* ── NAV ── */
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 64px; height:70px; background:rgba(15,10,6,0.92); backdrop-filter:blur(16px); border-bottom:1px solid rgba(255,255,255,0.05); }
+    .nav-logo { font-family:var(--serif); font-size:26px; font-weight:500; color:var(--cream); letter-spacing:0.18em; text-transform:uppercase; text-decoration:none; font-style:italic; }
+    .nav-logo span { color:var(--ember); font-style:normal; font-size:10px; font-family:var(--sans); letter-spacing:0.3em; display:block; margin-top:-4px; font-weight:400; }
+    .nav-links { display:flex; gap:0; list-style:none; }
+    .nav-links a { font-family:var(--sans); font-size:12px; color:rgba(245,237,216,0.55); text-decoration:none; padding:8px 18px; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--cream); }
+    .nav-cta { font-family:var(--sans); font-size:12px; font-weight:600; background:var(--ember); color:var(--white); padding:11px 24px; border:none; cursor:pointer; text-decoration:none; letter-spacing:0.1em; text-transform:uppercase; transition:all 0.2s; }
+    .nav-cta:hover { background:var(--ember-lt); }
+
+    /* ── HERO ── */
+    .hero { height:100vh; position:relative; display:flex; align-items:center; overflow:hidden; }
+    .hero-bg { position:absolute; inset:0; }
+    .hero-bg img { width:100%; height:100%; object-fit:cover; }
+    .hero-bg::after { content:''; position:absolute; inset:0; background:linear-gradient(105deg, rgba(15,10,6,0.97) 0%, rgba(15,10,6,0.82) 45%, rgba(15,10,6,0.3) 100%); }
+    .hero-content { position:relative; z-index:2; padding:0 80px; max-width:760px; }
+    .hero-label { font-family:var(--sans); font-size:11px; font-weight:500; color:var(--ember); letter-spacing:0.35em; text-transform:uppercase; margin-bottom:28px; display:flex; align-items:center; gap:14px; }
+    .hero-label::before { content:''; width:36px; height:1px; background:var(--ember); }
+    .hero-title { font-family:var(--serif); font-size:clamp(52px,7vw,96px); font-weight:400; color:var(--cream); line-height:0.95; margin-bottom:28px; letter-spacing:-0.01em; }
+    .hero-title em { font-style:italic; color:var(--ember-lt); }
+    .hero-subtitle { font-family:var(--serif); font-size:clamp(18px,2.2vw,26px); font-style:italic; font-weight:300; color:rgba(245,237,216,0.55); margin-bottom:48px; line-height:1.5; }
+    .hero-actions { display:flex; gap:16px; align-items:center; }
+    .btn-ember { font-family:var(--sans); font-size:12px; font-weight:600; background:var(--ember); color:var(--white); padding:16px 36px; border:none; cursor:pointer; letter-spacing:0.14em; text-transform:uppercase; text-decoration:none; transition:all 0.2s; }
+    .btn-ember:hover { background:var(--ember-lt); transform:translateY(-1px); }
+    .btn-ghost { font-family:var(--sans); font-size:12px; font-weight:400; color:var(--cream-2); border:1px solid rgba(245,237,216,0.2); padding:15px 36px; text-decoration:none; letter-spacing:0.1em; text-transform:uppercase; transition:all 0.2s; }
+    .btn-ghost:hover { border-color:rgba(245,237,216,0.5); color:var(--cream); }
+    .hero-scroll { position:absolute; bottom:48px; left:80px; z-index:2; display:flex; align-items:center; gap:12px; }
+    .hero-scroll-line { width:48px; height:1px; background:rgba(245,237,216,0.3); }
+    .hero-scroll-text { font-family:var(--sans); font-size:10px; color:rgba(245,237,216,0.35); letter-spacing:0.2em; text-transform:uppercase; }
+    .hero-info { position:absolute; bottom:48px; right:80px; z-index:2; text-align:right; }
+    .hero-info-time { font-family:var(--serif); font-size:16px; font-style:italic; color:rgba(245,237,216,0.5); }
+    .hero-info-addr { font-family:var(--sans); font-size:11px; color:rgba(245,237,216,0.3); letter-spacing:0.1em; margin-top:4px; }
+
+    /* ── MARQUEE ── */
+    .marquee { background:var(--ember); padding:14px 0; overflow:hidden; }
+    .marquee-track { display:inline-flex; animation:marquee 22s linear infinite; white-space:nowrap; }
+    .marquee-track span { font-family:var(--sans); font-size:11px; font-weight:600; letter-spacing:0.28em; text-transform:uppercase; color:rgba(253,250,242,0.85); padding:0 28px; }
+    .marquee-track span.dot { color:rgba(253,250,242,0.4); padding:0 4px; font-size:8px; }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── PHILOSOPHY ── */
+    .philosophy { display:grid; grid-template-columns:1fr 1fr; min-height:600px; }
+    .phil-img { position:relative; overflow:hidden; }
+    .phil-img img { width:100%; height:100%; object-fit:cover; }
+    .phil-content { background:var(--char-2); display:flex; flex-direction:column; justify-content:center; padding:100px 80px; }
+    .phil-eyebrow { font-family:var(--sans); font-size:10px; font-weight:600; color:var(--ember); letter-spacing:0.3em; text-transform:uppercase; margin-bottom:24px; display:flex; align-items:center; gap:12px; }
+    .phil-eyebrow::before { content:''; width:24px; height:1px; background:var(--ember); }
+    .phil-title { font-family:var(--serif); font-size:clamp(30px,4vw,52px); font-weight:400; color:var(--cream); line-height:1.15; margin-bottom:24px; }
+    .phil-title em { font-style:italic; color:var(--ember-lt); }
+    .phil-body { font-family:var(--sans); font-size:15px; color:rgba(245,237,216,0.55); line-height:1.9; margin-bottom:40px; }
+    .phil-pillars { display:flex; gap:32px; padding-top:36px; border-top:1px solid rgba(255,255,255,0.07); }
+    .pillar-num { font-family:var(--serif); font-size:40px; font-weight:400; color:var(--ember); line-height:1; }
+    .pillar-label { font-family:var(--sans); font-size:11px; color:rgba(245,237,216,0.4); letter-spacing:0.1em; text-transform:uppercase; margin-top:6px; }
+
+    /* ── MENU ── */
+    .menu { background:var(--char-3); padding:100px 72px; }
+    .menu-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:16px; }
+    .eyebrow { font-family:var(--sans); font-size:10px; font-weight:600; color:var(--ember); letter-spacing:0.28em; text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; gap:12px; }
+    .eyebrow::before { content:''; width:24px; height:1px; background:var(--ember); }
+    .sec-title { font-family:var(--serif); font-size:clamp(28px,3.5vw,48px); font-weight:400; color:var(--cream); line-height:1.15; }
+    .sec-title em { font-style:italic; color:var(--ember-lt); }
+    .menu-tabs { display:flex; gap:0; margin-bottom:56px; border-bottom:1px solid rgba(255,255,255,0.07); }
+    .menu-tab { font-family:var(--sans); font-size:12px; font-weight:500; color:rgba(245,237,216,0.4); padding:12px 24px; cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s; letter-spacing:0.1em; text-transform:uppercase; background:none; border-top:none; border-left:none; border-right:none; }
+    .menu-tab.active, .menu-tab:hover { color:var(--cream); border-bottom-color:var(--ember); }
+    .menu-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+    .menu-item { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); padding:28px 32px; display:grid; grid-template-columns:1fr auto; gap:20px; align-items:start; transition:all 0.2s; cursor:pointer; }
+    .menu-item:hover { background:rgba(196,73,26,0.06); border-color:rgba(196,73,26,0.2); }
+    .menu-item-img { width:80px; height:80px; border-radius:4px; overflow:hidden; flex-shrink:0; }
+    .menu-item-img img { width:100%; height:100%; object-fit:cover; }
+    .menu-item-left { display:flex; gap:20px; align-items:flex-start; }
+    .menu-item-body { }
+    .menu-tag { font-family:var(--sans); font-size:9px; font-weight:600; color:var(--ember); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:6px; }
+    .menu-name { font-family:var(--serif); font-size:20px; font-weight:500; color:var(--cream); margin-bottom:6px; line-height:1.2; }
+    .menu-desc { font-family:var(--sans); font-size:12px; color:rgba(245,237,216,0.45); line-height:1.65; }
+    .menu-price { font-family:var(--serif); font-size:20px; font-weight:500; color:var(--gold-lt); white-space:nowrap; }
+    .menu-price-note { font-family:var(--sans); font-size:10px; color:rgba(245,237,216,0.3); text-align:right; margin-top:3px; }
+
+    /* ── EXPERIENCE ── */
+    .experience { display:grid; grid-template-columns:1fr 1fr; }
+    .exp-img { position:relative; overflow:hidden; min-height:560px; }
+    .exp-img img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+    .exp-content { background:var(--char-2); padding:100px 80px; display:flex; flex-direction:column; justify-content:center; }
+    .exp-title { font-family:var(--serif); font-size:clamp(28px,3.5vw,48px); font-weight:400; color:var(--cream); line-height:1.15; margin-bottom:20px; }
+    .exp-title em { font-style:italic; color:var(--ember-lt); }
+    .exp-body { font-family:var(--sans); font-size:15px; color:rgba(245,237,216,0.55); line-height:1.85; margin-bottom:44px; }
+    .exp-list { display:flex; flex-direction:column; gap:18px; }
+    .exp-item { display:flex; gap:16px; align-items:flex-start; padding-bottom:18px; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .exp-item:last-child { border-bottom:none; padding-bottom:0; }
+    .exp-icon { width:40px; height:40px; background:rgba(196,73,26,0.12); border:1px solid rgba(196,73,26,0.2); border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+    .exp-item-title { font-family:var(--sans); font-size:14px; font-weight:600; color:var(--cream); margin-bottom:4px; }
+    .exp-item-desc { font-family:var(--sans); font-size:13px; color:rgba(245,237,216,0.45); line-height:1.6; }
+
+    /* ── GALLERY ── */
+    .gallery { padding:100px 72px; background:var(--char); }
+    .gallery-grid { display:grid; grid-template-columns:repeat(12,1fr); grid-template-rows:300px 300px; gap:10px; margin-top:56px; }
+    .g { overflow:hidden; }
+    .g img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s ease; }
+    .g:hover img { transform:scale(1.05); }
+    .g:nth-child(1) { grid-column:span 6; grid-row:span 2; }
+    .g:nth-child(2) { grid-column:span 3; }
+    .g:nth-child(3) { grid-column:span 3; }
+    .g:nth-child(4) { grid-column:span 3; }
+    .g:nth-child(5) { grid-column:span 3; }
+
+    /* ── CHEF ── */
+    .chef { background:var(--char-2); padding:100px 72px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .chef-img { border-radius:6px; overflow:hidden; height:520px; }
+    .chef-img img { width:100%; height:100%; object-fit:cover; }
+    .chef-eyebrow { font-family:var(--sans); font-size:10px; font-weight:600; color:var(--ember); letter-spacing:0.28em; text-transform:uppercase; margin-bottom:22px; display:flex; align-items:center; gap:12px; }
+    .chef-eyebrow::before { content:''; width:24px; height:1px; background:var(--ember); }
+    .chef-title { font-family:var(--serif); font-size:clamp(28px,3.5vw,48px); font-weight:400; color:var(--cream); line-height:1.15; margin-bottom:20px; }
+    .chef-title em { font-style:italic; color:var(--ember-lt); }
+    .chef-body { font-family:var(--sans); font-size:15px; color:rgba(245,237,216,0.55); line-height:1.85; margin-bottom:36px; }
+    .chef-name { font-family:var(--serif); font-size:22px; font-weight:500; color:var(--cream); }
+    .chef-role { font-family:var(--sans); font-size:12px; color:var(--ember); letter-spacing:0.12em; text-transform:uppercase; margin-top:4px; }
+    .chef-divider { width:40px; height:1px; background:var(--ember); margin:20px 0; opacity:0.5; }
+
+    /* ── RESERVATIONS ── */
+    .reservations { background:var(--char-3); padding:100px 72px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+    .res-title { font-family:var(--serif); font-size:clamp(28px,3.5vw,50px); font-weight:400; color:var(--cream); line-height:1.15; margin-bottom:20px; }
+    .res-title em { font-style:italic; color:var(--ember-lt); }
+    .res-body { font-family:var(--sans); font-size:15px; color:rgba(245,237,216,0.5); line-height:1.8; margin-bottom:44px; }
+    .res-info { display:flex; flex-direction:column; gap:20px; }
+    .res-info-item { display:flex; gap:14px; align-items:flex-start; }
+    .res-icon { width:38px; height:38px; background:rgba(196,73,26,0.12); border:1px solid rgba(196,73,26,0.2); border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+    .res-info-label { font-family:var(--sans); font-size:10px; color:rgba(245,237,216,0.35); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:3px; }
+    .res-info-val { font-family:var(--sans); font-size:14px; color:var(--cream); }
+    .res-form { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:8px; padding:44px 40px; }
+    .form-title { font-family:var(--serif); font-size:22px; font-weight:400; color:var(--cream); margin-bottom:4px; }
+    .form-sub { font-family:var(--sans); font-size:13px; color:rgba(245,237,216,0.35); margin-bottom:28px; }
+    .form-group { display:flex; flex-direction:column; gap:14px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .form-lbl { font-family:var(--sans); font-size:10px; font-weight:600; color:rgba(245,237,216,0.35); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:5px; }
+    .form-input { font-family:var(--sans); font-size:13px; color:var(--cream); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:12px 16px; border-radius:5px; outline:none; width:100%; transition:border-color 0.2s; }
+    .form-input:focus { border-color:var(--ember); }
+    .form-input::placeholder { color:rgba(245,237,216,0.25); }
+    .btn-res { width:100%; font-family:var(--sans); font-size:12px; font-weight:600; background:var(--ember); color:var(--white); padding:15px; border:none; cursor:pointer; letter-spacing:0.14em; text-transform:uppercase; transition:all 0.2s; }
+    .btn-res:hover { background:var(--ember-lt); }
+
+    /* ── FOOTER ── */
+    footer { background:var(--char); border-top:1px solid rgba(255,255,255,0.05); padding:64px 72px 0; }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:64px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,0.05); }
+    .footer-logo { font-family:var(--serif); font-size:28px; font-weight:400; font-style:italic; color:var(--cream); letter-spacing:0.1em; margin-bottom:8px; }
+    .footer-logo span { color:var(--ember); }
+    .footer-tagline { font-family:var(--sans); font-size:13px; color:rgba(245,237,216,0.3); line-height:1.7; max-width:260px; margin-bottom:24px; }
+    .footer-social { display:flex; gap:12px; }
+    .social-btn { width:36px; height:36px; border:1px solid rgba(255,255,255,0.1); border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:14px; text-decoration:none; transition:all 0.2s; }
+    .social-btn:hover { border-color:var(--ember); }
+    .footer-h { font-family:var(--sans); font-size:10px; font-weight:600; color:rgba(245,237,216,0.3); letter-spacing:0.22em; text-transform:uppercase; margin-bottom:18px; }
+    .footer-links { display:flex; flex-direction:column; gap:10px; }
+    .footer-links a { font-family:var(--sans); font-size:13px; color:rgba(245,237,216,0.4); text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--ember-lt); }
+    .footer-bottom { padding:20px 72px; display:flex; justify-content:space-between; }
+    .footer-copy { font-family:var(--sans); font-size:12px; color:rgba(245,237,216,0.18); }
+
+    @media(max-width:900px) {
+      nav { padding:0 24px; } .nav-links { display:none; }
+      .hero-content { padding:0 24px; } .hero-scroll { left:24px; } .hero-info { right:24px; }
+      .philosophy, .experience, .chef, .reservations { grid-template-columns:1fr; }
+      .phil-img, .exp-img { height:300px; position:relative; }
+      .chef-img { height:300px; }
+      .menu-grid { grid-template-columns:1fr; }
+      .gallery-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+      .g { grid-column:span 1 !important; grid-row:span 1 !important; height:200px; }
+      .menu, .gallery, .chef, .reservations { padding:60px 24px; }
+      footer { padding:48px 24px 0; } .footer-grid { grid-template-columns:1fr; gap:40px; } .footer-bottom { padding:20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Rempah<span>Modern Indonesian Kitchen</span></a>
+    <ul class="nav-links">
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">Experience</a></li>
+      <li><a href="#">Our Chef</a></li>
+      <li><a href="#">Gallery</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Reserve a Table</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&q=80" alt="Indonesian cuisine" />
+    </div>
+    <div class="hero-content">
+      <div class="hero-label">Modern Indonesian Kitchen</div>
+      <h1 class="hero-title">The soul<br/>of the <em>spice<br/>islands.</em></h1>
+      <p class="hero-subtitle">Ancient recipes. Contemporary craft. A tribute to the archipelago on every plate.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-ember">Reserve a Table</a>
+        <a href="#" class="btn-ghost">View Menu</a>
+      </div>
+    </div>
+    <div class="hero-scroll"><div class="hero-scroll-line"></div><div class="hero-scroll-text">Scroll</div></div>
+    <div class="hero-info">
+      <div class="hero-info-time">Open daily · 11:00 — 22:30</div>
+      <div class="hero-info-addr">Jl. Kemang Raya No. 42, Jakarta</div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Rendang</span><span class="dot">◆</span>
+      <span>Soto Betawi</span><span class="dot">◆</span>
+      <span>Nasi Goreng</span><span class="dot">◆</span>
+      <span>Gado-Gado</span><span class="dot">◆</span>
+      <span>Rawon</span><span class="dot">◆</span>
+      <span>Mie Aceh</span><span class="dot">◆</span>
+      <span>Ikan Bakar</span><span class="dot">◆</span>
+      <span>Klepon</span><span class="dot">◆</span>
+      <span>Rendang</span><span class="dot">◆</span>
+      <span>Soto Betawi</span><span class="dot">◆</span>
+      <span>Nasi Goreng</span><span class="dot">◆</span>
+      <span>Gado-Gado</span><span class="dot">◆</span>
+      <span>Rawon</span><span class="dot">◆</span>
+      <span>Mie Aceh</span><span class="dot">◆</span>
+      <span>Ikan Bakar</span><span class="dot">◆</span>
+      <span>Klepon</span><span class="dot">◆</span>
+    </div>
+  </div>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy">
+    <div class="phil-img">
+      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=80" alt="Restaurant interior" />
+    </div>
+    <div class="phil-content">
+      <div class="phil-eyebrow">Our Philosophy</div>
+      <h2 class="phil-title">Indonesian flavour,<br/><em>reimagined.</em></h2>
+      <p class="phil-body">Rempah was born from a simple conviction: Indonesian cuisine is one of the world's great culinary traditions — complex, layered, deeply regional — and it deserves to be celebrated with the same reverence as any cuisine in the world. We honour the classics while giving them room to breathe.</p>
+      <div class="phil-pillars">
+        <div><div class="pillar-num">17,000</div><div class="pillar-label">Islands of Inspiration</div></div>
+        <div><div class="pillar-num">300+</div><div class="pillar-label">Regional Cuisines</div></div>
+        <div><div class="pillar-num">100%</div><div class="pillar-label">Local Ingredients</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu">
+    <div class="menu-header">
+      <div>
+        <div class="eyebrow">Our Menu</div>
+        <h2 class="sec-title">A journey across <em>the archipelago</em></h2>
+      </div>
+    </div>
+    <div class="menu-tabs">
+      <button class="menu-tab active">Mains</button>
+      <button class="menu-tab">Starters</button>
+      <button class="menu-tab">Desserts</button>
+      <button class="menu-tab">Drinks</button>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="menu-item-left">
+          <div class="menu-item-img"><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=200&q=80" alt="Rendang" /></div>
+          <div class="menu-item-body">
+            <div class="menu-tag">Signature · West Sumatra</div>
+            <div class="menu-name">Rendang Wagyu</div>
+            <p class="menu-desc">Slow-cooked wagyu beef in rich coconut and 12-spice rendang paste. Served with compressed rice and pickled vegetables.</p>
+          </div>
+        </div>
+        <div><div class="menu-price">Rp 185k</div><div class="menu-price-note">per portion</div></div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-left">
+          <div class="menu-item-img"><img src="https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?w=200&q=80" alt="Soto" /></div>
+          <div class="menu-item-body">
+            <div class="menu-tag">Heritage · Jakarta</div>
+            <div class="menu-name">Soto Betawi Susu</div>
+            <p class="menu-desc">Classic Betawi beef soup with coconut milk broth, tomato, emping, and a slow-cooked bone marrow garnish.</p>
+          </div>
+        </div>
+        <div><div class="menu-price">Rp 125k</div><div class="menu-price-note">per portion</div></div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-left">
+          <div class="menu-item-img"><img src="https://images.unsplash.com/photo-1562802378-063ec186a863?w=200&q=80" alt="Nasi Goreng" /></div>
+          <div class="menu-item-body">
+            <div class="menu-tag">Modern · All-Region</div>
+            <div class="menu-name">Nasi Goreng Hitam</div>
+            <p class="menu-desc">Black squid ink fried rice with tiger prawns, cumi bakar, kemangi, and a 63°C egg. A Rempah original.</p>
+          </div>
+        </div>
+        <div><div class="menu-price">Rp 155k</div><div class="menu-price-note">per portion</div></div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-left">
+          <div class="menu-item-img"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=200&q=80" alt="Gado Gado" /></div>
+          <div class="menu-item-body">
+            <div class="menu-tag">Vegetarian · Java</div>
+            <div class="menu-name">Gado-Gado Rempah</div>
+            <p class="menu-desc">Seasonal vegetables, tempeh, tofu, lontong, with our house-made kacang sauce spiced with fresh galangal.</p>
+          </div>
+        </div>
+        <div><div class="menu-price">Rp 95k</div><div class="menu-price-note">per portion</div></div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-left">
+          <div class="menu-item-img"><img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=200&q=80" alt="Ikan Bakar" /></div>
+          <div class="menu-item-body">
+            <div class="menu-tag">Coastal · Sulawesi</div>
+            <div class="menu-name">Ikan Bakar Manado</div>
+            <p class="menu-desc">Whole grilled snapper marinated in Manado rica-rica paste, banana leaf-wrapped and served with dabu-dabu sambal.</p>
+          </div>
+        </div>
+        <div><div class="menu-price">Rp 210k</div><div class="menu-price-note">per portion</div></div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-left">
+          <div class="menu-item-img"><img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=200&q=80" alt="Rawon" /></div>
+          <div class="menu-item-body">
+            <div class="menu-tag">Heritage · East Java</div>
+            <div class="menu-name">Rawon Daging Hitam</div>
+            <p class="menu-desc">East Javanese black beef soup with kluwek nut broth, bean sprouts, salted egg, and sambal terasi on the side.</p>
+          </div>
+        </div>
+        <div><div class="menu-price">Rp 135k</div><div class="menu-price-note">per portion</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="experience">
+    <div class="exp-img">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80" alt="Dining experience" />
+    </div>
+    <div class="exp-content">
+      <div class="phil-eyebrow">The Experience</div>
+      <h2 class="exp-title">More than a meal —<br/>a <em>conversation</em><br/>with culture.</h2>
+      <p class="exp-body">At Rempah, we believe dining is a form of storytelling. Each dish comes with the story of its origin — which island, which community, which tradition gave it life. Our team is trained not just to serve, but to share.</p>
+      <div class="exp-list">
+        <div class="exp-item">
+          <div class="exp-icon">🌿</div>
+          <div>
+            <div class="exp-item-title">Farm-to-Table Sourcing</div>
+            <div class="exp-item-desc">Every ingredient traced directly to Indonesian farmers and fishermen. Fresh, seasonal, and responsible.</div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-icon">🎭</div>
+          <div>
+            <div class="exp-item-title">Cultural Dining Events</div>
+            <div class="exp-item-desc">Monthly themed dinners celebrating different Indonesian regions — from Aceh to Papua.</div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-icon">🍷</div>
+          <div>
+            <div class="exp-item-title">Jamu & Craft Drinks</div>
+            <div class="exp-item-desc">A full drink menu built on traditional jamu recipes, fermented beverages, and Indonesian botanicals.</div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-icon">👨‍🍳</div>
+          <div>
+            <div class="exp-item-title">Chef's Table (8 seats)</div>
+            <div class="exp-item-desc">An intimate tasting experience at the pass. Watch the kitchen in action, paired with 7 courses.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <div class="eyebrow">From Our Kitchen</div>
+    <h2 class="sec-title">A feast for <em>the eyes</em></h2>
+    <div class="gallery-grid">
+      <div class="g"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=80" alt="Food" /></div>
+      <div class="g"><img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80" alt="Dish" /></div>
+      <div class="g"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80" alt="Plating" /></div>
+      <div class="g"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=80" alt="Bowl" /></div>
+      <div class="g"><img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Pancake" /></div>
+    </div>
+  </section>
+
+  <!-- CHEF -->
+  <section class="chef">
+    <div class="chef-img">
+      <img src="https://images.unsplash.com/photo-1583394293214-31e84dae2b52?w=800&q=80" alt="Chef" />
+    </div>
+    <div>
+      <div class="chef-eyebrow">Meet the Chef</div>
+      <h2 class="chef-title">Trained in Paris,<br/><em>rooted in Jogja.</em></h2>
+      <p class="chef-body">Chef Bayu Santoso grew up in his grandmother's kitchen in Yogyakarta, learning the patience required to make a proper gudeg and the precision of grinding fresh bumbu from scratch. After training in France and working across Southeast Asia, he returned to Indonesia with one mission: to give Indonesian cuisine the platform it deserves.</p>
+      <div class="chef-divider"></div>
+      <div class="chef-name">Chef Bayu Santoso</div>
+      <div class="chef-role">Executive Chef & Co-Founder · Rempah</div>
+    </div>
+  </section>
+
+  <!-- RESERVATIONS -->
+  <section class="reservations">
+    <div>
+      <div class="eyebrow">Reservations</div>
+      <h2 class="res-title">Join us for<br/><em>dinner.</em></h2>
+      <p class="res-body">We take reservations up to 30 days in advance. Walk-ins welcome subject to availability. For groups of 8 or more, please contact us directly.</p>
+      <div class="res-info">
+        <div class="res-info-item">
+          <div class="res-icon">🕐</div>
+          <div>
+            <div class="res-info-label">Opening Hours</div>
+            <div class="res-info-val">Daily 11:00 – 22:30<br/>Chef's Table: Fri & Sat only</div>
+          </div>
+        </div>
+        <div class="res-info-item">
+          <div class="res-icon">📍</div>
+          <div>
+            <div class="res-info-label">Location</div>
+            <div class="res-info-val">Jl. Kemang Raya No. 42<br/>Jakarta Selatan, 12730</div>
+          </div>
+        </div>
+        <div class="res-info-item">
+          <div class="res-icon">📱</div>
+          <div>
+            <div class="res-info-label">Contact</div>
+            <div class="res-info-val">+62 21-7890-1234<br/>hello@rempah.id</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="res-form">
+      <div class="form-title">Make a Reservation</div>
+      <div class="form-sub">We'll confirm your booking within 2 hours.</div>
+      <div class="form-group">
+        <div class="form-row">
+          <div><div class="form-lbl">Full Name</div><input class="form-input" type="text" placeholder="Your name" /></div>
+          <div><div class="form-lbl">Phone / WA</div><input class="form-input" type="tel" placeholder="+62..." /></div>
+        </div>
+        <div class="form-row">
+          <div><div class="form-lbl">Date</div><input class="form-input" type="date" /></div>
+          <div><div class="form-lbl">Time</div><select class="form-input"><option>11:00</option><option>12:00</option><option>13:00</option><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option></select></div>
+        </div>
+        <div class="form-row">
+          <div><div class="form-lbl">Guests</div><select class="form-input"><option>1–2 Guests</option><option>3–4 Guests</option><option>5–6 Guests</option><option>7+ Guests</option></select></div>
+          <div><div class="form-lbl">Occasion</div><select class="form-input"><option>Regular Dinner</option><option>Birthday</option><option>Anniversary</option><option>Business</option><option>Chef's Table</option></select></div>
+        </div>
+        <div><div class="form-lbl">Special Requests</div><textarea class="form-input" rows="3" placeholder="Dietary requirements, allergies, special arrangements..."></textarea></div>
+        <button class="btn-res">Confirm Reservation</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Rempah<span>.</span></div>
+        <p class="footer-tagline">Modern Indonesian kitchen celebrating the flavours of the archipelago. Jakarta, Indonesia.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn">📸</a>
+          <a href="#" class="social-btn">🐦</a>
+          <a href="#" class="social-btn">💼</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-h">Restaurant</div>
+        <div class="footer-links">
+          <a href="#">Our Menu</a>
+          <a href="#">The Experience</a>
+          <a href="#">Chef's Table</a>
+          <a href="#">Private Dining</a>
+          <a href="#">Gift Cards</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-h">Visit Us</div>
+        <div class="footer-links">
+          <a href="#">Reservations</a>
+          <a href="#">Location & Hours</a>
+          <a href="#">Our Chef</a>
+          <a href="#">Gallery</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Rempah · Jakarta, Indonesia · All rights reserved.</span>
+      <span class="footer-copy">Untuk Indonesia, dari Indonesia.</span>
+    </div>
+  </footer>
+
+</body>
+</html>
