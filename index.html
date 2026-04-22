@@ -89,7 +89,7 @@
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(13, 17, 23,0.97) 0%, rgba(13, 17, 23,0.92) 55%, rgba(13, 17, 23,0.75) 100%); }
     .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 2; width: 100%; }
     .hero-tag { font-family: var(--mono); font-size: 12px; color: #C9A567; letter-spacing: 0.18em; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; opacity: 0; transform: translateX(-30px); animation: slideRight 0.8s ease 0.2s forwards; text-transform: uppercase; }
-    .hero-tag::before { content: '//'; color: #C9A567; font-size: 12px; }
+    .hero-tag::before { content: ''; color: #C9A567; font-size: 12px; }
     .hero-title { font-family: var(--h); font-size: clamp(28px,3.5vw,48px); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 1.5rem; color: var(--white); opacity: 0; transform: translateX(-40px); animation: slideRight 0.8s ease 0.35s forwards; text-shadow: 0 0 40px rgba(201, 165, 103,0.1); }
     .hero-title span { color: #C9A567; }
     .hero-sub { font-family: var(--h); font-size: 14px; font-weight: 400; line-height: 1.9; color: #A09890; margin-bottom: 2.5rem; max-width: 440px; opacity: 0; transform: translateX(-30px); animation: slideRight 0.8s ease 0.5s forwards; }
@@ -352,7 +352,7 @@
     <li><a href="index.html" class="active" data-en="home" data-id="beranda">beranda</a></li>
     <li><a href="data-analysis.html" data-en="data analysis" data-id="data analysis">data analysis</a></li>
     <li><a href="accounting.html" data-en="accounting" data-id="akuntansi">akuntansi</a></li>
-    <li><a href="tax.html" data-en="tax" data-id="pajak">pajak</a></li>
+    <li><a href="tax.html" data-en="tax" data-id="perpajakan">perpajakan</a></li>
     <li><a href="website.html" data-en="website" data-id="website">website</a></li>
   </ul>
   <div class="nav-right">
@@ -365,7 +365,7 @@
   <a href="index.html" class="active" data-en="home" data-id="beranda">beranda</a>
   <a href="data-analysis.html" data-en="data analysis" data-id="data analysis">data analysis</a>
   <a href="accounting.html" data-en="accounting" data-id="akuntansi">akuntansi</a>
-  <a href="tax.html" data-en="tax" data-id="pajak">pajak</a>
+  <a href="tax.html" data-en="tax" data-id="perpajakan">perpajakan</a>
   <a href="website.html" data-en="website" data-id="website">website</a>
   <a href="index.html#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
 </div>
@@ -413,7 +413,7 @@
 
 <section class="about-section" id="about">
   <div class="section-wrap">
-    <div class="section-eyebrow" data-en="// about me" data-id="// tentang saya">// tentang saya</div>
+    <div class="section-eyebrow" data-en="about me" data-id="tentang saya">tentang saya</div>
     <div class="about-grid">
       <div class="about-photo-wrap sr sr-left">
         <img class="about-photo" src="photo.JPG" alt="Anthony Djiady Djie — Founder ADJ Business Consulting">
@@ -428,7 +428,11 @@
         <div class="edu-list sr sr-up d2">
           <div class="cert-item">
             <div class="cert-dot"></div>
-            <div><span class="cert-text">Data Analyst / Data Scientist Bootcamp</span><span class="cert-issuer">Dibimbing.id · Sep 2025 — Apr 2026</span></div>
+            <div><span class="cert-text">Praktisi/Pengacara Pajak (PKP3)</span><span class="cert-issuer">Jimly Law School, Jakarta · Apr 2026 — May 2026</span></div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-dot"></div>
+            <div><span class="cert-text">Data Analyst / Data Scientist</span><span class="cert-issuer">Dibimbing.id · Oct 2025 — Apr 2026</span></div>
           </div>
           <div class="cert-item">
             <div class="cert-dot"></div>
@@ -455,7 +459,7 @@
         </div>
 
         <div class="about-actions sr sr-up d4">
-          <a href="ATS_Anthony_Djiady_Djie_Resume.pdf" class="btn-about" target="_blank" data-en="Download Resume →" data-id="Download Resume →">Download Resume →</a>
+          <a href="#" class="btn-about" onclick="openResumeModal(event)" data-en="View Resume →" data-id="Lihat Resume →">Lihat Resume →</a>
           <a href="#certs-section" class="btn-about-outline" data-en="View Certifications" data-id="Lihat Sertifikasi">Lihat Sertifikasi</a>
           <a href="https://www.linkedin.com/in/anthony-djiady-djie" class="btn-linkedin" target="_blank" rel="noopener noreferrer" data-en="LinkedIn" data-id="LinkedIn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -469,7 +473,7 @@
 
 <section class="certs-gallery" id="certs-section">
   <div class="section-wrap">
-    <div class="section-eyebrow" data-en="// certifications" data-id="// sertifikasi">// sertifikasi</div>
+    <div class="section-eyebrow" data-en="certifications" data-id="sertifikasi">sertifikasi</div>
     <h2 class="section-title sr sr-left" data-en="Professional <span>Certifications</span>" data-id="Sertifikasi <span>Profesional</span>">Sertifikasi <span>Profesional</span></h2>
     <div class="certs-grid">
       <a href="https://coursera.org/verify/professional-cert/HR6VC9WMGF9J" target="_blank" class="cert-card sr sr-up d1">
@@ -519,7 +523,7 @@
       </a>
       <a href="Xero_Advisor.png" target="_blank" class="cert-card sr sr-up d3">
         <div class="cert-logo-wrap">
-          <svg viewBox="0 0 48 48"><circle fill="#13B5EA" cx="24" cy="24" r="20"/><path fill="#fff" d="M16 24l6-6 2 2-4 4 4 4-2 2-6-6zm16 0l-6-6-2 2 4 4-4 4 2 2 6-6z"/></svg>
+          <img src="xero-logo-11609383483yebtmp69gf.webp" alt="Xero" style="width:100%;height:100%;object-fit:contain;border-radius:50%;">
         </div>
         <div class="cert-meta">
           <span class="cert-card-name">Xero Advisor Certified</span>
@@ -528,11 +532,24 @@
       </a>
       <a href="AB_66DM_RS-1_AD.pdf" target="_blank" class="cert-card sr sr-up d1">
         <div class="cert-logo-wrap">
-          <svg viewBox="0 0 48 48"><path fill="#1B4F72" d="M24 4L4 14v20l20 10 20-10V14L24 4z"/><path fill="#2E86C1" d="M24 8l16 8-16 8-16-8 16-8z"/><path fill="#85C1E9" d="M8 18v14l16 8V26L8 18z" opacity="0.7"/></svg>
+          <img src="Logo-Ikatan-Akuntan-Indonesia-IAI.webp" alt="IAI" style="width:100%;height:100%;object-fit:contain;">
         </div>
         <div class="cert-meta">
           <span class="cert-card-name" data-en="Tax Brevet A &amp; B" data-id="Brevet Pajak A &amp; B">Brevet Pajak A &amp; B</span>
           <span class="cert-card-org">IAI · 2018</span>
+        </div>
+      </a>
+      <a href="https://dibimbing.id/certificate-validation?cn=201029DS39041721" target="_blank" class="cert-card sr sr-up d2">
+        <div class="cert-logo-wrap">
+          <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius:6px;">
+            <rect width="512" height="512" fill="#0BB1CB"/>
+            <path d="M243.94 186.055C227.999 158.984 229.77 125.216 246.49 105.019C263.21 84.8224 292.045 77.4169 320.561 86.0626C342.523 92.724 350.068 102.681 350.175 125.641C350.387 181.271 349.785 236.972 349.785 292.46C349.785 324.811 366.08 361.378 384.854 394.259C395.198 382 400.512 370.129 400.441 355.283C400.181 275.015 400.205 194.724 400.512 114.409C400.512 96.6925 392.648 83.3342 382.268 70.1531C382.339 70.2594 357.826 39.9996 302.176 39.9996C290.361 39.8641 278.559 40.8488 266.93 42.9406C202.459 56.228 158.782 137.795 198.456 206.535C225.638 253.779 252.477 301.023 278.974 348.267C302.07 389.689 324.493 431.358 346.916 472H402.424L243.94 186.055Z" fill="white"/>
+            <path d="M163.74 219.717L189.599 258.303C184.375 263.073 179.63 268.342 175.43 274.036C161.898 293.382 153.113 313.012 161.615 335.618C170.506 358.898 187.509 374.843 214.396 375.374C234.871 375.729 255.381 375.374 275.856 375.374L303.628 427.673C261.332 427.673 227.786 431.004 191.937 423.847C152.476 416.051 116.662 371.796 110.393 325.626C108.059 304.7 111.86 283.546 121.332 264.742C130.804 245.937 145.538 230.294 163.74 219.717Z" fill="white"/>
+          </svg>
+        </div>
+        <div class="cert-meta">
+          <span class="cert-card-name" data-en="Data Analyst &amp; Data Scientist" data-id="Data Analyst &amp; Data Scientist">Data Analyst &amp; Data Scientist</span>
+          <span class="cert-card-org">Dibimbing.id · 2026</span>
         </div>
       </a>
     </div>
@@ -558,7 +575,7 @@
       </a>
       <a href="portfolio.html#panel-tax" class="service-card sr sr-up d3">
         <div class="service-icon-wrap">§</div>
-        <div class="service-name" data-en="Tax" data-id="Pajak">Pajak</div>
+        <div class="service-name" data-en="Tax" data-id="Perpajakan">Perpajakan</div>
         <p class="service-desc" data-en="PPh 21 calculation, SPT Tahunan reporting, and data input on Coretax — accurate and compliant with Indonesian tax regulations." data-id="Perhitungan PPh 21, pelaporan SPT Tahunan, dan penginputan data di Coretax — akurat dan sesuai regulasi perpajakan Indonesia.">Perhitungan PPh 21, pelaporan SPT Tahunan, dan penginputan data di Coretax — akurat dan sesuai regulasi perpajakan Indonesia.</p>
         <span class="service-tag">View Portfolio →</span>
       </a>
@@ -587,7 +604,7 @@
   <div class="section-wrap">
     <div class="contact-grid">
       <div>
-        <div class="section-eyebrow" data-en="// get in touch" data-id="// hubungi kami">// hubungi kami</div>
+        <div class="section-eyebrow" data-en="get in touch" data-id="hubungi kami">hubungi kami</div>
         <h2 class="section-title sr sr-left" style="margin-bottom:1.5rem" data-en="Got a Project in Mind? <span>Let's Make It Happen.</span>" data-id="Punya Proyek? <span>Ayo Wujudkan Bersama.</span>">Punya Proyek? <span>Ayo Wujudkan Bersama.</span></h2>
         <p class="contact-desc sr sr-left d1" data-en="First consultation is free. Fill out the form and we'll get back to you within 24 hours." data-id="Konsultasi pertama gratis. Isi formulir dan kami akan menghubungi Anda dalam 24 jam.">Konsultasi pertama gratis. Isi formulir dan kami akan menghubungi Anda dalam 24 jam.</p>
         <div class="contact-info-row sr sr-left d2">
@@ -653,11 +670,41 @@
   <p style="font-family:var(--mono);font-size:11px;color:#4A4038;margin-top:6px;letter-spacing:0.08em;" data-en="Designed &amp; built by Anthony Djiady Djie — every line of code, every pixel." data-id="Dirancang &amp; dibangun oleh Anthony Djiady Djie — setiap baris kode, setiap piksel.">Dirancang &amp; dibangun oleh Anthony Djiady Djie — setiap baris kode, setiap piksel.</p>
 </footer>
 
+<!-- RESUME MODAL -->
+<div id="resumeModal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;">
+  <div style="position:relative;width:min(860px,95vw);height:90vh;background:#1C232D;border:1px solid rgba(201,165,103,0.2);border-radius:10px;display:flex;flex-direction:column;overflow:hidden;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(201,165,103,0.12);flex-shrink:0;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#C9A567;letter-spacing:0.12em;text-transform:uppercase;">ATS_Anthony_Djiady_Djie_Resume_Final.pdf</span>
+      <button onclick="closeResumeModal()" style="background:none;border:none;cursor:pointer;color:#7A7068;font-size:20px;line-height:1;padding:4px 8px;font-family:monospace;transition:color 0.2s;" onmouseover="this.style.color='#F4EFE6'" onmouseout="this.style.color='#7A7068'">✕</button>
+    </div>
+    <iframe src="ATS_Anthony_Djiady_Djie_Resume_Final.pdf#toolbar=0&navpanes=0&scrollbar=1" style="flex:1;width:100%;border:none;" title="Resume"></iframe>
+  </div>
+</div>
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   if (typeof emailjs !== 'undefined') { emailjs.init({ publicKey: '_UYS6jlzal211WHAX' }); }
 </script>
 <script>
+  // Mobile menu toggle
+  function openResumeModal(e) {
+    e.preventDefault();
+    var modal = document.getElementById('resumeModal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeResumeModal() {
+    var modal = document.getElementById('resumeModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  document.getElementById('resumeModal').addEventListener('click', function(e) {
+    if (e.target === this) closeResumeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeResumeModal();
+  });
+
   // Mobile menu toggle
   function toggleMobileMenu() {
     var btn = document.getElementById('hamburgerBtn');

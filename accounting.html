@@ -149,6 +149,121 @@
     .cert-card-name { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--white); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .cert-card-org { font-family: var(--mono); font-size: 10.5px; color: var(--gray-3); letter-spacing: 0.04em; }
 
+    /* ── EDUCATIONAL PORTFOLIO ── */
+    .edu-section { padding: 5rem 5vw 4rem; }
+    .edu-inner { max-width: 1200px; margin: 0 auto; }
+    .edu-intro { font-family: var(--mono); font-size: 14px; color: var(--gray-2); line-height: 1.8; max-width: 680px; margin-bottom: 3rem; }
+
+    /* Three concept cards */
+    .edu-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 4rem; }
+    .edu-card { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.12); border-radius: 8px; padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem; transition: all 0.25s; position: relative; overflow: hidden; }
+    .edu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,165,103,0.4), transparent); opacity: 0; transition: opacity 0.3s; }
+    .edu-card:hover { border-color: rgba(201,165,103,0.3); transform: translateY(-2px); }
+    .edu-card:hover::before { opacity: 1; }
+    .edu-card-num { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.18em; text-transform: uppercase; }
+    .edu-card-title { font-family: var(--h); font-size: 18px; font-weight: 700; color: var(--white); line-height: 1.3; }
+    .edu-card-body { font-family: var(--mono); font-size: 12.5px; color: var(--gray-2); line-height: 1.7; }
+    .edu-card-body em { font-style: normal; color: var(--white); font-weight: 600; }
+
+    /* Equation card */
+    .equation-box { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--cyan); background: rgba(201,165,103,0.05); border: 1px dashed rgba(201,165,103,0.3); padding: 1rem; border-radius: 5px; text-align: center; letter-spacing: 0.02em; }
+    .equation-box .eq-op { color: var(--gray-3); margin: 0 0.4rem; }
+    .warning-box { background: rgba(201,165,103,0.04); border-left: 2px solid var(--cyan); padding: 0.75rem 1rem; border-radius: 0 4px 4px 0; }
+    .warning-box-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.4rem; display: block; }
+    .warning-box-text { font-family: var(--mono); font-size: 11.5px; color: var(--gray-1); line-height: 1.65; }
+
+    /* Cycle card */
+    .cycle-list { display: flex; flex-direction: column; gap: 6px; }
+    .cycle-step { display: flex; align-items: center; gap: 10px; padding: 7px 10px; background: rgba(255,255,255,0.02); border: 1px solid rgba(201,165,103,0.08); border-radius: 4px; font-family: var(--mono); font-size: 11.5px; color: var(--gray-1); transition: all 0.2s; }
+    .cycle-step:hover { border-color: rgba(201,165,103,0.2); background: rgba(201,165,103,0.03); }
+    .cycle-step-num { font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--cyan); background: rgba(201,165,103,0.1); width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; }
+    .cycle-step-name { flex: 1; }
+
+    /* Debit-Kredit card */
+    .dk-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11.5px; }
+    .dk-table th { font-family: var(--mono); font-size: 10px; color: var(--gray-3); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; padding: 6px 4px; border-bottom: 1px solid var(--navy-line); text-align: left; }
+    .dk-table th.center { text-align: center; }
+    .dk-table td { padding: 8px 4px; border-bottom: 1px solid rgba(201,165,103,0.06); color: var(--gray-1); }
+    .dk-table td.center { text-align: center; }
+    .dk-table .badge-d { display: inline-block; font-size: 10px; font-weight: 700; color: var(--cyan); background: rgba(201,165,103,0.1); padding: 2px 8px; border-radius: 3px; letter-spacing: 0.08em; }
+    .dk-table .badge-k { display: inline-block; font-size: 10px; font-weight: 700; color: #A09890; background: rgba(160,152,144,0.1); padding: 2px 8px; border-radius: 3px; letter-spacing: 0.08em; }
+    .dk-mnemonic { margin-top: 0.5rem; padding: 0.75rem; background: rgba(201,165,103,0.04); border: 1px solid rgba(201,165,103,0.15); border-radius: 4px; font-family: var(--mono); font-size: 11px; color: var(--gray-1); line-height: 1.6; }
+    .dk-mnemonic strong { color: var(--cyan); font-weight: 700; letter-spacing: 0.05em; }
+
+    /* Worked example */
+    .worked-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
+    .worked-heading { font-family: var(--h); font-size: clamp(22px,2.8vw,30px); font-weight: 700; color: var(--white); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+    .worked-heading span { color: var(--cyan); }
+    .worked-sub { font-family: var(--mono); font-size: 13px; color: var(--gray-2); line-height: 1.7; margin-bottom: 2rem; max-width: 720px; }
+
+    .worked-wrap { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.12); border-radius: 10px; overflow: hidden; }
+    .worked-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-bottom: 1px solid var(--navy-line); }
+    .worked-flow-step { padding: 1.5rem 1.25rem; border-right: 1px solid var(--navy-line); position: relative; }
+    .worked-flow-step:last-child { border-right: none; }
+    .worked-flow-step::after { content: '→'; position: absolute; right: -9px; top: 50%; transform: translateY(-50%); color: var(--cyan); font-size: 14px; background: var(--navy-mid); padding: 2px 4px; z-index: 2; }
+    .worked-flow-step:last-child::after { display: none; }
+    .worked-flow-num { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.14em; margin-bottom: 6px; }
+    .worked-flow-name { font-family: var(--mono); font-size: 12.5px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+    .worked-flow-desc { font-family: var(--mono); font-size: 10.5px; color: var(--gray-3); line-height: 1.5; }
+
+    .journal-block { padding: 2rem; border-bottom: 1px solid var(--navy-line); }
+    .journal-block-title { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1rem; }
+    .journal-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11.5px; }
+    .journal-table th { font-family: var(--mono); font-size: 10px; color: var(--gray-3); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; padding: 8px 10px; border-bottom: 1px solid var(--navy-line); text-align: left; }
+    .journal-table th.num { text-align: right; }
+    .journal-table td { padding: 9px 10px; border-bottom: 1px solid rgba(201,165,103,0.05); color: var(--gray-1); vertical-align: top; }
+    .journal-table td.num { text-align: right; color: var(--white); font-variant-numeric: tabular-nums; }
+    .journal-table tr:last-child td { border-bottom: none; }
+    .journal-table .j-date { color: var(--gray-3); white-space: nowrap; }
+    .journal-table .j-acc { color: var(--cyan); }
+
+    .worked-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .worked-col { padding: 2rem; }
+    .worked-col:first-child { border-right: 1px solid var(--navy-line); }
+    .worked-col-title { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .summary-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(201,165,103,0.05); font-family: var(--mono); font-size: 12px; }
+    .summary-row:last-of-type { border-bottom: none; }
+    .summary-row .s-label { color: var(--gray-2); }
+    .summary-row .s-val { color: var(--white); font-variant-numeric: tabular-nums; }
+    .summary-row.s-total { border-top: 1px solid var(--cyan); margin-top: 8px; padding-top: 12px; font-weight: 700; }
+    .summary-row.s-total .s-label { color: var(--cyan); letter-spacing: 0.04em; text-transform: uppercase; font-size: 11px; }
+    .summary-row.s-total .s-val { color: var(--cyan); font-size: 14px; }
+    .summary-row.s-sub .s-label { color: var(--gray-3); font-size: 11px; padding-left: 1rem; }
+    .summary-row.s-sub .s-val { color: var(--gray-2); font-size: 11px; }
+
+    /* Compliance callout */
+    .compliance-block { padding: 4rem 5vw 5rem; }
+    .compliance-inner { max-width: 1200px; margin: 0 auto; }
+    .compliance-box { background: linear-gradient(135deg, rgba(201,165,103,0.08) 0%, rgba(201,165,103,0.02) 100%); border: 1px solid rgba(201,165,103,0.25); border-radius: 10px; padding: 2.5rem; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start; position: relative; overflow: hidden; }
+    .compliance-box::before { content: '§'; position: absolute; top: -20px; right: -10px; font-family: var(--h); font-size: 180px; color: var(--cyan); opacity: 0.06; font-weight: 700; line-height: 1; pointer-events: none; }
+    .compliance-icon { width: 48px; height: 48px; border: 1.5px solid var(--cyan); border-radius: 6px; display: grid; place-items: center; font-family: var(--h); font-size: 22px; font-weight: 700; color: var(--cyan); flex-shrink: 0; position: relative; z-index: 2; }
+    .compliance-content { position: relative; z-index: 2; }
+    .compliance-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .compliance-title { font-family: var(--h); font-size: clamp(18px,2vw,22px); font-weight: 700; color: var(--white); margin-bottom: 0.75rem; line-height: 1.3; }
+    .compliance-text { font-family: var(--mono); font-size: 13px; color: var(--gray-1); line-height: 1.75; margin-bottom: 1rem; }
+    .compliance-stats { display: flex; gap: 2rem; padding-top: 1rem; border-top: 1px solid rgba(201,165,103,0.15); flex-wrap: wrap; }
+    .compliance-stat { display: flex; flex-direction: column; gap: 4px; }
+    .compliance-stat-num { font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--cyan); letter-spacing: -0.01em; }
+    .compliance-stat-label { font-family: var(--mono); font-size: 10px; color: var(--gray-3); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .edu-cards { grid-template-columns: 1fr; }
+      .worked-flow { grid-template-columns: repeat(2, 1fr); }
+      .worked-flow-step:nth-child(2)::after { display: none; }
+      .worked-flow-step:nth-child(2) { border-right: none; }
+      .worked-flow-step:nth-child(1), .worked-flow-step:nth-child(2) { border-bottom: 1px solid var(--navy-line); }
+      .worked-summary { grid-template-columns: 1fr; }
+      .worked-col:first-child { border-right: none; border-bottom: 1px solid var(--navy-line); }
+      .compliance-box { grid-template-columns: 1fr; padding: 2rem; }
+      .compliance-stats { gap: 1.25rem; }
+    }
+    @media (max-width: 600px) {
+      .journal-table { font-size: 10.5px; }
+      .journal-table th, .journal-table td { padding: 7px 6px; }
+      .dk-table { font-size: 10.5px; }
+    }
+
     /* ── COMING SOON ── */
     .coming-soon-section { padding: 4rem 5vw 6rem; }
     .coming-soon-inner { max-width: 1200px; margin: 0 auto; }
@@ -197,7 +312,7 @@
     <li><a href="index.html" data-en="home" data-id="beranda">beranda</a></li>
     <li><a href="data-analysis.html" data-en="data analysis" data-id="data analysis">data analysis</a></li>
     <li><a href="accounting.html" class="active" data-en="accounting" data-id="akuntansi">akuntansi</a></li>
-    <li><a href="tax.html" data-en="tax" data-id="pajak">pajak</a></li>
+    <li><a href="tax.html" data-en="tax" data-id="perpajakan">perpajakan</a></li>
     <li><a href="website.html" data-en="website" data-id="website">website</a></li>
   </ul>
   <div class="nav-right">
@@ -210,7 +325,7 @@
   <a href="index.html" data-en="home" data-id="beranda">beranda</a>
   <a href="data-analysis.html" data-en="data analysis" data-id="data analysis">data analysis</a>
   <a href="accounting.html" class="active" data-en="accounting" data-id="akuntansi">akuntansi</a>
-  <a href="tax.html" data-en="tax" data-id="pajak">pajak</a>
+  <a href="tax.html" data-en="tax" data-id="perpajakan">perpajakan</a>
   <a href="website.html" data-en="website" data-id="website">website</a>
   <a href="index.html#contact" class="nav-cta" data-en="Contact Me" data-id="Hubungi Saya">Hubungi Saya</a>
 </div>
@@ -311,7 +426,11 @@
       <div class="edu-list">
         <div class="cert-item-edu">
           <div class="cert-dot"></div>
-          <div><span class="cert-text">Data Analyst / Data Scientist Bootcamp</span><span class="cert-issuer-edu">Dibimbing.id · Sep 2025 — Apr 2026</span></div>
+          <div><span class="cert-text">Praktisi/Pengacara Pajak (PKP3)</span><span class="cert-issuer-edu">Jimly Law School, Jakarta · Apr 2026 — May 2026</span></div>
+        </div>
+        <div class="cert-item-edu">
+          <div class="cert-dot"></div>
+          <div><span class="cert-text">Data Analyst / Data Scientist</span><span class="cert-issuer-edu">Dibimbing.id · Oct 2025 — Apr 2026</span></div>
         </div>
         <div class="cert-item-edu">
           <div class="cert-dot"></div>
@@ -332,8 +451,8 @@
       </div>
 
       <div class="about-actions">
-        <a href="ATS_Anthony_Djiady_Djie_Resume.pdf" class="btn-about" target="_blank" data-en="Download Resume →" data-id="Download Resume →">Download Resume →</a>
-        <a href="#certs-section" class="btn-about-outline" data-en="View Certifications" data-id="Lihat Sertifikasi">Lihat Sertifikasi</a>
+        <a href="#" class="btn-about" onclick="openResumeModal(event)" data-en="View Resume →" data-id="Lihat Resume →">Lihat Resume →</a>
+        <a href="index.html#certs-section" class="btn-about-outline" data-en="View Certifications" data-id="Lihat Sertifikasi">Lihat Sertifikasi</a>
         <a href="https://www.linkedin.com/in/anthony-djiady-djie" class="btn-linkedin" target="_blank" rel="noopener noreferrer">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           LinkedIn
@@ -345,56 +464,304 @@
 
 <div class="glow-line"></div>
 
-<!-- CERTIFICATIONS -->
-<section class="certs-gallery" id="certs-section">
-  <div class="section-wrap">
-    <div class="section-eyebrow" data-en="certifications" data-id="sertifikasi">sertifikasi</div>
-    <h2 class="section-title" data-en="Professional <span>Certifications</span>" data-id="Sertifikasi <span>Profesional</span>">Sertifikasi <span>Profesional</span></h2>
-    <div class="certs-grid">
-      <a href="https://coursera.org/verify/professional-cert/HR6VC9WMGF9J" target="_blank" class="cert-card">
-        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#4285F4" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/><path fill="#34A853" d="M6.3 14.7l7 5.1C15 15.5 19.1 12 24 12c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 16.3 2 9.7 6.6 6.3 14.7z"/><path fill="#FBBC05" d="M24 46c5.5 0 10.4-1.8 14.3-5l-6.6-5.6C29.5 37 26.9 38 24 38c-6 0-11.1-4-12.9-9.7l-7 5.4C7.5 41.2 15.2 46 24 46z"/><path fill="#EA4335" d="M44.5 20H24v8.5h11.8c-1 3.2-3.1 5.8-5.9 7.5l6.6 5.6C40 38 46 32 46 24c0-1.3-.2-2.7-.5-4z"/></svg></div>
-        <div class="cert-meta"><span class="cert-card-name">Google Data Analytics</span><span class="cert-card-org">Google · Coursera · 2025</span></div>
-      </a>
-      <a href="https://coursera.org/verify/professional-cert/KEKKD62YV2EN" target="_blank" class="cert-card">
-        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><rect fill="#F25022" x="2" y="2" width="20" height="20"/><rect fill="#7FBA00" x="26" y="2" width="20" height="20"/><rect fill="#00A4EF" x="2" y="26" width="20" height="20"/><rect fill="#FFB900" x="26" y="26" width="20" height="20"/></svg></div>
-        <div class="cert-meta"><span class="cert-card-name">Microsoft SQL Server</span><span class="cert-card-org">Microsoft · Coursera · 2025</span></div>
-      </a>
-      <a href="https://coursera.org/verify/professional-cert/DVISLWDAXUY0" target="_blank" class="cert-card">
-        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><rect fill="#F25022" x="2" y="2" width="20" height="20"/><rect fill="#7FBA00" x="26" y="2" width="20" height="20"/><rect fill="#00A4EF" x="2" y="26" width="20" height="20"/><rect fill="#FFB900" x="26" y="26" width="20" height="20"/></svg></div>
-        <div class="cert-meta"><span class="cert-card-name">Microsoft Excel Professional</span><span class="cert-card-org">Microsoft · Coursera · 2025</span></div>
-      </a>
-      <a href="https://coursera.org/verify/professional-cert/GOVL4H7ONB52" target="_blank" class="cert-card">
-        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#E97627" d="M24 6v16h-2V6h2zm0 20v16h-2V26h2z"/><path fill="#C72037" d="M6 24h16v-2H6v2zm20 0h16v-2H26v2z"/><path fill="#5B879B" d="M14 14l8 8-1.4 1.4L12.6 15.4 14 14z"/><path fill="#5B879B" d="M26.6 26.6L34 34l-1.4 1.4-7.4-7.4 1.4-1.4z"/><path fill="#EB9129" d="M34 14l-8 8-1.4-1.4 8-8L34 14z"/><path fill="#EB9129" d="M15.4 32.6L24 24l1.4 1.4-8.6 8.6-1.4-1.4z"/><circle fill="#E97627" cx="24" cy="24" r="3"/></svg></div>
-        <div class="cert-meta"><span class="cert-card-name">Tableau BI Analyst</span><span class="cert-card-org">Tableau · Coursera · 2025</span></div>
-      </a>
-      <a href="https://coursera.org/verify/USZXR9ZAOQUE" target="_blank" class="cert-card">
-        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#3776AB" d="M24 4c-6 0-9 2.7-9 6v4h10v2H12c-4 0-8 3.3-8 9s3 9 7 9h4v-5c0-4 3.3-7 7-7h10c3 0 6-2.7 6-6V10c0-3.3-4-6-10-6h-4zm-2 4a2 2 0 110 4 2 2 0 010-4z"/><path fill="#FFD43B" d="M24 44c6 0 9-2.7 9-6v-4H23v-2h13c4 0 8-3.3 8-9s-3-9-7-9h-4v5c0 4-3.3 7-7 7H16c-3 0-6 2.7-6 6v8c0 3.3 4 6 10 6h4zm2-4a2 2 0 110-4 2 2 0 010 4z"/></svg></div>
-        <div class="cert-meta"><span class="cert-card-name">Python for Data Science, AI</span><span class="cert-card-org">IBM · Coursera · 2025</span></div>
-      </a>
-      <a href="Xero_Advisor.png" target="_blank" class="cert-card">
-        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><circle fill="#13B5EA" cx="24" cy="24" r="20"/><path fill="#fff" d="M16 24l6-6 2 2-4 4 4 4-2 2-6-6zm16 0l-6-6-2 2 4 4-4 4 2 2 6-6z"/></svg></div>
-        <div class="cert-meta"><span class="cert-card-name">Xero Advisor Certified</span><span class="cert-card-org">Xero · 2025</span></div>
-      </a>
-      <a href="AB_66DM_RS-1_AD.pdf" target="_blank" class="cert-card">
-        <div class="cert-logo-wrap"><svg viewBox="0 0 48 48"><path fill="#1B4F72" d="M24 4L4 14v20l20 10 20-10V14L24 4z"/><path fill="#2E86C1" d="M24 8l16 8-16 8-16-8 16-8z"/><path fill="#85C1E9" d="M8 18v14l16 8V26L8 18z" opacity="0.7"/></svg></div>
-        <div class="cert-meta"><span class="cert-card-name" data-en="Tax Brevet A &amp; B" data-id="Brevet Pajak A &amp; B">Brevet Pajak A &amp; B</span><span class="cert-card-org">IAI · 2018</span></div>
-      </a>
+<!-- EDUCATIONAL PORTFOLIO -->
+<section class="edu-section">
+  <div class="edu-inner">
+    <div class="section-eyebrow" data-en="portfolio &amp; resources" data-id="portfolio &amp; panduan">portfolio &amp; panduan</div>
+    <h2 class="section-title"
+        data-en="Accounting Guide for <span>Business Owners</span>"
+        data-id="Panduan Akuntansi untuk <span>Pemilik Bisnis</span>">Panduan Akuntansi untuk <span>Pemilik Bisnis</span></h2>
+    <p class="edu-intro"
+       data-en="Three core concepts every business owner should understand before handing books to anyone — including me. Clear bookkeeping today means a clean SPT tomorrow, no tax surprises, and financial statements investors can actually trust."
+       data-id="Tiga konsep dasar yang wajib dipahami setiap pemilik bisnis sebelum menyerahkan pembukuan ke siapa pun — termasuk saya. Pembukuan rapi hari ini berarti SPT bersih besok, tanpa kejutan pajak, dan laporan keuangan yang benar-benar bisa dipercaya.">
+      Tiga konsep dasar yang wajib dipahami setiap pemilik bisnis sebelum menyerahkan pembukuan ke siapa pun — termasuk saya. Pembukuan rapi hari ini berarti SPT bersih besok, tanpa kejutan pajak, dan laporan keuangan yang benar-benar bisa dipercaya.
+    </p>
+
+    <!-- Three concept cards -->
+    <div class="edu-cards">
+
+      <!-- CARD A: Accounting Equation -->
+      <div class="edu-card">
+        <div class="edu-card-num">01 / Fundamental</div>
+        <div class="edu-card-title"
+             data-en="The Accounting Equation"
+             data-id="Persamaan Dasar Akuntansi">Persamaan Dasar Akuntansi</div>
+        <div class="equation-box">
+          <span data-en="ASSETS" data-id="HARTA">HARTA</span>
+          <span class="eq-op">=</span>
+          <span data-en="LIABILITIES" data-id="HUTANG">HUTANG</span>
+          <span class="eq-op">+</span>
+          <span data-en="EQUITY" data-id="MODAL">MODAL</span>
+        </div>
+        <p class="edu-card-body"
+           data-en="Every transaction keeps this balanced. If your books don't balance, something is wrong — not the math. When business starts running, we extend it to: <em>Assets = Liabilities + Equity + Revenue − Expenses</em>."
+           data-id="Setiap transaksi menjaga persamaan ini tetap seimbang. Kalau pembukuan tidak balance, ada yang salah — bukan hitungannya. Ketika usaha sudah berjalan, persamaan diperluas: <em>Harta = Hutang + Modal + Pendapatan − Biaya</em>.">
+          Setiap transaksi menjaga persamaan ini tetap seimbang. Kalau pembukuan tidak balance, ada yang salah — bukan hitungannya. Ketika usaha sudah berjalan, persamaan diperluas: <em>Harta = Hutang + Modal + Pendapatan − Biaya</em>.
+        </p>
+        <div class="warning-box">
+          <span class="warning-box-label"
+                data-en="entity principle"
+                data-id="prinsip entitas">prinsip entitas</span>
+          <div class="warning-box-text"
+               data-en="Business accounts MUST be separated from personal accounts. This is the most common violation by UMKM owners — and the most frequent source of tax problems during audit."
+               data-id="Rekening bisnis WAJIB dipisah dari rekening pribadi. Ini pelanggaran paling umum oleh pemilik UMKM — dan sumber masalah pajak paling sering saat pemeriksaan.">
+            Rekening bisnis WAJIB dipisah dari rekening pribadi. Ini pelanggaran paling umum oleh pemilik UMKM — dan sumber masalah pajak paling sering saat pemeriksaan.
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD B: Accounting Cycle -->
+      <div class="edu-card">
+        <div class="edu-card-num">02 / Process</div>
+        <div class="edu-card-title"
+             data-en="The 8-Step Accounting Cycle"
+             data-id="8 Tahap Siklus Akuntansi">8 Tahap Siklus Akuntansi</div>
+        <p class="edu-card-body"
+           data-en="Every transaction flows through these eight steps — from receipt to financial statement. Skip a step, and your reports can't be trusted."
+           data-id="Setiap transaksi mengalir melalui delapan tahap ini — dari nota sampai laporan keuangan. Lewati satu langkah, laporan jadi tidak bisa dipercaya.">
+          Setiap transaksi mengalir melalui delapan tahap ini — dari nota sampai laporan keuangan. Lewati satu langkah, laporan jadi tidak bisa dipercaya.
+        </p>
+        <div class="cycle-list">
+          <div class="cycle-step"><span class="cycle-step-num">1</span><span class="cycle-step-name" data-en="Transaction" data-id="Transaksi">Transaksi</span></div>
+          <div class="cycle-step"><span class="cycle-step-num">2</span><span class="cycle-step-name" data-en="Journalizing" data-id="Penjurnalan">Penjurnalan</span></div>
+          <div class="cycle-step"><span class="cycle-step-num">3</span><span class="cycle-step-name" data-en="Posting to Ledger" data-id="Posting Buku Besar">Posting Buku Besar</span></div>
+          <div class="cycle-step"><span class="cycle-step-num">4</span><span class="cycle-step-name" data-en="Trial Balance" data-id="Neraca Saldo">Neraca Saldo</span></div>
+          <div class="cycle-step"><span class="cycle-step-num">5</span><span class="cycle-step-name" data-en="Adjusting Entries" data-id="Jurnal Penyesuaian">Jurnal Penyesuaian</span></div>
+          <div class="cycle-step"><span class="cycle-step-num">6</span><span class="cycle-step-name" data-en="Worksheet" data-id="Neraca Lajur">Neraca Lajur</span></div>
+          <div class="cycle-step"><span class="cycle-step-num">7</span><span class="cycle-step-name" data-en="Closing Entries" data-id="Jurnal Penutup">Jurnal Penutup</span></div>
+          <div class="cycle-step"><span class="cycle-step-num">8</span><span class="cycle-step-name" data-en="Financial Statements" data-id="Laporan Keuangan">Laporan Keuangan</span></div>
+        </div>
+      </div>
+
+      <!-- CARD C: Debit-Kredit Reference -->
+      <div class="edu-card">
+        <div class="edu-card-num">03 / Reference</div>
+        <div class="edu-card-title"
+             data-en="Normal Balance: Debit or Credit?"
+             data-id="Saldo Normal: Debit atau Kredit?">Saldo Normal: Debit atau Kredit?</div>
+        <p class="edu-card-body"
+           data-en="The one table you'll reference forever. It tells you which side an account normally sits on — and which side to record an increase."
+           data-id="Satu tabel yang akan terus dipakai. Menunjukkan di sisi mana saldo normal rekening berada — dan di sisi mana kenaikan dicatat.">
+          Satu tabel yang akan terus dipakai. Menunjukkan di sisi mana saldo normal rekening berada — dan di sisi mana kenaikan dicatat.
+        </p>
+        <table class="dk-table">
+          <thead>
+            <tr>
+              <th data-en="Account" data-id="Rekening">Rekening</th>
+              <th class="center" data-en="Normal" data-id="Normal">Normal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td data-en="Assets" data-id="Harta">Harta</td><td class="center"><span class="badge-d">D</span></td></tr>
+            <tr><td data-en="Expenses" data-id="Biaya">Biaya</td><td class="center"><span class="badge-d">D</span></td></tr>
+            <tr><td data-en="Liabilities" data-id="Hutang">Hutang</td><td class="center"><span class="badge-k">K</span></td></tr>
+            <tr><td data-en="Equity" data-id="Modal">Modal</td><td class="center"><span class="badge-k">K</span></td></tr>
+            <tr><td data-en="Revenue" data-id="Pendapatan">Pendapatan</td><td class="center"><span class="badge-k">K</span></td></tr>
+          </tbody>
+        </table>
+        <div class="dk-mnemonic"
+             data-en="Memory trick — <strong>DHAR</strong>: <strong>D</strong>ebit for <strong>H</strong>arta (Assets) &amp; Bia<strong>R</strong> (Expenses). <strong>KHMP</strong>: <strong>K</strong>redit for <strong>H</strong>utang, <strong>M</strong>odal, <strong>P</strong>endapatan."
+             data-id="Cara hafal cepat — <strong>DHAR</strong>: <strong>D</strong>ebit untuk <strong>H</strong>arta d<strong>A</strong>n baya<strong>R</strong>. <strong>KHMP</strong>: <strong>K</strong>redit untuk <strong>H</strong>utang, <strong>M</strong>odal, <strong>P</strong>endapatan.">
+          Cara hafal cepat — <strong>DHAR</strong>: <strong>D</strong>ebit untuk <strong>H</strong>arta d<strong>A</strong>n baya<strong>R</strong>. <strong>KHMP</strong>: <strong>K</strong>redit untuk <strong>H</strong>utang, <strong>M</strong>odal, <strong>P</strong>endapatan.
+        </div>
+      </div>
+
     </div>
+
+    <!-- Worked Example -->
+    <span class="worked-label"
+          data-en="worked example"
+          data-id="contoh ilustrasi">contoh ilustrasi</span>
+    <h3 class="worked-heading"
+        data-en="From Transaction to <span>Financial Statement</span>"
+        data-id="Dari Transaksi ke <span>Laporan Keuangan</span>">Dari Transaksi ke <span>Laporan Keuangan</span></h3>
+    <p class="worked-sub"
+       data-en="An illustrative service-firm example (not real client data) showing how a year of transactions moves through the accounting cycle into a clean Income Statement — the same process applied to live client books."
+       data-id="Contoh ilustrasi kantor jasa (bukan data klien sebenarnya) menunjukkan bagaimana transaksi selama setahun berjalan melalui siklus akuntansi menjadi Laporan Laba-Rugi yang bersih — proses yang sama yang diterapkan untuk pembukuan klien.">
+      Contoh ilustrasi kantor jasa (bukan data klien sebenarnya) menunjukkan bagaimana transaksi selama setahun berjalan melalui siklus akuntansi menjadi Laporan Laba-Rugi yang bersih — proses yang sama yang diterapkan untuk pembukuan klien.
+    </p>
+
+    <div class="worked-wrap">
+
+      <!-- Flow stages -->
+      <div class="worked-flow">
+        <div class="worked-flow-step">
+          <div class="worked-flow-num">STAGE 01</div>
+          <div class="worked-flow-name" data-en="Transactions" data-id="Transaksi">Transaksi</div>
+          <div class="worked-flow-desc" data-en="Identify &amp; document every business event" data-id="Identifikasi &amp; dokumentasi tiap kegiatan usaha">Identifikasi &amp; dokumentasi tiap kegiatan usaha</div>
+        </div>
+        <div class="worked-flow-step">
+          <div class="worked-flow-num">STAGE 02</div>
+          <div class="worked-flow-name" data-en="Journal Entries" data-id="Jurnal Umum">Jurnal Umum</div>
+          <div class="worked-flow-desc" data-en="Record chronologically, debit = credit" data-id="Catat kronologis, debit = kredit">Catat kronologis, debit = kredit</div>
+        </div>
+        <div class="worked-flow-step">
+          <div class="worked-flow-num">STAGE 03</div>
+          <div class="worked-flow-name" data-en="Trial Balance" data-id="Neraca Saldo">Neraca Saldo</div>
+          <div class="worked-flow-desc" data-en="Verify total debits = total credits" data-id="Pastikan total debit = total kredit">Pastikan total debit = total kredit</div>
+        </div>
+        <div class="worked-flow-step">
+          <div class="worked-flow-num">STAGE 04</div>
+          <div class="worked-flow-name" data-en="Income Statement" data-id="Laporan L/R">Laporan L/R</div>
+          <div class="worked-flow-desc" data-en="Revenue minus expenses = net profit" data-id="Pendapatan dikurangi biaya = laba bersih">Pendapatan dikurangi biaya = laba bersih</div>
+        </div>
+      </div>
+
+      <!-- Journal Entries -->
+      <div class="journal-block">
+        <div class="journal-block-title"
+             data-en="Journal Entries — Service Firm, Period 1 Jan – 31 Dec"
+             data-id="Jurnal Umum — Kantor Jasa, Periode 1 Jan – 31 Des">Jurnal Umum — Kantor Jasa, Periode 1 Jan – 31 Des</div>
+        <table class="journal-table">
+          <thead>
+            <tr>
+              <th data-en="Date" data-id="Tgl">Tgl</th>
+              <th data-en="Description" data-id="Keterangan">Keterangan</th>
+              <th data-en="Account (Dr / Cr)" data-id="Akun (D / K)">Akun (D / K)</th>
+              <th class="num" data-en="Debit (Rp)" data-id="Debit (Rp)">Debit (Rp)</th>
+              <th class="num" data-en="Credit (Rp)" data-id="Kredit (Rp)">Kredit (Rp)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="j-date">01 Jan</td>
+              <td data-en="Owner capital deposit" data-id="Setoran modal">Setoran modal</td>
+              <td class="j-acc">Bank / <span data-en="Equity" data-id="Modal">Modal</span></td>
+              <td class="num">500.000.000</td>
+              <td class="num">500.000.000</td>
+            </tr>
+            <tr>
+              <td class="j-date">03 Jan</td>
+              <td data-en="Buy vehicle, cash" data-id="Beli kendaraan tunai">Beli kendaraan tunai</td>
+              <td class="j-acc"><span data-en="Vehicle" data-id="Kendaraan">Kendaraan</span> / Bank</td>
+              <td class="num">200.000.000</td>
+              <td class="num">200.000.000</td>
+            </tr>
+            <tr>
+              <td class="j-date">10 Jan</td>
+              <td data-en="Buy office supplies on credit" data-id="Beli ATK kredit">Beli ATK kredit</td>
+              <td class="j-acc"><span data-en="Supplies Exp" data-id="Biaya ATK">Biaya ATK</span> / <span data-en="A/P" data-id="Hutang">Hutang</span></td>
+              <td class="num">5.000.000</td>
+              <td class="num">5.000.000</td>
+            </tr>
+            <tr>
+              <td class="j-date">10 Mar</td>
+              <td data-en="Service revenue, cash" data-id="Jual jasa tunai">Jual jasa tunai</td>
+              <td class="j-acc">Bank / <span data-en="Revenue" data-id="Pendapatan">Pendapatan</span></td>
+              <td class="num">50.000.000</td>
+              <td class="num">50.000.000</td>
+            </tr>
+            <tr>
+              <td class="j-date">30 Mar</td>
+              <td data-en="Pay salary" data-id="Bayar gaji">Bayar gaji</td>
+              <td class="j-acc"><span data-en="Salary Exp" data-id="Biaya Gaji">Biaya Gaji</span> / Bank</td>
+              <td class="num">5.000.000</td>
+              <td class="num">5.000.000</td>
+            </tr>
+            <tr>
+              <td class="j-date">10 Apr</td>
+              <td data-en="Service Rp 300M, DP Rp 50M" data-id="Jual jasa Rp 300JT, DP Rp 50JT">Jual jasa Rp 300JT, DP Rp 50JT</td>
+              <td class="j-acc">Bank + <span data-en="A/R" data-id="Piutang">Piutang</span> / <span data-en="Revenue" data-id="Pendapatan">Pendapatan</span></td>
+              <td class="num">300.000.000</td>
+              <td class="num">300.000.000</td>
+            </tr>
+            <tr>
+              <td class="j-date">31 Dec</td>
+              <td data-en="Depreciation, vehicle" data-id="Penyusutan kendaraan">Penyusutan kendaraan</td>
+              <td class="j-acc"><span data-en="Deprec Exp" data-id="B. Penyusutan">B. Penyusutan</span> / <span data-en="Accum Deprec" data-id="Akm. Penyusutan">Akm. Penyusutan</span></td>
+              <td class="num">25.000.000</td>
+              <td class="num">25.000.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Summary: Trial Balance + Income Statement -->
+      <div class="worked-summary">
+
+        <!-- Trial Balance -->
+        <div class="worked-col">
+          <div class="worked-col-title"
+               data-en="Trial Balance — 31 Dec"
+               data-id="Neraca Saldo — 31 Des">Neraca Saldo — 31 Des</div>
+          <div class="summary-row"><span class="s-label">Bank</span><span class="s-val">390.000.000</span></div>
+          <div class="summary-row"><span class="s-label" data-en="Vehicle" data-id="Kendaraan">Kendaraan</span><span class="s-val">200.000.000</span></div>
+          <div class="summary-row"><span class="s-label" data-en="Accounts Receivable" data-id="Piutang">Piutang</span><span class="s-val">250.000.000</span></div>
+          <div class="summary-row"><span class="s-label" data-en="Supplies Expense" data-id="Biaya ATK">Biaya ATK</span><span class="s-val">5.000.000</span></div>
+          <div class="summary-row"><span class="s-label" data-en="Salary Expense" data-id="Biaya Gaji">Biaya Gaji</span><span class="s-val">5.000.000</span></div>
+          <div class="summary-row"><span class="s-label" data-en="Depreciation" data-id="Biaya Penyusutan">Biaya Penyusutan</span><span class="s-val">25.000.000</span></div>
+          <div class="summary-row"><span class="s-label" data-en="Equity (cr)" data-id="Modal (k)">Modal (k)</span><span class="s-val">(500.000.000)</span></div>
+          <div class="summary-row"><span class="s-label" data-en="Revenue (cr)" data-id="Pendapatan (k)">Pendapatan (k)</span><span class="s-val">(350.000.000)</span></div>
+          <div class="summary-row"><span class="s-label" data-en="Accum Deprec (cr)" data-id="Akm. Penyusutan (k)">Akm. Penyusutan (k)</span><span class="s-val">(25.000.000)</span></div>
+          <div class="summary-row s-total"><span class="s-label" data-en="Balanced ✓" data-id="Seimbang ✓">Seimbang ✓</span><span class="s-val">875.000.000</span></div>
+        </div>
+
+        <!-- Income Statement -->
+        <div class="worked-col">
+          <div class="worked-col-title"
+               data-en="Income Statement — Year End"
+               data-id="Laporan Laba-Rugi — Akhir Tahun">Laporan Laba-Rugi — Akhir Tahun</div>
+          <div class="summary-row"><span class="s-label" data-en="Service Revenue" data-id="Pendapatan Jasa">Pendapatan Jasa</span><span class="s-val">350.000.000</span></div>
+          <div class="summary-row" style="padding-top:14px;"><span class="s-label" data-en="Expenses:" data-id="Biaya:">Biaya:</span><span class="s-val"></span></div>
+          <div class="summary-row s-sub"><span class="s-label" data-en="Salary" data-id="Gaji">Gaji</span><span class="s-val">(5.000.000)</span></div>
+          <div class="summary-row s-sub"><span class="s-label" data-en="Supplies" data-id="ATK">ATK</span><span class="s-val">(5.000.000)</span></div>
+          <div class="summary-row s-sub"><span class="s-label" data-en="Depreciation" data-id="Penyusutan">Penyusutan</span><span class="s-val">(25.000.000)</span></div>
+          <div class="summary-row"><span class="s-label" data-en="Total Expenses" data-id="Total Biaya">Total Biaya</span><span class="s-val">(35.000.000)</span></div>
+          <div class="summary-row s-total"><span class="s-label" data-en="Net Profit" data-id="Laba Bersih">Laba Bersih</span><span class="s-val">315.000.000</span></div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
 <div class="glow-line"></div>
 
-<!-- COMING SOON -->
-<section class="coming-soon-section">
-  <div class="coming-soon-inner">
-    <div class="section-eyebrow" data-en="portfolio" data-id="portfolio">portfolio</div>
-    <h2 class="section-title" data-en="Accounting <span>Portfolio</span>" data-id="Portfolio <span>Akuntansi</span>">Portfolio <span>Akuntansi</span></h2>
-    <div class="coming-soon-box">
-      <div class="coming-soon-icon">⊞</div>
-      <div class="coming-soon-title" data-en="Portfolio Coming Soon" data-id="Portfolio Segera Hadir">Portfolio Segera Hadir</div>
-      <p class="coming-soon-desc" data-en="Accounting and bookkeeping case studies will be showcased here. Check back soon." data-id="Studi kasus akuntansi dan pembukuan akan ditampilkan di sini. Kunjungi kembali segera.">Studi kasus akuntansi dan pembukuan akan ditampilkan di sini. Kunjungi kembali segera.</p>
-      <a href="index.html#contact" class="btn-cta" data-en="Get In Touch →" data-id="Hubungi Saya →">Hubungi Saya →</a>
+<!-- COMPLIANCE CALLOUT -->
+<section class="compliance-block">
+  <div class="compliance-inner">
+    <div class="compliance-box">
+      <div class="compliance-icon">§</div>
+      <div class="compliance-content">
+        <div class="compliance-label"
+             data-en="legal obligation"
+             data-id="kewajiban hukum">kewajiban hukum</div>
+        <h3 class="compliance-title"
+            data-en="Bookkeeping Isn't Optional — It's the Law"
+            data-id="Pembukuan Bukan Pilihan — Ini Kewajiban Hukum">Pembukuan Bukan Pilihan — Ini Kewajiban Hukum</h3>
+        <p class="compliance-text"
+           data-en="Under Article 28 of the Indonesian General Tax Provisions Law (UU KUP), taxpayers are required to maintain accurate books in good faith, using Rupiah, closed annually with a Balance Sheet and Income Statement. Records must cover assets, liabilities, equity, revenue, expenses, sales, and purchases — and be retained for 10 years. Non-compliance carries serious consequences."
+           data-id="Menurut Pasal 28 UU KUP, Wajib Pajak diwajibkan menyelenggarakan pembukuan dengan itikad baik, dalam mata uang Rupiah, ditutup setiap akhir tahun dengan Neraca dan Laporan Laba-Rugi. Catatan harus mencakup harta, hutang, modal, penghasilan, biaya, penjualan, dan pembelian — dan wajib disimpan selama 10 tahun. Ketidakpatuhan membawa konsekuensi serius.">
+          Menurut Pasal 28 UU KUP, Wajib Pajak diwajibkan menyelenggarakan pembukuan dengan itikad baik, dalam mata uang Rupiah, ditutup setiap akhir tahun dengan Neraca dan Laporan Laba-Rugi. Catatan harus mencakup harta, hutang, modal, penghasilan, biaya, penjualan, dan pembelian — dan wajib disimpan selama 10 tahun. Ketidakpatuhan membawa konsekuensi serius.
+        </p>
+        <div class="compliance-stats">
+          <div class="compliance-stat">
+            <div class="compliance-stat-num">10<span style="font-size:0.6em"> yr</span></div>
+            <div class="compliance-stat-label"
+                 data-en="document retention"
+                 data-id="simpan dokumen">simpan dokumen</div>
+          </div>
+          <div class="compliance-stat">
+            <div class="compliance-stat-num">+75<span style="font-size:0.6em">%</span></div>
+            <div class="compliance-stat-label"
+                 data-en="admin penalty"
+                 data-id="sanksi administrasi">sanksi administrasi</div>
+          </div>
+          <div class="compliance-stat">
+            <div class="compliance-stat-num">6<span style="font-size:0.6em"> mo – 6 yr</span></div>
+            <div class="compliance-stat-label"
+                 data-en="criminal sanction"
+                 data-id="sanksi pidana">sanksi pidana</div>
+          </div>
+          <div class="compliance-stat">
+            <div class="compliance-stat-num">2–4<span style="font-size:0.6em">×</span></div>
+            <div class="compliance-stat-label"
+                 data-en="fine vs tax owed"
+                 data-id="denda vs pajak terutang">denda vs pajak terutang</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -417,7 +784,35 @@
   <p data-en="© 2025 · Palu, Central Sulawesi" data-id="© 2025 · Palu, Sulawesi Tengah">© 2025 · Palu, Sulawesi Tengah</p>
 </footer>
 
+<!-- RESUME MODAL -->
+<div id="resumeModal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;">
+  <div style="position:relative;width:min(860px,95vw);height:90vh;background:#1C232D;border:1px solid rgba(201,165,103,0.2);border-radius:10px;display:flex;flex-direction:column;overflow:hidden;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(201,165,103,0.12);flex-shrink:0;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#C9A567;letter-spacing:0.12em;text-transform:uppercase;">ATS_Anthony_Djiady_Djie_Resume_Final.pdf</span>
+      <button onclick="closeResumeModal()" style="background:none;border:none;cursor:pointer;color:#7A7068;font-size:20px;line-height:1;padding:4px 8px;font-family:monospace;transition:color 0.2s;" onmouseover="this.style.color='#F4EFE6'" onmouseout="this.style.color='#7A7068'">✕</button>
+    </div>
+    <iframe src="ATS_Anthony_Djiady_Djie_Resume_Final.pdf#toolbar=0&navpanes=0&scrollbar=1" style="flex:1;width:100%;border:none;" title="Resume"></iframe>
+  </div>
+</div>
+
 <script>
+  function openResumeModal(e) {
+    e.preventDefault();
+    var modal = document.getElementById('resumeModal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeResumeModal() {
+    var modal = document.getElementById('resumeModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  document.getElementById('resumeModal').addEventListener('click', function(e) {
+    if (e.target === this) closeResumeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeResumeModal();
+  });
   function toggleMobileMenu() {
     document.getElementById('hamburgerBtn').classList.toggle('open');
     document.getElementById('mobileMenu').classList.toggle('open');
