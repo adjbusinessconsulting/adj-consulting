@@ -459,7 +459,7 @@
         </div>
 
         <div class="about-actions sr sr-up d4">
-          <a href="#" class="btn-about" id="resumeBtn" onclick="openResumeModal(event)">Lihat Resume →</a>
+          <a href="#" class="btn-about" onclick="openResumeModal(event);return false;" data-en="View Resume →" data-id="Lihat Resume →">Lihat Resume →</a>
           <a href="#certs-section" class="btn-about-outline" data-en="View Certifications" data-id="Lihat Sertifikasi">Lihat Sertifikasi</a>
           <a href="https://www.linkedin.com/in/anthony-djiady-djie" class="btn-linkedin" target="_blank" rel="noopener noreferrer" data-en="LinkedIn" data-id="LinkedIn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -677,7 +677,7 @@
       <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#C9A567;letter-spacing:0.12em;text-transform:uppercase;">ATS_Anthony_Djiady_Djie_Resume_Final.pdf</span>
       <button onclick="closeResumeModal()" style="background:none;border:none;cursor:pointer;color:#7A7068;font-size:20px;line-height:1;padding:4px 8px;font-family:monospace;transition:color 0.2s;" onmouseover="this.style.color='#F4EFE6'" onmouseout="this.style.color='#7A7068'">✕</button>
     </div>
-    <iframe id="resumeFrame" src="" style="flex:1;width:100%;border:none;" title="Resume"></iframe>
+    <iframe src="ATS_Anthony_Djiady_Djie_Resume_Final.pdf#toolbar=0&navpanes=0&scrollbar=1" style="flex:1;width:100%;border:none;" title="Resume"></iframe>
   </div>
 </div>
 
@@ -690,10 +690,6 @@
   function openResumeModal(e) {
     e.preventDefault();
     var modal = document.getElementById('resumeModal');
-    var frame = document.getElementById('resumeFrame');
-    if (!frame.src || frame.src === window.location.href) {
-      frame.src = 'ATS_Anthony_Djiady_Djie_Resume_Final.pdf#toolbar=0&navpanes=0&scrollbar=1';
-    }
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
   }
@@ -744,8 +740,6 @@
       const val = lang === 'en' ? el.dataset.en : el.dataset.id;
       if (val !== undefined) el.innerHTML = val;
     });
-    var resumeBtn = document.getElementById('resumeBtn');
-    if (resumeBtn) resumeBtn.textContent = lang === 'en' ? 'View Resume →' : 'Lihat Resume →';
     document.getElementById('langBtn').textContent = lang === 'en' ? 'ID' : 'EN';
     document.documentElement.lang = lang === 'en' ? 'en' : 'id';
     localStorage.setItem('adj_lang', lang);
