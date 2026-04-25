@@ -1632,4 +1632,27 @@
   })();
 </script>
 </body>
+<!-- Resume Modal -->
+<div id="resume-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);align-items:center;justify-content:center;">
+  <div style="position:relative;width:90%;max-width:860px;height:90vh;background:#131820;border:1px solid rgba(201,165,103,0.2);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.25rem;border-bottom:1px solid rgba(201,165,103,0.12);flex-shrink:0;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A09890;letter-spacing:.08em;">RESUME</span>
+      <button onclick="document.getElementById('resume-modal').style.display='none'" style="background:none;border:none;color:#A09890;font-size:20px;cursor:pointer;line-height:1;padding:4px 8px;">&times;</button>
+    </div>
+    <iframe src="ATS_Anthony_Djiady_Djie_Resume.pdf" style="flex:1;width:100%;border:none;"></iframe>
+  </div>
+</div>
+<script>
+  document.querySelectorAll('.btn-about[data-en="Lihat Resume →"]').forEach(function(btn){
+    btn.removeAttribute('href');
+    btn.style.cursor='pointer';
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      document.getElementById('resume-modal').style.display='flex';
+    });
+  });
+  document.getElementById('resume-modal').addEventListener('click',function(e){
+    if(e.target===this) this.style.display='none';
+  });
+</script>
 </html>
