@@ -1050,7 +1050,7 @@
     .da-picker-label::before { content: none; }
     .da-cards-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 14px;
       max-width: 1400px;
       margin: 0 auto;
@@ -3185,6 +3185,13 @@
           <div class="da-card-tags"><span class="da-tag">EDA</span><span class="da-tag">ABC Analysis</span><span class="da-tag">Tableau</span></div>
           <div class="da-card-arrow" data-en="View Project →" data-id="Lihat Proyek →">View Project →</div>
         </div>
+        <div class="da-proj-card" data-proj="da3">
+          <div class="da-card-num">DA Project 3</div>
+          <div class="da-card-title">Hotel Booking Demand</div>
+          <div class="da-card-desc" data-en="Cancellation, Pricing & Demand Patterns across 83,293 hotel bookings" data-id="Pembatalan, Harga & Pola Permintaan dari 83.293 pemesanan hotel">Cancellation, Pricing &amp; Demand Patterns across 83,293 hotel bookings</div>
+          <div class="da-card-tags"><span class="da-tag">EDA</span><span class="da-tag">Cancellation Analysis</span><span class="da-tag">Python</span></div>
+          <div class="da-card-arrow" data-en="View Project →" data-id="Lihat Proyek →">View Project →</div>
+        </div>
       </div>
     </div>
 
@@ -4136,6 +4143,399 @@ if(vizSection && 'IntersectionObserver' in window){
       </div>
     </div>
   </div>
+    <!-- ══════════ DA PROJECT 3 — HOTEL BOOKING DEMAND ══════════ -->
+    <div class="proj-panel" style="display:none" id="proj-da3" data-group="da">
+      <div class="content">
+        <div class="content-inner">
+
+<!-- DA3 Dashboard Styles -->
+<style>
+#proj-da3 .dash-header{background:var(--navy-mid);border-bottom:1px solid rgba(201,165,103,0.1);padding:2rem 5%;position:relative;overflow:hidden;}
+#proj-da3 .dash-header::before{content:'';position:absolute;top:0;left:-100%;width:200%;height:1px;background:linear-gradient(90deg,transparent,#C9A567,transparent);animation:scan3 5s linear infinite;}
+@keyframes scan3{0%{transform:translateX(-25%)}100%{transform:translateX(25%)}}
+#proj-da3 .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+#proj-da3 .header-label{font-size:11px;color:#A09890;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+#proj-da3 .header-title{font-size:clamp(20px,3vw,30px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:.5rem}
+#proj-da3 .header-title span{color:#C9A567}
+#proj-da3 .header-sub{font-size:13px;color:#D6D0C8;line-height:1.7;max-width:520px}
+#proj-da3 .header-meta{display:flex;flex-direction:column;gap:.5rem;align-items:flex-end;min-width:160px}
+#proj-da3 .meta-chip{font-size:11px;color:#D6D0C8;border:1px solid rgba(255,255,255,0.12);padding:4px 10px;border-radius:4px;text-align:right}
+#proj-da3 .meta-chip span{color:#C9A567}
+#proj-da3 .kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(201,165,103,0.06);border-top:1px solid rgba(201,165,103,0.06);border-bottom:1px solid rgba(201,165,103,0.06)}
+#proj-da3 .kpi-cell{background:var(--navy-mid);padding:1.5rem 1.25rem;position:relative;overflow:hidden;transition:background .3s}
+#proj-da3 .kpi-cell:hover{background:var(--navy-light)}
+#proj-da3 .kpi-cell::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#C9A567;transition:width .5s cubic-bezier(.4,0,.2,1)}
+#proj-da3 .kpi-cell:hover::after{width:100%}
+#proj-da3 .kpi-label{font-size:10px;color:#D9B97C;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+#proj-da3 .kpi-val{font-size:clamp(20px,2.5vw,28px);font-weight:700;color:#fff;line-height:1}
+#proj-da3 .kpi-val span{font-size:13px;color:#D6D0C8;font-weight:400}
+#proj-da3 .kpi-desc{font-size:11px;color:#A09890;margin-top:.4rem}
+#proj-da3 .dash-body{max-width:1200px;margin:0 auto;padding:2.5rem 5%;display:grid;gap:2rem}
+#proj-da3 .section-label{font-size:10px;color:#A09890;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.75rem}
+#proj-da3 .section-label::after{content:'';flex:1;height:1px;background:rgba(148,163,184,0.12)}
+#proj-da3 .chart-box{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:1.5rem;transition:border-color .3s}
+#proj-da3 .chart-box:hover{border-color:rgba(201,165,103,0.15)}
+#proj-da3 .chart-title{font-size:11px;color:#D6D0C8;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between}
+#proj-da3 .chart-badge{font-size:10px;color:#C9A567;border:1px solid rgba(201,165,103,0.2);padding:2px 8px;border-radius:3px}
+#proj-da3 .hbar-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
+#proj-da3 .hbar-row:last-child{margin-bottom:0}
+#proj-da3 .hbar-label{font-size:11px;color:#D6D0C8;min-width:140px;line-height:1.3}
+#proj-da3 .hbar-track{flex:1;height:8px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden}
+#proj-da3 .hbar-fill{height:100%;border-radius:4px;transition:width 1.2s cubic-bezier(.25,.46,.45,.94)}
+#proj-da3 .hbar-val{font-size:11px;color:#fff;font-weight:600;min-width:55px;text-align:right}
+#proj-da3 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+#proj-da3 .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+#proj-da3 .takeaway{background:var(--navy);border-left:3px solid #C9A567;padding:1.25rem 1.75rem;margin-top:.5rem;transition:border-color .4s,box-shadow .4s}
+#proj-da3 .takeaway:hover{border-left-color:#D9B97C;box-shadow:-4px 0 20px rgba(201,165,103,0.1)}
+#proj-da3 .takeaway-tag{font-size:10px;color:#C9A567;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.4rem}
+#proj-da3 .takeaway-text{font-size:14px;font-weight:600;color:#fff;line-height:1.6}
+#proj-da3 .takeaway-sub{font-size:12px;color:#A09890;line-height:1.6;margin-top:.35rem}
+#proj-da3 .insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:900px){#proj-da3 .kpi-row{grid-template-columns:repeat(3,1fr)}#proj-da3 .two-col,#proj-da3 .three-col,#proj-da3 .insight-grid{grid-template-columns:1fr}}
+@media(max-width:550px){#proj-da3 .kpi-row{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<!-- DA3 HEADER -->
+<div id="proj-da3-wrap">
+<div class="dash-header">
+  <div class="header-inner">
+    <div>
+      <div class="header-label">DA Project 03 — Hotel Booking Demand Analysis</div>
+      <div class="header-title">Hotel <span>Booking</span> Demand</div>
+      <div class="header-sub">Cancellation drivers, pricing patterns, and demand seasonality across 83,293 hotel bookings — Dibimbing DS39+</div>
+    </div>
+    <div class="header-meta">
+      <div class="meta-chip">Dataset <span>83,293 bookings</span></div>
+      <div class="meta-chip">Columns <span>33</span></div>
+      <div class="meta-chip">Class <span>Dibimbing DS39+</span></div>
+      <div class="meta-chip">Tool <span>Python · Pandas · Matplotlib</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- KPI ROW -->
+<div class="kpi-row">
+  <div class="kpi-cell">
+    <div class="kpi-label">Total Bookings</div>
+    <div class="kpi-val">83,293</div>
+    <div class="kpi-desc">83K unique booking records</div>
+  </div>
+  <div class="kpi-cell">
+    <div class="kpi-label">Cancellation Rate</div>
+    <div class="kpi-val">37.2<span>%</span></div>
+    <div class="kpi-desc">30,776 bookings canceled</div>
+  </div>
+  <div class="kpi-cell">
+    <div class="kpi-label">Realized Revenue</div>
+    <div class="kpi-val">$18.1<span>M</span></div>
+    <div class="kpi-desc">After cancellations</div>
+  </div>
+  <div class="kpi-cell">
+    <div class="kpi-label">Lost Revenue</div>
+    <div class="kpi-val">$11.6<span>M</span></div>
+    <div class="kpi-desc">~39% of gross potential</div>
+  </div>
+  <div class="kpi-cell">
+    <div class="kpi-label">Avg Daily Rate</div>
+    <div class="kpi-val">$101<span>–103</span></div>
+    <div class="kpi-desc">Mean ADR, symmetric dist.</div>
+  </div>
+</div>
+
+<!-- DASH BODY -->
+<div class="dash-body">
+
+  <!-- DATA CLEANING -->
+  <div>
+    <div class="chart-box" style="padding:1.75rem;">
+      <div class="section-label">Data Cleaning Process</div>
+      <table style="width:100%;border-collapse:collapse;">
+        <thead>
+          <tr style="border-bottom:1px solid rgba(201,165,103,0.1);">
+            <th style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#C9A567;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 1rem;text-align:left;font-weight:600;">Step</th>
+            <th style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#C9A567;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 1rem;text-align:left;font-weight:600;">Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+            <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff;font-weight:600;padding:.75rem 1rem;white-space:nowrap;">Check dataset shape</td>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A09890;padding:.75rem 1rem;">83,293 rows × 33 columns on load</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+            <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff;font-weight:600;padding:.75rem 1rem;white-space:nowrap;">Check missing values</td>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A09890;padding:.75rem 1rem;">company (94% missing), agent (14%), country (&lt;0.5%), children (3 rows) — company & agent filled with 0 (absence is meaningful)</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+            <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff;font-weight:600;padding:.75rem 1rem;white-space:nowrap;">Check duplicates</td>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A09890;padding:.75rem 1rem;">No duplicate rows or duplicate bookingIDs found</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+            <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff;font-weight:600;padding:.75rem 1rem;white-space:nowrap;">Convert data types</td>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A09890;padding:.75rem 1rem;">reservation_status_date → datetime; arrival_date_month ordered for time-series</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+            <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff;font-weight:600;padding:.75rem 1rem;white-space:nowrap;">Remove invalid rows</td>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A09890;padding:.75rem 1rem;">Removed bookings with zero guests or zero nights (data-entry errors)</td>
+          </tr>
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff;font-weight:600;padding:.75rem 1rem;white-space:nowrap;">Cap ADR outliers</td>
+            <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A09890;padding:.75rem 1rem;">ADR capped at 99th percentile — final cleaned dataset: 82,721 rows, ready for analysis</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CANCELLATION BY LEAD TIME + CANCELLATION BY DEPOSIT -->
+  <div class="two-col">
+    <div class="chart-box">
+      <div class="chart-title">
+        <span>Cancellation Rate by Lead Time</span>
+        <span class="chart-badge">Key Driver</span>
+      </div>
+      <div id="da3-leadtime-bars"></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">
+        <span>Cancellation Rate by Deposit Type</span>
+        <span class="chart-badge">Policy Signal</span>
+      </div>
+      <div id="da3-deposit-bars"></div>
+    </div>
+  </div>
+
+  <!-- BOOKINGS BY MONTH + MARKET SEGMENT -->
+  <div class="two-col">
+    <div class="chart-box">
+      <div class="chart-title">
+        <span>Monthly Booking Volume</span>
+        <span class="chart-badge">Seasonality</span>
+      </div>
+      <div id="da3-month-bars"></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">
+        <span>Market Segment — Volume &amp; Cancel Rate</span>
+        <span class="chart-badge">Channel Mix</span>
+      </div>
+      <div id="da3-segment-bars"></div>
+    </div>
+  </div>
+
+  <!-- ADR BY ROOM TYPE + REPEAT GUEST ANALYSIS -->
+  <div class="two-col">
+    <div class="chart-box">
+      <div class="chart-title">
+        <span>ADR by Room Type</span>
+        <span class="chart-badge">Pricing</span>
+      </div>
+      <div id="da3-room-bars"></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">
+        <span>Repeat vs New Guest Behavior</span>
+        <span class="chart-badge">LTV Signal</span>
+      </div>
+      <div id="da3-repeat-bars"></div>
+    </div>
+  </div>
+
+  <!-- KEY INSIGHTS -->
+  <div class="chart-box">
+    <div class="section-label">Key Insights</div>
+    <div class="insight-grid" id="da3-insights"></div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div class="chart-box">
+    <div class="section-label">Strategic Recommendations</div>
+    <div id="da3-recs" style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;"></div>
+  </div>
+
+</div><!-- end dash-body -->
+
+<!-- PRESENTATION SECTION -->
+<div class="dash-body" style="padding-top:0;">
+  <div class="chart-box">
+    <div class="section-label">Presentation</div>
+    <div class="chart-title">
+      <span>AnthonyDjiadyDjie_DS39+_HotelBookingDemand_Analysis</span>
+      <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;">
+        <span class="chart-badge">Canva</span>
+        <a href="https://www.canva.com/design/DAHIS-6X6Tc/wfHjmVh7HlbXCqlLSnAz_A/view"
+           target="_blank" rel="noopener"
+           style="font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:#0D1117;background:#C9A567;padding:2px 10px;border-radius:3px;text-decoration:none;white-space:nowrap;transition:background 0.2s;"
+           onmouseover="this.style.background='#D9B97C'" onmouseout="this.style.background='#C9A567'">
+          ↗ Open in Canva
+        </a>
+      </div>
+    </div>
+    <div style="position:relative;width:100%;height:0;padding-top:56.25%;border-radius:6px;overflow:hidden;box-shadow:0 2px 16px 0 rgba(0,0,0,0.3);background:#131820;">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:2rem;text-align:center;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7A7068;letter-spacing:0.15em;text-transform:uppercase;">Preview loading</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A09890;">If the presentation doesn't appear, click the button below</div>
+        <a href="https://www.canva.com/design/DAHIS-6X6Tc/wfHjmVh7HlbXCqlLSnAz_A/view"
+           target="_blank" rel="noopener"
+           style="margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:#0D1117;background:#C9A567;padding:8px 16px;border-radius:3px;text-decoration:none;transition:all 0.2s;"
+           onmouseover="this.style.background='#D9B97C'" onmouseout="this.style.background='#C9A567'">
+          ↗ Open in Canva
+        </a>
+      </div>
+      <iframe loading="lazy"
+        style="position:absolute;width:100%;height:100%;top:0;left:0;border:none;"
+        src="https://www.canva.com/design/DAHIS-6X6Tc/wfHjmVh7HlbXCqlLSnAz_A/view?embed"
+        allowfullscreen="allowfullscreen"
+        allow="fullscreen">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+</div><!-- end proj-da3-wrap -->
+
+<script>
+(function(){
+
+// ── LEAD TIME CANCELLATION BARS ──────────────────────────────────
+var leadTimeBuckets = [
+  {label:'0–7 days',    rate:9.8,  color:'#34D399'},
+  {label:'8–30 days',   rate:27.7, color:'#FBBF24'},
+  {label:'31–90 days',  rate:37.7, color:'#FB923C'},
+  {label:'91–180 days', rate:44.8, color:'#F87171'},
+  {label:'181+ days',   rate:57.2, color:'#EF4444'},
+];
+function buildHBars(containerId, data, valSuffix) {
+  var wrap = document.getElementById(containerId);
+  if (!wrap) return;
+  var max = Math.max.apply(null, data.map(function(d){return d.rate;}));
+  data.forEach(function(d){
+    var w = (d.rate/max*100).toFixed(1);
+    var row = document.createElement('div');
+    row.className = 'hbar-row';
+    row.innerHTML = '<div class="hbar-label">'+d.label+'</div>'
+      +'<div class="hbar-track"><div class="hbar-fill" style="width:0%;background:'+d.color+'" data-w="'+w+'"></div></div>'
+      +'<div class="hbar-val">'+d.rate+(valSuffix||'')+'</div>';
+    wrap.appendChild(row);
+  });
+  setTimeout(function(){
+    wrap.querySelectorAll('.hbar-fill').forEach(function(b){b.style.width=b.dataset.w+'%';});
+  }, 400);
+}
+
+buildHBars('da3-leadtime-bars', leadTimeBuckets, '%');
+
+// ── DEPOSIT TYPE BARS ──────────────────────────────────────────────
+var depositData = [
+  {label:'Non Refund',   rate:67.4, color:'#EF4444'},
+  {label:'No Deposit',   rate:33.1, color:'#C9A567'},
+  {label:'Refundable',   rate:22.3, color:'#34D399'},
+];
+buildHBars('da3-deposit-bars', depositData, '%');
+
+// ── MONTHLY BOOKING VOLUME ─────────────────────────────────────────
+var monthData = [
+  {label:'Jan', rate:4.2, color:'#818CF8'},
+  {label:'Feb', rate:4.8, color:'#818CF8'},
+  {label:'Mar', rate:6.1, color:'#818CF8'},
+  {label:'Apr', rate:7.2, color:'#C9A567'},
+  {label:'May', rate:7.8, color:'#C9A567'},
+  {label:'Jun', rate:8.4, color:'#C9A567'},
+  {label:'Jul', rate:10.1,color:'#34D399'},
+  {label:'Aug', rate:10.3,color:'#34D399'},
+  {label:'Sep', rate:8.0, color:'#C9A567'},
+  {label:'Oct', rate:7.9, color:'#C9A567'},
+  {label:'Nov', rate:5.3, color:'#818CF8'},
+  {label:'Dec', rate:4.6, color:'#818CF8'},
+];
+buildHBars('da3-month-bars', monthData, '%');
+
+// ── MARKET SEGMENT BARS ────────────────────────────────────────────
+var segData = [
+  {label:'Online TA',    rate:47.4, color:'#C9A567'},
+  {label:'Offline TA/TO',rate:20.5, color:'#818CF8'},
+  {label:'Groups',       rate:16.3, color:'#F87171'},
+  {label:'Direct',       rate:10.6, color:'#34D399'},
+  {label:'Corporate',    rate:3.8,  color:'#4ADE80'},
+  {label:'Complementary',rate:0.7,  color:'#7A7068'},
+];
+buildHBars('da3-segment-bars', segData, '%');
+
+// ── ADR BY ROOM TYPE ───────────────────────────────────────────────
+var roomData = [
+  {label:'Room H', rate:185, color:'#C9A567'},
+  {label:'Room G', rate:163, color:'#C9A567'},
+  {label:'Room F', rate:142, color:'#FBBF24'},
+  {label:'Room E', rate:126, color:'#FBBF24'},
+  {label:'Room D', rate:118, color:'#A09890'},
+  {label:'Room C', rate:109, color:'#A09890'},
+  {label:'Room B', rate:98,  color:'#7A7068'},
+  {label:'Room A', rate:82,  color:'#7A7068'},
+];
+buildHBars('da3-room-bars', roomData, '');
+
+// ── REPEAT GUEST BARS ──────────────────────────────────────────────
+var repeatData = [
+  {label:'New — Cancel Rate',    rate:38.2, color:'#F87171'},
+  {label:'Repeat — Cancel Rate', rate:14.7, color:'#34D399'},
+  {label:'New — Avg Lead Time',  rate:104,  color:'#F87171'},
+  {label:'Repeat — Avg Lead Time',rate:61,  color:'#34D399'},
+];
+buildHBars('da3-repeat-bars', repeatData, '');
+
+// ── KEY INSIGHTS ──────────────────────────────────────────────────
+var insights = [
+  {color:'#EF4444', tag:'#01 CANCELLATION', title:'37.2% of all bookings cancel', body:'30,776 bookings lost — translating to $11.6M of unrealized revenue (39% of gross potential). Cancellation is structural, not seasonal.'},
+  {color:'#C9A567', tag:'#02 LEAD TIME', title:'Lead time is the strongest predictor', body:'Cancel rate climbs from 9.8% at 0–7 days to 57%+ at 181+ days. Bookings made more than 90 days out are highest risk.'},
+  {color:'#34D399', tag:'#03 SEASONALITY', title:'Peak demand in July–August', body:'Summer months drive 10%+ of annual volume each. January and December are the weakest. Shoulder months (Apr–May, Sep–Oct) are resilient.'},
+  {color:'#818CF8', tag:'#04 CHANNEL MIX', title:'Online TA dominates at 47%', body:'Heavy concentration in one channel creates dependency risk. Direct and Corporate show lower cancel rates and healthy ADR.'},
+  {color:'#FBBF24', tag:'#05 PRICING', title:'Room types H, G, F command premium rates', body:'$142–185 ADR vs $82 for room A. Pricing tracks demand seasonality — ADR peaks match July–August booking peaks.'},
+  {color:'#4ADE80', tag:'#06 REPEAT GUESTS', title:'Repeat guests cancel 2.6× less often', body:'14.7% vs 38.2% cancel rate. They book closer to arrival (61 vs 104 days avg lead time), indicating established brand trust.'},
+];
+var insightGrid = document.getElementById('da3-insights');
+if (insightGrid) {
+  insights.forEach(function(ins){
+    var card = document.createElement('div');
+    card.style.cssText = 'background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:1.25rem;border-top:2px solid '+ins.color+';transition:transform .2s,box-shadow .2s;cursor:default;';
+    card.innerHTML = '<div style="font-family:\'JetBrains Mono\',monospace;font-size:10px;color:'+ins.color+';letter-spacing:.15em;margin-bottom:.4rem;">'+ins.tag+'</div>'
+      +'<div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:.5rem;line-height:1.4;">'+ins.title+'</div>'
+      +'<p style="font-size:11px;color:#A09890;line-height:1.6;margin:0;">'+ins.body+'</p>';
+    card.addEventListener('mouseenter',function(){ card.style.transform='translateY(-2px)'; card.style.boxShadow='0 8px 24px rgba(0,0,0,0.3),0 0 0 1px '+ins.color+'22'; });
+    card.addEventListener('mouseleave',function(){ card.style.transform=''; card.style.boxShadow=''; });
+    insightGrid.appendChild(card);
+  });
+}
+
+// ── RECOMMENDATIONS ───────────────────────────────────────────────
+var recs = [
+  {color:'#C9A567', num:'01', title:'Dynamic deposit policy tied to lead time', body:'Bookings made 90+ days out cancel at 38–57%. Require a meaningful deposit or partial pre-payment at booking for long-lead reservations.'},
+  {color:'#34D399', num:'02', title:'30-day pre-arrival re-confirmation', body:'For all bookings with lead time &gt;60 days, send a confirmation and upsell touchpoint at T-30. Re-engagement reduces late cancellation risk.'},
+  {color:'#818CF8', num:'03', title:'Grow direct and corporate channels', body:'Direct and Corporate show the lowest cancellation rates and healthy ADR. Shift marketing budget toward reducing OTA dependency.'},
+  {color:'#FBBF24', num:'04', title:'Repeat guest loyalty program', body:'Repeat guests cancel 2.6× less often. A structured loyalty program converts high-LTV guests and reduces revenue volatility.'},
+  {color:'#F87171', num:'05', title:'Yield management for peak months', body:'Optimize room pricing in July–August and shoulder months. Premium room types (H, G, F) have headroom for dynamic pricing.'},
+  {color:'#4ADE80', num:'06', title:'Special requests as engagement signal', body:'Each additional special request is associated with significantly lower cancellation probability. Prompt guests to add requests at booking.'},
+];
+var recsGrid = document.getElementById('da3-recs');
+if (recsGrid) {
+  recs.forEach(function(r){
+    var card = document.createElement('div');
+    card.style.cssText = 'background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:1.25rem;border-top:2px solid '+r.color+';transition:transform .2s,box-shadow .2s;cursor:default;';
+    card.innerHTML = '<div style="font-family:\'JetBrains Mono\',monospace;font-size:10px;color:'+r.color+';letter-spacing:.15em;margin-bottom:.5rem;">'+r.num+'</div>'
+      +'<div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:.5rem;line-height:1.4;">'+r.title+'</div>'
+      +'<div style="font-size:12px;color:#D6D0C8;line-height:1.6;">'+r.body+'</div>';
+    card.addEventListener('mouseenter',function(){ card.style.transform='translateY(-2px)'; card.style.boxShadow='0 8px 24px rgba(0,0,0,0.3),0 0 0 1px '+r.color+'22'; });
+    card.addEventListener('mouseleave',function(){ card.style.transform=''; card.style.boxShadow=''; });
+    recsGrid.appendChild(card);
+  });
+}
+
+})();
+</script>
+
+        </div>
+      </div>
+    </div>
+    <!-- ══════════ END DA PROJECT 3 ══════════ -->
+
   </div><!-- end sub-analysis -->
 
   <!-- DATA SCIENCE -->
