@@ -688,23 +688,29 @@
 
 
   // Language switcher
+  var currentLang = 'id';
   function applyLang(lang) {
+    currentLang = lang;
     document.querySelectorAll('[data-en][data-id]').forEach(el => {
       const val = lang === 'en' ? el.dataset.en : el.dataset.id;
       if (val !== undefined) el.innerHTML = val;
     });
+    // Handle placeholder translations
+    document.querySelectorAll('[data-en-ph][data-id-ph]').forEach(el => {
+      el.placeholder = lang === 'en' ? el.dataset.enPh : el.dataset.idPh;
+    });
     document.getElementById('langBtn').textContent = lang === 'en' ? 'ID' : 'EN';
     document.documentElement.lang = lang === 'en' ? 'en' : 'id';
-    localStorage.setItem('adj_lang', lang);
+    try { localStorage.setItem('adj_lang', lang); } catch(e) {}
   }
   function toggleLang() {
-    const cur = localStorage.getItem('adj_lang') || 'id';
-    applyLang(cur === 'id' ? 'en' : 'id');
+    applyLang(currentLang === 'id' ? 'en' : 'id');
   }
   // On load, apply saved lang
   (function() {
-    const saved = localStorage.getItem('adj_lang') || 'id';
-    if (saved === 'en') applyLang('en');
+    var saved = 'id';
+    try { saved = localStorage.getItem('adj_lang') || 'id'; } catch(e) {}
+    applyLang(saved);
   })();
 
   window.addEventListener('scroll', () => {
