@@ -706,12 +706,8 @@
   function toggleLang() {
     applyLang(currentLang === 'id' ? 'en' : 'id');
   }
-  // On load, apply saved lang
-  (function() {
-    var saved = 'id';
-    try { saved = localStorage.getItem('adj_lang') || 'id'; } catch(e) {}
-    applyLang(saved);
-  })();
+  // Always start in Indonesian on page load
+  applyLang('id');
 
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
