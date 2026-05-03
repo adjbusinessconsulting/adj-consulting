@@ -4564,12 +4564,19 @@ if (recsGrid) {
           <div class="da-card-tags"><span class="da-tag">SVM</span><span class="da-tag">Classification</span><span class="da-tag">Recall</span><span class="da-tag">Confusion Matrix</span></div>
           <div class="da-card-arrow" data-en="View Project →" data-id="Lihat Proyek →">View Project →</div>
         </div>
-        <div class="da-proj-card" data-proj="ds4" style="position:relative;">
-          <div style="position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;color:#0D1117;background:#C9A567;padding:2px 8px;border-radius:3px;letter-spacing:.08em;z-index:2;">RECOMMENDED</div>
+        <div class="da-proj-card" data-proj="ds4">
           <div class="da-card-num">DS Project 4</div>
           <div class="da-card-title">Credit Risk / Loan Default</div>
           <div class="da-card-desc" data-en="Classify loan default risk — directly relevant to tax &amp; accounting domain" data-id="Klasifikasi risiko gagal bayar — relevan langsung ke domain pajak &amp; akuntansi">Classify loan default risk — directly relevant to tax &amp; accounting domain</div>
           <div class="da-card-tags"><span class="da-tag">Logistic Regression</span><span class="da-tag">XGBoost</span><span class="da-tag">ROC-AUC</span><span class="da-tag">Feature Importance</span></div>
+          <div class="da-card-arrow" data-en="View Project →" data-id="Lihat Proyek →">View Project →</div>
+        </div>
+        <div class="da-proj-card" data-proj="ds5" style="position:relative;">
+          <div style="position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;color:#0D1117;background:#5dcaa5;padding:2px 8px;border-radius:3px;letter-spacing:.08em;z-index:2;">NEW</div>
+          <div class="da-card-num">DS Project 5</div>
+          <div class="da-card-title">Hotel Cancellation Prediction</div>
+          <div class="da-card-desc" data-en="Predict booking cancellations on 82,721 hotel reservations — production-grade evaluation with chronological hold-out" data-id="Prediksi pembatalan booking pada 82.721 reservasi hotel — evaluasi production-grade dengan chronological hold-out">Predict booking cancellations on 82,721 hotel reservations — production-grade evaluation with chronological hold-out</div>
+          <div class="da-card-tags"><span class="da-tag">Random Forest</span><span class="da-tag">Gradient Boosting</span><span class="da-tag">Time-Based Split</span><span class="da-tag">Threshold Tuning</span></div>
           <div class="da-card-arrow" data-en="View Project →" data-id="Lihat Proyek →">View Project →</div>
         </div>
       </div>
@@ -6003,7 +6010,7 @@ if(insightWrap){
 <div class="ds4-header">
   <div class="ds4-header-inner">
     <div>
-      <div class="ds4-badge">DS Project 04 · Recommended</div>
+      <div class="ds4-badge">DS Project 04</div>
       <div class="ds4-title">Credit Risk / <em>Loan Default</em></div>
       <div class="ds4-sub">Predicting whether a Home Credit loan applicant will default within 2 years — trained on 307,511 real borrowers. Directly relevant to tax &amp; accounting domain expertise.</div>
       <div class="ds4-tags">
@@ -6317,6 +6324,509 @@ if(insightWrap){
 </div>
 <!-- end proj-ds4 -->
 
+<!-- ═══════════════════════════════════════════════════
+     DS PROJECT 5 — Hotel Cancellation Prediction
+     Dataset : Hotel bookings (City + Resort) — 82,721 rows after cleaning
+     Models  : LogReg / Random Forest (winner) / Gradient Boosting
+     Eval    : Chronological train/test split (no temporal leakage)
+     Metric  : F1 (0.61), ROC-AUC (0.82), Recall (70% @ tuned threshold)
+═══════════════════════════════════════════════════ -->
+<div class="proj-panel" style="display:none" id="proj-ds5" data-group="ds">
+  <div class="content">
+    <div class="content-inner">
+
+<style>
+/* ── DS5 scoped styles (matches DS4 format with project-specific accent) ── */
+#proj-ds5 *{box-sizing:border-box}
+#proj-ds5 a{color:#C9A567}
+#proj-ds5 .ds5-header{background:#0F1419;border-bottom:1px solid rgba(201,165,103,0.12);padding:2.5rem 5%;position:relative;overflow:hidden}
+#proj-ds5 .ds5-header::after{content:'';position:absolute;top:0;left:-200%;width:400%;height:1px;background:linear-gradient(90deg,transparent,#C9A567,transparent);animation:ds5sweep 6s linear infinite}
+@keyframes ds5sweep{to{transform:translateX(50%)}}
+#proj-ds5 .ds5-header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+#proj-ds5 .ds5-badge{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.14em;color:#0D1117;background:#5dcaa5;padding:3px 9px;border-radius:2px;margin-bottom:.6rem;text-transform:uppercase}
+#proj-ds5 .ds5-title{font-size:clamp(22px,3vw,32px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:.5rem}
+#proj-ds5 .ds5-title em{color:#C9A567;font-style:normal}
+#proj-ds5 .ds5-sub{font-size:13px;color:#8A8078;line-height:1.75;max-width:520px;margin-bottom:1rem}
+#proj-ds5 .ds5-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+#proj-ds5 .ds5-tag{font-size:11px;color:#8A8078;border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:3px}
+#proj-ds5 .ds5-tag.hi{color:#C9A567;border-color:rgba(201,165,103,0.3)}
+#proj-ds5 .ds5-meta{display:flex;flex-direction:column;gap:.5rem;min-width:155px;align-items:flex-end}
+#proj-ds5 .ds5-chip{font-size:11px;color:#8A8078;border:1px solid rgba(255,255,255,0.07);padding:4px 11px;border-radius:4px;text-align:right;white-space:nowrap}
+#proj-ds5 .ds5-chip b{color:#C9A567;font-weight:600}
+
+/* KPI strip */
+#proj-ds5 .ds5-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,165,103,0.07)}
+#proj-ds5 .ds5-kpi-cell{background:#0F1419;padding:1.4rem 1.6rem;position:relative;overflow:hidden;transition:background .25s}
+#proj-ds5 .ds5-kpi-cell:hover{background:#171E27}
+#proj-ds5 .ds5-kpi-cell::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#C9A567;transition:width .45s ease}
+#proj-ds5 .ds5-kpi-cell:hover::after{width:100%}
+#proj-ds5 .ds5-kpi-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#5A5248;margin-bottom:.45rem}
+#proj-ds5 .ds5-kpi-val{font-size:clamp(22px,2.5vw,30px);font-weight:800;color:#fff;line-height:1}
+#proj-ds5 .ds5-kpi-val sup{font-size:13px;color:#8A8078;font-weight:400}
+#proj-ds5 .ds5-kpi-desc{font-size:11px;color:#3A3228;margin-top:.35rem}
+
+/* body grid */
+#proj-ds5 .ds5-body{max-width:1200px;margin:0 auto;padding:2.5rem 5%;display:grid;gap:1.75rem}
+#proj-ds5 .ds5-2col{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem}
+#proj-ds5 .ds5-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.75rem}
+#proj-ds5 .ds5-box{background:#0F1419;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:1.5rem;transition:border-color .25s}
+#proj-ds5 .ds5-box:hover{border-color:rgba(201,165,103,0.14)}
+#proj-ds5 .ds5-box-title{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#5A5248;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between}
+#proj-ds5 .ds5-box-title span{color:#C9A567;font-size:11px}
+
+/* PR canvas */
+#proj-ds5 .ds5-roc-wrap{position:relative;width:100%}
+#proj-ds5 canvas{display:block;width:100%!important;border-radius:4px}
+
+/* Feature importance bars */
+#proj-ds5 .ds5-feat-row{display:flex;align-items:center;gap:.75rem;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,0.035)}
+#proj-ds5 .ds5-feat-row:last-child{border-bottom:none}
+#proj-ds5 .ds5-feat-name{font-size:11px;color:#C0B8B0;min-width:180px;font-family:'JetBrains Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#proj-ds5 .ds5-feat-bar-wrap{flex:1;height:5px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden}
+#proj-ds5 .ds5-feat-bar{height:100%;border-radius:3px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+#proj-ds5 .ds5-feat-val{font-size:10px;color:#C9A567;min-width:42px;text-align:right;font-family:'JetBrains Mono',monospace}
+
+/* Model compare */
+#proj-ds5 .ds5-model-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+#proj-ds5 .ds5-model-card{border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:1rem 1.1rem}
+#proj-ds5 .ds5-model-card.winner{border-color:rgba(201,165,103,0.35);background:rgba(201,165,103,0.04)}
+#proj-ds5 .ds5-model-name{font-size:12px;font-weight:700;color:#fff;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+#proj-ds5 .ds5-model-card.winner .ds5-model-name{color:#C9A567}
+#proj-ds5 .ds5-win-pill{font-size:8px;font-weight:800;color:#0D1117;background:#C9A567;padding:1px 6px;border-radius:2px;letter-spacing:.06em}
+#proj-ds5 .ds5-model-stat{font-size:11px;color:#6A6058;line-height:2}
+#proj-ds5 .ds5-model-stat b{color:#A09890}
+
+/* insight rows */
+#proj-ds5 .ds5-insight{display:flex;gap:.9rem;padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+#proj-ds5 .ds5-insight:last-child{border-bottom:none}
+#proj-ds5 .ds5-insight-num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:#C9A567;min-width:26px;padding-top:1px}
+#proj-ds5 .ds5-insight-title{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#E0D8D0;margin-bottom:.25rem}
+#proj-ds5 .ds5-insight-body{font-family:'JetBrains Mono',monospace;font-size:12px;color:#6A6058;line-height:1.65}
+
+/* pipeline steps */
+#proj-ds5 .ds5-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+#proj-ds5 .ds5-steps::before{content:'';position:absolute;top:24px;left:10%;width:80%;height:1px;background:rgba(201,165,103,0.2)}
+#proj-ds5 .ds5-step{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.6rem;position:relative;z-index:1}
+#proj-ds5 .ds5-step-dot{width:48px;height:48px;border-radius:50%;border:1px solid rgba(201,165,103,0.3);background:#0F1419;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .3s}
+#proj-ds5 .ds5-step:hover .ds5-step-dot{background:rgba(201,165,103,0.1);border-color:#C9A567}
+#proj-ds5 .ds5-step-label{font-size:10px;color:#5A5248;letter-spacing:.06em;text-transform:uppercase;line-height:1.4}
+
+/* note box */
+#proj-ds5 .ds5-note{background:rgba(201,165,103,0.04);border:1px solid rgba(201,165,103,0.15);border-radius:6px;padding:1rem 1.25rem;font-size:12px;color:#8A8078;line-height:1.75}
+#proj-ds5 .ds5-note strong{color:#C9A567}
+
+/* score meter bar */
+#proj-ds5 .ds5-meter-wrap{margin-top:.75rem}
+#proj-ds5 .ds5-meter-track{height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin-bottom:.35rem}
+#proj-ds5 .ds5-meter-fill{height:100%;border-radius:4px;transition:width 1.5s cubic-bezier(.4,0,.2,1)}
+#proj-ds5 .ds5-meter-labels{display:flex;justify-content:space-between;font-size:10px;color:#3A3228}
+
+/* Predictor (live demo) section */
+#proj-ds5 .ds5-pred-wrap{position:relative;width:100%;height:0;padding-top:56.25%;border-radius:6px;overflow:hidden;box-shadow:0 2px 16px 0 rgba(0,0,0,0.3);background:#131820}
+#proj-ds5 .ds5-pred-iframe{position:absolute;width:100%;height:100%;top:0;left:0;border:none;padding:0;margin:0}
+#proj-ds5 .ds5-pred-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:2rem;text-align:center}
+
+@media(max-width:900px){
+  #proj-ds5 .ds5-kpi{grid-template-columns:repeat(2,1fr)}
+  #proj-ds5 .ds5-2col,#proj-ds5 .ds5-3col{grid-template-columns:1fr}
+  #proj-ds5 .ds5-steps{grid-template-columns:repeat(3,1fr);gap:.75rem}
+  #proj-ds5 .ds5-steps::before{display:none}
+  #proj-ds5 .ds5-model-grid{grid-template-columns:1fr}
+  #proj-ds5 .ds5-feat-name{min-width:130px}
+}
+</style>
+
+<!-- Breadcrumb -->
+<div class="proj-bc"><a href="data-analysis.html">Portfolio</a> / <a href="data-analysis.html">Data Science</a> / <span>Hotel Cancellation Prediction</span></div>
+
+<!-- ── HEADER ── -->
+<div class="ds5-header">
+  <div class="ds5-header-inner">
+    <div>
+      <div class="ds5-badge">DS Project 05 · New</div>
+      <div class="ds5-title">Hotel <em>Cancellation Prediction</em></div>
+      <div class="ds5-sub">Predicting whether a hotel booking will be canceled before arrival — trained on 82,721 real bookings across two years. Production-realistic evaluation using a chronological train/test split, calibrated to a recall-tuned threshold.</div>
+      <div class="ds5-tags">
+        <span class="ds5-tag hi">Random Forest</span>
+        <span class="ds5-tag hi">Gradient Boosting</span>
+        <span class="ds5-tag hi">Chronological Split</span>
+        <span class="ds5-tag hi">Permutation Importance</span>
+        <span class="ds5-tag">Scikit-Learn</span>
+        <span class="ds5-tag">Pandas</span>
+        <span class="ds5-tag">Threshold Tuning</span>
+        <span class="ds5-tag">Binary Classification</span>
+      </div>
+    </div>
+    <div class="ds5-meta">
+      <div class="ds5-chip">Dataset: <b>Hotel bookings</b></div>
+      <div class="ds5-chip">Rows: <b>82,721</b></div>
+      <div class="ds5-chip">Features used: <b>68</b></div>
+      <div class="ds5-chip">RF F1: <b>0.614</b></div>
+      <div class="ds5-chip">RF AUC: <b>0.817</b></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── KPI STRIP ── -->
+<div class="ds5-kpi">
+  <div class="ds5-kpi-cell">
+    <div class="ds5-kpi-label">Cleaned Dataset</div>
+    <div class="ds5-kpi-val">82.7K<sup> rows</sup></div>
+    <div class="ds5-kpi-desc">2 hotels · Jul 2017 → Aug 2019</div>
+  </div>
+  <div class="ds5-kpi-cell">
+    <div class="ds5-kpi-label">Random Forest AUC</div>
+    <div class="ds5-kpi-val">0.817<sup> roc</sup></div>
+    <div class="ds5-kpi-desc">+63% over majority baseline</div>
+  </div>
+  <div class="ds5-kpi-cell">
+    <div class="ds5-kpi-label">Cancel Rate</div>
+    <div class="ds5-kpi-val">37.2<sup>%</sup></div>
+    <div class="ds5-kpi-desc">Class imbalance handled</div>
+  </div>
+  <div class="ds5-kpi-cell">
+    <div class="ds5-kpi-label">Top Predictor</div>
+    <div class="ds5-kpi-val" style="font-size:16px;padding-top:4px">lead_time</div>
+    <div class="ds5-kpi-desc">10% → 57% by bucket</div>
+  </div>
+</div>
+
+<!-- ── BODY ── -->
+<div class="ds5-body">
+
+  <!-- Pipeline Steps -->
+  <div class="ds5-box">
+    <div class="ds5-box-title">ML Pipeline</div>
+    <div class="ds5-steps">
+      <div class="ds5-step">
+        <div class="ds5-step-dot">📦</div>
+        <div class="ds5-step-label">Data<br>Loading</div>
+      </div>
+      <div class="ds5-step">
+        <div class="ds5-step-dot">🧹</div>
+        <div class="ds5-step-label">Clean &amp;<br>Engineer</div>
+      </div>
+      <div class="ds5-step">
+        <div class="ds5-step-dot">⏱️</div>
+        <div class="ds5-step-label">Time-Based<br>Split</div>
+      </div>
+      <div class="ds5-step">
+        <div class="ds5-step-dot">🤖</div>
+        <div class="ds5-step-label">3 Baselines<br>3 Models</div>
+      </div>
+      <div class="ds5-step">
+        <div class="ds5-step-dot">🎯</div>
+        <div class="ds5-step-label">Threshold<br>Tuning</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PR Curve + Model Compare -->
+  <div class="ds5-2col">
+    <div class="ds5-box">
+      <div class="ds5-box-title">Precision–Recall Curves <span>chronological test set</span></div>
+      <div class="ds5-roc-wrap">
+        <canvas id="ds5-pr-canvas" height="260"></canvas>
+      </div>
+    </div>
+
+    <div class="ds5-box">
+      <div class="ds5-box-title">Model Comparison</div>
+      <div class="ds5-model-grid">
+        <div class="ds5-model-card">
+          <div class="ds5-model-name">Gradient Boosting</div>
+          <div class="ds5-model-stat">
+            <b>AUC:</b> 0.823<br>
+            <b>F1:</b> 0.590<br>
+            <b>Role:</b> Runner-up<br>
+            <b>Strength:</b> Highest ranking quality
+          </div>
+        </div>
+        <div class="ds5-model-card winner">
+          <div class="ds5-model-name">Random Forest <span class="ds5-win-pill">PROD</span></div>
+          <div class="ds5-model-stat">
+            <b>AUC:</b> 0.817<br>
+            <b>F1:</b> 0.614<br>
+            <b>Role:</b> Production model<br>
+            <b>Strength:</b> Higher recall, robust
+          </div>
+        </div>
+      </div>
+      <!-- F1 bars -->
+      <div class="ds5-meter-wrap">
+        <div style="font-size:10px;color:#5A5248;margin-bottom:.5rem;letter-spacing:.1em;text-transform:uppercase">F1 vs simple baselines</div>
+        <div style="font-size:11px;color:#8A8078;margin-bottom:.3rem">B2: lead_time &gt; 90 rule</div>
+        <div class="ds5-meter-track"><div class="ds5-meter-fill" id="ds5-rule-bar" style="width:0%;background:linear-gradient(90deg,#4A90B8,#6BAED6)"></div></div>
+        <div class="ds5-meter-labels"><span>0.0</span><span>0.395</span><span>1.0</span></div>
+        <div style="font-size:11px;color:#8A8078;margin:.6rem 0 .3rem">B3: 6-feature LogReg</div>
+        <div class="ds5-meter-track"><div class="ds5-meter-fill" id="ds5-lr-bar" style="width:0%;background:linear-gradient(90deg,#818CF8,#A5B4FC)"></div></div>
+        <div class="ds5-meter-labels"><span>0.0</span><span>0.509</span><span>1.0</span></div>
+        <div style="font-size:11px;color:#8A8078;margin:.6rem 0 .3rem">Random Forest (production)</div>
+        <div class="ds5-meter-track"><div class="ds5-meter-fill" id="ds5-rf-bar" style="width:0%;background:linear-gradient(90deg,#C9A567,#E8C97A)"></div></div>
+        <div class="ds5-meter-labels"><span>0.0</span><span>0.614</span><span>1.0</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feature Importance + Key Insights -->
+  <div class="ds5-2col">
+    <div class="ds5-box">
+      <div class="ds5-box-title">Permutation Importance <span>RF · top 10 features</span></div>
+      <div id="ds5-feat-list"></div>
+    </div>
+
+    <div class="ds5-box">
+      <div class="ds5-box-title">Key Findings</div>
+      <div class="ds5-insight">
+        <div class="ds5-insight-num">01</div>
+        <div>
+          <div class="ds5-insight-title">Lead time dominates — 10% → 57% by bucket</div>
+          <div class="ds5-insight-body">Bookings made 0–7 days out cancel at 9.8%. Bookings made 180+ days out cancel at 56.9%. The single strongest signal in both impurity and permutation rankings.</div>
+        </div>
+      </div>
+      <div class="ds5-insight">
+        <div class="ds5-insight-num">02</div>
+        <div>
+          <div class="ds5-insight-title">Engagement features collapse risk by 25–40 pts</div>
+          <div class="ds5-insight-body">Special requests, booking changes, parking, and room reassignment each drop cancel rate dramatically. Free PMS signals the business already collects but never used.</div>
+        </div>
+      </div>
+      <div class="ds5-insight">
+        <div class="ds5-insight-num">03</div>
+        <div>
+          <div class="ds5-insight-title">Caught two leakage traps before training</div>
+          <div class="ds5-insight-body">deposit_type excluded outright (99% of "Non Refund" cancel — inverted logic). previous_cancellations included but flagged: rank 5 by impurity, rank 14 by permutation.</div>
+        </div>
+      </div>
+      <div class="ds5-insight">
+        <div class="ds5-insight-num">04</div>
+        <div>
+          <div class="ds5-insight-title">Chronological split costs 16 F1 points — and we keep them</div>
+          <div class="ds5-insight-body">Random split would show F1 of 0.77; chronological gives 0.61. The 16-point gap is the size of the temporal-leakage illusion most projects don't catch. We report the production number.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Predictor (live demo, embedded from GitHub Pages) -->
+  <div class="ds5-box">
+    <div class="ds5-box-title">Live Predictor <span>scoring with the deployed model</span></div>
+    <div class="ds5-pred-wrap">
+      <div class="ds5-pred-fallback">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7A7068;letter-spacing:0.15em;text-transform:uppercase;">Loading predictor</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A09890;">If the demo doesn't appear, open it directly:</div>
+        <a href="https://adjbusinessconsulting.github.io/adjbusinessconsulting-ds-project-5/booking-live-demo.html"
+           target="_blank" rel="noopener"
+           style="margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:#0D1117;background:#C9A567;padding:8px 16px;border-radius:3px;text-decoration:none;transition:all 0.2s;"
+           onmouseover="this.style.background='#D9B97C'" onmouseout="this.style.background='#C9A567'">
+          ↗ Open Live Demo
+        </a>
+      </div>
+      <iframe loading="lazy" class="ds5-pred-iframe"
+        src="https://adjbusinessconsulting.github.io/adjbusinessconsulting-ds-project-5/booking-live-demo.html"
+        allow="fullscreen">
+      </iframe>
+    </div>
+  </div>
+
+</div><!-- end ds5-body -->
+
+<!-- Presentation Section (Canva) -->
+<div class="dash-body" style="padding-top:0;">
+  <div class="chart-box">
+    <div class="section-label">Presentation</div>
+    <div class="chart-title">
+      <span>Hotel_Cancellation_Prediction_Final_Project</span>
+      <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;">
+        <span class="chart-badge">Canva</span>
+        <a href="https://www.canva.com/design/DAHIaCTb8VQ/Cdy6KpxR0vapdtNKdF7TZA/view"
+           target="_blank" rel="noopener"
+           style="font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:#0D1117;background:#C9A567;padding:2px 10px;border-radius:3px;text-decoration:none;white-space:nowrap;transition:background 0.2s;"
+           onmouseover="this.style.background='#D9B97C'" onmouseout="this.style.background='#C9A567'">
+          ↗ Open in Canva
+        </a>
+      </div>
+    </div>
+    <div style="position:relative;width:100%;height:0;padding-top:56.25%;border-radius:6px;overflow:hidden;box-shadow:0 2px 16px 0 rgba(0,0,0,0.3);background:#131820;">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:2rem;text-align:center;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7A7068;letter-spacing:0.15em;text-transform:uppercase;">Preview loading</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#A09890;">If the presentation doesn't appear, click the button below</div>
+        <a href="https://www.canva.com/design/DAHIaCTb8VQ/Cdy6KpxR0vapdtNKdF7TZA/view"
+           target="_blank" rel="noopener"
+           style="margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:#0D1117;background:#C9A567;padding:8px 16px;border-radius:3px;text-decoration:none;transition:all 0.2s;"
+           onmouseover="this.style.background='#D9B97C'" onmouseout="this.style.background='#C9A567'">
+          ↗ Open in Canva
+        </a>
+      </div>
+      <iframe loading="lazy"
+        style="position:absolute;width:100%;height:100%;top:0;left:0;border:none;padding:0;margin:0;"
+        src="https://www.canva.com/design/DAHIaCTb8VQ/Cdy6KpxR0vapdtNKdF7TZA/view?embed"
+        allowfullscreen="allowfullscreen" allow="fullscreen">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ── Real model data from the chronological pipeline ── */
+  const R = {
+    rf_f1: 0.614, rf_auc: 0.817, rule_f1: 0.395, lr_f1: 0.509,
+    /* Precision–Recall curves: anchor points from actual RF / GB outputs */
+    pr: {
+      rf:  { recall:[0.05,0.10,0.20,0.30,0.40,0.50,0.589,0.65,0.70,0.75,0.80,0.85,0.90,0.95,1.0],
+             prec:  [0.93,0.91,0.86,0.82,0.77,0.71,0.642,0.62,0.572,0.52,0.47,0.42,0.38,0.35,0.317] },
+      gb:  { recall:[0.05,0.10,0.20,0.30,0.40,0.524,0.60,0.70,0.80,0.90,1.0],
+             prec:  [0.95,0.92,0.88,0.83,0.79,0.674,0.62,0.55,0.46,0.38,0.317] }
+    },
+    /* Permutation importance — top 10 from the chronological hold-out */
+    feat: [
+      {f:'lead_time',v:0.034},
+      {f:'has_special_request',v:0.034},
+      {f:'total_of_special_requests',v:0.032},
+      {f:'room_changed',v:0.014},
+      {f:'customer_type_Transient',v:0.007},
+      {f:'has_booking_changes',v:0.005},
+      {f:'market_segment_Groups',v:0.004},
+      {f:'previous_cancellations',v:0.003},
+      {f:'has_parking',v:0.002},
+      {f:'adr_per_person',v:0.002}
+    ]
+  };
+
+  /* ── Precision–Recall chart ── */
+  function drawPR(){
+    const canvas = document.getElementById('ds5-pr-canvas');
+    if(!canvas) return;
+    const W = canvas.offsetWidth || 400;
+    const H = 260;
+    canvas.width = W * window.devicePixelRatio;
+    canvas.height = H * window.devicePixelRatio;
+    canvas.style.height = H+'px';
+    const ctx = canvas.getContext('2d');
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+    const pad={top:18,right:18,bottom:42,left:42};
+    const pw=W-pad.left-pad.right, ph=H-pad.top-pad.bottom;
+
+    /* bg */
+    ctx.fillStyle='#0A0E14'; ctx.fillRect(0,0,W,H);
+
+    /* grid */
+    ctx.strokeStyle='rgba(255,255,255,0.05)'; ctx.lineWidth=1;
+    [0,.25,.5,.75,1].forEach(t=>{
+      const x=pad.left+t*pw, y=pad.top+(1-t)*ph;
+      ctx.beginPath(); ctx.moveTo(x,pad.top); ctx.lineTo(x,pad.top+ph); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(pad.left,y); ctx.lineTo(pad.left+pw,y); ctx.stroke();
+    });
+
+    /* baseline (dataset prevalence) */
+    const baseline = 0.317;
+    ctx.strokeStyle='rgba(255,255,255,0.12)'; ctx.setLineDash([4,4]); ctx.lineWidth=1;
+    const by = pad.top+(1-baseline)*ph;
+    ctx.beginPath(); ctx.moveTo(pad.left,by); ctx.lineTo(pad.left+pw,by); ctx.stroke();
+    ctx.setLineDash([]);
+
+    function plotCurve(rec,prec,color){
+      ctx.strokeStyle=color; ctx.lineWidth=2; ctx.beginPath();
+      rec.forEach((x,i)=>{
+        const px=pad.left+x*pw, py=pad.top+(1-prec[i])*ph;
+        i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+      });
+      ctx.stroke();
+    }
+
+    plotCurve(R.pr.gb.recall,R.pr.gb.prec,'#6BAED6');
+    plotCurve(R.pr.rf.recall,R.pr.rf.prec,'#C9A567');
+
+    /* threshold marker on RF curve at recall=0.70 */
+    const tr=0.70, tp=0.572;
+    const tx=pad.left+tr*pw, ty=pad.top+(1-tp)*ph;
+    ctx.fillStyle='#5dcaa5'; ctx.beginPath(); ctx.arc(tx,ty,4,0,Math.PI*2); ctx.fill();
+    ctx.font='bold 10px JetBrains Mono,monospace';
+    ctx.fillStyle='#5dcaa5';
+    ctx.fillText('★ tuned (0.436)', tx-4, ty-9);
+
+    /* legend */
+    ctx.font='bold 11px JetBrains Mono,monospace';
+    ctx.fillStyle='#C9A567'; ctx.fillText('RF F1='+R.rf_f1.toFixed(3), pad.left+8, pad.top+18);
+    ctx.fillStyle='#6BAED6'; ctx.fillText('GB F1=0.590', pad.left+8, pad.top+34);
+
+    /* axes */
+    ctx.fillStyle='#3A3228'; ctx.font='10px JetBrains Mono,monospace'; ctx.textAlign='center';
+    ctx.fillText('Recall',pad.left+pw/2,H-4);
+    ctx.save(); ctx.translate(10,pad.top+ph/2); ctx.rotate(-Math.PI/2);
+    ctx.fillText('Precision',0,0); ctx.restore();
+    ctx.textAlign='left';
+    [0,.5,1].forEach(t=>{
+      ctx.fillStyle='#3A3228';
+      ctx.fillText(t.toFixed(1),pad.left+t*pw-6,pad.top+ph+14);
+      ctx.fillText(t.toFixed(1),pad.left-28,pad.top+(1-t)*ph+4);
+    });
+  }
+
+  /* ── Feature importance bars ── */
+  function renderFeat(){
+    const el = document.getElementById('ds5-feat-list');
+    if(!el) return;
+    const maxV = R.feat[0].v;
+    el.innerHTML = R.feat.map(d=>{
+      const pct = (d.v/maxV*100).toFixed(1);
+      const grad = d.v >= 0.020 ? 'linear-gradient(90deg,#C9A567,#E8C97A)'
+                 : d.v >= 0.005 ? 'linear-gradient(90deg,#818CF8,#A5B4FC)'
+                                 : 'linear-gradient(90deg,#4A90B8,#6BAED6)';
+      return `<div class="ds5-feat-row">
+        <div class="ds5-feat-name">${d.f}</div>
+        <div class="ds5-feat-bar-wrap"><div class="ds5-feat-bar" data-w="${pct}" style="width:0%;background:${grad}"></div></div>
+        <div class="ds5-feat-val">${d.v.toFixed(3)}</div>
+      </div>`;
+    }).join('');
+  }
+
+  /* ── F1 bars animate ── */
+  function animateBars(){
+    const rule = document.getElementById('ds5-rule-bar');
+    const lr = document.getElementById('ds5-lr-bar');
+    const rf = document.getElementById('ds5-rf-bar');
+    if(rule) setTimeout(()=>{rule.style.width=(R.rule_f1*100).toFixed(1)+'%'},250);
+    if(lr) setTimeout(()=>{lr.style.width=(R.lr_f1*100).toFixed(1)+'%'},400);
+    if(rf) setTimeout(()=>{rf.style.width=(R.rf_f1*100).toFixed(1)+'%'},550);
+  }
+
+  /* ── Animate feature bars on visibility ── */
+  function animateFeat(){
+    document.querySelectorAll('#proj-ds5 .ds5-feat-bar').forEach((b,i)=>{
+      setTimeout(()=>{ b.style.width = b.dataset.w+'%'; }, i*40);
+    });
+  }
+
+  /* ── Init when panel becomes visible ── */
+  function init(){
+    renderFeat();
+    setTimeout(()=>{
+      drawPR();
+      animateBars();
+      animateFeat();
+    }, 120);
+  }
+
+  /* watch for panel activation */
+  const panel = document.getElementById('proj-ds5');
+  if(panel){
+    const obs = new MutationObserver(()=>{
+      if(panel.style.display !== 'none') init();
+    });
+    obs.observe(panel, {attributes:true, attributeFilter:['style']});
+    if(panel.style.display !== 'none') init();
+  }
+})();
+</script>
+
+    </div>
+  </div>
+</div>
+<!-- end proj-ds5 -->
+
 <!-- DEEP DIVE CTA -->
 <section style="background:var(--navy-mid);padding:4rem 6%;border-top:1px solid rgba(201, 165, 103,0.08);border-bottom:1px solid rgba(201, 165, 103,0.08);position:relative;overflow:hidden;">
   <div style="position:absolute;top:0;left:-100%;width:200%;height:1px;background:linear-gradient(90deg,transparent,#C9A567,transparent);animation:scanLine 4s linear infinite;"></div>
@@ -6387,7 +6897,8 @@ if(insightWrap){
     'ds1': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-1', streamlit: 'https://adjbusinessconsulting-ds-project-1.streamlit.app/' },
     'ds2': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-2', streamlit: 'https://adjbusinessconsulting-ds-project-2.streamlit.app/' },
     'ds3': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-3', streamlit: 'https://adjbusinessconsulting-ds-project-3.streamlit.app/' },
-    'ds4': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-4', streamlit: 'https://adjbusinessconsulting-ds-project-4.streamlit.app/' }
+    'ds4': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-4', streamlit: 'https://adjbusinessconsulting-ds-project-4.streamlit.app/' },
+    'ds5': { github: 'https://github.com/adjbusinessconsulting/adjbusinessconsulting-ds-project-5', streamlit: 'https://adjbusinessconsulting-ds-project-5.streamlit.app/' }
   };
   function _updateCtaLinks(projId) {
     var links = _ctaLinks[projId];
