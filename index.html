@@ -158,6 +158,18 @@
     /* CTA */
     .glow-line { height: 1px; background: linear-gradient(90deg, transparent, #C9A567, transparent); opacity: 0.3; margin: 0; }
     .glow-line { height: 1px; background: linear-gradient(90deg, transparent, #C9A567, transparent); opacity: 0.3; margin: 0; }
+    /* Clients Section */
+    .clients-section { padding: 4rem 6%; background: var(--navy); }
+    .clients-inner { max-width: 1200px; margin: 0 auto; }
+    .clients-eyebrow { font-family: var(--mono); font-size: 11px; color: #A09890; letter-spacing: 0.18em; text-transform: uppercase; text-align: center; margin-bottom: 2rem; }
+    .clients-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .client-card { background: var(--navy-mid); border: 1px solid rgba(201,165,103,0.10); border-radius: 8px; padding: 1.5rem 1.25rem; text-align: center; transition: border-color 0.2s, transform 0.2s; }
+    .client-card:hover { border-color: rgba(201,165,103,0.3); transform: translateY(-2px); }
+    .client-icon { font-size: 28px; margin-bottom: 0.75rem; }
+    .client-name { font-family: var(--h); font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 0.3rem; }
+    .client-desc { font-family: var(--mono); font-size: 11px; color: #A09890; letter-spacing: 0.04em; }
+    @media(max-width: 768px) { .clients-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width: 480px) { .clients-grid { grid-template-columns: 1fr; } }
     .cta-section {
       background: transparent;
       padding: 4rem 5vw;
@@ -439,7 +451,7 @@
     <div class="hero-card">
       <div class="hero-card-label" data-en="our services" data-id="layanan kami">layanan kami</div>
       <div class="metric-row">
-        <div class="metric"><span class="metric-num">50+</span><span class="metric-label" data-en="active clients" data-id="klien aktif">klien aktif</span></div>
+        <div class="metric"><span class="metric-num">4</span><span class="metric-label" data-en="clients" data-id="klien">klien</span></div>
         <div class="metric"><span class="metric-num">4</span><span class="metric-label" data-en="expertise" data-id="keahlian">keahlian</span></div>
         <div class="metric"><span class="metric-num">100%</span><span class="metric-label" data-en="commitment" data-id="komitmen">komitmen</span></div>
       </div>
@@ -460,7 +472,7 @@
 
 <section class="stats-section">
   <div class="stats-inner">
-    <div class="stat-item sr sr-up"><span class="stat-num" data-target="50" data-suffix="+">0</span><span class="stat-label" data-en="active clients" data-id="klien aktif">klien aktif</span></div>
+    <div class="stat-item sr sr-up"><span class="stat-num" data-target="4" data-suffix="">0</span><span class="stat-label" data-en="clients" data-id="klien">klien</span></div>
     <div class="stat-item sr sr-up d1"><span class="stat-num" data-target="3" data-suffix="">0</span><span class="stat-label" data-en="areas of expertise" data-id="bidang keahlian">bidang keahlian</span></div>
     <div class="stat-item sr sr-up d2"><span class="stat-num" data-target="100" data-suffix="%">0</span><span class="stat-label" data-en="client commitment" data-id="komitmen klien">komitmen klien</span></div>
   </div>
@@ -677,6 +689,8 @@
     </div>
   </div>
 </section>
+
+<div class="glow-line"></div>
 
 <div class="glow-line"></div>
 <section class="cta-section">
