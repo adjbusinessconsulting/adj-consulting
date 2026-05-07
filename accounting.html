@@ -1019,43 +1019,40 @@
                data-id="Lihat casebook →">Lihat casebook →</div>
         </div>
 
-        <div class="cb-card placeholder" data-cb="solusi">
+        <div class="cb-card" data-cb="solusi">
           <div class="cb-card-num">Case 03</div>
           <div class="cb-card-name">CV Solusi Digital</div>
           <div class="cb-card-type"
                data-en="IT services · invoicing"
                data-id="Jasa IT · faktur">Jasa IT · faktur</div>
-          <div class="cb-card-tag ph">PKP · PPh 23</div>
+          <div class="cb-card-tag">PKP · PPh 23</div>
           <div class="cb-card-arrow"
-               style="color: var(--gray-3)"
-               data-en="In progress"
-               data-id="Segera hadir">Segera hadir</div>
+               data-en="View casebook →"
+               data-id="Lihat casebook →">Lihat casebook →</div>
         </div>
 
-        <div class="cb-card placeholder" data-cb="bangun">
+        <div class="cb-card" data-cb="bangun">
           <div class="cb-card-num">Case 04</div>
           <div class="cb-card-name">PT Bangun Sulawesi</div>
           <div class="cb-card-type"
                data-en="Construction · project costing"
                data-id="Konstruksi · project costing">Konstruksi · project costing</div>
-          <div class="cb-card-tag ph">PKP · PPh 4(2)</div>
+          <div class="cb-card-tag">PKP · PPh 4(2)</div>
           <div class="cb-card-arrow"
-               style="color: var(--gray-3)"
-               data-en="In progress"
-               data-id="Segera hadir">Segera hadir</div>
+               data-en="View casebook →"
+               data-id="Lihat casebook →">Lihat casebook →</div>
         </div>
 
-        <div class="cb-card placeholder" data-cb="kos">
+        <div class="cb-card" data-cb="kos">
           <div class="cb-card-num">Case 05</div>
           <div class="cb-card-name">Kos Pak Haris</div>
           <div class="cb-card-type"
                data-en="Boarding house · 20 rooms"
                data-id="Kos-kosan · 20 kamar">Kos-kosan · 20 kamar</div>
-          <div class="cb-card-tag ph">Non-PPN · Final 10%</div>
+          <div class="cb-card-tag">Non-PPN · Final 10%</div>
           <div class="cb-card-arrow"
-               style="color: var(--gray-3)"
-               data-en="In progress"
-               data-id="Segera hadir">Segera hadir</div>
+               data-en="View casebook →"
+               data-id="Lihat casebook →">Lihat casebook →</div>
         </div>
 
       </div>
@@ -1844,38 +1841,621 @@
 
     </div><!-- /cb-panel makmur -->
     <div class="cb-panel" id="cb-solusi">
-      <div class="cb-placeholder-panel">
-        <div class="cb-placeholder-icon">§</div>
-        <div class="cb-placeholder-title">CV Solusi Digital</div>
-        <div class="cb-placeholder-desc"
-             data-en="IT services firm with receivables aging, direct-method cash flow, and 5-employee progressive PPh 21 — casebook in progress."
-             data-id="Perusahaan jasa IT dengan piutang aging, arus kas metode langsung, dan PPh 21 progresif 5 karyawan — casebook sedang disusun.">
-          Perusahaan jasa IT dengan piutang aging, arus kas metode langsung, dan PPh 21 progresif 5 karyawan — casebook sedang disusun.
+      <!-- Business header -->
+      <div class="cb-biz-header">
+        <div class="cb-biz-eyebrow">CASE 03 · JANUARI 2025</div>
+        <h3 class="cb-biz-name">CV <span>Solusi Digital</span></h3>
+        <p class="cb-biz-desc"
+           data-en="An IT services firm in Palu run by Arif Hidayatullah, delivering web development, system integration, and digital consulting to corporate and government clients. As a PKP with mostly badan (corporate) clients, CV Solusi Digital sits at the intersection of three tax streams simultaneously: PPN 11% on every invoice, PPh 23 withheld at source by corporate clients, and progressive PPh 21 for all five employees. A textbook PKP jasa case."
+           data-id="Perusahaan jasa IT di Palu yang dijalankan Arif Hidayatullah, menyediakan pengembangan web, integrasi sistem, dan konsultasi digital untuk klien korporat dan pemerintah. Sebagai PKP dengan mayoritas klien badan, CV Solusi Digital berada di persimpangan tiga aliran pajak sekaligus: PPN 11% di setiap invoice, PPh 23 dipotong di sumber oleh klien badan, dan PPh 21 progresif untuk lima karyawan. Kasus PKP jasa yang klasik.">
+          Perusahaan jasa IT di Palu yang dijalankan Arif Hidayatullah, menyediakan pengembangan web, integrasi sistem, dan konsultasi digital untuk klien korporat dan pemerintah. Sebagai PKP dengan mayoritas klien badan, CV Solusi Digital berada di persimpangan tiga aliran pajak sekaligus: PPN 11% di setiap invoice, PPh 23 dipotong di sumber oleh klien badan, dan PPh 21 progresif untuk lima karyawan. Kasus PKP jasa yang klasik.
+        </p>
+        <div class="cb-biz-meta">
+          <span class="cb-meta-chip">Jenis <strong>Jasa IT / Konsultasi</strong></span>
+          <span class="cb-meta-chip">Lokasi <strong>Palu, Sulteng</strong></span>
+          <span class="cb-meta-chip">Total Invoice DPP <strong>Rp 180 jt</strong></span>
+          <span class="cb-meta-chip">Status <strong>PKP · PPh 23</strong></span>
+          <span class="cb-meta-chip">Karyawan <strong>5 orang</strong></span>
         </div>
       </div>
-    </div>
+
+      <!-- Sheet tabs -->
+      <div class="cb-sheets-wrap">
+        <div class="cb-tabs" role="tablist">
+          <button class="cb-tab active" data-sheet="invoice" data-panel="solusi">
+            <span class="cb-tab-icon"></span><span>Invoice &amp; Piutang</span>
+          </button>
+          <button class="cb-tab" data-sheet="kas" data-panel="solusi">
+            <span class="cb-tab-icon"></span><span>Arus Kas</span>
+          </button>
+          <button class="cb-tab" data-sheet="pl" data-panel="solusi">
+            <span class="cb-tab-icon"></span><span>Laba Rugi</span>
+          </button>
+          <button class="cb-tab" data-sheet="kary" data-panel="solusi">
+            <span class="cb-tab-icon"></span><span>Karyawan</span>
+          </button>
+        </div>
+
+        <!-- Sheet 1: Invoice & Piutang -->
+        <div class="cb-sheet-content active" data-sheet-content="invoice" data-panel="solusi">
+          <div class="cb-sheet-title">Invoice &amp; Piutang Usaha · Januari 2025</div>
+          <p class="cb-sheet-sub"
+             data-en="Ten invoices issued in January. As a PKP, each invoice must be accompanied by a Faktur Pajak. Corporate clients (badan) are required to withhold PPh 23 at 2% of DPP before remitting payment — meaning CV Solusi Digital receives net of PPh 23, not the full invoice amount."
+             data-id="Sepuluh invoice diterbitkan di Januari. Sebagai PKP, setiap invoice wajib disertai Faktur Pajak. Klien badan wajib memotong PPh 23 sebesar 2% dari DPP sebelum membayar — artinya CV Solusi Digital menerima pembayaran neto PPh 23, bukan nilai invoice penuh.">
+            Sepuluh invoice diterbitkan di Januari. Sebagai PKP, setiap invoice wajib disertai Faktur Pajak. Klien badan wajib memotong PPh 23 sebesar 2% dari DPP sebelum membayar — artinya CV Solusi Digital menerima pembayaran neto PPh 23, bukan nilai invoice penuh.
+          </p>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th>No. Invoice</th>
+                  <th>Nama Klien</th>
+                  <th>Tgl</th>
+                  <th class="num">DPP (Rp)</th>
+                  <th class="num">PPN 11%</th>
+                  <th class="num">Total Tagihan</th>
+                  <th class="num">PPh 23 (2%)</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="cb-acc-d">INV-2501-001</td><td class="cb-desc">PT Harapan Maju</td><td class="cb-date">05 Jan</td><td class="num">15.000.000</td><td class="num">1.650.000</td><td class="num">16.650.000</td><td class="num" style="color:#FB923C">300.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td></tr>
+                <tr><td class="cb-acc-d">INV-2501-002</td><td class="cb-desc">CV Berkah Abadi</td><td class="cb-date">08 Jan</td><td class="num">8.500.000</td><td class="num">935.000</td><td class="num">9.435.000</td><td class="num" style="color:#FB923C">170.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td></tr>
+                <tr><td class="cb-acc-d">INV-2501-003</td><td class="cb-desc">UD Sejahtera Palu</td><td class="cb-date">10 Jan</td><td class="num">22.000.000</td><td class="num">2.420.000</td><td class="num">24.420.000</td><td class="num muted">—</td><td><span style="color:#F87171;font-size:10px;font-weight:700">BELUM LUNAS</span></td></tr>
+                <tr><td class="cb-acc-d">INV-2501-004</td><td class="cb-desc">PT Sulawesi Niaga</td><td class="cb-date">12 Jan</td><td class="num">18.000.000</td><td class="num">1.980.000</td><td class="num">19.980.000</td><td class="num" style="color:#FB923C">180.000</td><td><span style="color:#FBBF24;font-size:10px;font-weight:700">SEBAGIAN 50%</span></td></tr>
+                <tr><td class="cb-acc-d">INV-2501-005</td><td class="cb-desc">Dinas Pertanian Sulteng</td><td class="cb-date">15 Jan</td><td class="num">45.000.000</td><td class="num">4.950.000</td><td class="num">49.950.000</td><td class="num" style="color:#FB923C">900.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td></tr>
+                <tr><td class="cb-acc-d">INV-2501-006</td><td class="cb-desc">CV Mitra Teknologi</td><td class="cb-date">18 Jan</td><td class="num">12.000.000</td><td class="num">1.320.000</td><td class="num">13.320.000</td><td class="num muted">—</td><td><span style="color:#F87171;font-size:10px;font-weight:700">BELUM LUNAS</span></td></tr>
+                <tr><td class="cb-acc-d">INV-2501-007</td><td class="cb-desc">PT Alam Sulawesi</td><td class="cb-date">20 Jan</td><td class="num">9.500.000</td><td class="num">1.045.000</td><td class="num">10.545.000</td><td class="num" style="color:#FB923C">190.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td></tr>
+                <tr><td class="cb-acc-d">INV-2501-008</td><td class="cb-desc">Koperasi Nelayan Palu</td><td class="cb-date">22 Jan</td><td class="num">6.000.000</td><td class="num">660.000</td><td class="num">6.660.000</td><td class="num muted">—</td><td><span style="color:#F87171;font-size:10px;font-weight:700">BELUM LUNAS</span></td></tr>
+                <tr><td class="cb-acc-d">INV-2501-009</td><td class="cb-desc">PT Konstruksi Prima</td><td class="cb-date">25 Jan</td><td class="num">33.000.000</td><td class="num">3.630.000</td><td class="num">36.630.000</td><td class="num" style="color:#FB923C">198.000</td><td><span style="color:#FBBF24;font-size:10px;font-weight:700">SEBAGIAN 30%</span></td></tr>
+                <tr><td class="cb-acc-d">INV-2501-010</td><td class="cb-desc">UD Karya Mandiri</td><td class="cb-date">28 Jan</td><td class="num">11.000.000</td><td class="num">1.210.000</td><td class="num">12.210.000</td><td class="num" style="color:#FB923C">220.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td></tr>
+                <tr class="cb-total"><td colspan="3">TOTAL</td><td class="num">180.000.000</td><td class="num">19.800.000</td><td class="num">199.800.000</td><td class="num" style="color:#FB923C">1.958.000</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Aging summary -->
+          <div class="cb-summary" style="grid-template-columns:repeat(3,1fr);margin-top:1.5rem;">
+            <div class="cb-summary-item">
+              <div class="cb-summary-label">Lunas — 5 invoice</div>
+              <div class="cb-summary-val pos">Rp 89.000.000 DPP</div>
+            </div>
+            <div class="cb-summary-item">
+              <div class="cb-summary-label">Sebagian — 2 invoice</div>
+              <div class="cb-summary-val" style="color:#FBBF24">Rp 51.000.000 DPP</div>
+            </div>
+            <div class="cb-summary-item">
+              <div class="cb-summary-label">Belum Lunas — 3 invoice</div>
+              <div class="cb-summary-val" style="color:#F87171">Rp 40.000.000 DPP</div>
+            </div>
+          </div>
+          <div class="cb-finding" style="margin-top:1.5rem;">
+            <div class="cb-finding-label">📌 Catatan Pajak — PPh 23</div>
+            <div class="cb-finding-title">PPh 23 dipotong oleh klien badan — bukan CV Solusi Digital yang setor</div>
+            <div class="cb-finding-text">Total PPh 23 yang dipotong klien badan dari invoice yang (sudah/sebagian) dibayar = <strong>Rp 1.958.000</strong>. Angka ini bukan beban bagi CV Solusi Digital — ini adalah kredit pajak yang dapat dikreditkan dalam SPT Tahunan PPh Badan. Klien badan wajib menyerahkan <strong>Bukti Potong PPh 23</strong> kepada CV Solusi Digital. Tanpa bukti potong, kredit pajak tidak dapat diklaim. UD Sejahtera Palu &amp; Koperasi Nelayan adalah <em>bukan</em> badan hukum — mereka tidak potong PPh 23.</div>
+          </div>
+        </div>
+
+        <!-- Sheet 2: Arus Kas -->
+        <div class="cb-sheet-content" data-sheet-content="kas" data-panel="solusi">
+          <div class="cb-sheet-title">Arus Kas — Metode Langsung · Januari 2025</div>
+          <p class="cb-sheet-sub"
+             data-en="Direct method cash flow — three activities. Cash receipts from clients are based on actual payments received (lunas + partial), not total invoices billed. The gap between Rp 180M billed and Rp 120.5M received is the outstanding receivables."
+             data-id="Arus kas metode langsung — tiga aktivitas. Penerimaan kas dari klien berdasarkan pembayaran aktual yang diterima (lunas + sebagian), bukan total invoice yang diterbitkan. Selisih antara Rp 180jt ditagih dan Rp 120,5jt diterima adalah piutang yang belum tertagih.">
+            Arus kas metode langsung — tiga aktivitas. Penerimaan kas dari klien berdasarkan pembayaran aktual yang diterima (lunas + sebagian), bukan total invoice yang diterbitkan. Selisih antara Rp 180jt ditagih dan Rp 120,5jt diterima adalah piutang yang belum tertagih.
+          </p>
+          <table class="cb-hpp-table">
+            <tbody>
+              <tr><td colspan="2" style="color:var(--cyan);font-weight:700;padding-top:1rem;letter-spacing:0.08em;text-transform:uppercase;font-size:10.5px">I. AKTIVITAS OPERASI</td></tr>
+              <tr><td>Penerimaan dari klien (5 invoice lunas)</td><td class="num">99.500.000</td></tr>
+              <tr><td>Penerimaan sebagian INV-004 (50%)</td><td class="num">9.990.000</td></tr>
+              <tr><td>Penerimaan sebagian INV-009 (30%)</td><td class="num">10.989.000</td></tr>
+              <tr><td style="color:#F87171">Bayar gaji karyawan (5 orang)</td><td class="num" style="color:#F87171">(22.500.000)</td></tr>
+              <tr><td style="color:#F87171">Bayar sewa kantor</td><td class="num" style="color:#F87171">(8.000.000)</td></tr>
+              <tr><td style="color:#F87171">Biaya operasional (ATK, internet, dll)</td><td class="num" style="color:#F87171">(3.500.000)</td></tr>
+              <tr><td style="color:#F87171">Setor PPN masa Des 2024 ke DJP</td><td class="num" style="color:#F87171">(12.650.000)</td></tr>
+              <tr><td style="color:#F87171">Setor PPh 21 karyawan</td><td class="num" style="color:#F87171">(4.250.000)</td></tr>
+              <tr class="cb-total"><td>NET KAS DARI AKTIVITAS OPERASI</td><td class="num" style="color:#34D399">69.579.000</td></tr>
+
+              <tr><td colspan="2" style="color:var(--cyan);font-weight:700;padding-top:1.25rem;letter-spacing:0.08em;text-transform:uppercase;font-size:10.5px">II. AKTIVITAS INVESTASI</td></tr>
+              <tr><td style="color:#F87171">Beli laptop baru (2 unit) — aset tetap</td><td class="num" style="color:#F87171">(24.000.000)</td></tr>
+              <tr><td style="color:#F87171">Upgrade server &amp; hosting tahunan</td><td class="num" style="color:#F87171">(6.500.000)</td></tr>
+              <tr class="cb-total"><td>NET KAS DARI AKTIVITAS INVESTASI</td><td class="num" style="color:#F87171">(30.500.000)</td></tr>
+
+              <tr><td colspan="2" style="color:var(--cyan);font-weight:700;padding-top:1.25rem;letter-spacing:0.08em;text-transform:uppercase;font-size:10.5px">III. AKTIVITAS PENDANAAN</td></tr>
+              <tr><td>Pinjaman modal kerja — Bank Sulutgo</td><td class="num">50.000.000</td></tr>
+              <tr><td style="color:#F87171">Cicilan pokok pinjaman bulan lalu</td><td class="num" style="color:#F87171">(5.000.000)</td></tr>
+              <tr class="cb-total"><td>NET KAS DARI AKTIVITAS PENDANAAN</td><td class="num" style="color:#34D399">45.000.000</td></tr>
+
+              <tr><td colspan="2" style="height:12px"></td></tr>
+              <tr><td style="color:var(--gray-2)">Saldo Kas Awal (1 Jan 2025)</td><td class="num">35.000.000</td></tr>
+              <tr><td style="color:var(--gray-2)">Kenaikan Kas Bersih</td><td class="num" style="color:#34D399">84.079.000</td></tr>
+              <tr class="cb-total" style="background:rgba(201,165,103,0.12);border-top:2px solid var(--cyan)"><td>SALDO KAS AKHIR (31 Jan 2025)</td><td class="num" style="color:var(--cyan);font-size:15px">119.079.000</td></tr>
+            </tbody>
+          </table>
+          <div class="cb-finding" style="margin-top:1.5rem;">
+            <div class="cb-finding-label">⚠ Catatan Rekonsiliasi</div>
+            <div class="cb-finding-title">PPN masa Januari 2025 belum tercermin di arus kas ini</div>
+            <div class="cb-finding-text">Arus kas ini menyetor PPN <em>Des 2024</em> (Rp 12,65 jt). PPN Keluaran dari 10 invoice Januari 2025 sebesar <strong>Rp 19,8 jt</strong> akan menjadi kewajiban setor paling lambat 28 Feb 2025. Kas akhir Rp 119 jt terlihat sehat — tetapi efektif harus disisihkan Rp 19,8 jt untuk PPN Masa Jan yang akan jatuh tempo bulan depan.</div>
+          </div>
+        </div>
+
+        <!-- Sheet 3: P&L -->
+        <div class="cb-sheet-content" data-sheet-content="pl" data-panel="solusi">
+          <div class="cb-sheet-title">Laporan Laba Rugi · Januari 2025</div>
+          <p class="cb-sheet-sub">Revenue diakui basis akrual (semua 10 invoice, bukan hanya yang lunas). PPN mengalir terpisah. PPh 23 yang dipotong klien = kredit pajak, bukan biaya.</p>
+          <table class="cb-hpp-table">
+            <tbody>
+              <tr><td colspan="2" style="color:var(--cyan);font-weight:600;padding-top:1rem;letter-spacing:0.08em;text-transform:uppercase;font-size:10.5px">PENDAPATAN</td></tr>
+              <tr><td>Pendapatan jasa IT (DPP, akrual)</td><td class="num">180.000.000</td></tr>
+              <tr class="cb-total"><td>TOTAL PENDAPATAN</td><td class="num">180.000.000</td></tr>
+
+              <tr><td colspan="2" style="color:var(--cyan);font-weight:600;padding-top:1.25rem;letter-spacing:0.08em;text-transform:uppercase;font-size:10.5px">BEBAN OPERASIONAL</td></tr>
+              <tr><td>Beban Gaji (5 karyawan)</td><td class="num">52.750.000</td></tr>
+              <tr><td>Beban Sewa Kantor</td><td class="num">8.000.000</td></tr>
+              <tr><td>Beban Operasional (ATK, internet, dll)</td><td class="num">3.500.000</td></tr>
+              <tr><td>Penyusutan Laptop (Rp 24jt / 48 bln)</td><td class="num">500.000</td></tr>
+              <tr><td>Cicilan bunga pinjaman (est.)</td><td class="num">625.000</td></tr>
+              <tr class="cb-total"><td>TOTAL BEBAN OPERASIONAL</td><td class="num">65.375.000</td></tr>
+
+              <tr class="cb-total" style="background:rgba(201,165,103,0.12);border-top:2px solid var(--cyan)"><td>LABA SEBELUM PAJAK (EBIT)</td><td class="num" style="color:var(--white);font-size:13px">114.625.000</td></tr>
+              <tr><td style="color:var(--gray-3);font-size:10.5px">Net margin %</td><td class="num" style="color:var(--cyan)">63,7%</td></tr>
+              <tr><td style="color:var(--gray-3);font-size:10.5px">PPh Badan est. (disetahunkan, lapis 22%)</td><td class="num" style="color:#FB923C">(~25.217.500)</td></tr>
+              <tr class="cb-total" style="background:rgba(201,165,103,0.12);border-top:1px solid var(--cyan)"><td>LABA BERSIH SETELAH PAJAK (EST.)</td><td class="num" style="color:var(--cyan);font-size:15px">~89.407.500</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:1.5rem;padding:1.1rem 1.35rem;background:rgba(52,211,153,0.05);border-left:2px solid #34D399;border-radius:0 4px 4px 0;font-family:var(--mono);font-size:11.5px;color:var(--gray-1);line-height:1.7;">
+            <strong>Kredit pajak PPh 23:</strong> Total Rp 1.958.000 yang dipotong klien badan adalah kredit pajak — dikreditkan terhadap PPh Badan terutang di SPT Tahunan, sehingga mengurangi kas yang harus disetor di akhir tahun. Bukan biaya, bukan kerugian.
+          </div>
+        </div>
+
+        <!-- Sheet 4: Karyawan -->
+        <div class="cb-sheet-content" data-sheet-content="kary" data-panel="solusi">
+          <div class="cb-sheet-title">Data Karyawan &amp; PPh 21 · Januari 2025</div>
+          <p class="cb-sheet-sub">Lima karyawan, semua tetap. Empat dari lima melebihi PTKP dan kena pemotongan PPh 21. Dua karyawan (Dewi &amp; Bagas) belum punya NPWP — tarif lebih tinggi 20%.</p>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nama</th>
+                  <th>Jabatan</th>
+                  <th>PTKP</th>
+                  <th class="num">Bruto/bln</th>
+                  <th class="num">PPh 21/bln</th>
+                  <th>Keterangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background:rgba(201,165,103,0.04)">
+                  <td class="muted">1</td><td class="cb-desc">Arif Hidayatullah</td>
+                  <td class="muted">Direktur / Pendiri</td>
+                  <td><span style="color:var(--cyan);font-size:10.5px;font-weight:600">K/2</span></td>
+                  <td class="num">18.000.000</td>
+                  <td class="num" style="color:#FB923C">1.281.250</td>
+                  <td class="muted">PKP Rp 142,5jt — lapis 5%+15%</td>
+                </tr>
+                <tr>
+                  <td class="muted">2</td><td class="cb-desc">Novia Rahmawati</td>
+                  <td class="muted">Senior Developer</td>
+                  <td><span style="color:#818CF8;font-size:10.5px;font-weight:600">TK/0</span></td>
+                  <td class="num">11.500.000</td>
+                  <td class="num" style="color:#FB923C">475.000</td>
+                  <td class="muted">PKP Rp 78jt — lapis 5%+15%</td>
+                </tr>
+                <tr>
+                  <td class="muted">3</td><td class="cb-desc">Rizky Firmansyah</td>
+                  <td class="muted">Backend Developer</td>
+                  <td><span style="color:var(--cyan);font-size:10.5px;font-weight:600">K/1</span></td>
+                  <td class="num">9.500.000</td>
+                  <td class="num" style="color:#FB923C">188.750</td>
+                  <td class="muted">PKP Rp 45,3jt × 5%</td>
+                </tr>
+                <tr style="background:rgba(248,113,113,0.04)">
+                  <td class="muted">4</td><td class="cb-desc">Dewi Anggraini</td>
+                  <td class="muted">UI/UX Designer</td>
+                  <td><span style="color:#818CF8;font-size:10.5px;font-weight:600">TK/0</span></td>
+                  <td class="num">7.750.000</td>
+                  <td class="num" style="color:#FB923C">143.125</td>
+                  <td class="muted" style="color:#F87171">Belum punya NPWP — tarif +20%</td>
+                </tr>
+                <tr style="background:rgba(248,113,113,0.04)">
+                  <td class="muted">5</td><td class="cb-desc">Bagas Setiawan</td>
+                  <td class="muted">Junior Developer</td>
+                  <td><span style="color:#818CF8;font-size:10.5px;font-weight:600">TK/0</span></td>
+                  <td class="num">6.000.000</td>
+                  <td class="num" style="color:#FB923C">60.000</td>
+                  <td class="muted" style="color:#F87171">Belum punya NPWP — tarif +20%</td>
+                </tr>
+                <tr class="cb-total"><td colspan="4">TOTAL</td><td class="num">52.750.000</td><td class="num" style="color:#FB923C">2.148.125</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="cb-finding" style="margin-top:1.5rem;">
+            <div class="cb-finding-label">⚠ Risiko Kepatuhan — NPWP</div>
+            <div class="cb-finding-title">Dewi &amp; Bagas belum punya NPWP — tarif PPh 21 lebih tinggi 20%</div>
+            <div class="cb-finding-text">Pasal 21 ayat (5a) UU PPh: karyawan tanpa NPWP dikenakan tarif 20% lebih tinggi dari tarif normal. PPh 21 Dewi seharusnya Rp 119.271 (normal) → Rp 143.125 (tanpa NPWP). Selisih Rp 23.854/bln — Rp 286.248/tahun. Rekomendasi: bantu karyawan daftar NPWP segera, keduanya bisa daftar online di ereg.pajak.go.id dalam &lt;30 menit.</div>
+          </div>
+        </div>
+
+      </div><!-- /cb-sheets-wrap -->
+
+      <!-- Bridge to tax page -->
+      <a href="tax.html#casebook-solusi" class="cb-bridge" style="color:inherit;text-decoration:none;">
+        <div class="cb-bridge-content">
+          <div class="cb-bridge-label">Perspektif pajak</div>
+          <div class="cb-bridge-title">Lanjut ke analisis pajak lengkap CV Solusi Digital</div>
+          <div class="cb-bridge-desc">Data yang sama, dari sudut kepatuhan pajak — rekonsiliasi PPh 23 per klien, Faktur Pajak &amp; SPT Masa PPN, PPh 21 5 karyawan progresif, dan 6 kewajiban pelaporan berbeda tiap bulan.</div>
+        </div>
+        <span class="cb-bridge-btn">Lihat Analisis Pajak&nbsp;&nbsp;<span class="arrow">→</span></span>
+      </a>
+
+    </div><!-- /cb-panel solusi -->
     <div class="cb-panel" id="cb-bangun">
-      <div class="cb-placeholder-panel">
-        <div class="cb-placeholder-icon">§</div>
-        <div class="cb-placeholder-title">PT Bangun Sulawesi</div>
-        <div class="cb-placeholder-desc"
-             data-en="Construction firm with project costing variance analysis and mixed-workforce PPh 21 — casebook in progress."
-             data-id="Perusahaan konstruksi dengan analisis varians project costing dan PPh 21 campuran (tetap & harian) — casebook sedang disusun.">
-          Perusahaan konstruksi dengan analisis varians project costing dan PPh 21 campuran (tetap & harian) — casebook sedang disusun.
+      <!-- Business header -->
+      <div class="cb-biz-header">
+        <div class="cb-biz-eyebrow">CASE 04 · JANUARI 2025</div>
+        <h3 class="cb-biz-name">PT Bangun <span>Sulawesi</span></h3>
+        <p class="cb-biz-desc"
+           data-en="A construction firm in Palu contracted to build a government office building. Total contract value Rp 2.8 billion, 3-month duration (Jan–Mar 2025). Billing is done by progress termin (milestone-based), not monthly. The tax structure is unique: PPh 4(2) Final 2.65% is withheld by the government client on each termin — not declared separately by PT Bangun. PPN 11% still applies on top. With 15 workers on site, the payroll is a mix of taxable staff and below-PTKP daily workers."
+           data-id="Perusahaan konstruksi di Palu yang dikontrak membangun gedung kantor pemerintah. Nilai kontrak Rp 2,8 miliar, durasi 3 bulan (Jan–Mar 2025). Penagihan dilakukan per termin (berbasis progress), bukan bulanan. Struktur pajak unik: PPh 4(2) Final 2,65% dipotong oleh klien pemerintah di setiap termin — bukan dilaporkan terpisah oleh PT Bangun. PPN 11% tetap berlaku di atasnya. Dengan 15 pekerja di lapangan, payroll merupakan campuran staff kena pajak dan pekerja harian di bawah PTKP.">
+          Perusahaan konstruksi di Palu yang dikontrak membangun gedung kantor pemerintah. Nilai kontrak Rp 2,8 miliar, durasi 3 bulan (Jan–Mar 2025). Penagihan dilakukan per termin, bukan bulanan. Struktur pajak unik: PPh 4(2) Final 2,65% dipotong oleh klien pemerintah di setiap termin — bukan dilaporkan terpisah oleh PT Bangun. PPN 11% tetap berlaku.
+        </p>
+        <div class="cb-biz-meta">
+          <span class="cb-meta-chip">Jenis <strong>Konstruksi</strong></span>
+          <span class="cb-meta-chip">Lokasi <strong>Palu, Sulteng</strong></span>
+          <span class="cb-meta-chip">Nilai Kontrak <strong>Rp 2,8 M</strong></span>
+          <span class="cb-meta-chip">Status <strong>PKP · PPh 4(2) Final</strong></span>
+          <span class="cb-meta-chip">Tenaga Kerja <strong>15 orang</strong></span>
         </div>
       </div>
-    </div>
+
+      <!-- Sheet tabs -->
+      <div class="cb-sheets-wrap">
+        <div class="cb-tabs" role="tablist">
+          <button class="cb-tab active" data-sheet="costing" data-panel="bangun">
+            <span class="cb-tab-icon"></span><span>Project Costing</span>
+          </button>
+          <button class="cb-tab" data-sheet="termin" data-panel="bangun">
+            <span class="cb-tab-icon"></span><span>Progress Billing</span>
+          </button>
+          <button class="cb-tab" data-sheet="payroll" data-panel="bangun">
+            <span class="cb-tab-icon"></span><span>Payroll</span>
+          </button>
+        </div>
+
+        <!-- Sheet 1: Project Costing -->
+        <div class="cb-sheet-content active" data-sheet-content="costing" data-panel="bangun">
+          <div class="cb-sheet-title">Project Costing — RAB vs Realisasi · Januari 2025</div>
+          <p class="cb-sheet-sub">Anggaran vs realisasi biaya bulan pertama. Total anggaran 3 bulan Rp 1,87 M (HPP). Varians positif = efisiensi; varians negatif = pembengkakan. Januari realisasi 95% dari anggaran — on track.</p>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th>Kode</th>
+                  <th>Uraian Pekerjaan</th>
+                  <th class="num">Angg. Jan (Rp)</th>
+                  <th class="num">Realisasi Jan (Rp)</th>
+                  <th class="num">Varians (Rp)</th>
+                  <th class="num">Real. %</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="cb-acc-d">MAT-01</td><td class="cb-desc">Semen &amp; bahan pondasi</td><td class="num">180.000.000</td><td class="num">175.000.000</td><td class="num" style="color:#34D399">+5.000.000</td><td class="num">97,2%</td></tr>
+                <tr><td class="cb-acc-d">MAT-02</td><td class="cb-desc">Besi beton &amp; tulangan</td><td class="num">220.000.000</td><td class="num">215.000.000</td><td class="num" style="color:#34D399">+5.000.000</td><td class="num">97,7%</td></tr>
+                <tr><td class="cb-acc-d">MAT-03</td><td class="cb-desc">Bata, pasir &amp; kerikil</td><td class="num">95.000.000</td><td class="num">92.000.000</td><td class="num" style="color:#34D399">+3.000.000</td><td class="num">96,8%</td></tr>
+                <tr><td class="cb-acc-d">MAT-04</td><td class="cb-desc">Kayu bekisting</td><td class="num">60.000.000</td><td class="num">58.000.000</td><td class="num" style="color:#34D399">+2.000.000</td><td class="num">96,7%</td></tr>
+                <tr><td class="cb-acc-d">MAT-05</td><td class="cb-desc">Cat, keramik &amp; finishing</td><td class="num">20.000.000</td><td class="num">0</td><td class="num" style="color:#34D399">+20.000.000</td><td class="num muted">—</td></tr>
+                <tr><td class="cb-acc-d">LAB-01</td><td class="cb-desc">Upah mandor (1 orang)</td><td class="num">8.000.000</td><td class="num">8.000.000</td><td class="num" style="color:var(--gray-3)">0</td><td class="num">100%</td></tr>
+                <tr><td class="cb-acc-d">LAB-02</td><td class="cb-desc">Upah tukang (10 orang)</td><td class="num">50.000.000</td><td class="num">50.000.000</td><td class="num" style="color:var(--gray-3)">0</td><td class="num">100%</td></tr>
+                <tr><td class="cb-acc-d">LAB-03</td><td class="cb-desc">Upah pekerja kasar (15 org)</td><td class="num">45.000.000</td><td class="num">45.000.000</td><td class="num" style="color:var(--gray-3)">0</td><td class="num">100%</td></tr>
+                <tr><td class="cb-acc-d">LAB-04</td><td class="cb-desc">Lembur &amp; tunjangan lapangan</td><td class="num">12.000.000</td><td class="num">11.500.000</td><td class="num" style="color:#34D399">+500.000</td><td class="num">95,8%</td></tr>
+                <tr><td class="cb-acc-d">EQP-01</td><td class="cb-desc">Sewa alat berat (excavator)</td><td class="num">35.000.000</td><td class="num">33.000.000</td><td class="num" style="color:#34D399">+2.000.000</td><td class="num">94,3%</td></tr>
+                <tr><td class="cb-acc-d">EQP-02</td><td class="cb-desc">Sewa scaffolding</td><td class="num">8.000.000</td><td class="num">8.000.000</td><td class="num" style="color:var(--gray-3)">0</td><td class="num">100%</td></tr>
+                <tr><td class="cb-acc-d">OVH-01</td><td class="cb-desc">Biaya K3 &amp; keselamatan kerja</td><td class="num">5.000.000</td><td class="num">4.800.000</td><td class="num" style="color:#34D399">+200.000</td><td class="num">96%</td></tr>
+                <tr><td class="cb-acc-d">OVH-02</td><td class="cb-desc">Transportasi &amp; logistik</td><td class="num">15.000.000</td><td class="num">14.500.000</td><td class="num" style="color:#34D399">+500.000</td><td class="num">96,7%</td></tr>
+                <tr><td class="cb-acc-d">OVH-03</td><td class="cb-desc">Overhead kantor proyek</td><td class="num">10.000.000</td><td class="num">10.000.000</td><td class="num" style="color:var(--gray-3)">0</td><td class="num">100%</td></tr>
+                <tr class="cb-total"><td colspan="2">TOTAL</td><td class="num">763.000.000</td><td class="num">724.800.000</td><td class="num" style="color:#34D399">+38.200.000</td><td class="num" style="color:#34D399">94,99%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="cb-summary" style="grid-template-columns:repeat(3,1fr);margin-top:1.5rem;">
+            <div class="cb-summary-item">
+              <div class="cb-summary-label">Total Anggaran 3 Bulan</div>
+              <div class="cb-summary-val">Rp 1.870.000.000</div>
+            </div>
+            <div class="cb-summary-item">
+              <div class="cb-summary-label">Realisasi Januari</div>
+              <div class="cb-summary-val pos">Rp 724.800.000</div>
+            </div>
+            <div class="cb-summary-item">
+              <div class="cb-summary-label">Efisiensi Bulan Ini</div>
+              <div class="cb-summary-val pos">+Rp 38.200.000</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sheet 2: Progress Billing -->
+        <div class="cb-sheet-content" data-sheet-content="termin" data-panel="bangun">
+          <div class="cb-sheet-title">Progress Billing — Termin · Kontrak 3 Bulan</div>
+          <p class="cb-sheet-sub">Tiga termin sesuai milestone. PPh 4(2) Final 2,65% dipotong langsung oleh instansi pemerintah dari setiap tagihan — PT Bangun Sulawesi menerima neto setelah potongan. PPN 11% disetor terpisah.</p>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th>Termin</th>
+                  <th>Progress</th>
+                  <th class="num">% Selesai</th>
+                  <th class="num">DPP (Rp)</th>
+                  <th class="num">PPN 11%</th>
+                  <th class="num">Total Tagihan</th>
+                  <th class="num">PPh 4(2) 2,65%</th>
+                  <th class="num">Net Diterima</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background:rgba(52,211,153,0.03)">
+                  <td class="cb-acc-d">Termin I</td>
+                  <td class="cb-desc">Pondasi &amp; struktur bawah selesai (Jan)</td>
+                  <td class="num">30%</td>
+                  <td class="num">840.000.000</td>
+                  <td class="num">92.400.000</td>
+                  <td class="num">932.400.000</td>
+                  <td class="num" style="color:#FB923C">22.260.000</td>
+                  <td class="num" style="color:#34D399">817.740.000</td>
+                  <td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td>
+                </tr>
+                <tr>
+                  <td class="cb-acc-d">Termin II</td>
+                  <td class="cb-desc">Struktur atas &amp; dinding selesai (Feb)</td>
+                  <td class="num">35%</td>
+                  <td class="num">980.000.000</td>
+                  <td class="num">107.800.000</td>
+                  <td class="num">1.087.800.000</td>
+                  <td class="num muted">25.970.000</td>
+                  <td class="num muted">954.030.000</td>
+                  <td><span style="color:#F87171;font-size:10px;font-weight:700">BELUM</span></td>
+                </tr>
+                <tr>
+                  <td class="cb-acc-d">Termin III</td>
+                  <td class="cb-desc">Finishing &amp; serah terima (Mar)</td>
+                  <td class="num">35%</td>
+                  <td class="num">980.000.000</td>
+                  <td class="num">107.800.000</td>
+                  <td class="num">1.087.800.000</td>
+                  <td class="num muted">25.970.000</td>
+                  <td class="num muted">954.030.000</td>
+                  <td><span style="color:#F87171;font-size:10px;font-weight:700">BELUM</span></td>
+                </tr>
+                <tr class="cb-total"><td colspan="3">TOTAL KONTRAK</td><td class="num">2.800.000.000</td><td class="num">308.000.000</td><td class="num">3.108.000.000</td><td class="num" style="color:#FB923C">74.200.000</td><td class="num" style="color:#34D399">2.725.800.000</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="cb-finding" style="margin-top:1.5rem;">
+            <div class="cb-finding-label">📌 PPh 4(2) Final — Mekanisme Pemotongan</div>
+            <div class="cb-finding-title">Pemerintah memotong — PT Bangun Sulawesi menerima neto</div>
+            <div class="cb-finding-text">PPh 4(2) Final 2,65% atas jasa konstruksi dipotong oleh pemberi kerja (instansi pemerintah) langsung dari nilai tagihan DPP. Total potongan selama 3 bulan = <strong>Rp 74,2 jt</strong>. Ini bersifat <em>final</em> — tidak dapat dikreditkan, tidak mengurangi/menambah penghasilan kena pajak. PT Bangun Sulawesi tetap wajib lapor SPT Masa PPh 4(2) setiap bulan meski tidak menyetor sendiri. Bukti potong dari pemerintah wajib disimpan untuk pemeriksaan.</div>
+          </div>
+        </div>
+
+        <!-- Sheet 3: Payroll -->
+        <div class="cb-sheet-content" data-sheet-content="payroll" data-panel="bangun">
+          <div class="cb-sheet-title">Daftar Gaji &amp; Upah · Januari 2025</div>
+          <p class="cb-sheet-sub">Tenaga kerja campuran: 5 staff tetap (kena PPh 21) + 10 tukang harian + 15 pekerja kasar lepas (mayoritas di bawah PTKP, PPh 21 = 0). Total upah Januari Rp 108,85 jt.</p>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nama / Jabatan</th>
+                  <th class="num">Bruto/bln (Rp)</th>
+                  <th class="num">PPh 21/bln (Rp)</th>
+                  <th class="num">Net Diterima (Rp)</th>
+                  <th>Keterangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background:rgba(201,165,103,0.04)"><td class="muted">1</td><td class="cb-desc">Ir. Slamet Riyadi — Direktur Proyek</td><td class="num">23.000.000</td><td class="num" style="color:#FB923C">2.031.250</td><td class="num">20.968.750</td><td class="muted">K/2 · PPh 21 dipotong</td></tr>
+                <tr style="background:rgba(201,165,103,0.04)"><td class="muted">2</td><td class="cb-desc">Hendra Kusuma — Site Manager</td><td class="num">14.000.000</td><td class="num" style="color:#FB923C">737.500</td><td class="num">13.262.500</td><td class="muted">K/1 · PPh 21 dipotong</td></tr>
+                <tr style="background:rgba(201,165,103,0.04)"><td class="muted">3</td><td class="cb-desc">Fitri Handayani — Admin Proyek</td><td class="num">5.750.000</td><td class="num" style="color:#FB923C">48.125</td><td class="num">5.701.875</td><td class="muted">TK/0 · PPh 21 dipotong</td></tr>
+                <tr style="background:rgba(201,165,103,0.04)"><td class="muted">4</td><td class="cb-desc">Budi Santoso — Mandor</td><td class="num">10.000.000</td><td class="num" style="color:#FB923C">212.500</td><td class="num">9.787.500</td><td class="muted">K/1 · PPh 21 dipotong</td></tr>
+                <tr style="background:rgba(201,165,103,0.04)"><td class="muted">5</td><td class="cb-desc">Ahmad Yani — Tukang Senior</td><td class="num">6.300.000</td><td class="num" style="color:#FB923C">55.500</td><td class="num">6.244.500</td><td class="muted">K/0 · PPh 21 dipotong</td></tr>
+                <tr><td class="muted">6–14</td><td class="cb-desc">Tukang &amp; Pekerja (9 orang)</td><td class="num">~40.800.000</td><td class="num" style="color:var(--gray-3)">~184.250</td><td class="num">~40.615.750</td><td class="muted">Campuran — sebagian &lt; PTKP</td></tr>
+                <tr><td class="muted">15</td><td class="cb-desc">Pekerja Harian Lepas (15 org, rata-rata)</td><td class="num">3.000.000</td><td class="num" style="color:#34D399">0</td><td class="num">3.000.000</td><td class="muted">Upah harian &lt; PTKP</td></tr>
+                <tr class="cb-total"><td colspan="2">TOTAL</td><td class="num">108.850.000</td><td class="num" style="color:#FB923C">3.269.125</td><td class="num">105.580.875</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top:1.5rem;padding:1.1rem 1.35rem;background:rgba(201,165,103,0.04);border-left:2px solid var(--cyan);border-radius:0 4px 4px 0;font-family:var(--mono);font-size:11.5px;color:var(--gray-1);line-height:1.7;">
+            <strong>Aturan pekerja harian lepas:</strong> Upah harian di bawah Rp 450.000/hari atau bruto bulanan di bawah PTKP TK/0 Rp 54 jt/tahun → PPh 21 = 0. Tukang dengan gaji Rp 4–5 jt/bulan umumnya aman di bawah ambang ini. Yang di atas ambang (Doni Pratama, Hamid Lako, Amir Saad) memiliki PPh 21 = 0 karena gaji tahunannya masih di bawah PTKP.
+          </div>
+        </div>
+
+      </div><!-- /cb-sheets-wrap -->
+
+      <!-- Bridge to tax page -->
+      <a href="tax.html#casebook-bangun" class="cb-bridge" style="color:inherit;text-decoration:none;">
+        <div class="cb-bridge-content">
+          <div class="cb-bridge-label">Perspektif pajak</div>
+          <div class="cb-bridge-title">Lanjut ke analisis pajak lengkap PT Bangun Sulawesi</div>
+          <div class="cb-bridge-desc">Data yang sama, dari sudut kepatuhan pajak — PPh 4(2) Final 2,65% per termin, rekap PPN progress billing, PPh 21 campuran staff &amp; pekerja harian, dan jadwal kewajiban pelaporan proyek konstruksi.</div>
+        </div>
+        <span class="cb-bridge-btn">Lihat Analisis Pajak&nbsp;&nbsp;<span class="arrow">→</span></span>
+      </a>
+
+    </div><!-- /cb-panel bangun -->
     <div class="cb-panel" id="cb-kos">
-      <div class="cb-placeholder-panel">
-        <div class="cb-placeholder-icon">§</div>
-        <div class="cb-placeholder-title">Kos Pak Haris</div>
-        <div class="cb-placeholder-desc"
-             data-en="20-room boarding house — PKP but VAT-exempt under PMK 70/2022, with self-assessed final 10% — casebook in progress."
-             data-id="Kos-kosan 20 kamar — PKP tapi bebas PPN menurut PMK 70/2022, dengan PPh Final 10% self-assessed — casebook sedang disusun.">
-          Kos-kosan 20 kamar — PKP tapi bebas PPN menurut PMK 70/2022, dengan PPh Final 10% self-assessed — casebook sedang disusun.
+      <!-- Business header -->
+      <div class="cb-biz-header">
+        <div class="cb-biz-eyebrow">CASE 05 · JANUARI 2025</div>
+        <h3 class="cb-biz-name">Kos <span>Pak Haris</span></h3>
+        <p class="cb-biz-desc"
+           data-en="A 20-room boarding house in Palu owned by Pak Haris, with three room tiers: AC Deluxe (Rp 1.2M), AC Standard (Rp 900K), and Non-AC (Rp 650K). January occupancy: 17 of 20 rooms occupied (85%), with 1 vacant and 2 late payers. The regulatory angle makes this case stand out: Pak Haris is a registered PKP (annual revenue exceeds Rp 4.8M threshold), but rental income from residential boarding houses is VAT-exempt under PMK 70/2022. He owes PPh Final 10% on gross rent collected — self-assessed, not withheld by tenants."
+           data-id="Kos-kosan 20 kamar di Palu milik Pak Haris, dengan tiga tipe kamar: AC Deluxe (Rp 1,2 jt), AC Standard (Rp 900 rb), dan Non-AC (Rp 650 rb). Hunian Januari: 17 dari 20 kamar terisi (85%), 1 kosong, 2 terlambat bayar. Sisi regulasi membuat kasus ini unik: Pak Haris sudah dikukuhkan sebagai PKP (omzet tahunan melebihi Rp 4,8 jt), namun pendapatan sewa hunian kos bebas PPN menurut PMK 70/2022. Ia terutang PPh Final 10% atas bruto sewa yang diterima — self-assessed, tidak dipotong penyewa.">
+          Kos-kosan 20 kamar di Palu milik Pak Haris, dengan tiga tipe kamar: AC Deluxe (Rp 1,2 jt), AC Standard (Rp 900 rb), dan Non-AC (Rp 650 rb). Hunian Januari: 17 dari 20 kamar terisi (85%). Kasus regulasi unik: PKP tetapi bebas PPN (PMK 70/2022). PPh Final 10% self-assessed atas bruto sewa.
+        </p>
+        <div class="cb-biz-meta">
+          <span class="cb-meta-chip">Jenis <strong>Kos-kosan</strong></span>
+          <span class="cb-meta-chip">Lokasi <strong>Palu, Sulteng</strong></span>
+          <span class="cb-meta-chip">Sewa Diterima <strong>Rp 15,45 jt/bln</strong></span>
+          <span class="cb-meta-chip">Status <strong>PKP · Bebas PPN · PPh Final 10%</strong></span>
+          <span class="cb-meta-chip">Kamar <strong>20 (17 terisi)</strong></span>
         </div>
       </div>
-    </div>
+
+      <!-- Sheet tabs -->
+      <div class="cb-sheets-wrap">
+        <div class="cb-tabs" role="tablist">
+          <button class="cb-tab active" data-sheet="hunian" data-panel="kos">
+            <span class="cb-tab-icon"></span><span>Rekap Hunian</span>
+          </button>
+          <button class="cb-tab" data-sheet="kaspl" data-panel="kos">
+            <span class="cb-tab-icon"></span><span>Arus Kas &amp; L/R</span>
+          </button>
+          <button class="cb-tab" data-sheet="karykos" data-panel="kos">
+            <span class="cb-tab-icon"></span><span>Karyawan</span>
+          </button>
+        </div>
+
+        <!-- Sheet 1: Rekap Hunian -->
+        <div class="cb-sheet-content active" data-sheet-content="hunian" data-panel="kos">
+          <div class="cb-sheet-title">Rekap Hunian &amp; Pendapatan Sewa · Januari 2025</div>
+          <p class="cb-sheet-sub">Status pembayaran per kamar. Pendapatan aktual = sewa yang benar-benar diterima bulan ini (termasuk yang terlambat, tidak termasuk yang belum bayar &amp; kosong). Occupancy rate: 85%.</p>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th>Kamar</th>
+                  <th>Nama Penghuni</th>
+                  <th>Tipe</th>
+                  <th class="num">Tarif/bln (Rp)</th>
+                  <th>Status</th>
+                  <th>Tgl Bayar</th>
+                  <th class="num">Diterima (Rp)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="cb-acc-d">K-01</td><td class="cb-desc">Andi Kurniawan</td><td class="muted">AC Deluxe</td><td class="num">1.200.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">02 Jan</td><td class="num">1.200.000</td></tr>
+                <tr><td class="cb-acc-d">K-02</td><td class="cb-desc">Siti Rahmawati</td><td class="muted">AC Deluxe</td><td class="num">1.200.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">03 Jan</td><td class="num">1.200.000</td></tr>
+                <tr><td class="cb-acc-d">K-03</td><td class="cb-desc">Budi Setiawan</td><td class="muted">AC Deluxe</td><td class="num">1.200.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">01 Jan</td><td class="num">1.200.000</td></tr>
+                <tr><td class="cb-acc-d">K-04</td><td class="cb-desc">Nurul Hidayah</td><td class="muted">AC Deluxe</td><td class="num">1.200.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">04 Jan</td><td class="num">1.200.000</td></tr>
+                <tr><td class="cb-acc-d">K-05</td><td class="cb-desc">Fajar Ramadan</td><td class="muted">AC Deluxe</td><td class="num">1.200.000</td><td><span style="color:#FBBF24;font-size:10px;font-weight:700">TERLAMBAT H+17</span></td><td class="cb-date">18 Jan</td><td class="num">1.200.000</td></tr>
+                <tr><td class="cb-acc-d">K-06</td><td class="cb-desc">Rini Susanti</td><td class="muted">AC Standard</td><td class="num">900.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">02 Jan</td><td class="num">900.000</td></tr>
+                <tr><td class="cb-acc-d">K-07</td><td class="cb-desc">Hendra Wijaya</td><td class="muted">AC Standard</td><td class="num">900.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">05 Jan</td><td class="num">900.000</td></tr>
+                <tr><td class="cb-acc-d">K-08</td><td class="cb-desc">Dewi Lestari</td><td class="muted">AC Standard</td><td class="num">900.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">03 Jan</td><td class="num">900.000</td></tr>
+                <tr><td class="cb-acc-d">K-09</td><td class="cb-desc">Irwan Saputra</td><td class="muted">AC Standard</td><td class="num">900.000</td><td><span style="color:#F87171;font-size:10px;font-weight:700">BELUM BAYAR</span></td><td class="cb-date">—</td><td class="num" style="color:#F87171">0</td></tr>
+                <tr><td class="cb-acc-d">K-10</td><td class="cb-desc">Megawati</td><td class="muted">AC Standard</td><td class="num">900.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">06 Jan</td><td class="num">900.000</td></tr>
+                <tr><td class="cb-acc-d">K-11</td><td class="cb-desc">Rizky Pratama</td><td class="muted">Non-AC</td><td class="num">650.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">02 Jan</td><td class="num">650.000</td></tr>
+                <tr><td class="cb-acc-d">K-12</td><td class="cb-desc">Hamid Basri</td><td class="muted">Non-AC</td><td class="num">650.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">03 Jan</td><td class="num">650.000</td></tr>
+                <tr><td class="cb-acc-d">K-13</td><td class="cb-desc">Yuliana</td><td class="muted">Non-AC</td><td class="num">650.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">04 Jan</td><td class="num">650.000</td></tr>
+                <tr><td class="cb-acc-d">K-14</td><td class="cb-desc">Darmawan</td><td class="muted">Non-AC</td><td class="num">650.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">01 Jan</td><td class="num">650.000</td></tr>
+                <tr><td class="cb-acc-d">K-15</td><td class="cb-desc" style="color:var(--gray-4)">— KOSONG —</td><td class="muted">Non-AC</td><td class="num">650.000</td><td><span style="color:var(--gray-3);font-size:10px;font-weight:700">KOSONG</span></td><td class="cb-date">—</td><td class="num" style="color:var(--gray-4)">0</td></tr>
+                <tr><td class="cb-acc-d">K-16</td><td class="cb-desc">Ahmad Fauzi</td><td class="muted">Non-AC</td><td class="num">650.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">05 Jan</td><td class="num">650.000</td></tr>
+                <tr><td class="cb-acc-d">K-17</td><td class="cb-desc">Sri Wahyuni</td><td class="muted">Non-AC</td><td class="num">650.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">07 Jan</td><td class="num">650.000</td></tr>
+                <tr><td class="cb-acc-d">K-18</td><td class="cb-desc">Baharuddin</td><td class="muted">Non-AC</td><td class="num">650.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">02 Jan</td><td class="num">650.000</td></tr>
+                <tr><td class="cb-acc-d">K-19</td><td class="cb-desc">Linda Sari</td><td class="muted">Non-AC</td><td class="num">650.000</td><td><span style="color:#FBBF24;font-size:10px;font-weight:700">TERLAMBAT H+19</span></td><td class="cb-date">20 Jan</td><td class="num">650.000</td></tr>
+                <tr><td class="cb-acc-d">K-20</td><td class="cb-desc">Supriyadi</td><td class="muted">Non-AC</td><td class="num">650.000</td><td><span style="color:#34D399;font-size:10px;font-weight:700">LUNAS</span></td><td class="cb-date">03 Jan</td><td class="num">650.000</td></tr>
+                <tr class="cb-total"><td colspan="3">TOTAL (20 kamar)</td><td class="num">17.000.000</td><td></td><td></td><td class="num" style="color:#34D399">15.450.000</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="cb-summary" style="grid-template-columns:repeat(3,1fr);margin-top:1.5rem;">
+            <div class="cb-summary-item">
+              <div class="cb-summary-label">Terisi &amp; Bayar</div>
+              <div class="cb-summary-val pos">17 kamar (85%)</div>
+            </div>
+            <div class="cb-summary-item">
+              <div class="cb-summary-label">Pendapatan Potensial</div>
+              <div class="cb-summary-val">Rp 17.000.000</div>
+            </div>
+            <div class="cb-summary-item">
+              <div class="cb-summary-label">Pendapatan Aktual</div>
+              <div class="cb-summary-val pos">Rp 15.450.000</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sheet 2: Arus Kas & L/R -->
+        <div class="cb-sheet-content" data-sheet-content="kaspl" data-panel="kos">
+          <div class="cb-sheet-title">Arus Kas &amp; Laporan Laba Rugi · Januari 2025</div>
+          <p class="cb-sheet-sub">PPh Final 10% dihitung dari bruto sewa yang <em>diterima</em> (Rp 15,45 jt) — bukan dari potensi sewa maksimal. Sewa yang belum dibayar &amp; kamar kosong tidak kena pajak sampai uang diterima.</p>
+          <table class="cb-hpp-table">
+            <tbody>
+              <tr><td colspan="2" style="color:var(--cyan);font-weight:600;padding-top:1rem;letter-spacing:0.08em;text-transform:uppercase;font-size:10.5px">PENDAPATAN SEWA</td></tr>
+              <tr><td>Total sewa diterima (18 kamar bayar)</td><td class="num">15.450.000</td></tr>
+              <tr class="cb-total"><td>TOTAL PENDAPATAN</td><td class="num">15.450.000</td></tr>
+
+              <tr><td colspan="2" style="color:var(--cyan);font-weight:600;padding-top:1.25rem;letter-spacing:0.08em;text-transform:uppercase;font-size:10.5px">BEBAN OPERASIONAL</td></tr>
+              <tr><td>Listrik &amp; air (ditanggung pemilik, 20 kamar)</td><td class="num">3.200.000</td></tr>
+              <tr><td>Gaji penjaga kos (Pak Roslan)</td><td class="num">1.800.000</td></tr>
+              <tr><td>Biaya kebersihan &amp; perawatan rutin</td><td class="num">800.000</td></tr>
+              <tr><td>Cicilan KPR — pokok + bunga (Bank BRI)</td><td class="num">4.500.000</td></tr>
+              <tr><td>Biaya internet kos (WiFi shared IndiHome)</td><td class="num">500.000</td></tr>
+              <tr><td>Cadangan perbaikan (2% pendapatan)</td><td class="num">309.000</td></tr>
+              <tr class="cb-total"><td>TOTAL BEBAN OPERASIONAL</td><td class="num">11.109.000</td></tr>
+
+              <tr class="cb-total" style="background:rgba(201,165,103,0.12);border-top:2px solid var(--cyan)"><td>LABA SEBELUM PAJAK</td><td class="num" style="color:var(--white);font-size:13px">4.341.000</td></tr>
+              <tr><td style="color:var(--gray-3);font-size:10.5px">Operating margin %</td><td class="num" style="color:var(--cyan)">28,1%</td></tr>
+              <tr><td>PPh Final Psl 4(2) — 10% × bruto sewa (Rp 15,45 jt)</td><td class="num" style="color:#FB923C">(1.545.000)</td></tr>
+              <tr class="cb-total" style="background:rgba(201,165,103,0.12);border-top:1px solid var(--cyan)"><td>LABA BERSIH SETELAH PAJAK</td><td class="num" style="color:var(--cyan);font-size:15px">2.796.000</td></tr>
+            </tbody>
+          </table>
+          <div class="cb-finding" style="margin-top:1.5rem;">
+            <div class="cb-finding-label">📌 Catatan Pajak — PMK 70/2022</div>
+            <div class="cb-finding-title">PKP tapi bebas PPN — bukan kelalaian, ini aturannya</div>
+            <div class="cb-finding-text">Kos-kosan dengan &gt;10 kamar memang kena PPh Final 10%, tapi PMK 70/2022 Pasal 2 ayat 1 secara eksplisit membebaskan sewa hunian (termasuk kos) dari PPN — <em>meskipun pemiliknya PKP</em>. Pak Haris tidak boleh memungut PPN dari penyewa. PPh Final 10% bersifat final dan self-assessed: Pak Haris setor sendiri paling lambat tanggal 15 bulan berikutnya, lalu lapor di SPT Tahunan 1770 sebagai penghasilan final.</div>
+          </div>
+        </div>
+
+        <!-- Sheet 3: Karyawan -->
+        <div class="cb-sheet-content" data-sheet-content="karykos" data-panel="kos">
+          <div class="cb-sheet-title">Data Karyawan · Januari 2025</div>
+          <p class="cb-sheet-sub">Hanya satu karyawan — Pak Roslan, penjaga kos. Gaji Rp 1,8 jt/bulan jauh di bawah PTKP TK/0 Rp 54 jt/tahun. PPh 21 = 0.</p>
+          <div class="cb-table-wrap">
+            <table class="cb-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nama</th>
+                  <th>Jabatan</th>
+                  <th>PTKP</th>
+                  <th class="num">Gaji/bln (Rp)</th>
+                  <th class="num">PPh 21/bln</th>
+                  <th>Keterangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="muted">1</td>
+                  <td class="cb-desc">Pak Roslan</td>
+                  <td class="muted">Penjaga Kos</td>
+                  <td><span style="color:#818CF8;font-size:10.5px;font-weight:600">TK/0</span></td>
+                  <td class="num">1.800.000</td>
+                  <td class="num" style="color:#34D399">0</td>
+                  <td class="muted">Bruto tahunan Rp 21,6 jt &lt; PTKP Rp 54 jt</td>
+                </tr>
+                <tr class="cb-total"><td colspan="4">TOTAL</td><td class="num">1.800.000</td><td class="num" style="color:#34D399">0</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top:1.5rem;padding:1.1rem 1.35rem;background:rgba(201,165,103,0.04);border-left:2px solid var(--cyan);border-radius:0 4px 4px 0;font-family:var(--mono);font-size:11.5px;color:var(--gray-1);line-height:1.7;">
+            <strong>Status pajak Pak Haris (pemilik):</strong> Pak Haris adalah orang pribadi. Pendapatan sewa kos masuk SPT Tahunan sebagai penghasilan final (PPh 4(2) 10%). Formulir SPT: 1770 (punya usaha/pekerjaan bebas). Bukti potong tidak ada karena self-assessed. Batas setor: tanggal 15 bulan berikutnya. Batas lapor SPT Tahunan: 31 Maret.
+          </div>
+        </div>
+
+      </div><!-- /cb-sheets-wrap -->
+
+      <!-- Bridge to tax page -->
+      <a href="tax.html#casebook-kos" class="cb-bridge" style="color:inherit;text-decoration:none;">
+        <div class="cb-bridge-content">
+          <div class="cb-bridge-label">Perspektif pajak</div>
+          <div class="cb-bridge-title">Lanjut ke analisis pajak lengkap Kos Pak Haris</div>
+          <div class="cb-bridge-desc">Data yang sama, dari sudut kepatuhan pajak — status PKP vs bebas PPN (PMK 70/2022), perhitungan PPh Final 10% atas bruto sewa, kewajiban SPT 1770, dan kalender pelaporan pemilik kos.</div>
+        </div>
+        <span class="cb-bridge-btn">Lihat Analisis Pajak&nbsp;&nbsp;<span class="arrow">→</span></span>
+      </a>
+
+    </div><!-- /cb-panel kos -->
 
   </div>
 </section>
